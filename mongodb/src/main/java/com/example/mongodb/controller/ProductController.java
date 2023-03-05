@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.example.mongodb.model.Product;
 import com.example.mongodb.model.repository.ProductRepository;
 import com.example.mongodb.resource.ProductRequest;
 
+@CrossOrigin(origins = "http//localhost:8080")
 @RestController
 public class ProductController {
 
@@ -24,7 +26,7 @@ public class ProductController {
         public ProductController(ProductRepository productRepository){
             this.productRepository = productRepository;
         }
-    @CrossOrigin(origins = "http//localhost:8080")
+    // @CrossOrigin(origins = "http//localhost:8080")
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProducts(){
         return ResponseEntity.ok(this.productRepository.findAll());
@@ -68,6 +70,14 @@ public class ProductController {
         } else {
             return ResponseEntity.ok("The product with id " + id + " was not found");
         }
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity updateProduct(@PathVariable String id, @RequestBody Product product) {
+        Product productToUpdate = this.productRepository.findById(id).get();
+        productToUpdate.setName(product.getName());
+        productToUpdate.setDescription(product.getDescription());
+        return ResponseEntity.ok(this.productRepository.save(productToUpdate));
     }
     
 }
