@@ -48,7 +48,7 @@ public class UserController {
 
     @PutMapping
     public User modifyUser(@RequestBody User user) {
-        return service.updateUser(vendor);
+        return service.updateUser(user);
     }
 
     @DeleteMapping("/{userId}")
