@@ -1,5 +1,29 @@
 {
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --host localhost --port 3000",
+    "build": "vue-cli-service build"
+  },
   "dependencies": {
+    "@auth0/auth0-vue": "^2.0.2",
+    "@mdi/font": "5.9.55",
+    "auth0-js": "^9.20.2",
+    "jwt-decode": "^3.1.2",
+    "roboto-fontface": "*",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuetify": "^3.0.0-beta.0",
+    "vuex": "^4.0.0",
+    "webfontloader": "^1.0.0",
     "firebase": "^9.17.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   }
 }
