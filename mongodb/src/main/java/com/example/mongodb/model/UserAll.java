@@ -1,3 +1,4 @@
+
 package com.example.mongodb.model;
 
 import java.util.List;
@@ -8,17 +9,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "users")
+@Document(collection = "usersAll")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class User {
+public class UserAll {
+    
     @Id
     private String id;
     private String username;
     private String password;
     private String email;
     private String accessRights;
+    private String adminAssigned;
+    private List<Forms> forms;
     
 }

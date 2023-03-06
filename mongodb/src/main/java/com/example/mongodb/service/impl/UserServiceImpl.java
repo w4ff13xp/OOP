@@ -26,6 +26,7 @@ public class UserServiceImpl {
         return repository.findAll();
     }
 
+
     public User getUserByUserId(String userId) {
         return repository.findById(userId).get();
     }
@@ -50,5 +51,12 @@ public class UserServiceImpl {
         repository.deleteById(userId);
         return userId + "vendor deleted from database";
     }
+
+    // public String findUserByName(String username) {
+    //     repository.findByName(username);
+    //     return username;
+    // }
+
+
     
 }
