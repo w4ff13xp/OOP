@@ -4040,6 +4040,7 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  background-color: var(--bs-blue);
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -11452,12 +11453,12 @@ html {
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
-    padding-bottom: 6rem;
+    padding-top: calc(0.5rem + 40px);
+    padding-bottom: 1.5rem;
   }
   .masthead .masthead-heading {
-    font-size: 4rem;
-    line-height: 3.5rem;
+    font-size: 2rem;
+    line-height: 1.5rem;
   }
   .masthead .masthead-subheading {
     font-size: 1.5rem;
