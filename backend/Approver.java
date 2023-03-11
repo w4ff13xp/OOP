@@ -1,4 +1,4 @@
-public class Approver {
+public class Approver extends User{
     
     //Define the constructor
     public Approver(){
@@ -6,7 +6,7 @@ public class Approver {
     }
 
     public Approver(String username, String passwordHash){
-
+        super();
     }
 
     //define the methods
