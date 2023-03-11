@@ -3,16 +3,14 @@
         <div>
             <!-- <Navigation></Navigation> -->
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
+        <header class="masthead text-center">
             <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="frontend/assets/img/avataaars.svg" alt="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Welcome to Form Management System</h1>
+                <h4 class="masthead-heading text-uppercase mb-0">Welcome to Form Management System</h4>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <!-- <div class="divider-custom-icon"><i class="fas fa-star"></i></div> -->
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->

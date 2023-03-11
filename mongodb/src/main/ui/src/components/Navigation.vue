@@ -1,9 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid #eeeee4;">
+  <nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid #eeeee4;" >
             <div class="container-fluid">
-                testes\
-                <img  class="logo" :src="url" height="60px" width="200px">
-                <!-- <img  class="logo" src="../frontend/assets/Quantum.png" height="60px" width="200px"> -->
+                <img  class="logo rounded border-radius: 50%" :src="url" height="50" width="50">
+                <!-- <img  class="logo" src="../frontend/assets/Quantum.png" height="200px" width="200px"> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -30,9 +29,9 @@
                     </li>
                     
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex " role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success bg-info" type="submit">Search</button>
                 </form>
                 </div>
             </div>
@@ -44,7 +43,7 @@ export default {
     name: 'Navigation',
     data() {
     return{
-        url: require('@/../public/frontend/assets/Quantum.png'),
+        url: require('../../public/frontend/assets/quantum2.png'),
 
         clientId: process.env.VUE_APP_AUTH0_CONFIG_DOMAIN
         }
