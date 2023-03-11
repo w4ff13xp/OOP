@@ -47,6 +47,7 @@ public class VendorService {
         existingVendor.setPassword(vendorRequest.getPassword());
         existingVendor.setEmail(vendorRequest.getEmail());
         existingVendor.setAccessRights(vendorRequest.getAccessRights());
+        existingVendor.setLocations(vendorRequest.getLocations());
         return repository.save(existingVendor);
     }
 

@@ -1,5 +1,7 @@
 package com.example.mongodb.model;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,5 +20,6 @@ public class Vendor {
     private String password;
     private String email;
     private String accessRights;
+    private ArrayList<String> locations;
 
 }

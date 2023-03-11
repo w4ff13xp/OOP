@@ -42,6 +42,30 @@
                     </form>
                 </div>
 
+                <div class="mb-3">
+                  <label for="locs" class="form-label">Location of Operations</label>
+                  <form id="locs">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault1" value="singapore" v-model="locations">
+                          <label class="form-check-label" for="flexCheckboxDefault1">
+                            Singapore
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault2" value="malaysia" v-model="locations">
+                          <label class="form-check-label" for="flexCheckboxDefault2">
+                            Malaysia
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault3" value="USA" v-model="locations">
+                          <label class="form-check-label" for="flexCheckboxDefault3">
+                            USA
+                          </label>
+                        </div>
+                  </form>
+              </div>
+
                 <div class="text-center"><button type="submit" class="btn btn-primary" @click="addToAPI">Submit</button></div>
               <!-- </form> -->
         </div>
@@ -56,17 +80,17 @@ import bcrypt from 'bcryptjs';
 export default {
   
 name:'CreateNewAcc',
-methods:{
   data() {
         return {
             companyName: "",
             companyEmail: "",
             password: "",
-            access: ""
+            access: "",
+            locations: []
         }
     },
     
-
+methods: {
   addToAPI() {
             // const bcrypt = require('bcrypt');
             // pw = this.password;
@@ -79,8 +103,11 @@ methods:{
                 username: this.companyName,
                 password: encryptPassword(this.password),
                 email: this.companyEmail,
-                accessRights: this.access
+                accessRights: this.access,
+                locations: JSON.parse(JSON.stringify(this.locations))
              }
+             
+             console.log(this.locations)
              console.log(newVendor)
              const axios = require('axios');
 
@@ -92,6 +119,8 @@ methods:{
                 console.log(error);
              })
         }
+}
+  
 
   // create(){
   //   const bcrypt = require('bcrypt');
@@ -128,7 +157,7 @@ methods:{
   // }
   
 }
-}
+
 </script>
 
 <style>
