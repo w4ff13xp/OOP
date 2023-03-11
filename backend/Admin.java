@@ -1,10 +1,10 @@
-public class Admin extends User{
-
-    public Admin(String username, String password){
-        super();
-    }
+public class Admin {
 
     public Admin() {
+    }
+
+    public Admin(String username, String password){
+
     }
 
     public void assignWorkflow(){

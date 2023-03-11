@@ -1,4 +1,4 @@
-public class Vendor extends User{
+public class Vendor {
     private String companyName;
     private String country;
     private String email;
