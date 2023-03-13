@@ -19,6 +19,11 @@ const routes = [
     component: SpecificVendor
   },
   {
+    path: '/',
+    name: 'login',
+    component: Login
+  },
+  {
     path: '/approver',
     name: 'approver',
     component: Approver
@@ -55,11 +60,11 @@ const routes = [
     name: 'contact',
     component: Contact
   },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
-  },
+//   {
+//     path: '/login',
+//     name: 'login',
+//     component: Login
+//   },
   {
     path: '/auth0callback',
     name: 'auth0callback',
