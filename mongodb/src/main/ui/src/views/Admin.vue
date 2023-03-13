@@ -94,6 +94,7 @@ name:'Admin',
       .then((response) => {
         console.log(response.data);
         this.vendors = response.data
+        console.log("AYAYAY")
         console.log(this.vendors)
       })
       .catch ((error) => {

@@ -76,6 +76,7 @@
 <script>
 // import { axios } from '@/plugins/axios'
 import bcrypt from 'bcryptjs';
+import { boolean } from 'webidl-conversions';
 
 export default {
   
@@ -106,19 +107,87 @@ methods: {
                 accessRights: this.access,
                 locations: JSON.parse(JSON.stringify(this.locations))
              }
-             
-             console.log(this.locations)
-             console.log(newVendor)
-             const axios = require('axios');
 
-             axios.post('http://localhost:8080/vendors', newVendor)
-             .then((response) => {
-                console.log(response);
-             })
-             .catch ((error) => {
-                console.log(error);
-             })
-        }
+             var lower = 'abcdefghijklmnopqrstuvwxyz'
+             var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+             var num = '0123456789'
+             var special = '!@#$%^&*'
+
+             var threeLower = false;
+             var threeUpper = false;
+             var hasNumber = false;
+             var hasSpecial = false;
+
+             if (this.password.length >= 8) {
+                for (var i = 0; i < this.password.length; i++) {
+                    if (lower.includes(this.password[i])) {
+                        threeLower = true;
+                    }
+                    if (uppercase.includes(this.password[i])) {
+                        threeUpper = true;
+                    }
+                    if (num.includes(this.password[i])) {
+                        hasNumber = true;
+                    }
+                    if (special.includes(this.password[i])) {
+                        hasSpecial = true;
+                    }
+                //     if ( || uppercase.includes(this.password[i]) || num.includes(this.password[i]) || special.includes(this.password[i])) {
+                        
+                //         console.log("yAYAYAYACONSOLE");
+
+                //         console.log(this.locations)
+                //         console.log(newVendor)
+                //         const axios = require('axios');
+
+                //         axios.post('http://localhost:8080/vendors', newVendor)
+                //         .then((response) => {
+                //             console.log(response);
+                //         })
+                //         .catch ((error) => {
+                //             console.log(error);
+                //         })
+                //     }
+                //     else {
+                //         console.log("VALIDATION FAILED. Your password must contain:\nAt least 8 characters,\nAt least 3 of the following:\n- Lower case letters (a-z)\n- Upper case letters (A-Z)\n- Numbers (0-9)\n- Special characters (e.g. !@#$%^&*)")
+                //     }
+                //     }
+                // } else {
+                //         console.log("VALIDATION FAILED. Your password must contain:\nAt least 8 characters,\nAt least 3 of the following:\n- Lower case letters (a-z)\n- Upper case letters (A-Z)\n- Numbers (0-9)\n- Special characters (e.g. !@#$%^&*)")
+                //     }
+             }
+             var checker = 0;
+             if (threeLower) {
+                checker++;
+             }
+             if (threeUpper) {
+                checker++;
+             }
+             if (hasNumber) {
+                checker++
+             }
+             if (hasSpecial) {
+                checker++;
+             }
+             if (checker >= 3) {
+                const axios = require('axios');
+
+                axios.post('http://localhost:8080/vendors', newVendor)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch ((error) => {
+                    console.log(error);
+                })
+             }
+             else {
+                alert("VALIDATION FAILED. Your password must contain:\nAt least 8 characters,\nAt least 3 of the following:\n- Lower case letters (a-z)\n- Upper case letters (A-Z)\n- Numbers (0-9)\n- Special characters (e.g. !@#$%^&*)")
+             }
+
+             
+}
+else {
+    alert("VALIDATION FAILED. Your password must contain:\nAt least 8 characters.");
 }
   
 
@@ -156,6 +225,8 @@ methods: {
   // });
   // }
   
+}
+}
 }
 
 </script>
