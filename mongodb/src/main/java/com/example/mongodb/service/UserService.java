@@ -19,6 +19,9 @@ public class UserService {
     //CRUD CREATE, READ, UPDATE, DELETE
 
     public User addUser(User user) {
+        // if (repository.findById(user.getId()).get() != null){
+        //     return;
+        // }
         return repository.save(user);
     }
 
@@ -38,13 +41,14 @@ public class UserService {
         //get the existing document from DB
         //populate new value from request to existing object/entity/document
 
-        User existingUser = repository.findById(userRequest.getEmail()).get();
-        existingUser.setEmail(userRequest.getEmail());
+        User existingUser = repository.findById(userRequest.getId()).get();
+        existingUser.setId(userRequest.getId());
         existingUser.setUsername(userRequest.getUsername());
         // String hashedsString = BCrypt.hashpw(vendorRequest.getPassword(), BCrypt.gensalt());
         // System.out.println("---------------------"+hashedsString);
         // existingVendor.setPassword(hashedsString);
         existingUser.setPassword(userRequest.getPassword());
+        existingUser.setEmail(userRequest.getEmail());
         existingUser.setAccessRights(userRequest.getAccessRights());
         existingUser.setLocations(userRequest.getLocations());
         return repository.save(existingUser);

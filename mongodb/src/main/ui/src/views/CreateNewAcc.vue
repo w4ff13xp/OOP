@@ -101,6 +101,7 @@ methods: {
               return bcrypt.hashSync(password, salt)
             }
             let newUser = { 
+                id: this.companyEmail,
                 username: this.companyName,
                 password: encryptPassword(this.password),
                 email: this.companyEmail,
