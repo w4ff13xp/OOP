@@ -1,4 +1,4 @@
-package com.example.mongodb.model.repository;
+package com.example.mongodb.repository;
 
 import java.util.List;
 

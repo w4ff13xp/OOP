@@ -1,4 +1,4 @@
-package com.example.mongodb.resource;
+package com.example.mongodb.model;
 
 import java.util.Date;
 

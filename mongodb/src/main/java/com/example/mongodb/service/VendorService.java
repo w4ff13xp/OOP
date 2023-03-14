@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 // import org.springframework.security.crypto.bcrypt.BCrypt; 
 
 import com.example.mongodb.model.Vendor;
-import com.example.mongodb.model.repository.VendorRepository;
+import com.example.mongodb.repository.VendorRepository;
 
 @Service
 public class VendorService {
