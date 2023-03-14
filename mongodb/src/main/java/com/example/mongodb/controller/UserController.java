@@ -15,45 +15,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.mongodb.model.Vendor;
-import com.example.mongodb.service.VendorService;
+import com.example.mongodb.model.User;
+import com.example.mongodb.service.UserService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-@RequestMapping("/vendors")
-public class VendorController {
+@RequestMapping("/users")
+public class UserController {
     
     @Autowired
-    private VendorService service;
+    private UserService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Vendor createVendor(@RequestBody Vendor vendor) {
-        return service.addVendor(vendor);
+    public User createUser(@RequestBody User user) {
+        return service.addUser(user);
     }
 
     @GetMapping
-    public List<Vendor> getVendors() {
-        return service.findAllVendors();
+    public List<User> getUsers() {
+        return service.findAllUsers();
     }
 
-    @GetMapping("/{vendorId}")
-    public Vendor getVendor(@PathVariable String vendorId) {
-        return service.getVendorByVendorId(vendorId);
+    @GetMapping("/{userId}")
+    public User getUser(@PathVariable String userId) {
+        return service.getUserByUserId(userId);
     }
 
     @GetMapping("/accessRights/{accessRights}")
-    public List<Vendor> findVendorByAccessRights(@PathVariable String accessRights) {
-        return service.getVendorByAccessRights(accessRights);
+    public List<User> findUserByAccessRights(@PathVariable String accessRights) {
+        return service.getUserByAccessRights(accessRights);
     }
 
     @PutMapping
-    public Vendor modifyVendor(@RequestBody Vendor vendor) {
-        return service.updateVendor(vendor);
+    public User modifyUser(@RequestBody User user) {
+        return service.updateUser(user);
     }
 
-    @DeleteMapping("/{vendorId}")
-    public String deleteVendor(@PathVariable String vendorId) {
-        return service.deleteVendor(vendorId);
+    @DeleteMapping("/{userId}")
+    public String deleteVendor(@PathVariable String userId) {
+        return service.deleteUser(userId);
     }
 }
