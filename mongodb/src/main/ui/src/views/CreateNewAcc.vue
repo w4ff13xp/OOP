@@ -100,7 +100,7 @@ methods: {
               const salt = bcrypt.genSaltSync(10)
               return bcrypt.hashSync(password, salt)
             }
-            let newVendor = { 
+            let newUser = { 
                 username: this.companyName,
                 password: encryptPassword(this.password),
                 email: this.companyEmail,
@@ -172,7 +172,7 @@ methods: {
              if (checker >= 3) {
                 const axios = require('axios');
 
-                axios.post('http://localhost:8080/vendors', newVendor)
+                axios.post('http://localhost:8080/users', newUser)
                 .then((response) => {
                     console.log(response);
                 })
