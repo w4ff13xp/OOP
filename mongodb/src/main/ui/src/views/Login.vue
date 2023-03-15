@@ -1,6 +1,6 @@
 <template>
             
-            <header class="masthead bg-dark text-white text-center" style="background-image: url('frontend/assets/Quantum.png'); background-size: cover; height: 440px">
+            <header class="masthead text-white text-center" style="background-image: url('frontend/assets/techback-overlay.jpg'); background-size: cover; height: 600px">
             <div class="container d-flex align-items-center flex-column">
 
                 <!-- Masthead Heading-->

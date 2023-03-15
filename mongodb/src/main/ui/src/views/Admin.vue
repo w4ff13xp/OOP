@@ -1,15 +1,104 @@
 <template>
   <div class="container">
+    
+    <!-- Alerts here -->
+    <div v-if="delete_success" class="alert alert-primary" role="alert">
+        DELETE SUCCESSFUL: Vendor was successfully deleted!
+    </div>
+    <div v-if="delete_error" class="alert alert-danger" role="alert">
+        DELETE ERROR: Vendor was not successfully deleted!
+    </div>
+    <!-- End alerts -->
+
     <div class="mb-4">
-      <div class="h4 pb-2 my-4 border-bottom">Companies</div>
+      <div class="h4 pb-2 my-4 border-bottom text-center">Companies</div>
       <!-- per company  -->
-      <div v-for="vendor in vendors">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
+                            Vendor Name
+                        </th>
+                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            Email
+                        </th>
+                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            Access Rights
+                        </th>
+                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            Change
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="vendor in vendors_chunked[current_page]" >
+                        <td class="px-4 col-5">
+                            <div class="text-sm text-wrap">
+                                {{ vendor.username }}
+                            </div>
+                        </td>
+                        <td class="text-sm text-wrap fs-6 col-5 px-2">
+                            {{ vendor.email }}
+                        </td>
+                        <td class="text-sm text-wrap fs-6 col-5 px-2">
+                            {{ vendor.accessRights }}
+                        </td>
+                        <td class="text-start px-3 col">
+                            <div class="mx-auto mt-2">
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="editModal"
+                                >
+                                Edit
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                    @click="deleteVendors(vendor.id)"
+                                >
+                                Delete
+                                </button>
+                                <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+            <a class="page-link" @click="$event=>prevPage()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            <li class="page-item" v-for="(each_chunk, index) in vendors_chunked" 
+                                    :key="index" 
+                                    :aria-label=(index+1).toString()
+                                    @click="$event => showPage(index)"
+                                    onActivated="curr_page_checker(index)">
+                <a class="page-link" href="#">{{index+1}}</a></li>
+            
+            <li class="page-item" next @click="$event=>nextPage()">
+            <a class="page-link"  aria-label="Next">
+                <span aria-hidden="true" >&raquo;</span>
+            </a>
+            </li>
+        </ul>
+        </nav>
+
+
+
+      <!-- <div v-for="vendor in vendors">
           <div
             class="p-4 bg-info bg-opacity-10 border border-info rounded d-flex justify-content-between my-3"
           >
 
             <div class="myForm mx-5 d-flex">
-              <div id="company-name" class="mx-5 w-25">{{ vendor.username }}</div>
+              <div id="company-name" class="mx-5 w-25">Username: {{ vendor.email }}</div>
               <div id="accessRights">Current access right: {{ vendor.accessRights }}</div>
               <div class="form-check mx-5">
                 <input
@@ -45,76 +134,150 @@
                   Approver
                 </label>
               </div>
+              <div>
+                <button class="btn btn-success" @click="updateVendors()">Update</button>
+                <button class="btn btn-success" @click="deleteVendors(vendor.id)">Delete</button>
+              </div>
             </div>
 
-            <!-- <div @click="deleteVendors(vendor.id)">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-trash3"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
-                />
-              </svg>
-            </div> -->
-            <button class="btn btn-success" @click="deleteVendors(vendor.id)">Delete</button>
           </div>
-      </div>
-
-
-
-
-
-
-
-
-
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
+
+
+
 export default {
 name:'Admin',
 // props: ['vendors'],
   data() {
     return {
-      vendors: []
+      vendors: [],
+      vendors_chunked: [],
+      delete_success: false,
+      delete_error: false,
+    //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
+      results_per_page: 5,
+    //   
+      start_index: 0,
+      end_index: 0,
+      current_page: 0,
     }
   },
   methods: {
-    getVendors() {
-
-      const axios = require('axios');
-
-      axios.get('http://localhost:8080/vendors')
-      .then((response) => {
-        console.log(response.data);
-        this.vendors = response.data
-        console.log("AYAYAY")
-        console.log(this.vendors)
-      })
-      .catch ((error) => {
-        console.log(error);
-      })
+    setPagination() {
+        this.num_page = (this.vendors).length / this.results_per_page;
+        console.log("PAGINATION: " + this.num_page)
+        for (let i=0; i < this.num_page; i++){
+            if (this.num_page <= 1){
+                this.start_index = 0;
+                this.end_index = this.vendors.length;
+            } else {
+                this.start_index = i * this.results_per_page;
+                this.end_index = (i+1) * this.results_per_page - 1;
+            }
+            let indiv_chunks = this.vendors.slice(
+                this.start_index,
+                this.end_index + 1
+            );
+            this.vendors_chunked.push(indiv_chunks);
+            // console.log("here", this.start_index, this.end_index)
+            console.log("MOOOOO");
+            console.log(this.vendors_chunked);
+        }
+        console.log("MOOO2");
+        console.log(this.vendors_chunked);
     },
+
+    curr_page_checker(page_num) {
+        // console.log("MAMAMAMAMA")
+        // console.log(page_num, this.current_page)
+        if (page_num == this.current_page){
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    showPage(index){
+        this.current_page = index;
+        console.log("CURR PAGE ", this.current_page)
+    },
+
+    nextPage(){
+        if (this.current_page < this.vendors_chunked.length - 1){
+            this.current_page += 1;
+            console.log("CURR PAGE ", this.current_page)
+        } else {
+            console.log("No more pages to load");
+        }
+    },
+
+    prevPage(){
+        if (this.current_page != 0){
+            this.current_page -= 1;
+        } else {
+            console.log("No more pages to load");
+        }
+    },
+
+    async getVendors() {
+        try {
+            const axios = require('axios');
+
+            await axios.get('http://localhost:8080/users')
+            .then((response) => {
+                console.log(response.data);
+                this.vendors = response.data
+                console.log("AYAYAY")
+                console.log(this.vendors)
+                this.setPagination();
+                console.log("CALLING PAGINATION")
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+    },
+
     deleteVendors(vendorID) {
-      alert("Delete successful");
+    //   alert("Delete successful");
       console.log(vendorID);
       const axios = require('axios');
-      axios.delete('http://localhost:8080/vendors/' + vendorID)
+      axios.delete('http://localhost:8080/users/' + vendorID)
       .then((r)=>{
         console.log(r);
         location.reload();
+        this.delete_success = true;
       })
       .catch((e)=>{
         console.log(e);
+        this.delete_error = true;
       })
-    }
+    },
+    updateVendors() {
+        const axios = require('axios');
+        // temp = {
+        //     id: this.id,
+        //     username: this.username,
+        //     password: this.password,
+        // }
+        console.log("YIPPEEEEEEEEEEEEE")
+
+        axios.put('http://localhost:8080/users')
+        .then((response) => {
+        console.log(response.data);
+        
+        })
+        .catch ((error) => {
+        console.log(error);
+        })
+        },
   },
   created() {
       this.getVendors();
