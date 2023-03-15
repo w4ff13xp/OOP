@@ -175,6 +175,16 @@ methods: {
                 axios.post('http://localhost:8080/users', newUser)
                 .then((response) => {
                     console.log(response);
+                    if(response.data == ""){
+                      alert("VALIDATION FAILED. User already exists. Please input another email")
+                    }
+                    else{
+                      this.companyName = ""
+                      this.password = ""
+                      this.access =""
+                      this.companyEmail = ""
+                      this.locations = []
+                    }
                 })
                 .catch ((error) => {
                     console.log(error);

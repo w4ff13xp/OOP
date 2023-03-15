@@ -1,6 +1,7 @@
 package com.example.mongodb.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,17 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user) {
-        return service.addUser(user);
+        // if (existinguser!= null){
+        // boolean check = false;
+        String userid  = user.getId();
+        
+        try {
+            User existinguser = service.getUserByUserId(userid);
+            return null;
+        } catch (NoSuchElementException e) {
+            return service.addUser(user);
+
+        } 
     }
 
     @GetMapping
@@ -38,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getUser(@PathVariable String userId) {
+    public User getUser(@PathVariable String userId) throws Exception{
         return service.getUserByUserId(userId);
     }
 
