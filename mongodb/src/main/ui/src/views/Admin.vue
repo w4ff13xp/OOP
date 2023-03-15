@@ -50,7 +50,13 @@
                                     type="button"
                                     class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                     data-bs-toggle="modal"
-                                    data-bs-target="editModal"
+                                    data-bs-target="#editModal"
+                                    @click="$event=>
+                                        passVendortoChange(
+                                            vendor.username,
+                                            vendor.email,
+                                            vendor.accessRights
+                                        )"
                                 >
                                 Edit
                                 </button>
@@ -89,8 +95,74 @@
             </li>
         </ul>
         </nav>
+<!-- START EDIT MODAL -->
+        <div
+            class="modal fade"
+            id="editModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+            >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title id=exampleModalLabel">
+                            Edit {{this.vendorTochange }}
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input
+                                type="text"
+                                id="updated_vendor_name"
+                                :value="vendorTochange"
+                                class="form-control"
+                                aria-label="vendor-name"
+                                aria-describedby="basic-addon1"
+                                />
+                        </div>
+                        <div class="input-group mb-3">
+                            <input
+                                type="text"
+                                id="updated_vendor_access"
+                                :value="accessTochange"
+                                class="form-control"
+                                aria-label="vendor-access"
+                                aria-describedby="basic-addon1"
+                                />
+                        </div>
+                        <input type="hidden" id="vendor_email" :value="vendorEmail"/>
+                    </div>
+                    <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary text-white"
+                        data-bs-dismiss="modal"
+                        id="button_close"
+                    >
+                    Close
+                    </button>
+                    <button
+                        type="button"
+                        class="btn bg-gradient-custom px-3 d-flex justify-content-center"
+                        @click="$event=>updateVendors()"
+                        data-bs-dismiss="modal"
+                        >
+                    Save changes
+                    </button>
+                </div>
+                </div>
 
-
+            </div>
+        </div>
+<!-- END EDIT MODAL -->
 
       <!-- <div v-for="vendor in vendors">
           <div
@@ -165,6 +237,9 @@ name:'Admin',
       start_index: 0,
       end_index: 0,
       current_page: 0,
+      vendorTochange: '',
+      vendorEmail: '',
+      accessTochange: '',
     }
   },
   methods: {
@@ -224,6 +299,12 @@ name:'Admin',
         }
     },
 
+    passVendortoChange(vendorChange, email, accessChange){
+        this.vendorTochange = vendorChange;
+        this.vendorEmail= email;
+        this.accessTochange = accessChange;
+    },
+
     async getVendors() {
         try {
             const axios = require('axios');
@@ -260,23 +341,27 @@ name:'Admin',
         this.delete_error = true;
       })
     },
+
     updateVendors() {
         const axios = require('axios');
-        // temp = {
-        //     id: this.id,
-        //     username: this.username,
-        //     password: this.password,
-        // }
-        console.log("YIPPEEEEEEEEEEEEE")
+        let new_vendor_name = document.getElementById('updated_vendor_name').value;
+        let new_vendor_access = document.getElementById('updated_vendor_access').value;
+        let curr_vendor_email = document.getElementById('vendor_email').value;
+        var vendor_obj = {
+            vendor_name: new_vendor_name,
+            vendor_access: new_vendor_access,
+        };
 
-        axios.put('http://localhost:8080/users')
-        .then((response) => {
-        console.log(response.data);
+        console.log("YIPPEEEEEEEEEEEEE")
+        console.log(vendor_obj)
+        // axios.put('http://localhost:8080/users')
+        // .then((response) => {
+        // console.log(response.data);
         
-        })
-        .catch ((error) => {
-        console.log(error);
-        })
+        // })
+        // .catch ((error) => {
+        // console.log(error);
+        // })
         },
   },
   created() {
