@@ -3,6 +3,7 @@ package com.example.mongodb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import com.example.mongodb.service.PreEvaluationService;
 
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/preEvaluation")
 public class PreEvaluationController {
 

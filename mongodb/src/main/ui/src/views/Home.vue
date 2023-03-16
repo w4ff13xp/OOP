@@ -1,151 +1,154 @@
-<template>
-    
-        <div>
-            <!-- <Navigation></Navigation> -->
-        <!-- Masthead-->
-        <header class="masthead text-center">
-            <div class="container d-flex align-items-center flex-column">
-
-                <!-- Masthead Heading-->
-                <h4 class="masthead-heading text-uppercase mb-0">Welcome to Form Management System</h4>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <!-- <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p> -->
-                <img src="frontend/assets/Quantum.png" height="70px" width="250px">
+<template>     
+    <div class="container">
+        <div class="mb-4">
+          <div class="h4 pb-2 my-4 border-bottom text-center">Forms</div>
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
+                                Form Code
+                            </th>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Form Name
+                            </th>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Date
+                            </th>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Status
+                            </th>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Company
+                            </th>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Change
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="h in healthForms" >
+                            <td class="px-4 col-5">
+                                <div class="text-sm text-wrap">
+                                    {{ h.formCode }}
+                                </div>
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ h.formName }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ h.date }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add status (completed/approved etc)
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add company name + email
+                            </td>
+                            <td class="text-start px-3 col">
+                                <div class="mx-auto mt-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editModal"   
+                                    >
+                                    Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"    
+                                    >
+                                    Delete
+                                    </button>
+                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-for="p in preForms" >
+                            <td class="px-4 col-5">
+                                <div class="text-sm text-wrap">
+                                    {{ p.formCode }}
+                                </div>
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ p.formName }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ p.date }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add status (completed/approved etc)
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add company name + email
+                            </td>
+                            <td class="text-start px-3 col">
+                                <div class="mx-auto mt-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editModal"
+                                        
+                                    >
+                                    Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        
+                                    >
+                                    Delete
+                                    </button>
+                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-for="v in vendorForms" >
+                            <td class="px-4 col-5">
+                                <div class="text-sm text-wrap">
+                                    {{ v.formCode }}
+                                </div>
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ v.formName }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ v.date }}
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add status (completed/approved etc)
+                            </td>
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    add company name + email
+                            </td>
+                            <td class="text-start px-3 col">
+                                <div class="mx-auto mt-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editModal"
+                                        
+                                    >
+                                    Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        
+                                    >
+                                    Delete
+                                    </button>
+                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </header>
-        
-        <div class="container">
-
-            <div class="mb-4">
-                
-              <div class="h4 pb-2 my-4 border-bottom">
-                Forms
-              </div>
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">All Forms</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Incomplete</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Completed</a>
-                </li>
-              </ul>
-              
-              <!-- per company  -->
-              <div class="p-4 bg-info bg-opacity-10 border border-info rounded d-flex justify-content-between my-3">
-    
-    
-                <div class="myForm mx-5 d-flex">
-                    <div id="company-name" class="mx-5">Company A</div>
-                    <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Vendor
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Admin
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Approver
-                        </label>
-                      </div>
-                </div>
-    
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                      </svg>
-                </div>
-    
-              </div>
-    
-              <div class="p-4 bg-info bg-opacity-10 border border-info rounded d-flex justify-content-between my-3">
-    
-    
-                <div class="myForm mx-5 d-flex">
-                    <div id="company-name" class="mx-5">Company A</div>
-                    <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Vendor
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Admin
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Approver
-                        </label>
-                      </div>
-                </div>
-    
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                      </svg>
-                </div>
-    
-              </div>
-    
-              <div class="p-4 bg-info bg-opacity-10 border border-info rounded d-flex justify-content-between my-3">
-    
-    
-                <div class="myForm mx-5 d-flex">
-                    <div id="company-name" class="mx-5">Company A</div>
-                    <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Vendor
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Admin
-                        </label>
-                      </div>
-                      <div class="form-check mx-5">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Approver
-                        </label>
-                      </div>
-                </div>
-    
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                      </svg>
-                </div>
-    
-              </div>
-            </div>
-    
-          </div>
-          <!-- <Footer></Footer> -->
-        
-        <!-- Copyright Section-->
-        
-        
+        </div>
     </div>
 </template>
 
@@ -153,7 +156,151 @@
 
 export default{
     name:'Home',
+
+    data() {
+    return {
+      healthForms: [],
+      preForms: [],
+      vendorForms: [],
+      allForms: [],
+    
+    //   vendors_chunked: [],
+    //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
+      results_per_page: 5,
+    //   
+      start_index: 0,
+      end_index: 0,
+      current_page: 0,
+
+    }
+  },
+  methods: {
+    // setPagination() {
+    //     this.num_page = (this.vendors).length / this.results_per_page;
+    //     console.log("PAGINATION: " + this.num_page)
+    //     for (let i=0; i < this.num_page; i++){
+    //         if (this.num_page <= 1){
+    //             this.start_index = 0;
+    //             this.end_index = this.vendors.length;
+    //         } else {
+    //             this.start_index = i * this.results_per_page;
+    //             this.end_index = (i+1) * this.results_per_page - 1;
+    //         }
+    //         let indiv_chunks = this.vendors.slice(
+    //             this.start_index,
+    //             this.end_index + 1
+    //         );
+    //         this.vendors_chunked.push(indiv_chunks);
+    //         // console.log("here", this.start_index, this.end_index)
+    //         console.log("MOOOOO");
+    //         console.log(this.vendors_chunked);
+    //     }
+    //     console.log("MOOO2");
+    //     console.log(this.vendors_chunked);
+    // },
+
+    // curr_page_checker(page_num) {
+    //     // console.log("MAMAMAMAMA")
+    //     // console.log(page_num, this.current_page)
+    //     if (page_num == this.current_page){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // },
+
+    // showPage(index){
+    //     this.current_page = index;
+    //     console.log("CURR PAGE ", this.current_page)
+    // },
+
+    // nextPage(){
+    //     if (this.current_page < this.vendors_chunked.length - 1){
+    //         this.current_page += 1;
+    //         console.log("CURR PAGE ", this.current_page)
+    //     } else {
+    //         console.log("No more pages to load");
+    //     }
+    // },
+
+    // prevPage(){
+    //     if (this.current_page != 0){
+    //         this.current_page -= 1;
+    //     } else {
+    //         console.log("No more pages to load");
+    //     }
+    // },
+
+    async getHealthforms() {
+        try {
+            const axios = require('axios');
+
+            await axios.get('http://localhost:8080/healthEvaluation')
+            .then((response) => {
+                console.log(response.data);
+                this.healthForms = response.data
+                console.log("HEALTHFORMS")
+                console.log(this.healthForms)
+                // this.setPagination();
+                // console.log("CALLING PAGINATION")
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+    },
+
+    async getPreforms() {
+        try {
+            const axios = require('axios');
+
+            await axios.get('http://localhost:8080/preEvaluation')
+            .then((response) => {
+                console.log(response.data);
+                this.preForms = response.data
+                console.log("PREFORMS")
+                console.log(this.preForms)
+                // this.setPagination();
+                // console.log("CALLING PAGINATION")
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+    },
+
+    async getVendorforms() {
+        try {
+            const axios = require('axios');
+
+            await axios.get('http://localhost:8080/vendorAssessment')
+            .then((response) => {
+                console.log(response.data);
+                this.preForms = response.data
+                console.log("VENDORFORMS")
+                console.log(this.vendorForms)
+                // this.setPagination();
+                // console.log("CALLING PAGINATION")
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+    },
+  },
+    created() {
+      this.getHealthforms();
+      this.getPreforms();
+      this.getVendorforms();
+  }
 };
+
 </script>
 
 <style>
