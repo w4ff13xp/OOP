@@ -1,4 +1,4 @@
-<template><h1>contact</h1>
+<template><h1>Profile</h1>
     <!-- <HelloWorld /> -->
   </template>
 

@@ -17,7 +17,7 @@
                     <a class="nav-link" ><v-btn to="/about"  class="mr-2">About</v-btn></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><v-btn to="/contact" class="mr-2">Contact</v-btn></a>
+                        <a class="nav-link"><v-btn to="/profile" class="mr-2">Profile</v-btn></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"><v-btn to="/admin" class="mr-2">Admin</v-btn></a>

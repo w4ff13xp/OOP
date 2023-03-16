@@ -43,7 +43,7 @@
                                     add status (completed/approved etc)
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add company name + email
+                                    {{ h.companyName }}
                             </td>
                             <td class="text-start px-3 col">
                                 <div class="mx-auto mt-2">
@@ -81,7 +81,7 @@
                                     add status (completed/approved etc)
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add company name + email
+                                    {{ p.companyName }}
                             </td>
                             <td class="text-start px-3 col">
                                 <div class="mx-auto mt-2">
@@ -121,7 +121,7 @@
                                     add status (completed/approved etc)
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add company name + email
+                                    {{ v.companyName }}
                             </td>
                             <td class="text-start px-3 col">
                                 <div class="mx-auto mt-2">

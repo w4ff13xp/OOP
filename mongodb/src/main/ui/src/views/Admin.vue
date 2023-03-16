@@ -11,7 +11,15 @@
     <!-- End alerts -->
 
     <div class="mb-4">
-      <div class="h4 pb-2 my-4 border-bottom text-center">Companies</div>
+      <div class="h4 pb-2 my-4 border-bottom text-center">Companies
+        <button
+            type="button"
+            class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
+            onclick= "window.location.href='http://localhost:3000/createnewacc'"
+        >
+        Create New Account
+        </button>
+      </div>
       <!-- per company  -->
         <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">

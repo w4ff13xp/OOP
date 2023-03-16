@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
-import Contact from '../views/Contact.vue'
+import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import Store from '../store'
 import Auth0Callback from '../views/Auth0Callback.vue'
@@ -56,9 +56,9 @@ const routes = [
     component: AboutView
   },
   {
-    path: '/contact',
-    name: 'contact',
-    component: Contact
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   },
 //   {
 //     path: '/login',
