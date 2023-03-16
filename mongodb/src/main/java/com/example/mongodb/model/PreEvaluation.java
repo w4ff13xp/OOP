@@ -19,6 +19,7 @@ public class PreEvaluation {
     private String formName;
     private boolean formCompleted;
     private boolean formApproved;
+    private String companyName;
     // private Long revisionNum;
     private String subContractorName;
     private String scopeOfWork;
