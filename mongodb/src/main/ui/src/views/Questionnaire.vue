@@ -1993,9 +1993,9 @@ export default {
     },
     computeOverallScore() {
       this.overallScore =
-        ((this.score1 + this.score2 + this.score3 + this.score4 + this.score5) /
+        (((this.score1 + this.score2 + this.score3 + this.score4 + this.score5) /
           (25 * 5)) *
-        100;
+        100).toFixed(2);
       return this.overallScore;
     },
     computePerformanceStandard() {
