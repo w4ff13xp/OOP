@@ -10,6 +10,7 @@ import Admin from '../views/Admin.vue'
 import CreateNewAcc from '../views/CreateNewAcc.vue'
 import Approver from '../views/Approver.vue'
 import SpecificVendor from '../views/SpecificVendor.vue'
+import HealthSafetyPreEvaluation from '../views/Safety&HealthPreEvaluation.vue'
 
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
     path: '/questionnaire',
     name: 'questionnaire',
     component: Questionnaire
+  },
+  {
+    path: '/Safety&HealthPreEvaluation',
+    name: 'healthsafetypreevaluation',
+    component: HealthSafetyPreEvaluation
   },
   {
     path: '/home',
