@@ -101,6 +101,7 @@ methods: {
               return bcrypt.hashSync(password, salt)
             }
             let newUser = { 
+                id: this.companyEmail,
                 username: this.companyName,
                 password: encryptPassword(this.password),
                 email: this.companyEmail,
@@ -193,8 +194,6 @@ methods: {
              else {
                 alert("VALIDATION FAILED. Your password must contain:\nAt least 8 characters,\nAt least 3 of the following:\n- Lower case letters (a-z)\n- Upper case letters (A-Z)\n- Numbers (0-9)\n- Special characters (e.g. !@#$%^&*)")
              }
-
-             
 }
 else {
     alert("VALIDATION FAILED. Your password must contain:\nAt least 8 characters.");

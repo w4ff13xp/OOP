@@ -21,5 +21,4 @@ public class User {
     private String email;
     private String accessRights;
     private ArrayList<String> locations;
-
 }

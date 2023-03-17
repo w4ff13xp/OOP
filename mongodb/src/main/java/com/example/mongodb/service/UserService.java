@@ -1,7 +1,6 @@
 package com.example.mongodb.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,9 @@ public class UserService {
     //CRUD CREATE, READ, UPDATE, DELETE
 
     public User addUser(User user) {
-        user.setId(UUID.randomUUID().toString().split("-")[0]);
+        // if (repository.findById(user.getId()).get() != null){
+        //     return;
+        // }
         return repository.save(user);
     }
 
@@ -40,6 +41,7 @@ public class UserService {
         //populate new value from request to existing object/entity/document
 
         User existingUser = repository.findById(userRequest.getId()).get();
+        existingUser.setId(userRequest.getId());
         existingUser.setUsername(userRequest.getUsername());
         // String hashedsString = BCrypt.hashpw(vendorRequest.getPassword(), BCrypt.gensalt());
         // System.out.println("---------------------"+hashedsString);
