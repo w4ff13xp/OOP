@@ -40,32 +40,37 @@ public class HealthEvaluationService {
         existingForm.setCompliance(HERequest.getCompliance());
         existingForm.setPromotionalActivities(HERequest.getPromotionalActivities());
         existingForm.setSubmission(HERequest.getSubmission());
+        existingForm.setScore1(HERequest.getScore1());
 
         existingForm.setTrainingCourse(HERequest.getTrainingCourse());
         existingForm.setTradeCourse(HERequest.getTradeCourse());
         existingForm.setSafetyTalk(HERequest.getSafetyTalk());
         existingForm.setWSHSupervisor(HERequest.getWSHSupervisor());
         existingForm.setOtherTraining(HERequest.getOtherTraining());
+        existingForm.setScore2(HERequest.getScore2());
 
         existingForm.setEffort(HERequest.getEffort());
         existingForm.setPermitToWork(HERequest.getPermitToWork());
         existingForm.setFrequencyRate(HERequest.getFrequencyRate());
         existingForm.setSafetyOffence(HERequest.getSafetyOffence());
         existingForm.setSafetyRectification(HERequest.getSafetyRectification());
+        existingForm.setScore3(HERequest.getScore3());
         
         existingForm.setCuttingTool(HERequest.getCuttingTool());
         existingForm.setLadder(HERequest.getLadder());
         existingForm.setLiftingGear(HERequest.getLiftingGear());
         existingForm.setElectricalEquipment(HERequest.getElectricalEquipment());
         existingForm.setOtherMachineries(HERequest.getOtherMachineries());
+        existingForm.setScore4(HERequest.getScore4());
 
         existingForm.setCommitmentHS(HERequest.getCommitmentHS());
         existingForm.setPPECompliance(HERequest.getPPECompliance());
-        existingForm.setSiteCleaniness(HERequest.getSiteCleaniness());
-        existingForm.setStoreCleaniness(HERequest.getStoreCleaniness());
-        existingForm.setQuarterCleaniness(HERequest.getQuarterCleaniness());
+        existingForm.setSiteCleanliness(HERequest.getSiteCleanliness());
+        existingForm.setStoreCleanliness(HERequest.getStoreCleanliness());
+        existingForm.setQuarterCleanliness(HERequest.getQuarterCleanliness());
 
-        existingForm.setScore(HERequest.getScore());
+        existingForm.setOverallScore(HERequest.getOverallScore());
+        existingForm.setPerformanceStandard(HERequest.getPerformanceStandard());
         existingForm.setComments(HERequest.getComments());
 
         existingForm.setSafetyCoordinator(HERequest.getSafetyCoordinator());
