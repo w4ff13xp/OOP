@@ -176,6 +176,9 @@ methods: {
                 axios.post('http://localhost:8080/users', newUser)
                 .then((response) => {
                     console.log(response);
+                    if (response.status == 201 && response.data != "") {
+                      alert("Account successfully created.")
+                    }
                     if(response.data == ""){
                       alert("VALIDATION FAILED. User already exists. Please input another email")
                     }
