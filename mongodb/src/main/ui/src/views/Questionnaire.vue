@@ -1740,7 +1740,7 @@
 
 
     <div class="text-center m-3">
-      <button type="submit" class="btn btn-warning mx-3" @click="addToAPI">Save</button>
+      <button type="submit" class="btn btn-warning mx-3" @click="saveToAPI">Save</button>
       <button type="submit" class="btn btn-success text-white" @click="addToAPI">Submit</button>
     </div>
     <!-- <Footer></Footer> -->
@@ -1809,6 +1809,74 @@ export default {
   },
   methods: {
     addToAPI() {
+      let newForm = {
+        formCode: this.formCode,
+        formDate: this.formDate,
+        formName: this.formName,
+        formCompleted: this.formCompleted,
+        formApproved: this.formApproved,
+        companyName: this.companyName,
+
+        attendance: this.attendance,
+        toolBox: this.toolBox,
+        compliance: this.compliance,
+        promotionalActivities: this.promotionalActivities,
+        submission: this.submission,
+        score1: this.score1,
+
+        trainingCourse: this.trainingCourse,
+        tradeCourse: this.tradeCourse,
+        safetyTalk: this.safetyTalk,
+        WSHSupervisor: this.WSHSupervisor,
+        otherTraining: this.otherTraining,
+        score2: this.score2,
+
+        effort: this.effort,
+        permitToWork: this.permitToWork,
+        frequencyRate: this.frequencyRate,
+        safetyOffence: this.safetyOffence,
+        safetyRectification: this.safetyRectification,
+        score3: this.score3,
+
+        cuttingTool: this.cuttingTool,
+        ladder: this.ladder,
+        liftingGear: this.liftingGear,
+        electricalEquipment: this.electricalEquipment,
+        otherMachineries: this.otherMachineries,
+        score4: this.score4,
+
+        commitmentHS: this.commitmentHS,
+        PPECompliance: this.PPECompliance,
+        siteCleanliness: this.siteCleanliness,
+        storeCleanliness: this.storeCleanliness,
+        quarterCleanliness: this.quarterCleanliness,
+        score5: this.score5,
+
+        overallScore: this.overallScore,
+        performanceStandard: this.performanceStandard,
+        comments: this.comments,
+
+        safetyCoordinator: this.safetyCoordinator,
+        safetyCoordinatorSignature: this.safetyCoordinatorSignature,
+        safetyCoordinatorEvaluationDate: this.safetyCoordinatorEvaluationDate,
+
+        director: this.director,
+        directorSignature: this.directorSignature,
+        directorApprovalDate: this.directorApprovalDate,
+      };
+
+      const axios = require("axios");
+
+      axios
+        .post("http://localhost:8080/healthEvaluation", newForm)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    saveToAPI() {
       let newForm = {
         formCode: this.formCode,
         formDate: this.formDate,
