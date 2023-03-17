@@ -1738,8 +1738,10 @@
       </form>
     </div>
 
+
     <div class="text-center m-3">
-      <button type="submit" class="btn btn-success" @click="addToAPI">Submit</button>
+      <button type="submit" class="btn btn-warning mx-3" @click="addToAPI">Save</button>
+      <button type="submit" class="btn btn-success text-white" @click="addToAPI">Submit</button>
     </div>
     <!-- <Footer></Footer> -->
   </div>
