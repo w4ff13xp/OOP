@@ -7,25 +7,25 @@
           
                 <div class="mb-3">
                     <label for="InputSubcontractorName" class="form-label">Name Of Subcontractor</label>
-                    <input type="text" class="form-control" id="InputSubcontractorName">
+                    <input v-model="subcontractorName" type="text" class="form-control" id="InputSubcontractorName">
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputScopeOfWork" class="form-label">Scope of Work</label>
-                    <input type="text" class="form-control" id="InputScopeOfWork">
+                    <input v-model="scopeOfWork" type="text" class="form-control" id="InputScopeOfWork">
                     
                 </div>
 
                 <div class="mb-3">
                     <label for="InputEvaluatedBy" class="form-label">Evaluated By</label>
-                    <input type="text" class="form-control" id="InputEvaluatedBy">
+                    <input v-model="evaluatedBy" type="text" class="form-control" id="InputEvaluatedBy">
                     
                 </div>
 
                 <!-- Will fix this date field to be a datepicker -->
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="InputDate">
+                    <input v-model="todayDate" type="date" class="form-control" id="InputDate">
                     
                 </div>
 
@@ -39,11 +39,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">a)  Is there a written Safety & Health Policy?</label>
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="shpolicy" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="shpolicy" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -53,11 +53,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">b)  Is there a Safety Organisation with proper delegation of responsibility and accountability for safety and health?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyOrganisation" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyOrganisation" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -67,11 +67,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">c)  Is there a written safety commitment and is it submitted?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -90,11 +90,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are regular tool-box meetings conducted and reports submitted?</label>
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="toolbox"  type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="toolbox" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -112,11 +112,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are relevant safety training courses provided for management / Supervisors?</label>
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyMgtCourses" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyMgtCourses" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -126,11 +126,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">b)  Are relevant safety training courses provided for workers?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyWorkersCourses" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyWorkersCourses" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -140,11 +140,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">c)  Are relevant safety training certificates submitted?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -162,11 +162,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are there written safety & health rules for the workers?</label>
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyHealthRules" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyHealthRules" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -176,11 +176,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">b)  Are there written safe work procedures/ risk assessment formulated and submitted?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safeWorkRisk" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safeWorkRisk" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -200,11 +200,11 @@
 
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="writtenProgram" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="writtenProgram" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -216,11 +216,11 @@
 
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyEquipment" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyEquipment" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -239,11 +239,11 @@
 
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetySupervisor" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="first" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetySupervisor" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -254,11 +254,11 @@
                     
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="firstAider" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="firstAider" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -271,11 +271,11 @@
                     
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="qualified" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="qualified" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -295,18 +295,18 @@
 
                 <div class="mb-3">
                     <label for="InputTempDisabilityCases" class="form-label">Number of Temporary Disability Cases </label>
-                    <input type="number" class="form-control" id="InputTempDisabilityCases">
+                    <input type="number" v-model="tempDisabilityCases" class="form-control" id="InputTempDisabilityCases">
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputPermDisabilityCases" class="form-label">Number of Permanent Disability Cases</label>
-                    <input type="number" class="form-control" id="InputPermDisabilityCases">
+                    <input type="number" v-model="permDisabilityCases" class="form-control" id="InputPermDisabilityCases">
                     
                 </div>
 
                 <div class="mb-3">
                     <label for="InputFatalCases" class="form-label">Number of Fatal Cases</label>
-                    <input type="number" class="form-control" id="InputFatalCases">
+                    <input type="number" v-model="fatalCases" class="form-control" id="InputFatalCases">
                     
                 </div>
                 
@@ -326,12 +326,12 @@
 
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="InputDate">
+                    <input type="date" v-model="signedDate" class="form-control" id="InputDate">
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputAcknowledgeBy" class="form-label">Acknowledged By</label>
-                    <input type="text" class="form-control" id="InputAcknowledgedBy">
+                    <input type="text" v-model="acknowledgedBy" class="form-control" id="InputAcknowledgedBy">
                     
                 </div>
 
@@ -372,14 +372,46 @@
 
 export default {
 name: 'MySignaturePad',
+  data(){
+        return {
+        // name:value pairs
+        subcontractorName : "",
+        scopeOfWork: "",
+        evaluatedBy: "",
+        todayDate: "",
+        shpolicy: "",
+        safetyOrganisation: "",
+        safetyCommit: "",
+        toolbox: "",
+        safetyMgtCourses: "",
+        safetyWorkersCourses: "",
+        safetyCertificates: "",
+        safetyHealthRules: "",
+        safeWorkRisk: "",
+        writtenProgram : "",
+        safetyEquipment: "",
+        safetySupervisor: "",
+        firstAider: "",
+        qualified: "",
+        tempDisabilityCases: "",
+        permDisabilityCases: "",
+        fatalCases: "",
+        signedDate: "",
+        acknowledgedBy: "",
+
+
+
+
+        }
+    },
   methods: {
     clear() {
       this.$refs.signaturePad.clearSignature();
     },
     save() {
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      console.log(isEmpty);
-      console.log(data);
+      console.log("check if its empty:"+isEmpty);
+      console.log("The Image File"+data);
     }
   }
 }
