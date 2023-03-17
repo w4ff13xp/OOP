@@ -317,7 +317,7 @@
 
         <div class="row bg-light m-5 rounded p-3">
             <h4 class="text-center">Acknowledgement </h4>
-            <form>
+           
 
                 <div class="m-3 d-flex">
                     <label for="first" class="form-label fw-bold" style="width: 100%">I, representative of the above-named sub-contractor, have understand the various Safety Criteria listed above and hereby acknowledged that the information given above
@@ -336,12 +336,26 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="InputSigniture" class="form-label">Signature</label>
-                    <input type="text" class="form-control" id="InputSigniture">
+                   <div class="container">
+                    <label for="Signature" class="form-label">Signature</label>
+                        <div class="container border border-primary">
+                            <VueSignaturePad
+                            id="signature"
+                            width="100%"
+                            height="100%"
+                            ref="signaturePad"
+                            :options="options"
+                            />
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-danger" @click="clear">Clear</button>
+                            <button class="btn btn-success" @click="save">Save</button>
+                        </div>
+                    </div>
                     
                 </div>
 
-              </form>
+             
 
         </div>
 
@@ -357,7 +371,17 @@
 <script>
 
 export default {
-name:'Questionnaire',
+name: 'MySignaturePad',
+  methods: {
+    clear() {
+      this.$refs.signaturePad.clearSignature();
+    },
+    save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty);
+      console.log(data);
+    }
+  }
 }
 </script>
 
