@@ -11,9 +11,15 @@ import CreateNewAcc from '../views/CreateNewAcc.vue'
 import Approver from '../views/Approver.vue'
 import SpecificVendor from '../views/SpecificVendor.vue'
 import HealthSafetyPreEvaluation from '../views/Safety&HealthPreEvaluation.vue'
-
+import NewVendorForm from '../views/NewVendorForm.vue'
 
 const routes = [
+
+  {
+    path: '/newvendorform',
+    name: 'newvendorform',
+    component: NewVendorForm
+  },
   {
     path: '/specificvendor',
     name: 'specificvendor',
