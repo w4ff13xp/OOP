@@ -15,6 +15,35 @@ public class PreEvaluationService {
     private PreEvaluationRepository repository;
 
     public PreEvaluation addPreEvaluation(PreEvaluation PreEvaluation) {
+        PreEvaluation.setSubContractorName("");
+        PreEvaluation.setScopeOfWork("");
+        PreEvaluation.setEvaluator("");
+
+        PreEvaluation.setSafetyHealthPolicy(null);
+        PreEvaluation.setProperDelegation(null);
+        PreEvaluation.setSafetyCommitment(null);
+
+        PreEvaluation.setToolBoxMeeting(null);
+
+        PreEvaluation.setSupervisorTraining(null);
+        PreEvaluation.setWorkerTraining(null);
+        PreEvaluation.setCertificatesSubmitted(null);
+
+        PreEvaluation.setWorkerRules(null);
+        PreEvaluation.setRiskAssessmentsSubmitted(null);
+
+        PreEvaluation.setInspectionGuidelines(null);
+        PreEvaluation.setPPE(null);
+
+        PreEvaluation.setSafetySupervisor(null);
+        PreEvaluation.setFirstAider(null);
+        PreEvaluation.setRelevantLicensedPersonnel(null);
+
+        PreEvaluation.setTemporaryDisabilityCases(null);
+        PreEvaluation.setPermanentDisabilityCases(null);
+        PreEvaluation.setFatalCases(null);
+
+        PreEvaluation.setSignature(null);
         return repository.save(PreEvaluation);
     }
 
@@ -39,7 +68,7 @@ public class PreEvaluationService {
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
         existingForm.setEvaluator(PERequest.getEvaluator());
 
-        existingForm.setSafetyHealthPolicy(PERequest.isSafetyHealthPolicy());
+        existingForm.setSafetyHealthPolicy(PERequest.getSafetyHealthPolicy());
         existingForm.setProperDelegation(PERequest.getProperDelegation());
         existingForm.setSafetyCommitment(PERequest.getSafetyCommitment());
 

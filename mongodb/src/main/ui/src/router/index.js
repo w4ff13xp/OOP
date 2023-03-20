@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 import Store from '../store'
 import Auth0Callback from '../views/Auth0Callback.vue'
 import Home from '../views/Home.vue'
-import Questionnaire from '../views/Questionnaire.vue'
+import PerformanceEvaluation from '../views/PerformanceEvaluation.vue'
 import Admin from '../views/Admin.vue'
 import CreateNewAcc from '../views/CreateNewAcc.vue'
 import Approver from '../views/Approver.vue'
@@ -47,9 +47,9 @@ const routes = [
     meta: {requiresAuth:true}
   },
   {
-    path: '/questionnaire',
-    name: 'questionnaire',
-    component: Questionnaire
+    path: '/performanceevaluation',
+    name: 'performanceevaluation',
+    component: PerformanceEvaluation
   },
   {
     path: '/Safety&HealthPreEvaluation',
