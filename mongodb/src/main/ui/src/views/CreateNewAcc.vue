@@ -151,6 +151,7 @@ export default {
       password: "",
       access: "",
       locations: [],
+      forms: []
     };
   },
 
@@ -170,6 +171,7 @@ export default {
         email: this.companyEmail,
         accessRights: this.access,
         locations: JSON.parse(JSON.stringify(this.locations)),
+        forms: JSON.parse(JSON.stringify(this.forms)),
       };
 
       var lower = "abcdefghijklmnopqrstuvwxyz";
@@ -253,6 +255,7 @@ export default {
                 this.access = "";
                 this.companyEmail = "";
                 this.locations = [];
+                this.forms = []
               }
             })
             .catch((error) => {

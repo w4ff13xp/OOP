@@ -67,11 +67,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">c)  Is there a written safety commitment and is it submitted?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyCommit" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -140,11 +140,11 @@
                     <label for="first" class="form-label fw-bold" style="width: 50%">c)  Are relevant safety training certificates submitted?</label>
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="safetyCertificates" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -271,11 +271,11 @@
                     
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
-                            <input class="form-check-input" v-model="qualified" type="radio" name="second" id="inlineRadio1" value="1">
+                            <input class="form-check-input" v-model="qualified" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" v-model="qualified" type="radio" name="second" id="inlineRadio2" value="2">
+                            <input class="form-check-input" v-model="qualified" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                           </div>
                     </div>
@@ -339,13 +339,7 @@
                    <div class="container">
                     <label for="Signature" class="form-label">Signature</label>
                         <div class="container border border-primary">
-                            <VueSignaturePad
-                            id="signature"
-                            width="100%"
-                            height="100%"
-                            ref="signaturePad"
-                            :options="options"
-                            />
+                           
                         </div>
                         <div class="buttons">
                             <button class="btn btn-danger" @click="clear">Clear</button>
@@ -362,7 +356,7 @@
         
 
 
-        <div class="text-center m-3"><button type="submit" class="btn btn-success">Submit</button></div>
+        <div class="text-center m-3"><button type="submit" @click="submit" class="btn btn-success">Submit</button></div>
         <!-- <Footer></Footer> -->
     </div>
 
@@ -412,6 +406,54 @@ name: 'MySignaturePad',
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
       console.log("check if its empty:"+isEmpty);
       console.log("The Image File"+data);
+    },
+    submit(){
+       const axios = require("axios");
+
+       //prepare the json to be sent in
+       let preEval = {formCode:"1",
+       subContractorName:this.subcontractorName,
+       scopeOfWork: this.scopeOfWork, 
+       evaluator:this.evaluatedBy,
+       date: this.todayDate,
+       safetyHealthPolicy:Boolean(this.shpolicy),
+       properDelegation:Boolean(this.safetyOrganisation),
+       safetyCommitment:Boolean(this.safetyCommit),
+       toolBoxMeeting:Boolean(this.toolbox),
+       supervisorTraining:Boolean(this.safetyMgtCourses),
+       workerTraining:Boolean(this.safetyWorkersCourses),
+       certificatesSubmitted:Boolean(this.safetyCertificates),
+       workerRules:Boolean(this.safetyHealthRules),
+       riskAssessmentsSubmitted:Boolean(this.safeWorkRisk),
+       inspectionGuidelines:Boolean(this.writtenProgram),
+       ppe:Boolean(this.safetyEquipment),
+       safetySupervisor:Boolean(this.safetySupervisor),
+       firstAider:Boolean(this.firstAider),
+       relevantLicensedPersonnel:Boolean(this.qualified),
+       temporaryDisabilityCases:this.tempDisabilityCases,
+       permanentDisabilityCases:this.permDisabilityCases,
+       fatalCases:this.fatalCases,
+       acknowledgementDate:this.signedDate,
+       acknowledgedBy:this.acknowledgedBy}
+       console.log(preEval)
+        axios
+            .post("http://localhost:8080/preEvaluation", preEval)
+            .then((response) => {
+              console.log(response);
+              if (response.status == 201 && response.data != "") {
+                alert("Pre Evaluation successfully created.");
+              }
+              if (response.data == "") {
+                alert(
+                  "VALIDATION FAILED. Something went wrong"
+                );
+              } else {
+                alert("Success")
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
     }
   }
 }
