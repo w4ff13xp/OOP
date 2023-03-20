@@ -20,12 +20,12 @@ public class PreEvaluation {
     private boolean formCompleted;
     private boolean formApproved;
     private String companyName;
-    // private Long revisionNum;
+
     private String subContractorName;
     private String scopeOfWork;
     private String evaluator;
 
-    private boolean safetyHealthPolicy;
+    private Boolean safetyHealthPolicy;
     private Boolean properDelegation;
     private Boolean safetyCommitment;
     
