@@ -1,8 +1,7 @@
 import { createStore } from 'vuex'
 import auth0 from 'auth0-js'
 import router from '../router'
-// import VueJwtDecode from 'vue-jwt-decode'
-// import jwt_decode from "jwt-decode";
+import VueJwtDecode from 'vue-jwt-decode'
 
 export default createStore({
   state: {
@@ -18,6 +17,21 @@ export default createStore({
   },
   getters: {
   },
+  // methods: {
+  //   setUserStorage(userid){
+  //   const axios = require('axios');
+  //         axios.get(`http://localhost:8080/users/${userid}`)
+  //         .then((response) => {
+  //             console.log(response.data);
+  //             localStorage.setItem('specificuser', JSON.stringify(userid))
+  //             localStorage.getItem('')
+  //             return;
+  //         })
+  //         .catch ((error) => {
+  //             console.log(error);
+  //         })
+  //       }
+  // },
   mutations: {
     setUserIsAuthenticated(state,replacement){
       state.userIsAuthorized = replacement
@@ -39,15 +53,34 @@ export default createStore({
           localStorage.setItem('id_token', authResult.idToken);
           localStorage.setItem('expires_at', expiresAt);  
           console.log(authResult.idToken)
-          // decoded = jwt_decode(authResult.idToken)
-          // console.log(decoded)
+          let decoded = VueJwtDecode.decode(authResult.idToken)
+
+          const axios = require('axios');
+          axios.get(`http://localhost:8080/users/${decoded.email}`)
+          .then((response) => localStorage.setItem('specificuser', JSON.stringify(response.data)))
+          // {
+          //     console.log(response.data);
+          //     localStorage.setItem('specificuser', JSON.stringify(response.data))
+
+          //     console.log(localStorage.getItem('specificuser'))
+              
+          // })
+          .catch ((error) => {
+              console.log(error);
+          })
+
+
+
           router.replace('/admin');
         } 
+
         else if (err) {
           alert('login failed. Error #KJN838');
           router.replace('/login');
           console.log(err);
         }
+        // console.log(localStorage.getItem('specificuser'))
+
       })
     },
   
@@ -57,6 +90,8 @@ export default createStore({
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
+      localStorage.removeItem('specificuser');
+      // localStorage.clear()
       // redirect to auth0 logout to completely log the user out
       window.location.href = process.env.VUE_APP_AUTH0_CONFIG_DOMAINURL + "/v2/logout?returnTo=" + process.env.VUE_APP_DOMAINURL + "/login&client_id=" + process.env.VUE_APP_AUTH0_CONFIG_CLIENTID; 
   

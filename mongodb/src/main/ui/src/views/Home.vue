@@ -185,6 +185,7 @@ export default{
         // console.log(this.$refs.formid);
     },
     async getHealthforms() {
+        console.log(JSON.parse(localStorage.getItem('specificuser')))
         try {
             const axios = require('axios');
 
