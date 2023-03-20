@@ -330,6 +330,7 @@ name:'Admin',
       pwd: '',
       forms: [],
       duedate:'',
+      dateIn:'',
 
     }
   },
@@ -411,6 +412,7 @@ name:'Admin',
         // The new date is now 7 days ahead of the current date
         console.log(currentDate);
         const formattedDate = currentDate.toLocaleDateString('en-GB');
+        this.dateIn = currentDate;
         this.duedate = formattedDate;
     },
 
@@ -492,7 +494,7 @@ name:'Admin',
         let vendor_name = document.getElementById('updated_vendor_name').value;
 
         var temp_obj = {
-            date: this.duedate,
+            date: this.dateIn,
             formName:form,
             formCompleted: false,
             formApproved: false,
@@ -505,6 +507,21 @@ name:'Admin',
         // HEALTH EVAL FORM
         if (form == 'Health Evaluation Form'){
             axios.post('http://localhost:8080/healthEvaluation', temp_obj)
+            .then((response) => {
+            console.log(response.data);
+            location.reload();
+            this.edit_success = true;
+            
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.edit_error = true;
+            })
+        }
+
+                // PRE EVAL FORM
+                if (form == 'Pre Evaluation Form'){
+            axios.post('http://localhost:8080/preEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);
             location.reload();
