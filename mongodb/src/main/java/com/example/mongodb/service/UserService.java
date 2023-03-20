@@ -50,6 +50,7 @@ public class UserService {
         existingUser.setEmail(userRequest.getEmail());
         existingUser.setAccessRights(userRequest.getAccessRights());
         existingUser.setLocations(userRequest.getLocations());
+        existingUser.setForms(userRequest.getForms());
         return repository.save(existingUser);
     }
 
