@@ -79,7 +79,8 @@
                                             vendor.accessRights,
                                             vendor.id,
                                             vendor.locations,
-                                            vendor.password
+                                            vendor.password,
+                                            vendor.forms
                                         )"
                                 >
                                 Edit
@@ -104,7 +105,8 @@
                                             vendor.accessRights,
                                             vendor.id,
                                             vendor.locations,
-                                            vendor.password
+                                            vendor.password,
+                                            vendor.forms
                                         )"
                                 >
                                 Assign Forms
@@ -248,8 +250,7 @@
                                 <p style="padding-right: 8px;">Vendor Name: {{ vendorTochange }}</p>
                                 <p style="padding-right: 17px;">Access Right: {{ accessTochange }}</p>
                                 <p style="padding-right: 45px;">Location: {{ loc }}</p>
-                                <p style="padding-right: 45px;">Forms: </p>
-
+                                <p style="padding-right: 45px;">Forms: {{ forms }}</p>
 
                                 <input type="hidden" id="vendor_id" :value="vendorid"/>
                                 <input type="hidden" id="loc" :value="loc"/>
@@ -259,6 +260,19 @@
                             <h6 style="text-decoration: underline;">
                             Forms:
                             </h6>
+                            <div class="input-group mb-3">
+                                <p style="padding-right: 10px;">Form Options: </p>
+                                <select id="forms" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
+                                <option value="Singapore">Health Evaluation Form</option>
+                                <option value="Malaysia">Pre Evaluation Form</option>
+                                <option value="USA">Vendor Assessment Form</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <p style="padding-right: 25px;">Due Date: {{ this.duedate }} </p>
+
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -273,10 +287,10 @@
                     <button
                         type="button"
                         class="btn bg-gradient-custom px-3 d-flex justify-content-center"
-                        @click="$event=>updateVendors()"
+                        @click="$event=>assignForms()"
                         data-bs-dismiss="modal"
                         >
-                    Save changes
+                    Assign
                     </button>
                 </div>
                 </div>
@@ -314,6 +328,8 @@ name:'Admin',
       vendorid: '',
       loc: [],
       pwd: '',
+      forms: [],
+      duedate:'',
 
     }
   },
@@ -374,14 +390,44 @@ name:'Admin',
         }
     },
 
-    passVendortoChange(vendorChange, email, accessChange, id, loc, p){
+    passVendortoChange(vendorChange, email, accessChange, id, loc, p, f){
         this.vendorTochange = vendorChange;
         this.vendorEmail= email;
         this.accessTochange = accessChange;
         this.vendorid = id;
         this.pwd = p;
         this.loc = loc;
+        this.forms = f;
 
+    },
+
+    // getDueDate(date) {
+    //       var tzo = -date.getTimezoneOffset(),
+    //           dif = tzo >= 0 ? '+' : '-',
+    //           pad = function(num) {
+    //               return (num < 10 ? '0' : '') + num;
+    //           };
+    //       return date.getFullYear() +
+    //           '-' + pad(date.getMonth() + 1) +
+    //           '-' + pad(date.getDate()) +
+    //           'T' + pad(date.getHours()) +
+    //           ':' + pad(date.getMinutes()) +
+    //           ':' + pad(date.getSeconds()) +
+    //           dif + pad(Math.floor(Math.abs(tzo) / 60)) +
+    //           ':' + pad(Math.abs(tzo) % 60);
+    //     }
+    //     var dt = new Date();
+    async getDueDate(){
+        // Create a new date object with the current date
+        const currentDate = new Date();
+
+        // Use the setDate() method to set the date to 14 days ahead
+        currentDate.setDate(currentDate.getDate() + 14);
+
+        // The new date is now 7 days ahead of the current date
+        console.log(currentDate);
+        const formattedDate = currentDate.toLocaleDateString('en-GB');
+        this.duedate = formattedDate;
     },
 
     async getVendors() {
@@ -454,9 +500,44 @@ name:'Admin',
         this.edit_error = true;
         })
         },
+
+        assignForms() {
+        const axios = require('axios');
+        let new_vendor_name = document.getElementById('updated_vendor_name').value;
+        let new_vendor_access = document.getElementById('updated_vendor_access').value;
+        let vid = document.getElementById('vendor_id').value;
+
+        let e = this.vendorEmail;
+        let p = document.getElementById('pwd').value;
+        let loc = document.getElementById('loc').value;
+
+        var vendor_obj = {
+            id: vid,
+            email: e,
+            username: new_vendor_name,
+            password: p,
+            accessRights: new_vendor_access,
+            locations: JSON.parse(JSON.stringify(this.loc)),
+        };
+
+        console.log("YIPPEEEEEEEEEEEEE")
+        console.log(vendor_obj)
+        axios.put('http://localhost:8080/users', vendor_obj)
+        .then((response) => {
+        console.log(response.data);
+        location.reload();
+        this.edit_success = true;
+        
+        })
+        .catch ((error) => {
+        console.log(error);
+        this.edit_error = true;
+        })
+        },
   },
   created() {
       this.getVendors();
+      this.getDueDate();
   }
 }
 </script>
