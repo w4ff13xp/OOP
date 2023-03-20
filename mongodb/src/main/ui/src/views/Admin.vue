@@ -8,6 +8,13 @@
     <div v-if="delete_error" class="alert alert-danger" role="alert">
         DELETE ERROR: Vendor was not successfully deleted!
     </div>
+    <div v-if="edit_success" class="alert alert-primary" role="alert">
+        EDIT SUCCESSFUL: Vendor was successfully updated!
+    </div>
+    <div v-if="edit_error" class="alert alert-danger" role="alert">
+        EDIT ERROR: Vendor was not successfully updated!
+    </div>
+    
     <!-- End alerts -->
 
     <div class="mb-4">
@@ -25,34 +32,40 @@
             <table class="table align-items-center mb-0">
                 <thead>
                     <tr>
-                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
+                        <th class="col-2 text-uppercase text-xs font-weight-bolder opacity-7">
                             Vendor Name
                         </th>
-                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                        <th class="col-3 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                             Email
                         </th>
-                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                        <th class="col-1 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                             Access Rights
                         </th>
-                        <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                        <th class="col-4 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            Location
+                        </th>
+                        <th class="col-7 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                             Change
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="vendor in vendors_chunked[current_page]" >
-                        <td class="px-4 col-5">
+                        <td class="px-4 col-2">
                             <div class="text-sm text-wrap">
                                 {{ vendor.username }}
                             </div>
                         </td>
-                        <td class="text-sm text-wrap fs-6 col-5 px-2">
+                        <td class="text-sm text-wrap fs-6 col-2 px-2">
                             {{ vendor.email }}
                         </td>
-                        <td class="text-sm text-wrap fs-6 col-5 px-2">
+                        <td class="text-sm text-wrap fs-6 col-4 px-2">
                             {{ vendor.accessRights }}
                         </td>
-                        <td class="text-start px-3 col">
+                        <td class="text-sm text-wrap fs-6 col-4 px-2">
+                            <p v-for="l in vendor.locations">- {{l}}</p>
+                        </td>
+                        <td class="text-start px-3 col-4">
                             <div class="mx-auto mt-2">
                                 <button
                                     type="button"
@@ -79,6 +92,23 @@
                                 Delete
                                 </button>
                                 <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
+                                <button
+                                    type="button"
+                                    class="btn btn-warning btn-sm font-xxs px-3 ms-2 text-white"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#assignModal"
+                                    @click="$event=>
+                                        passVendortoChange(
+                                            vendor.username,
+                                            vendor.email,
+                                            vendor.accessRights,
+                                            vendor.id,
+                                            vendor.locations,
+                                            vendor.password
+                                        )"
+                                >
+                                Assign Forms
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -130,6 +160,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="input-group mb-3">
+                            <p style="padding-right: 8px;">Vendor Name: </p>
                             <input
                                 type="text"
                                 id="updated_vendor_name"
@@ -142,14 +173,23 @@
                         <div class="input-group mb-3">
 
                         <!-- <label for="updated_vendor_access">Access Right</label> -->
+                        <p style="padding-right: 17px;">Access Right: </p>
                         <select id="updated_vendor_access" v-model="accessTochange" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
                         <option value="admin">Admin</option>
                         <option value="approver">Approver</option>
                         <option value="vendor">Vendor</option>
-                        </select>
-
-
+                        </select>                     
                         </div>
+
+                        <div class="input-group mb-3">
+                            <p style="padding-right: 45px;">Location: </p>
+                            <select id="updated_loc" v-model="loc" style="border: 1px black solid; border-radius: 5px; padding: 5px;" multiple>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="USA">USA</option>
+                            </select>
+                        </div>
+
                         <input type="hidden" id="vendor_id" :value="vendorid"/>
                         <input type="hidden" id="loc" :value="loc"/>
                         <input type="hidden" id="pwd" :value="pwd"/>
@@ -177,58 +217,73 @@
 
             </div>
         </div>
-<!-- END EDIT MODAL -->
+        <!-- End Edit Modal -->
+<!-- START Assign MODAL -->
+        <div
+            class="modal fade"
+            id="assignModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+            >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title id=exampleModalLabel">
+                            Assign Forms
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <h6 style="text-decoration: underline;">
+                                Vendor Details:
+                            </h6>
+                                <p style="padding-right: 8px;">Vendor Name: {{ vendorTochange }}</p>
+                                <p style="padding-right: 17px;">Access Right: {{ accessTochange }}</p>
+                                <p style="padding-right: 45px;">Location: {{ loc }}</p>
+                                <p style="padding-right: 45px;">Forms: </p>
 
-      <!-- <div v-for="vendor in vendors">
-          <div
-            class="p-4 bg-info bg-opacity-10 border border-info rounded d-flex justify-content-between my-3"
-          >
 
-            <div class="myForm mx-5 d-flex">
-              <div id="company-name" class="mx-5 w-25">Username: {{ vendor.email }}</div>
-              <div id="accessRights">Current access right: {{ vendor.accessRights }}</div>
-              <div class="form-check mx-5">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Vendor
-                </label>
-              </div>
-              <div class="form-check mx-5">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Admin
-                </label>
-              </div>
-              <div class="form-check mx-5">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Approver
-                </label>
-              </div>
-              <div>
-                <button class="btn btn-success" @click="updateVendors()">Update</button>
-                <button class="btn btn-success" @click="deleteVendors(vendor.id)">Delete</button>
-              </div>
+                                <input type="hidden" id="vendor_id" :value="vendorid"/>
+                                <input type="hidden" id="loc" :value="loc"/>
+                                <input type="hidden" id="pwd" :value="pwd"/>
+                        </div>
+                        <div>
+                            <h6 style="text-decoration: underline;">
+                            Forms:
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary text-white"
+                        data-bs-dismiss="modal"
+                        id="button_close"
+                    >
+                    Close
+                    </button>
+                    <button
+                        type="button"
+                        class="btn bg-gradient-custom px-3 d-flex justify-content-center"
+                        @click="$event=>updateVendors()"
+                        data-bs-dismiss="modal"
+                        >
+                    Save changes
+                    </button>
+                </div>
+                </div>
+
             </div>
-
-          </div>
-      </div> -->
+        </div>
+        <!-- End Assign Modal -->
     </div>
   </div>
 </template>
@@ -239,13 +294,14 @@
 
 export default {
 name:'Admin',
-// props: ['vendors'],
   data() {
     return {
       vendors: [],
       vendors_chunked: [],
       delete_success: false,
       delete_error: false,
+      edit_success: false,
+      edit_error: false,
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
       results_per_page: 5,
     //   
@@ -375,8 +431,6 @@ name:'Admin',
         let p = document.getElementById('pwd').value;
         let loc = document.getElementById('loc').value;
 
-
-
         var vendor_obj = {
             id: vid,
             email: e,
@@ -391,10 +445,13 @@ name:'Admin',
         axios.put('http://localhost:8080/users', vendor_obj)
         .then((response) => {
         console.log(response.data);
+        location.reload();
+        this.edit_success = true;
         
         })
         .catch ((error) => {
         console.log(error);
+        this.edit_error = true;
         })
         },
   },
