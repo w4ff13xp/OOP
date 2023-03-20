@@ -16,12 +16,12 @@
             <div class="d-flex w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Company Name*</label>
-                <input type="text" class="form-control" name="first" placeholder="Company's Name" v-model="state.companyName" >        
+                <input style="width:90%" type="text" class="form-control" name="first" placeholder="Company's Name" v-model="state.companyName" >        
                 <span class="text-danger" v-if="v$.companyName.$error">{{ v$.companyName.$errors[0].$message }}</span>
               </div>
-              <div class="form-check form-check-inline col-md-6">
+              <div class="form-check form-check-inline col-md-6"> 
                 <label class="form-check-label"  for="inlineCompanyName">Company Registration No.*</label>
-                <input type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
+                <input style="width:90%" type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
               </div>   
             </div>
           </div>
@@ -47,15 +47,15 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Office Address</label>
-                <input type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
+                <input style="width:90%" type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
               </div>  
-              <div class="form-check form-check-inline col-md-3">
+              <div class="form-check form-check-inline col-md-3" >
                 <label class="form-check-label" for="inputPhone">Tel</label>
-                <input type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
+                <input style="width:75%" type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Fax</label>
-                <input type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
+                <input style="width:75%" type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
               </div>
               
             </div>
@@ -64,11 +64,11 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Types of business License/ Registration</label>
-                <input type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
+                <input style="width:90%" type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
               </div>
               <div class="form-check form-check-inline col-md-6">
                 <div >Nature of Business {{ businessNature }}</div>
-                <select v-model="state.businessNature" class="btn btn-outline-secondary dropdown-toggle col-md-12">
+                <select style="width:90%" v-model="state.businessNature" class="btn btn-outline-secondary dropdown-toggle col-md-12">
                     <option value="" disabled>Please select one</option>
                     <option value="Manufacturing">Manufacturing</option>
                     <option value="Agent/dealer">Agent/dealer</option>
@@ -82,15 +82,15 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Contact Person</label>
-                <input type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
+                <input style="width:90%" type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Tel</label>
-                <input type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
+                <input style="width:75%" type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label"  for="inlineCompanyName">Designation</label>
-                <input type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
+                <input style="width:75%" type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
               </div>   
             </div>
           </div>
@@ -120,7 +120,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Certification Body" v-model="state.certificationBody">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Certification Body" v-model="state.certificationBody">
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Accredition Body" v-model="state.accrediationBody">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Accredition Body" v-model="state.accrediationBody">
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Product Markings (e.g. PSB, UL, TUV)" v-model="state.productMarkings">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Product Markings (e.g. PSB, UL, TUV)" v-model="state.productMarkings">
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
+                        <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
                     </div>
                 </div>
             </div>
@@ -420,7 +420,7 @@
               .post("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
-                localStorage.setItem('edit',false);
+                // localStorage.setItem('edit',false);
                     alert("form saved")
                 // window.location.href = "http://localhost:3000/home"
               })
@@ -432,7 +432,8 @@
               .post("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
-                localStorage.setItem('edit',false);
+                // localStorage.setItem('edit',false);
+                // localStorage.setItem('form','');
                     alert("form submitted")
                 // window.location.href = "http://localhost:3000/home"
               })
@@ -442,6 +443,7 @@
           }else{
               alert('form failed')
           }
+          localStorage.clear();
         }
       },
       async getEditInputs(){
@@ -452,7 +454,38 @@
             await axios.get(`http://localhost:8080/vendorAssessment/${formid}`)
             .then((response) => {
                 console.log(response.data);
-                // this.healthForms = response.data
+                var data = response.data
+                this.state.companyName = data.companyName
+                this.state.registrationNo =  data.registrationNo
+                this.state.officeAddress =  data.officeAddress
+                this.state.getRegistered =  data.getRegistered
+                this.state.vendorTel =  data.vendorTel
+                this.state.vendorFax =  data.vendorFax
+          
+                this.state.businessType =  data.businessType
+                this.state.contactName =  data.contactName
+                this.state.contactTel =  data.contactTel
+                this.state.contactDesignation =  data.contactDesignation
+                this.state.businessNature =  data.businessNature
+                this.state.products =  data.products
+          
+                this.state.iso9001Certification= data.iso9001Certification
+                this.state.accrediationOfLaboratory= data.accrediationOfLaboratory
+                this.state.productCertification= data.productCertification
+                this.state.resultsOfProductEvaluation= data.resultsOfProductEvaluation
+                this.state.siteEvaluationResults= data.siteEvaluationResults
+                this.state.resultsOfFirstDeal= data.resultsOfFirstDeal
+                this.state.trackRecordReview= data.trackRecordReview
+
+                this.state.evaluationOthers= data.evaluationOthers
+                this.state.certificationBody= data.certificationBody
+                this.state.accrediationBody= data.accrediationBody
+                this.state.productMarkings= data.productMarkings
+                this.state.resultOfEvaluation= data.resultOfEvaluation
+          
+                this.state.evaluatedBy= data.evaluatedBy
+                this.state.approvedByDirector= data.approvedByDirector
+                this.state.effectiveDate= data.effectiveDate
             })
             .catch ((error) => {
                 console.log(error);
