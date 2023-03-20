@@ -63,7 +63,10 @@
                                         passVendortoChange(
                                             vendor.username,
                                             vendor.email,
-                                            vendor.accessRights
+                                            vendor.accessRights,
+                                            vendor.id,
+                                            vendor.locations,
+                                            vendor.password
                                         )"
                                 >
                                 Edit
@@ -137,16 +140,20 @@
                                 />
                         </div>
                         <div class="input-group mb-3">
-                            <input
-                                type="text"
-                                id="updated_vendor_access"
-                                :value="accessTochange"
-                                class="form-control"
-                                aria-label="vendor-access"
-                                aria-describedby="basic-addon1"
-                                />
+
+                        <!-- <label for="updated_vendor_access">Access Right</label> -->
+                        <select id="updated_vendor_access" v-model="accessTochange" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
+                        <option value="admin">Admin</option>
+                        <option value="approver">Approver</option>
+                        <option value="vendor">Vendor</option>
+                        </select>
+
+
                         </div>
-                        <input type="hidden" id="vendor_email" :value="vendorEmail"/>
+                        <input type="hidden" id="vendor_id" :value="vendorid"/>
+                        <input type="hidden" id="loc" :value="loc"/>
+                        <input type="hidden" id="pwd" :value="pwd"/>
+
                     </div>
                     <div class="modal-footer">
                     <button
@@ -248,6 +255,10 @@ name:'Admin',
       vendorTochange: '',
       vendorEmail: '',
       accessTochange: '',
+      vendorid: '',
+      loc: [],
+      pwd: '',
+
     }
   },
   methods: {
@@ -307,10 +318,14 @@ name:'Admin',
         }
     },
 
-    passVendortoChange(vendorChange, email, accessChange){
+    passVendortoChange(vendorChange, email, accessChange, id, loc, p){
         this.vendorTochange = vendorChange;
         this.vendorEmail= email;
         this.accessTochange = accessChange;
+        this.vendorid = id;
+        this.pwd = p;
+        this.loc = loc;
+
     },
 
     async getVendors() {
@@ -354,22 +369,33 @@ name:'Admin',
         const axios = require('axios');
         let new_vendor_name = document.getElementById('updated_vendor_name').value;
         let new_vendor_access = document.getElementById('updated_vendor_access').value;
-        let curr_vendor_email = document.getElementById('vendor_email').value;
+        let vid = document.getElementById('vendor_id').value;
+
+        let e = this.vendorEmail;
+        let p = document.getElementById('pwd').value;
+        let loc = document.getElementById('loc').value;
+
+
+
         var vendor_obj = {
-            vendor_name: new_vendor_name,
-            vendor_access: new_vendor_access,
+            id: vid,
+            email: e,
+            username: new_vendor_name,
+            password: p,
+            accessRights: new_vendor_access,
+            locations: JSON.parse(JSON.stringify(this.loc)),
         };
 
         console.log("YIPPEEEEEEEEEEEEE")
         console.log(vendor_obj)
-        // axios.put('http://localhost:8080/users')
-        // .then((response) => {
-        // console.log(response.data);
+        axios.put('http://localhost:8080/users', vendor_obj)
+        .then((response) => {
+        console.log(response.data);
         
-        // })
-        // .catch ((error) => {
-        // console.log(error);
-        // })
+        })
+        .catch ((error) => {
+        console.log(error);
+        })
         },
   },
   created() {
