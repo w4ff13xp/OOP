@@ -351,48 +351,6 @@
         v$
       }
     },
-    // data() {
-    //   return {
-    //     v$: useValidate(),
-    //     // formCode: "QLI-QHSP-10-F01",
-    //     formDate: "2023-03-07",
-    //     formName: "vendor assessment",
-    //     formCompleted: false,
-    //     formApproved: false,
-  
-    //     companyName: "",
-    //     registrationNo: "",
-    //     officeAddress: "",
-    //     getRegistered: "",
-    //     vendorTel: "",
-    //     vendorFax: "",
-  
-    //     businessType: "",
-    //     contactName: "",
-    //     contactTel: "",
-    //     contactDesignation: "",
-    //     businessNature: "",
-    //     products: "",
-  
-    //     iso9001Certification: false,
-    //     accrediationOfLaboratory: false,
-    //     productCertification: false,
-    //     resultsOfProductEvaluation: false,
-    //     siteEvaluationResults: false,
-    //     resultsOfFirstDeal: false,
-    //     trackRecordReview: false,
-
-    //     evaluationOthers: "",
-    //     certificationBody: "",
-    //     accrediationBody: "",
-    //     productMarkings: "",
-    //     resultOfEvaluation: false,
-  
-    //     evaluatedBy: "",
-    //     approvedByDirector: "",
-    //     effectiveDate: "",
-    //   };
-    // },
     
     methods: {
       addToAPI() {
@@ -414,7 +372,7 @@
         }
         var dt = new Date();
         let newForm = {
-          // formCode: this.formCode,
+          formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
           date: toIsoString(dt),
           formName: "vendor assessment",
           formCompleted: false,
@@ -453,44 +411,56 @@
           effectiveDate: this.state.effectiveDate,
      
         };
-        // console.log(this.state.companyName)
         const axios = require("axios");
         this.v$.$validate()
-        if(!this.v$.$error){
-            alert('successful validation')
-            axios
-            .post("http://localhost:8080/vendorAssessment", newForm)
-            .then((response) => {
-              console.log(response);
-              localStorage.setItem('edit',false);
-                  alert("form submitted")
-              // window.location.href = "http://localhost:8080/home"
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        localStorage.setItem('edit','no') //////////////
+        var editing = localStorage.getItem('edit');
+        if(editing == "yes"){
+          axios
+              .post("http://localhost:8080/vendorAssessment", newForm)
+              .then((response) => {
+                console.log(response);
+                localStorage.setItem('edit',false);
+                    alert("form saved")
+                // window.location.href = "http://localhost:3000/home"
+              })
         }else{
-            alert('form failed')
+          if(!this.v$.$error){
+              alert('successful validation')
+              newForm.formCompleted = true;
+              axios
+              .post("http://localhost:8080/vendorAssessment", newForm)
+              .then((response) => {
+                console.log(response);
+                localStorage.setItem('edit',false);
+                    alert("form submitted")
+                // window.location.href = "http://localhost:3000/home"
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }else{
+              alert('form failed')
+          }
         }
-        // editing = localStorage.getItem('edit');
-        // if (editing){
-          // test = document.getElementById(form).querySelectorAll("[required]")
-          // console.log(test)
-          // localStorage.setItem('edit',false);
-        // }
-        // axios
-        // .post("http://localhost:8080/vendorAssessment", newForm)
-        // .then((response) => {
-        //   console.log(response);
-        //   localStorage.setItem('edit',false);
-              // alert("form submitted")
-        //   // window.location.href = "http://localhost:8080/home"
-        // })
-        // .catch((error) => {
-        //   console.log(error);
-        // });
-        
       },
+      async getEditInputs(){
+        try {
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            await axios.get(`http://localhost:8080/vendorAssessment/${formid}`)
+            .then((response) => {
+                console.log(response.data);
+                // this.healthForms = response.data
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+      }
     },
     computed: {
       computeScoreOne() {
@@ -560,6 +530,9 @@
         return this.performanceStandard;
       },
     },
+    created() {
+      this.getEditInputs();
+  },
   };
   </script>
   

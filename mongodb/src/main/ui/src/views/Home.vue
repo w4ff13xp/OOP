@@ -97,7 +97,6 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        
                                     >
                                     Delete
                                     </button>
@@ -107,7 +106,7 @@
                         </tr>
                         <tr v-for="v in vendorForms" >
                             <td class="px-4 col-5">
-                                <div class="text-sm text-wrap">
+                                <div class="text-sm text-wrap" >
                                     {{ v.formCode }}
                                 </div>
                             </td>
@@ -128,9 +127,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"
-                                        
+                                        v-on:click="editV(v.formCode, v.formName)"
                                     >
                                     Edit
                                     </button>
@@ -138,6 +135,7 @@
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
                                         
+                                    
                                     >
                                     Delete
                                     </button>
@@ -166,7 +164,7 @@ export default{
     
     //   vendors_chunked: [],
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
-      results_per_page: 5,
+      results_per_page: 12,
     //   
       start_index: 0,
       end_index: 0,
@@ -175,62 +173,17 @@ export default{
     }
   },
   methods: {
-    // setPagination() {
-    //     this.num_page = (this.vendors).length / this.results_per_page;
-    //     console.log("PAGINATION: " + this.num_page)
-    //     for (let i=0; i < this.num_page; i++){
-    //         if (this.num_page <= 1){
-    //             this.start_index = 0;
-    //             this.end_index = this.vendors.length;
-    //         } else {
-    //             this.start_index = i * this.results_per_page;
-    //             this.end_index = (i+1) * this.results_per_page - 1;
-    //         }
-    //         let indiv_chunks = this.vendors.slice(
-    //             this.start_index,
-    //             this.end_index + 1
-    //         );
-    //         this.vendors_chunked.push(indiv_chunks);
-    //         // console.log("here", this.start_index, this.end_index)
-    //         console.log("MOOOOO");
-    //         console.log(this.vendors_chunked);
-    //     }
-    //     console.log("MOOO2");
-    //     console.log(this.vendors_chunked);
-    // },
+    editV(formid, formname){
+        localStorage.setItem('edit', 'yes')
+        localStorage.setItem('formid', formid)
 
-    // curr_page_checker(page_num) {
-    //     // console.log("MAMAMAMAMA")
-    //     // console.log(page_num, this.current_page)
-    //     if (page_num == this.current_page){
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // },
 
-    // showPage(index){
-    //     this.current_page = index;
-    //     console.log("CURR PAGE ", this.current_page)
-    // },
-
-    // nextPage(){
-    //     if (this.current_page < this.vendors_chunked.length - 1){
-    //         this.current_page += 1;
-    //         console.log("CURR PAGE ", this.current_page)
-    //     } else {
-    //         console.log("No more pages to load");
-    //     }
-    // },
-
-    // prevPage(){
-    //     if (this.current_page != 0){
-    //         this.current_page -= 1;
-    //     } else {
-    //         console.log("No more pages to load");
-    //     }
-    // },
-
+        if(formname == "vendor assessment"){
+            var redirect = "newvendorform"
+        }
+        window.location.href = `http://localhost:3000/${redirect}`
+        // console.log(this.$refs.formid);
+    },
     async getHealthforms() {
         try {
             const axios = require('axios');
@@ -280,7 +233,7 @@ export default{
             await axios.get('http://localhost:8080/vendorAssessment')
             .then((response) => {
                 console.log(response.data);
-                this.preForms = response.data
+                this.vendorForms = response.data
                 console.log("VENDORFORMS")
                 console.log(this.vendorForms)
                 // this.setPagination();
@@ -293,12 +246,13 @@ export default{
             console.log(error);
         };
     },
+    
   },
     created() {
       this.getHealthforms();
       this.getPreforms();
       this.getVendorforms();
-  }
+  },
 };
 
 </script>

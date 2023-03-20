@@ -60,13 +60,6 @@
 <script>
 export default {
 name:'SpecificVendor',
-watch: {
-  input: function () {
-    if (isLocalStorage() /* function to detect if localstorage is supported*/) {
-      localStorage.setItem('edit', true)
-    }
-  }
-}
 }
 
 </script>
