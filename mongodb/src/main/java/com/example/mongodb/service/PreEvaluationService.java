@@ -68,7 +68,7 @@ public class PreEvaluationService {
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
         existingForm.setEvaluator(PERequest.getEvaluator());
 
-        existingForm.setSafetyHealthPolicy(PERequest.isSafetyHealthPolicy());
+        existingForm.setSafetyHealthPolicy(PERequest.getSafetyHealthPolicy());
         existingForm.setProperDelegation(PERequest.getProperDelegation());
         existingForm.setSafetyCommitment(PERequest.getSafetyCommitment());
 
