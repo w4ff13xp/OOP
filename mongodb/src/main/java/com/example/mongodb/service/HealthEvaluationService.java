@@ -68,11 +68,10 @@ public class HealthEvaluationService {
         existingForm.setSiteCleanliness(HERequest.getSiteCleanliness());
         existingForm.setStoreCleanliness(HERequest.getStoreCleanliness());
         existingForm.setQuarterCleanliness(HERequest.getQuarterCleanliness());
-
         existingForm.setOverallScore(HERequest.getOverallScore());
         existingForm.setPerformanceStandard(HERequest.getPerformanceStandard());
         existingForm.setComments(HERequest.getComments());
-
+        existingForm.setVendorID(HERequest.getVendorID());
         existingForm.setSafetyCoordinator(HERequest.getSafetyCoordinator());
         existingForm.setSafetyCoordinatorSignature(HERequest.getSafetyCoordinatorSignature());
         existingForm.setSafetyCoordinatorEvaluationDate(HERequest.getSafetyCoordinatorEvaluationDate());

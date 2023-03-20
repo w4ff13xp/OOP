@@ -20,6 +20,7 @@ public class VendorAssessment {
     private boolean formCompleted;
     private boolean formApproved;
     // private Long revisionNum;
+    private String vendorID;
     private String companyName;
     private Long registrationNo;
     private String officeAddress;

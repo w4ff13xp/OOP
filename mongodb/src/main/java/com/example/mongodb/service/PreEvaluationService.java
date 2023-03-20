@@ -63,6 +63,7 @@ public class PreEvaluationService {
         existingForm.setFormCompleted(PERequest.isFormCompleted());
         existingForm.setFormApproved(PERequest.isFormApproved());
         existingForm.setCompanyName(PERequest.getCompanyName());
+        existingForm.setVendorID(PERequest.getVendorID());
         // existingForm.setRevisionNum(PERequest.getRevisionNum());
         existingForm.setSubContractorName(PERequest.getSubContractorName());
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());

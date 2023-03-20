@@ -492,6 +492,8 @@ name:'Admin',
         
         let form = document.getElementById('forms').value;
         let vendor_name = document.getElementById('updated_vendor_name').value;
+        let id = document.getElementById('vendor_id').value;
+        console.log("MAAAAAAAAAAAAAAAAAA", id)
 
         var temp_obj = {
             date: this.dateIn,
@@ -499,9 +501,10 @@ name:'Admin',
             formCompleted: false,
             formApproved: false,
             companyName: vendor_name,
+            id:id,
         };
 
-        console.log("TEMP!!!!!!!!")
+        console.log("TEMP!!!!wdasdasdas!!!!")
         console.log(temp_obj)
 
         // HEALTH EVAL FORM
@@ -509,7 +512,7 @@ name:'Admin',
             axios.post('http://localhost:8080/healthEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);
-            location.reload();
+            // location.reload();
             this.edit_success = true;
             
             })
@@ -524,7 +527,7 @@ name:'Admin',
             axios.post('http://localhost:8080/preEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);
-            location.reload();
+            // location.reload();
             this.edit_success = true;
             
             })

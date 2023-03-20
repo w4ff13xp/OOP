@@ -34,6 +34,7 @@ public class VendorAssessmentService {
         existingForm.setFormCompleted(VARequest.isFormCompleted());
         existingForm.setFormApproved(VARequest.isFormApproved());
         // existingForm.setRevisionNum(VARequest.getRevisionNum());
+        existingForm.setVendorID(VARequest.getVendorID());
         existingForm.setCompanyName(VARequest.getCompanyName());
         existingForm.setRegistrationNo(VARequest.getRegistrationNo());
         existingForm.setOfficeAddress(VARequest.getOfficeAddress());
