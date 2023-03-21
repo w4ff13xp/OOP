@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import auth0 from 'auth0-js'
 import router from '../router'
 import VueJwtDecode from 'vue-jwt-decode'
-
+import jwt_decode from "jwt-decode";
 export default createStore({
   state: {
     userIsAuthorized:false,
@@ -53,24 +53,14 @@ export default createStore({
           localStorage.setItem('id_token', authResult.idToken);
           localStorage.setItem('expires_at', expiresAt);  
           console.log(authResult.idToken)
-          let decoded = VueJwtDecode.decode(authResult.idToken)
+          let decoded = jwt_decode(authResult.idToken)
           console.log(decoded.email)
           const axios = require('axios');
           axios.get(`http://localhost:8080/users/${decoded.email}`)
           .then((response) => localStorage.setItem('specificuser', JSON.stringify(response.data)))
-          // {
-          //     console.log(response.data);
-          //     localStorage.setItem('specificuser', JSON.stringify(response.data))
-
-          //     console.log(localStorage.getItem('specificuser'))
-              
-          // })
           .catch ((error) => {
               console.log(error);
           })
-
-
-
           router.replace('/admin');
         } 
 
