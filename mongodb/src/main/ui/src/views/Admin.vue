@@ -263,14 +263,14 @@
                             <div class="input-group mb-3">
                                 <p style="padding-right: 10px;">Form Options: </p>
                                 <select id="forms" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
-                                <option value="Singapore">Health Evaluation Form</option>
-                                <option value="Malaysia">Pre Evaluation Form</option>
-                                <option value="USA">Vendor Assessment Form</option>
+                                <option value="Health Evaluation Form">Health Evaluation Form</option>
+                                <option value="Pre Evaluation Form">Pre Evaluation Form</option>
+                                <option value="Vendor Assessment Form">Vendor Assessment Form</option>
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <p style="padding-right: 25px;">Due Date: {{ this.duedate }} </p>
-
+                                <p style="padding-right: 25px;">Due Date: </p>
+                                <input type="text" id="due_date" :value="this.duedate"/>
                             </div>
 
                         </div>
@@ -330,6 +330,7 @@ name:'Admin',
       pwd: '',
       forms: [],
       duedate:'',
+      dateIn:'',
 
     }
   },
@@ -401,22 +402,6 @@ name:'Admin',
 
     },
 
-    // getDueDate(date) {
-    //       var tzo = -date.getTimezoneOffset(),
-    //           dif = tzo >= 0 ? '+' : '-',
-    //           pad = function(num) {
-    //               return (num < 10 ? '0' : '') + num;
-    //           };
-    //       return date.getFullYear() +
-    //           '-' + pad(date.getMonth() + 1) +
-    //           '-' + pad(date.getDate()) +
-    //           'T' + pad(date.getHours()) +
-    //           ':' + pad(date.getMinutes()) +
-    //           ':' + pad(date.getSeconds()) +
-    //           dif + pad(Math.floor(Math.abs(tzo) / 60)) +
-    //           ':' + pad(Math.abs(tzo) % 60);
-    //     }
-    //     var dt = new Date();
     async getDueDate(){
         // Create a new date object with the current date
         const currentDate = new Date();
@@ -427,6 +412,7 @@ name:'Admin',
         // The new date is now 7 days ahead of the current date
         console.log(currentDate);
         const formattedDate = currentDate.toLocaleDateString('en-GB');
+        this.dateIn = currentDate;
         this.duedate = formattedDate;
     },
 
@@ -503,36 +489,82 @@ name:'Admin',
 
         assignForms() {
         const axios = require('axios');
-        let new_vendor_name = document.getElementById('updated_vendor_name').value;
-        let new_vendor_access = document.getElementById('updated_vendor_access').value;
-        let vid = document.getElementById('vendor_id').value;
+        
+        let form = document.getElementById('forms').value;
+        let vendor_name = document.getElementById('updated_vendor_name').value;
+        let id = document.getElementById('vendor_id').value;
+        console.log("MAAAAAAAAAAAAAAAAAA", id)
 
-        let e = this.vendorEmail;
-        let p = document.getElementById('pwd').value;
-        let loc = document.getElementById('loc').value;
-
-        var vendor_obj = {
-            id: vid,
-            email: e,
-            username: new_vendor_name,
-            password: p,
-            accessRights: new_vendor_access,
-            locations: JSON.parse(JSON.stringify(this.loc)),
+        var temp_obj = {
+            date: this.dateIn,
+            formName:form,
+            formCompleted: false,
+            formApproved: false,
+            companyName: vendor_name,
+            id:id,
         };
 
-        console.log("YIPPEEEEEEEEEEEEE")
-        console.log(vendor_obj)
-        axios.put('http://localhost:8080/users', vendor_obj)
-        .then((response) => {
-        console.log(response.data);
-        location.reload();
-        this.edit_success = true;
+        console.log("TEMP!!!!wdasdasdas!!!!")
+        console.log(temp_obj)
+
+        // HEALTH EVAL FORM
+        if (form == 'Health Evaluation Form'){
+            axios.post('http://localhost:8080/healthEvaluation', temp_obj)
+            .then((response) => {
+            console.log(response.data);
+            // location.reload();
+            this.edit_success = true;
+            
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.edit_error = true;
+            })
+        }
+
+                // PRE EVAL FORM
+                if (form == 'Pre Evaluation Form'){
+            axios.post('http://localhost:8080/preEvaluation', temp_obj)
+            .then((response) => {
+            console.log(response.data);
+            // location.reload();
+            this.edit_success = true;
+            
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.edit_error = true;
+            })
+        }
+        // let new_vendor_access = document.getElementById('updated_vendor_access').value;
+        // let vid = document.getElementById('vendor_id').value;
+
+        // let e = this.vendorEmail;
+        // let p = document.getElementById('pwd').value;
+        // let loc = document.getElementById('loc').value;
+
+        // var vendor_obj = {
+        //     id: vid,
+        //     email: e,
+        //     username: new_vendor_name,
+        //     password: p,
+        //     accessRights: new_vendor_access,
+        //     locations: JSON.parse(JSON.stringify(this.loc)),
+        // };
+
+        // console.log("YIPPEEEEEEEEEEEEE")
+        // console.log(vendor_obj)
+        // axios.put('http://localhost:8080/users', vendor_obj)
+        // .then((response) => {
+        // console.log(response.data);
+        // location.reload();
+        // this.edit_success = true;
         
-        })
-        .catch ((error) => {
-        console.log(error);
-        this.edit_error = true;
-        })
+        // })
+        // .catch ((error) => {
+        // console.log(error);
+        // this.edit_error = true;
+        // })
         },
   },
   created() {

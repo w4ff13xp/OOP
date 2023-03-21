@@ -29,6 +29,7 @@ public class HealthEvaluationService {
     public HealthEvaluation updateHealthEvaluation(HealthEvaluation HERequest) {
         HealthEvaluation existingForm = repository.findById(HERequest.getFormCode()).get();
         existingForm.setFormCode(HERequest.getFormCode());
+        existingForm.setVendorID(HERequest.getVendorID());
         existingForm.setDate(HERequest.getDate());
         existingForm.setFormName(HERequest.getFormName());
         existingForm.setFormCompleted(HERequest.isFormCompleted());
@@ -68,11 +69,10 @@ public class HealthEvaluationService {
         existingForm.setSiteCleanliness(HERequest.getSiteCleanliness());
         existingForm.setStoreCleanliness(HERequest.getStoreCleanliness());
         existingForm.setQuarterCleanliness(HERequest.getQuarterCleanliness());
-
         existingForm.setOverallScore(HERequest.getOverallScore());
         existingForm.setPerformanceStandard(HERequest.getPerformanceStandard());
         existingForm.setComments(HERequest.getComments());
-
+        existingForm.setVendorID(HERequest.getVendorID());
         existingForm.setSafetyCoordinator(HERequest.getSafetyCoordinator());
         existingForm.setSafetyCoordinatorSignature(HERequest.getSafetyCoordinatorSignature());
         existingForm.setSafetyCoordinatorEvaluationDate(HERequest.getSafetyCoordinatorEvaluationDate());

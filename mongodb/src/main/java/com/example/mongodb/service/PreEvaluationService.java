@@ -29,17 +29,18 @@ public class PreEvaluationService {
     public PreEvaluation updatePreEvaluation(PreEvaluation PERequest) {
         PreEvaluation existingForm = repository.findById(PERequest.getFormCode()).get();
         existingForm.setFormCode(PERequest.getFormCode());
+        existingForm.setVendorID(PERequest.getVendorID());
         existingForm.setDate(PERequest.getDate());
         existingForm.setFormName(PERequest.getFormName());
         existingForm.setFormCompleted(PERequest.isFormCompleted());
         existingForm.setFormApproved(PERequest.isFormApproved());
         existingForm.setCompanyName(PERequest.getCompanyName());
-        // existingForm.setRevisionNum(PERequest.getRevisionNum());
+        
         existingForm.setSubContractorName(PERequest.getSubContractorName());
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
         existingForm.setEvaluator(PERequest.getEvaluator());
 
-        existingForm.setSafetyHealthPolicy(PERequest.isSafetyHealthPolicy());
+        existingForm.setSafetyHealthPolicy(PERequest.getSafetyHealthPolicy());
         existingForm.setProperDelegation(PERequest.getProperDelegation());
         existingForm.setSafetyCommitment(PERequest.getSafetyCommitment());
 
@@ -53,7 +54,7 @@ public class PreEvaluationService {
         existingForm.setRiskAssessmentsSubmitted(PERequest.getRiskAssessmentsSubmitted());
 
         existingForm.setInspectionGuidelines(PERequest.getInspectionGuidelines());
-        existingForm.setPPE(PERequest.getPPE());;
+        existingForm.setPpe(PERequest.getPpe());;
 
         existingForm.setSafetySupervisor(PERequest.getSafetySupervisor());
         existingForm.setFirstAider(PERequest.getFirstAider());
@@ -64,6 +65,8 @@ public class PreEvaluationService {
         existingForm.setFatalCases(PERequest.getFatalCases());
 
         existingForm.setSignature(PERequest.getSignature());
+
+        existingForm.setEffectiveDate(PERequest.getEffectiveDate());
 
         return repository.save(existingForm);
     }

@@ -29,11 +29,13 @@ public class VendorAssessmentService {
     public VendorAssessment updateVendorAssessment(VendorAssessment VARequest) {
         VendorAssessment existingForm = repository.findById(VARequest.getFormCode()).get();
         existingForm.setFormCode(VARequest.getFormCode());
+        existingForm.setVendorID(VARequest.getVendorID());
         existingForm.setDate(VARequest.getDate());
         existingForm.setFormName(VARequest.getFormName());
         existingForm.setFormCompleted(VARequest.isFormCompleted());
         existingForm.setFormApproved(VARequest.isFormApproved());
-        // existingForm.setRevisionNum(VARequest.getRevisionNum());
+
+        existingForm.setVendorID(VARequest.getVendorID());
         existingForm.setCompanyName(VARequest.getCompanyName());
         existingForm.setRegistrationNo(VARequest.getRegistrationNo());
         existingForm.setOfficeAddress(VARequest.getOfficeAddress());

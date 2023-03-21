@@ -1,13 +1,15 @@
 <template>
   <div class="container-fluid">
     <!-- <Navigation></Navigation> -->
+    <form v-on:submit.prevent="addToAPI" id="form">
+
     <h2 id="title" class="text-center pt-3">
       SUBCONTRACTOR’S SAFETY & HEALTH PERFORMANCE EVALUATION
     </h2>
 
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART I: PARTICIPATION IN SAFETY</h4>
-      <form>
+      <!-- <form> -->
         <div class="m-3 d-flex">
           <label for="first" class="form-label fw-bold" style="width: 400px"
             >1. Attendance in Safety Meeting</label
@@ -342,7 +344,7 @@
             </div>
           </div>
         </div>
-      </form>
+      <!-- </form> -->
 
       <h5 class="text-center my-3">SCORE (I): {{ computeScoreOne }}</h5>
     </div>
@@ -351,7 +353,7 @@
       <h4 class="text-center mb-5">
         PART II: SAFETY TRAINING AND COMPETENCIES (PERCENTAGE OF ATTENDANCE)
       </h4>
-      <form>
+      <!-- <form> -->
         <div class="m-3 d-flex">
           <label for="first" class="form-label fw-bold" style="width: 400px"
             >6. Statutory Safety Training Course</label
@@ -565,7 +567,7 @@
                 name="fourth1"
                 id="inlineRadio1"
                 value="1"
-                v-model="WSHSupervisor"
+                v-model="wshsupervisor"
               />
               <label class="form-check-label" for="inlineRadio1">Poor</label>
             </div>
@@ -576,7 +578,7 @@
                 name="fourth1"
                 id="inlineRadio2"
                 value="2"
-                v-model="WSHSupervisor"
+                v-model="wshsupervisor"
               />
               <label class="form-check-label" for="inlineRadio2"
                 >Below Average</label
@@ -589,7 +591,7 @@
                 name="fourth1"
                 id="inlineRadio3"
                 value="3"
-                v-model="WSHSupervisor"
+                v-model="wshsupervisor"
               />
               <label class="form-check-label" for="inlineRadio3">Average</label>
             </div>
@@ -600,7 +602,7 @@
                 name="fourth1"
                 id="inlineRadio4"
                 value="4"
-                v-model="WSHSupervisor"
+                v-model="wshsupervisor"
               />
               <label class="form-check-label" for="inlineRadio4"
                 >Above Average</label
@@ -613,7 +615,7 @@
                 name="fourth1"
                 id="inlineRadio5"
                 value="5"
-                v-model="WSHSupervisor"
+                v-model="wshsupervisor"
               />
               <label class="form-check-label" for="inlineRadio5">Good</label>
             </div>
@@ -686,14 +688,14 @@
             </div>
           </div>
         </div>
-      </form>
-
-      <h5 class="text-center my-3">SCORE (II): {{ computeScoreTwo }}</h5>
+      <!-- </form> -->
+      <!-- <h5 v-if="editingornot" class="text-center my-3">SCORE (II): {{ score2 }}</h5> -->
+      <h5  class="text-center my-3">SCORE (II): {{ computeScoreTwo }}</h5>
     </div>
 
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART III: ACCIDENT/ INCIDENT PREVIEW</h4>
-      <form>
+      <!-- <form> -->
         <div class="m-3 d-flex">
           <label for="first" class="form-label fw-bold" style="width: 400px"
             >11. Effort in Accident Prevention</label
@@ -1028,14 +1030,14 @@
             </div>
           </div>
         </div>
-      </form>
+      <!-- </form> -->
 
       <h5 class="text-center my-3">SCORE (III): {{ computeScoreThree }}</h5>
     </div>
 
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART IV: MAINTENANCE OF EQUIPMENT</h4>
-      <form>
+      <!-- <form> -->
         <div class="m-3 d-flex">
           <label for="first" class="form-label fw-bold" style="width: 400px"
             >16. Explosive Powered Tool/ Cutting Tool</label
@@ -1370,14 +1372,14 @@
             </div>
           </div>
         </div>
-      </form>
+      <!-- </form> -->
 
       <h5 class="text-center my-3">SCORE (IV): {{ computeScoreFour }}</h5>
     </div>
 
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART V: GENERAL HOUSEKEEPING & Others</h4>
-      <form>
+      <!-- <form> -->
         <div class="m-3 d-flex">
           <label for="first" class="form-label fw-bold" style="width: 400px"
             >21. Subcon Snr Mgt Commitment to HS</label
@@ -1457,7 +1459,7 @@
                 name="second4"
                 id="inlineRadio1"
                 value="1"
-                v-model="PPECompliance"
+                v-model="ppecompliance"
               />
               <label class="form-check-label" for="inlineRadio1">Poor</label>
             </div>
@@ -1468,7 +1470,7 @@
                 name="second4"
                 id="inlineRadio2"
                 value="2"
-                v-model="PPECompliance"
+                v-model="ppecompliance"
               />
               <label class="form-check-label" for="inlineRadio2"
                 >Below Average</label
@@ -1481,7 +1483,7 @@
                 name="second4"
                 id="inlineRadio3"
                 value="3"
-                v-model="PPECompliance"
+                v-model="ppecompliance"
               />
               <label class="form-check-label" for="inlineRadio3">Average</label>
             </div>
@@ -1492,7 +1494,7 @@
                 name="second4"
                 id="inlineRadio4"
                 value="4"
-                v-model="PPECompliance"
+                v-model="ppecompliance"
               />
               <label class="form-check-label" for="inlineRadio4"
                 >Above Average</label
@@ -1505,7 +1507,7 @@
                 name="second4"
                 id="inlineRadio5"
                 value="5"
-                v-model="PPECompliance"
+                v-model="ppecompliance"
               />
               <label class="form-check-label" for="inlineRadio5">Good</label>
             </div>
@@ -1712,19 +1714,18 @@
             </div>
           </div>
         </div>
-      </form>
-
+      <!-- </form> -->
       <h5 class="text-center my-3">SCORE (V): {{ computeScoreFive }}</h5>
     </div>
 
     <div class="row bg-light m-5 rounded p-3 border text-center">
-      <h3>OVERALL SCORE: {{ computeOverallScore }}%</h3>
+      <h3>OVERALL SCORE: {{ computeOverallScore.toFixed(2) }}%</h3>
       <h3>Performance Standard: {{ computePerformanceStandard }}</h3>
     </div>
 
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center">Additional Comments</h4>
-      <form>
+      <!-- <form> -->
         <div class="form-floating my-4">
           <textarea
             class="form-control"
@@ -1735,15 +1736,17 @@
           ></textarea>
           <label for="floatingTextarea2"></label>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
 
 
     <div class="text-center m-3">
-      <button type="submit" class="btn btn-warning mx-3" @click="saveToAPI">Save</button>
-      <button type="submit" class="btn btn-success text-white" @click="addToAPI">Submit</button>
+      <button type="submit" class="btn btn-warning mx-3" >Save</button>
+      <button type="submit" class="btn btn-success text-white" >Submit</button>
     </div>
     <!-- <Footer></Footer> -->
+  </form>
+
   </div>
 </template>
 
@@ -1752,12 +1755,12 @@ export default {
   name: "Questionnaire",
   data() {
     return {
-      formCode: "formcode1",
-      formDate: "2023-03-07",
-      formName: "health evaluation",
-      formCompleted: false,
-      formApproved: false,
-      companyName: "Nike",
+      // formCode: "formcode1",
+      // formDate: "2023-03-07",
+      // formName: "health evaluation",
+      // formCompleted: false,
+      // formApproved: false,
+      // companyName: "Nike",
 
       attendance: 0,
       toolBox: 0,
@@ -1769,7 +1772,7 @@ export default {
       trainingCourse: 0,
       tradeCourse: 0,
       safetyTalk: 0,
-      WSHSupervisor: 0,
+      wshsupervisor: 0,
       otherTraining: 0,
       score2: 0,
 
@@ -1788,7 +1791,7 @@ export default {
       score4: 0,
 
       commitmentHS: 0,
-      PPECompliance: 0,
+      ppecompliance: 0,
       siteCleanliness: 0,
       storeCleanliness: 0,
       quarterCleanliness: 0,
@@ -1808,91 +1811,36 @@ export default {
     };
   },
   methods: {
-    addToAPI() {
-      let newForm = {
-        formCode: this.formCode,
-        formDate: this.formDate,
-        formName: this.formName,
-        formCompleted: this.formCompleted,
-        formApproved: this.formApproved,
-        companyName: this.companyName,
-
-        attendance: this.attendance,
-        toolBox: this.toolBox,
-        compliance: this.compliance,
-        promotionalActivities: this.promotionalActivities,
-        submission: this.submission,
-        score1: this.score1,
-
-        trainingCourse: this.trainingCourse,
-        tradeCourse: this.tradeCourse,
-        safetyTalk: this.safetyTalk,
-        WSHSupervisor: this.WSHSupervisor,
-        otherTraining: this.otherTraining,
-        score2: this.score2,
-
-        effort: this.effort,
-        permitToWork: this.permitToWork,
-        frequencyRate: this.frequencyRate,
-        safetyOffence: this.safetyOffence,
-        safetyRectification: this.safetyRectification,
-        score3: this.score3,
-
-        cuttingTool: this.cuttingTool,
-        ladder: this.ladder,
-        liftingGear: this.liftingGear,
-        electricalEquipment: this.electricalEquipment,
-        otherMachineries: this.otherMachineries,
-        score4: this.score4,
-
-        commitmentHS: this.commitmentHS,
-        PPECompliance: this.PPECompliance,
-        siteCleanliness: this.siteCleanliness,
-        storeCleanliness: this.storeCleanliness,
-        quarterCleanliness: this.quarterCleanliness,
-        score5: this.score5,
-
-        overallScore: this.overallScore,
-        performanceStandard: this.performanceStandard,
-        comments: this.comments,
-
-        safetyCoordinator: this.safetyCoordinator,
-        safetyCoordinatorSignature: this.safetyCoordinatorSignature,
-        safetyCoordinatorEvaluationDate: this.safetyCoordinatorEvaluationDate,
-
-        director: this.director,
-        directorSignature: this.directorSignature,
-        directorApprovalDate: this.directorApprovalDate,
-      };
-
-      var checker = [this.attendance, this.toolBox, this.compliance, this.promotionalActivities, this.submission, this.trainingCourse, this.tradeCourse, this.safetyTalk, this.WSHSupervisor, this.otherTraining, this.effort, this.permitToWork, this.frequencyRate, this.safetyOffence, this.safetyRectification, this.cuttingTool, this.ladder, this.liftingGear, this.electricalEquipment, this.otherMachineries, this.commitmentHS, this.PPECompliance, this.siteCleanliness, this.storeCleanliness, this.quarterCleanliness]
-
-      for (var item of checker) {
-        if (item == 0) {
-          alert("Please complete the form before submission.");
-          return;
-        }
+    editingornot(){
+      if(localStorage.getItem('edit') == 'yes'){
+        return true
       }
-
-      const axios = require("axios");
-
-      axios
-        .post("http://localhost:8080/healthEvaluation", newForm)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      return false
     },
-    saveToAPI() {
+    addToAPI() {
+      function toIsoString(date) {
+          var tzo = -date.getTimezoneOffset(),
+              dif = tzo >= 0 ? '+' : '-',
+              pad = function(num) {
+                  return (num < 10 ? '0' : '') + num;
+              };
+          return date.getFullYear() +
+              '-' + pad(date.getMonth() + 1) +
+              '-' + pad(date.getDate()) +
+              'T' + pad(date.getHours()) +
+              ':' + pad(date.getMinutes()) +
+              ':' + pad(date.getSeconds()) +
+              dif + pad(Math.floor(Math.abs(tzo) / 60)) +
+              ':' + pad(Math.abs(tzo) % 60);
+        }
+      var dt = new Date();
+      console.log(this.wshsupervisor)
       let newForm = {
-        formCode: this.formCode,
-        formDate: this.formDate,
-        formName: this.formName,
-        formCompleted: this.formCompleted,
-        formApproved: this.formApproved,
-        companyName: this.companyName,
+        date: toIsoString(dt),
+        formName: "Performance Evaluation",
+        formCompleted: false,
+        formApproved: false,
+        companyName: "Nike", //need change
 
         attendance: this.attendance,
         toolBox: this.toolBox,
@@ -1904,7 +1852,7 @@ export default {
         trainingCourse: this.trainingCourse,
         tradeCourse: this.tradeCourse,
         safetyTalk: this.safetyTalk,
-        WSHSupervisor: this.WSHSupervisor,
+        wshsupervisor: this.wshsupervisor,
         otherTraining: this.otherTraining,
         score2: this.score2,
 
@@ -1923,7 +1871,7 @@ export default {
         score4: this.score4,
 
         commitmentHS: this.commitmentHS,
-        PPECompliance: this.PPECompliance,
+        ppecompliance: this.ppecompliance,
         siteCleanliness: this.siteCleanliness,
         storeCleanliness: this.storeCleanliness,
         quarterCleanliness: this.quarterCleanliness,
@@ -1942,17 +1890,118 @@ export default {
         directorApprovalDate: this.directorApprovalDate,
       };
 
-      const axios = require("axios");
-
-      axios
-        .post("http://localhost:8080/healthEvaluation", newForm)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      var checker = [this.attendance, this.toolBox, this.compliance, this.promotionalActivities, this.submission, this.trainingCourse, this.tradeCourse, this.safetyTalk, this.wshsupervisor, this.otherTraining, this.effort, this.permitToWork, this.frequencyRate, this.safetyOffence, this.safetyRectification, this.cuttingTool, this.ladder, this.liftingGear, this.electricalEquipment, this.otherMachineries, this.commitmentHS, this.ppecompliance, this.siteCleanliness, this.storeCleanliness, this.quarterCleanliness]
+      var editing = localStorage.getItem('edit');
+      const axios = require('axios');
+      if(editing == "yes"){
+        console.log(newForm)
+        var formid = localStorage.getItem('formid')
+        
+        newForm.formCode = formid
+        console.log(newForm)
+          axios
+              .put("http://localhost:8080/healthEvaluation", newForm)
+              .then((response) => {
+                console.log(response);
+                // localStorage.setItem('edit',false);
+                    alert("form saved")
+                window.location.href = "http://localhost:3000/home"
+              })
+        }else{
+          newForm.formCode = (Math.floor((Math.random() * 100) + 1)).toString()
+          
+          for (var item of checker) {
+            if (item == 0) {
+              alert("Please complete the form before submission.");
+              return;
+            }
+          }
+          console.log(newForm)
+          alert('successful validation')
+          newForm.formCompleted = true;
+          axios
+          .post("http://localhost:8080/healthEvaluation", newForm)
+          .then((response) => {
+            console.log(response);
+            // localStorage.setItem('edit',false);
+            // localStorage.setItem('form','');
+                alert("form submitted")
+            window.location.href = "http://localhost:3000/home"
+          })
+          .catch((error) => {
+            alert('form failed')
+            console.log(error);
+          });
+          
+          localStorage.clear();
+        }
+      
     },
+    async getEditInputs(){
+        try {
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(typeof this.wshsupervisor)
+            await axios.get(`http://localhost:8080/healthEvaluation/${formid}`)
+            .then((response) => {
+                console.log(response.data);
+                var data = response.data
+                console.log( data.score2)
+                this.attendance = data.attendance
+                this.toolBox = data.toolBox
+                this.compliance = data.compliance
+                this.promotionalActivities = data.promotionalActivities
+                this.submission = data.submission
+                this.score1 = data.score1
+
+                this.trainingCourse= data.trainingCourse
+                this.tradeCourse= data.tradeCourse
+                this.safetyTalk= data.safetyTalk
+                this.wshsupervisor= data.wshsupervisor
+                this.otherTraining= data.otherTraining
+                this.score2= data.score2
+              console.log(this.wshsupervisor)
+                this.effort= data.effort
+                this.permitToWork= data.permitToWork
+                this.frequencyRate= data.frequencyRate
+                this.safetyOffence= data.safetyOffence
+                this.safetyRectification= data.safetyRectification
+                this.score3= data.score3
+
+                this.cuttingTool= data.cuttingTool
+                this.ladder= data.ladder
+                this.liftingGear= data.liftingGear
+                this.electricalEquipment= data.electricalEquipment
+                this.otherMachineries= data.otherMachineries
+                this.score4= data.score4
+
+                this.commitmentHS= data.commitmentHS
+                this.ppecompliance= data.ppecompliance
+                this.siteCleanliness= data.siteCleanliness
+                this.storeCleanliness= data.storeCleanliness
+                this.quarterCleanliness= data.quarterCleanliness
+                this.score5= data.score5
+
+                this.overallScore=  data.overallScore
+                this.performanceStandard= data.performanceStandard
+                this.comments= data.comments
+
+                this.safetyCoordinator= data.safetyCoordinator
+                this.safetyCoordinatorSignature= data.safetyCoordinatorSignature
+                this.safetyCoordinatorEvaluationDate= data.safetyCoordinatorEvaluationDate
+
+                this.director= data.director
+                this.directorSignature= data.directorSignature
+                this.directorApprovalDate= data.directorApprovalDate
+                
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+      }
   },
   computed: {
     computeScoreOne() {
@@ -1965,12 +2014,16 @@ export default {
       return this.score1;
     },
     computeScoreTwo() {
+      console.log(this.wshsupervisor)
+
       this.score2 =
         parseInt(this.trainingCourse) +
         parseInt(this.tradeCourse) +
         parseInt(this.safetyTalk) +
-        parseInt(this.WSHSupervisor) +
-        parseInt(this.otherTraining);
+        parseInt(this.wshsupervisor) +
+        parseInt(this.otherTraining)
+      console.log(this.wshsupervisor)
+
       return this.score2;
     },
     computeScoreThree() {
@@ -1994,7 +2047,7 @@ export default {
     computeScoreFive() {
       this.score5 =
         parseInt(this.commitmentHS) +
-        parseInt(this.PPECompliance) +
+        parseInt(this.ppecompliance) +
         parseInt(this.siteCleanliness) +
         parseInt(this.storeCleanliness) +
         parseInt(this.quarterCleanliness);
@@ -2004,7 +2057,8 @@ export default {
       this.overallScore =
         (((this.score1 + this.score2 + this.score3 + this.score4 + this.score5) /
           (25 * 5)) *
-        100).toFixed(2);
+        100);
+        console.log(this.overallScore)
       return this.overallScore;
     },
     computePerformanceStandard() {
@@ -2019,10 +2073,13 @@ export default {
       } else {
         this.performanceStandard = "Good";
       }
+      console.log(typeof this.overallScore)
       return this.performanceStandard;
     },
+  },
+  created() {
+      this.getEditInputs();
   },
 };
 </script>
 
-<style></style>

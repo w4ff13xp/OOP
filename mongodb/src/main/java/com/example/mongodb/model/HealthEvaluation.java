@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class HealthEvaluation {
     @Id
     private String formCode;
+    private String vendorID;
     private Date date;
     private String formName;
     private boolean formCompleted;
