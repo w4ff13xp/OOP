@@ -15,37 +15,6 @@ public class PreEvaluationService {
     private PreEvaluationRepository repository;
 
     public PreEvaluation addPreEvaluation(PreEvaluation PreEvaluation) {
-        // PreEvaluation.setSubContractorName("");
-        // PreEvaluation.setScopeOfWork("");
-        // PreEvaluation.setEvaluator("");
-
-        // PreEvaluation.setSafetyHealthPolicy(null);
-        // PreEvaluation.setProperDelegation(null);
-        // PreEvaluation.setSafetyCommitment(null);
-
-        // PreEvaluation.setToolBoxMeeting(null);
-
-        // PreEvaluation.setSupervisorTraining(null);
-        // PreEvaluation.setWorkerTraining(null);
-        // PreEvaluation.setCertificatesSubmitted(null);
-
-        // PreEvaluation.setWorkerRules(null);
-        // PreEvaluation.setRiskAssessmentsSubmitted(null);
-
-        // PreEvaluation.setInspectionGuidelines(null);
-        // PreEvaluation.setPpe(null);
-
-        // PreEvaluation.setSafetySupervisor(null);
-        // PreEvaluation.setFirstAider(null);
-        // PreEvaluation.setRelevantLicensedPersonnel(null);
-
-        // PreEvaluation.setTemporaryDisabilityCases(null);
-        // PreEvaluation.setPermanentDisabilityCases(null);
-        // PreEvaluation.setFatalCases(null);
-
-        // PreEvaluation.setSignature(null);
-
-        // PreEvaluation.setEffectiveDate(null);
         return repository.save(PreEvaluation);
     }
 
