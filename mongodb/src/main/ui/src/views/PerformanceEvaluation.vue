@@ -1836,7 +1836,7 @@ export default {
       var dt = new Date();
       console.log(this.wshsupervisor)
       let newForm = {
-        formDate: toIsoString(dt),
+        date: toIsoString(dt),
         formName: "Performance Evaluation",
         formCompleted: false,
         formApproved: false,

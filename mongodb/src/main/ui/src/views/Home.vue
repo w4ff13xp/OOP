@@ -177,7 +177,7 @@ export default{
         localStorage.setItem('edit', 'yes')
         localStorage.setItem('formid', formid)
 
-        if(formname == "vendor assessment"){
+        if(formname == "Vendor Assessment"){
             var redirect = "newvendorform"
         }else if(formname == "Performance Evaluation"){
             var redirect = "performanceevaluation"
