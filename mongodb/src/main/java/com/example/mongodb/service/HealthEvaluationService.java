@@ -29,6 +29,7 @@ public class HealthEvaluationService {
     public HealthEvaluation updateHealthEvaluation(HealthEvaluation HERequest) {
         HealthEvaluation existingForm = repository.findById(HERequest.getFormCode()).get();
         existingForm.setFormCode(HERequest.getFormCode());
+        existingForm.setVendorID(HERequest.getVendorID());
         existingForm.setDate(HERequest.getDate());
         existingForm.setFormName(HERequest.getFormName());
         existingForm.setFormCompleted(HERequest.isFormCompleted());
