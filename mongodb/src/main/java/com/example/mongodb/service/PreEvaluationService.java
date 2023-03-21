@@ -29,13 +29,13 @@ public class PreEvaluationService {
     public PreEvaluation updatePreEvaluation(PreEvaluation PERequest) {
         PreEvaluation existingForm = repository.findById(PERequest.getFormCode()).get();
         existingForm.setFormCode(PERequest.getFormCode());
+        existingForm.setVendorID(PERequest.getVendorID());
         existingForm.setDate(PERequest.getDate());
         existingForm.setFormName(PERequest.getFormName());
         existingForm.setFormCompleted(PERequest.isFormCompleted());
         existingForm.setFormApproved(PERequest.isFormApproved());
         existingForm.setCompanyName(PERequest.getCompanyName());
-        existingForm.setVendorID(PERequest.getVendorID());
-        // existingForm.setRevisionNum(PERequest.getRevisionNum());
+        
         existingForm.setSubContractorName(PERequest.getSubContractorName());
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
         existingForm.setEvaluator(PERequest.getEvaluator());

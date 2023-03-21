@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 public class VendorAssessment {
     @Id
     private String formCode;
+    private String vendorID;
     private Date date;
     private String formName;
     private boolean formCompleted;
     private boolean formApproved;
-    // private Long revisionNum;
-    private String vendorID;
     private String companyName;
+    
     private Long registrationNo;
     private String officeAddress;
     private boolean getRegistered;
