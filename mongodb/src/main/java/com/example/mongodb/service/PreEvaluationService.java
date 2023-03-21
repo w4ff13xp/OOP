@@ -15,35 +15,37 @@ public class PreEvaluationService {
     private PreEvaluationRepository repository;
 
     public PreEvaluation addPreEvaluation(PreEvaluation PreEvaluation) {
-        PreEvaluation.setSubContractorName("");
-        PreEvaluation.setScopeOfWork("");
-        PreEvaluation.setEvaluator("");
+        // PreEvaluation.setSubContractorName("");
+        // PreEvaluation.setScopeOfWork("");
+        // PreEvaluation.setEvaluator("");
 
-        PreEvaluation.setSafetyHealthPolicy(null);
-        PreEvaluation.setProperDelegation(null);
-        PreEvaluation.setSafetyCommitment(null);
+        // PreEvaluation.setSafetyHealthPolicy(null);
+        // PreEvaluation.setProperDelegation(null);
+        // PreEvaluation.setSafetyCommitment(null);
 
-        PreEvaluation.setToolBoxMeeting(null);
+        // PreEvaluation.setToolBoxMeeting(null);
 
-        PreEvaluation.setSupervisorTraining(null);
-        PreEvaluation.setWorkerTraining(null);
-        PreEvaluation.setCertificatesSubmitted(null);
+        // PreEvaluation.setSupervisorTraining(null);
+        // PreEvaluation.setWorkerTraining(null);
+        // PreEvaluation.setCertificatesSubmitted(null);
 
-        PreEvaluation.setWorkerRules(null);
-        PreEvaluation.setRiskAssessmentsSubmitted(null);
+        // PreEvaluation.setWorkerRules(null);
+        // PreEvaluation.setRiskAssessmentsSubmitted(null);
 
-        PreEvaluation.setInspectionGuidelines(null);
-        PreEvaluation.setPPE(null);
+        // PreEvaluation.setInspectionGuidelines(null);
+        // PreEvaluation.setPpe(null);
 
-        PreEvaluation.setSafetySupervisor(null);
-        PreEvaluation.setFirstAider(null);
-        PreEvaluation.setRelevantLicensedPersonnel(null);
+        // PreEvaluation.setSafetySupervisor(null);
+        // PreEvaluation.setFirstAider(null);
+        // PreEvaluation.setRelevantLicensedPersonnel(null);
 
-        PreEvaluation.setTemporaryDisabilityCases(null);
-        PreEvaluation.setPermanentDisabilityCases(null);
-        PreEvaluation.setFatalCases(null);
+        // PreEvaluation.setTemporaryDisabilityCases(null);
+        // PreEvaluation.setPermanentDisabilityCases(null);
+        // PreEvaluation.setFatalCases(null);
 
-        PreEvaluation.setSignature(null);
+        // PreEvaluation.setSignature(null);
+
+        // PreEvaluation.setEffectiveDate(null);
         return repository.save(PreEvaluation);
     }
 
@@ -83,7 +85,7 @@ public class PreEvaluationService {
         existingForm.setRiskAssessmentsSubmitted(PERequest.getRiskAssessmentsSubmitted());
 
         existingForm.setInspectionGuidelines(PERequest.getInspectionGuidelines());
-        existingForm.setPPE(PERequest.getPPE());;
+        existingForm.setPpe(PERequest.getPpe());;
 
         existingForm.setSafetySupervisor(PERequest.getSafetySupervisor());
         existingForm.setFirstAider(PERequest.getFirstAider());
@@ -94,6 +96,8 @@ public class PreEvaluationService {
         existingForm.setFatalCases(PERequest.getFatalCases());
 
         existingForm.setSignature(PERequest.getSignature());
+
+        existingForm.setEffectiveDate(PERequest.getEffectiveDate());
 
         return repository.save(existingForm);
     }

@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class PreEvaluation {
     @Id
     private String formCode;
+    private String vendorID;
     private Date date;
     private String formName;
     private boolean formCompleted;
     private boolean formApproved;
-    private String vendorID;
     private String companyName;
 
     private String subContractorName;
@@ -40,7 +40,7 @@ public class PreEvaluation {
     private Boolean riskAssessmentsSubmitted;
 
     private Boolean inspectionGuidelines;
-    private Boolean PPE;
+    private Boolean ppe;
 
     private Boolean safetySupervisor;
     private Boolean firstAider;
