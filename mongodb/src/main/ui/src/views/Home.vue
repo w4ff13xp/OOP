@@ -16,7 +16,7 @@
                                 Date
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Status
+                                Approval Status
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                                 Company
@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="h in healthForms" >
+                        <tr v-for="h in forms_chunked[current_page]" >
                             <td class="px-4 col-5">
                                 <div class="text-sm text-wrap">
                                     {{ h.formCode }}
@@ -40,7 +40,7 @@
                                     {{ h.date }}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add status (completed/approved etc)
+                                    {{ h.formApproved}}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
                                     {{ h.companyName }}
@@ -62,90 +62,39 @@
                                     Delete
                                     </button>
                                     <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
-                                </div>
-                            </td>
-                        </tr>
-                        <tr v-for="p in preForms" >
-                            <td class="px-4 col-5">
-                                <div class="text-sm text-wrap">
-                                    {{ p.formCode }}
-                                </div>
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ p.formName }}
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ p.date }}
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add status (completed/approved etc)
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ p.companyName }}
-                            </td>
-                            <td class="text-start px-3 col">
-                                <div class="mx-auto mt-2">
                                     <button
                                         type="button"
-                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"
-                                        
+                                        class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
                                     >
-                                    Edit
+                                    Evaluate
                                     </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                    >
-                                    Delete
-                                    </button>
-                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
-                                </div>
-                            </td>
-                        </tr>
-                        <tr v-for="v in vendorForms" >
-                            <td class="px-4 col-5">
-                                <div class="text-sm text-wrap" >
-                                    {{ v.formCode }}
-                                </div>
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ v.formName }}
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ v.date }}
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    add status (completed/approved etc)
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ v.companyName }}
-                            </td>
-                            <td class="text-start px-3 col">
-                                <div class="mx-auto mt-2">
-                                    <button
-                                        type="button"
-                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-on:click="editV(v.formCode, v.formName)"
-                                    >
-                                    Edit
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        
-                                    
-                                    >
-                                    Delete
-                                    </button>
-                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+            <a class="page-link" @click="$event=>prevPage()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            <li class="page-item" v-for="(each_chunk, index) in forms_chunked" 
+                                    :key="index" 
+                                    :aria-label=(index+1).toString()
+                                    @click="$event => showPage(index)"
+                                    onActivated="curr_page_checker(index)">
+                <a class="page-link" href="#">{{index+1}}</a></li>
+            
+            <li class="page-item" next @click="$event=>nextPage()">
+            <a class="page-link"  aria-label="Next">
+                <span aria-hidden="true" >&raquo;</span>
+            </a>
+            </li>
+        </ul>
+        </nav>
         </div>
     </div>
 </template>
@@ -162,9 +111,9 @@ export default{
       vendorForms: [],
       allForms: [],
     
-    //   vendors_chunked: [],
+      forms_chunked: [],
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
-      results_per_page: 12,
+      results_per_page: 10,
     //   
       start_index: 0,
       end_index: 0,
@@ -173,6 +122,75 @@ export default{
     }
   },
   methods: {
+    setPagination() {
+        this.num_page = (this.allForms).length / this.results_per_page;
+        console.log("PAGINATION: " + this.num_page)
+        for (let i=0; i < this.num_page; i++){
+            if (this.num_page <= 1){
+                this.start_index = 0;
+                this.end_index = this.allForms.length;
+            } else {
+                this.start_index = i * this.results_per_page;
+                this.end_index = (i+1) * this.results_per_page - 1;
+            }
+            let indiv_chunks = this.allForms.slice(
+                this.start_index,
+                this.end_index + 1
+            );
+            this.forms_chunked.push(indiv_chunks);
+            // console.log("here", this.start_index, this.end_index)
+            console.log("MOOOOO");
+            console.log(this.forms_chunked);
+        }
+        console.log("MOOO2");
+        console.log(this.forms_chunked);
+    },
+
+    curr_page_checker(page_num) {
+        // console.log("MAMAMAMAMA")
+        // console.log(page_num, this.current_page)
+        if (page_num == this.current_page){
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    showPage(index){
+        this.current_page = index;
+        console.log("CURR PAGE ", this.current_page)
+    },
+
+    nextPage(){
+        if (this.current_page < this.forms_chunked.length - 1){
+            this.current_page += 1;
+            console.log("CURR PAGE ", this.current_page)
+        } else {
+            console.log("No more pages to load");
+        }
+    },
+
+    prevPage(){
+        if (this.current_page != 0){
+            this.current_page -= 1;
+        } else {
+            console.log("No more pages to load");
+        }
+    },
+
+
+    addVendorForms(){
+        this.allForms = this.allForms.concat(this.vendorForms)
+    },
+
+    addPreForms(){
+        this.allForms = this.allForms.concat(this.preForms)
+    },
+
+    addHealthForms(){
+        this.allForms = this.allForms.concat(this.healthForms)
+    },
+
     editV(formid, formname){
         localStorage.setItem('edit', 'yes')
         localStorage.setItem('formid', formid)
@@ -186,8 +204,12 @@ export default{
         window.location.href = `http://localhost:3000/${redirect}`
         // console.log(this.$refs.formid);
     },
-    async getHealthforms() {
+    
+    async getAllForms(){
+        console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
         console.log(JSON.parse(localStorage.getItem('specificuser')))
+
+        // GETTING HEALTH FORMS
         try {
             const axios = require('axios');
 
@@ -197,8 +219,7 @@ export default{
                 this.healthForms = response.data
                 console.log("HEALTHFORMS")
                 console.log(this.healthForms)
-                // this.setPagination();
-                // console.log("CALLING PAGINATION")
+                this.addHealthForms();
             })
             .catch ((error) => {
                 console.log(error);
@@ -206,9 +227,7 @@ export default{
         } catch (error) {
             console.log(error);
         };
-    },
-
-    async getPreforms() {
+        // GETTING PRE FORMS
         try {
             const axios = require('axios');
 
@@ -218,8 +237,7 @@ export default{
                 this.preForms = response.data
                 console.log("PREFORMS")
                 console.log(this.preForms)
-                // this.setPagination();
-                // console.log("CALLING PAGINATION")
+                this.addPreForms();
             })
             .catch ((error) => {
                 console.log(error);
@@ -227,9 +245,7 @@ export default{
         } catch (error) {
             console.log(error);
         };
-    },
-
-    async getVendorforms() {
+        // GETTING VENDOR FORMS
         try {
             const axios = require('axios');
 
@@ -239,8 +255,7 @@ export default{
                 this.vendorForms = response.data
                 console.log("VENDORFORMS")
                 console.log(this.vendorForms)
-                // this.setPagination();
-                // console.log("CALLING PAGINATION")
+                this.addVendorForms();
             })
             .catch ((error) => {
                 console.log(error);
@@ -248,13 +263,16 @@ export default{
         } catch (error) {
             console.log(error);
         };
-    },
+        // CALLING PAGINATION
+        console.log("CALLING PAGINATION")
+        // console.log(this.allForms.length)
+        this.setPagination();
+        
+    }, 
     
   },
     created() {
-      this.getHealthforms();
-      this.getPreforms();
-      this.getVendorforms();
+      this.getAllForms();
   },
 };
 

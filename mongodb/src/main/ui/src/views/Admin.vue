@@ -14,6 +14,16 @@
     <div v-if="edit_error" class="alert alert-danger" role="alert">
         EDIT ERROR: Vendor was not successfully updated!
     </div>
+    <div v-if="assign_success" class="alert alert-primary" role="alert">
+        ASSIGN SUCCESSFUL: Form was successfully assigned!
+    </div>
+    <div v-if="assign_error" class="alert alert-danger" role="alert">
+        ASSIGN ERROR: Form was not successfully assigned!
+    </div>
+    <div v-if="assign_error2" class="alert alert-danger" role="alert">
+        ASSIGN ERROR: User already has existing form assigned!
+    </div>
+    
     
     <!-- End alerts -->
 
@@ -316,6 +326,10 @@ name:'Admin',
       delete_error: false,
       edit_success: false,
       edit_error: false,
+      assign_success: false,
+      assign_error: false,
+      assign_error2: false,
+
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
       results_per_page: 5,
     //   
@@ -462,6 +476,7 @@ name:'Admin',
         let e = this.vendorEmail;
         let p = document.getElementById('pwd').value;
         let loc = document.getElementById('loc').value;
+        console.log("LOC", loc)
 
         var vendor_obj = {
             id: vid,
@@ -470,7 +485,8 @@ name:'Admin',
             password: p,
             accessRights: new_vendor_access,
             locations: JSON.parse(JSON.stringify(this.loc)),
-        };
+            forms: JSON.parse(JSON.stringify(this.forms)),
+        }; 
 
         console.log("YIPPEEEEEEEEEEEEE")
         console.log(vendor_obj)
@@ -493,78 +509,189 @@ name:'Admin',
         let form = document.getElementById('forms').value;
         let vendor_name = document.getElementById('updated_vendor_name').value;
         let id = document.getElementById('vendor_id').value;
-        console.log("MAAAAAAAAAAAAAAAAAA", id)
+        let dd = new Date(document.getElementById('due_date').value)
 
         var temp_obj = {
-            date: this.dateIn,
+            date: dd,
             formName:form,
             formCompleted: false,
             formApproved: false,
             companyName: vendor_name,
-            id:id,
+            formCode:id,
         };
-
-        console.log("TEMP!!!!wdasdasdas!!!!")
-        console.log(temp_obj)
 
         // HEALTH EVAL FORM
         if (form == 'Health Evaluation Form'){
             axios.post('http://localhost:8080/healthEvaluation', temp_obj)
             .then((response) => {
+            console.log(response.data);            
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.assign_error = true;
+            })
+
+            let updated_form = this.forms
+            let formCode = 'HE' + temp_obj['formCode']
+
+            
+            if (this.forms != null && updated_form.includes(formCode)){
+                console.log("FORM ALR EXISTS")
+                this.assign_error2 = true;
+                return
+            } else{
+                if (this.forms != null){
+                    updated_form.push(formCode)
+                    console.log('FORM CODE', updated_form)
+                } else{
+                    updated_form = [formCode]
+                    console.log("FORM CODE", updated_form)
+                }
+
+            }
+
+            let new_vendor_access = document.getElementById('updated_vendor_access').value;
+            let vid = document.getElementById('vendor_id').value;
+
+            let e = this.vendorEmail;
+            let p = document.getElementById('pwd').value;
+            let loc = document.getElementById('loc').value;
+
+            var vendor_obj = {
+                id: id,
+                email: e,
+                username: vendor_name,
+                password: p,
+                accessRights: new_vendor_access,
+                locations: JSON.parse(JSON.stringify(this.loc)),
+                forms: updated_form,
+            };
+
+            axios.put('http://localhost:8080/users', vendor_obj)
+            .then((response) => {
             console.log(response.data);
-            // location.reload();
-            this.edit_success = true;
+            location.reload();
+            this.assign_success = true;
             
             })
             .catch ((error) => {
             console.log(error);
-            this.edit_error = true;
+            this.assign_error = true;
             })
         }
 
-                // PRE EVAL FORM
-                if (form == 'Pre Evaluation Form'){
+        // PRE EVAL FORM
+        if (form == 'Pre Evaluation Form'){
             axios.post('http://localhost:8080/preEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);
-            // location.reload();
-            this.edit_success = true;
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.assign_error = true;
+            })
+
+            let updated_form = this.forms
+            let formCode = 'PE' + temp_obj['formCode']
+
+            if (this.forms != null && updated_form.includes(formCode)){
+                console.log("FORM ALR EXISTS")
+                this.assign_error2 = true;
+                return
+            } else{
+                if (this.forms != null){
+                    updated_form.push(formCode)
+                } else{
+                    updated_form = [formCode]
+                }
+            }
+
+            let new_vendor_access = document.getElementById('updated_vendor_access').value;
+            let vid = document.getElementById('vendor_id').value;
+
+            let e = this.vendorEmail;
+            let p = document.getElementById('pwd').value;
+            let loc = document.getElementById('loc').value;
+
+            var vendor_obj = {
+                id: id,
+                email: e,
+                username: vendor_name,
+                password: p,
+                accessRights: new_vendor_access,
+                locations: JSON.parse(JSON.stringify(this.loc)),
+                forms: updated_form
+            };
+
+            axios.put('http://localhost:8080/users', vendor_obj)
+            .then((response) => {
+            console.log(response.data);
+            location.reload();
+            this.assign_success = true;
             
             })
             .catch ((error) => {
             console.log(error);
-            this.edit_error = true;
+            this.assign_error = true;
             })
         }
-        // let new_vendor_access = document.getElementById('updated_vendor_access').value;
-        // let vid = document.getElementById('vendor_id').value;
 
-        // let e = this.vendorEmail;
-        // let p = document.getElementById('pwd').value;
-        // let loc = document.getElementById('loc').value;
+        // VENDOR ASSESSMENT FORM
+        if (form == 'Vendor Assessment Form'){
+            axios.post('http://localhost:8080/vendorAssessment', temp_obj)
+            .then((response) => {
+            console.log(response.data);
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.assign_error = true;
+            })
 
-        // var vendor_obj = {
-        //     id: vid,
-        //     email: e,
-        //     username: new_vendor_name,
-        //     password: p,
-        //     accessRights: new_vendor_access,
-        //     locations: JSON.parse(JSON.stringify(this.loc)),
-        // };
+            let updated_form = this.forms
+            let formCode = 'VA' + temp_obj['formCode']
 
-        // console.log("YIPPEEEEEEEEEEEEE")
-        // console.log(vendor_obj)
-        // axios.put('http://localhost:8080/users', vendor_obj)
-        // .then((response) => {
-        // console.log(response.data);
-        // location.reload();
-        // this.edit_success = true;
+            if (this.forms != null && updated_form.includes(formCode)){
+                console.log("FORM ALR EXISTS")
+                this.assign_error2 = true;
+                return
+            } else{
+                if (this.forms != null){
+                    updated_form.push(formCode)
+                } else{
+                    updated_form = [formCode]
+                }
+            }
+
+            let new_vendor_access = document.getElementById('updated_vendor_access').value;
+            let vid = document.getElementById('vendor_id').value;
+
+            let e = this.vendorEmail;
+            let p = document.getElementById('pwd').value;
+            let loc = document.getElementById('loc').value;
+
+            var vendor_obj = {
+                id: id,
+                email: e,
+                username: vendor_name,
+                password: p,
+                accessRights: new_vendor_access,
+                locations: JSON.parse(JSON.stringify(this.loc)),
+                forms: updated_form
+            };
+
+            axios.put('http://localhost:8080/users', vendor_obj)
+            .then((response) => {
+            console.log(response.data);
+            location.reload();
+            this.assign_success = true;
+            
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.assign_error = true;
+            })
+        }
         
-        // })
-        // .catch ((error) => {
-        // console.log(error);
-        // this.edit_error = true;
-        // })
         },
   },
   created() {
