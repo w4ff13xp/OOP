@@ -226,6 +226,8 @@
                                 <label class="form-check-label"  for="inlineRadio1">No</label>
                                 <input type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
                             </div>
+                <span class="text-danger" v-if="v$.resultOfEvaluation.$error">{{ v$.resultOfEvaluation.$errors[0].$message }}</span>
+
                     </div>  
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Evaluated by</label>
@@ -298,7 +300,7 @@
         certificationBody: "",
         accrediationBody: "",
         productMarkings: "",
-        resultOfEvaluation: false,
+        resultOfEvaluation: null,
   
         evaluatedBy: "",
         approvedByDirector: "",
@@ -338,7 +340,7 @@
         certificationBody: "",
         accrediationBody: "",
         productMarkings: "",
-        resultOfEvaluation: false,
+        resultOfEvaluation: {required},
   
         evaluatedBy: "",
         approvedByDirector: "",
@@ -372,9 +374,9 @@
         }
         var dt = new Date();
         let newForm = {
-          formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
-          date: toIsoString(dt),
-          formName: "vendor assessment",
+          // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
+          formDate: toIsoString(dt),
+          formName: "Vendor Assessment",
           formCompleted: false,
           formApproved: this.state.formApproved,
 
@@ -413,19 +415,24 @@
         };
         const axios = require("axios");
         this.v$.$validate()
-        localStorage.setItem('edit','no') //////////////
+        // localStorage.setItem('edit','no') //////////////
         var editing = localStorage.getItem('edit');
         if(editing == "yes"){
+          var formid = localStorage.getItem('formid')
+
+          newForm.formCode = formid
           axios
-              .post("http://localhost:8080/vendorAssessment", newForm)
+              .put("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
                 // localStorage.setItem('edit',false);
                     alert("form saved")
-                // window.location.href = "http://localhost:3000/home"
+                window.location.href = "http://localhost:3000/home"
               })
         }else{
           if(!this.v$.$error){
+              newForm.formCode = (Math.floor((Math.random() * 100) + 1)).toString(),
+
               alert('successful validation')
               newForm.formCompleted = true;
               axios
@@ -435,7 +442,7 @@
                 // localStorage.setItem('edit',false);
                 // localStorage.setItem('form','');
                     alert("form submitted")
-                // window.location.href = "http://localhost:3000/home"
+                window.location.href = "http://localhost:3000/home"
               })
               .catch((error) => {
                 console.log(error);

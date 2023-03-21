@@ -50,14 +50,14 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"   
+                                        v-on:click="editV(h.formCode, h.formName)"    
+
                                     >
                                     Edit
                                     </button>
                                     <button
                                         type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"    
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
                                     >
                                     Delete
                                     </button>
@@ -177,9 +177,11 @@ export default{
         localStorage.setItem('edit', 'yes')
         localStorage.setItem('formid', formid)
 
-
         if(formname == "vendor assessment"){
             var redirect = "newvendorform"
+        }else if(formname == "Performance Evaluation"){
+            var redirect = "performanceevaluation"
+            console.log(redirect)
         }
         window.location.href = `http://localhost:3000/${redirect}`
         // console.log(this.$refs.formid);
