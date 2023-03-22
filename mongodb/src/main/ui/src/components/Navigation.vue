@@ -12,10 +12,7 @@
                     <li class="nav-item">
                     <a class="nav-link active" aria-current="page"><v-btn to="/home"  class="mr-2">Home</v-btn></a>
                     </li>
-                    <li class="nav-item">
-                        
-                    <a class="nav-link" ><v-btn to="/about"  class="mr-2">About</v-btn></a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link"><v-btn to="/profile" class="mr-2">Profile</v-btn></a>
                     </li>
@@ -24,16 +21,9 @@
 
                     </li>
                     
-                    <li class="nav-item">
-
-                    <a class="nav-link"><v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn></a>
-                    </li>
-                    
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success bg-info" type="submit">Search</button>
-                </form>
+                <a class="nav-link"><v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn></a>
+
                 </div>
             </div>
         </nav>

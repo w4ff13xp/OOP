@@ -1,5 +1,12 @@
 <template>     
     <div class="container">
+        <!-- ALERTS -->
+        <div v-if="delete_success" class="alert alert-primary" role="alert">
+        DELETE SUCCESSFUL: Form was successfully deleted!
+        </div>
+        <div v-if="delete_error" class="alert alert-danger" role="alert">
+            DELETE ERROR: Form was not successfully deleted!
+        </div>
         <div class="mb-4">
           <div class="h4 pb-2 my-4 border-bottom text-center">Forms</div>
             <div class="table-responsive p-0">
@@ -7,7 +14,7 @@
                     <thead>
                         <tr>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
-                                Form Code
+                                Form ID
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                                 Form Name
@@ -19,7 +26,7 @@
                                 Approval Status
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Company
+                                Vendor
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                                 Change
@@ -58,6 +65,13 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        @click="$event=>
+                                            pass(
+                                                h.formCode,
+                                                h.formName
+                                            )"
                                     >
                                     Delete
                                     </button>
@@ -95,11 +109,59 @@
             </li>
         </ul>
         </nav>
+        <!--delete company modal-->
+        <div
+            class="modal fade"
+            tabindex="-1"
+            id="deleteModal"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Deletion</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Are you sure you want to delete <b>{{ formName }}</b
+                    > from <b>{{ formCode }}</b>?
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom"
+                    data-bs-dismiss="modal"
+                  >
+                    No, cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom btn-danger text-white"
+                    data-bs-dismiss="modal"
+                    @click="deleteForm(formName, formCode)"
+                  >
+                    Yes, Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end delete company modal-->
         </div>
     </div>
 </template>
 
 <script>
+
 
 export default{
     name:'Home',
@@ -110,6 +172,13 @@ export default{
       preForms: [],
       vendorForms: [],
       allForms: [],
+      formCode: '',
+      formName: '',
+      updated_forms: [],
+      user_obj: {},
+      delete_success: false,
+      delete_error: false,
+
     
       forms_chunked: [],
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
@@ -139,11 +208,11 @@ export default{
             );
             this.forms_chunked.push(indiv_chunks);
             // console.log("here", this.start_index, this.end_index)
-            console.log("MOOOOO");
-            console.log(this.forms_chunked);
+            // console.log("MOOOOO");
+            // console.log(this.forms_chunked);
         }
-        console.log("MOOO2");
-        console.log(this.forms_chunked);
+        // console.log("MOOO2");
+        // console.log(this.forms_chunked);
     },
 
     curr_page_checker(page_num) {
@@ -178,7 +247,6 @@ export default{
         }
     },
 
-
     addVendorForms(){
         this.allForms = this.allForms.concat(this.vendorForms)
     },
@@ -195,10 +263,13 @@ export default{
         localStorage.setItem('edit', 'yes')
         localStorage.setItem('formid', formid)
 
-        if(formname == "Vendor Assessment"){
+        if(formname == "Vendor Assessment Form"){
             var redirect = "newvendorform"
-        }else if(formname == "Performance Evaluation"){
+        }else if(formname == "Performance Evaluation Form"){
             var redirect = "performanceevaluation"
+            console.log(redirect)
+        }else if(formname == "Health Evaluation Form"){
+            var redirect = "Safety&HealthPreEvaluation"
             console.log(redirect)
         }
         window.location.href = `http://localhost:3000/${redirect}`
@@ -269,6 +340,143 @@ export default{
         this.setPagination();
         
     }, 
+
+    deleteForm(formName, formCode) {
+    //  DELETE HEALTH FORM FROM FORMDB
+      if (formName == 'Health Evaluation Form'){
+        const axios = require('axios');
+        axios.delete('http://localhost:8080/healthEvaluation/' + formCode)
+        .then((r)=>{
+            console.log(r);
+
+            // DELETE FORM CODE FROM USERDB
+            axios.get('http://localhost:8080/users/' + formCode)
+            .then((r)=>{
+                console.log(r.data.forms);
+                console.log("USER OBJECT")
+                this.user_obj = r.data
+                console.log(this.user_obj)
+                let curr_forms = r.data.forms;
+                let form_to_remove = "HE" + formCode;
+                let index = curr_forms.indexOf(form_to_remove);
+                curr_forms.splice(index, 1);
+                console.log("UPDATED FORMS", curr_forms);
+                this.updated_forms = curr_forms;
+
+                this.user_obj['forms'] = this.updated_forms;
+                console.log('UPDATED USER OBJ')
+                console.log(this.user_obj)
+
+                axios.put('http://localhost:8080/users', this.user_obj)
+                .then((response) => {
+                console.log(response.data);
+                console.log("DELETED")
+                location.reload();
+                this.delete_success = true;                
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.delete_error = true;
+                })
+            })    
+        })
+        .catch((e)=>{
+            console.log(e);
+            this.delete_error = true;
+        })
+      }
+    //  DELETE PRE FORM FROM FORMDB
+    if (formName == 'Pre Evaluation Form'){
+        const axios = require('axios');
+        axios.delete('http://localhost:8080/preEvaluation/' + formCode)
+        .then((r)=>{
+            console.log(r);
+
+            // DELETE FORM CODE FROM USERDB
+            axios.get('http://localhost:8080/users/' + formCode)
+            .then((r)=>{
+                console.log(r.data.forms);
+                console.log("USER OBJECT")
+                this.user_obj = r.data
+                console.log(this.user_obj)
+                let curr_forms = r.data.forms;
+                let form_to_remove = "PE" + formCode;
+                let index = curr_forms.indexOf(form_to_remove);
+                curr_forms.splice(index, 1);
+                console.log("UPDATED FORMS", curr_forms);
+                this.updated_forms = curr_forms;
+
+                this.user_obj['forms'] = this.updated_forms;
+                console.log('UPDATED USER OBJ')
+                console.log(this.user_obj)
+
+                axios.put('http://localhost:8080/users', this.user_obj)
+                .then((response) => {
+                console.log(response.data);
+                console.log("DELETED")
+                location.reload();
+                this.delete_success = true;                
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.delete_error = true;
+                })
+            })    
+        })
+        .catch((e)=>{
+            console.log(e);
+            this.delete_error = true;
+        })
+      }
+    //  DELETE VENDOR ASSESSMENT FORM FROM FORMDB
+    if (formName == 'Vendor Assessment Form'){
+        const axios = require('axios');
+        axios.delete('http://localhost:8080/vendorAssessment/' + formCode)
+        .then((r)=>{
+            console.log(r);
+
+            // DELETE FORM CODE FROM USERDB
+            axios.get('http://localhost:8080/users/' + formCode)
+            .then((r)=>{
+                console.log(r.data.forms);
+                console.log("USER OBJECT")
+                this.user_obj = r.data
+                console.log(this.user_obj)
+                let curr_forms = r.data.forms;
+                let form_to_remove = "VA" + formCode;
+                let index = curr_forms.indexOf(form_to_remove);
+                curr_forms.splice(index, 1);
+                console.log("UPDATED FORMS", curr_forms);
+                this.updated_forms = curr_forms;
+
+                this.user_obj['forms'] = this.updated_forms;
+                console.log('UPDATED USER OBJ')
+                console.log(this.user_obj)
+
+                axios.put('http://localhost:8080/users', this.user_obj)
+                .then((response) => {
+                console.log(response.data);
+                console.log("DELETED")
+                location.reload();
+                this.delete_success = true;                
+            })
+            .catch ((error) => {
+            console.log(error);
+            this.delete_error = true;
+                })
+            })    
+        })
+        .catch((e)=>{
+            console.log(e);
+            this.delete_error = true;
+        })
+      }
+    },
+
+    pass(formCode, formName){
+        this.formCode = formCode;
+        this.formName = formName;
+    },
     
   },
     created() {

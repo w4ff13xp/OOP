@@ -46,7 +46,7 @@
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
-              value="vendor"
+              value="Vendor"
               v-model="access"
             />
             <label class="form-check-label" for="flexRadioDefault1">
@@ -59,7 +59,7 @@
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault2"
-              value="admin"
+              value="Admin"
               v-model="access"
             />
             <label class="form-check-label" for="flexRadioDefault2">
@@ -72,7 +72,7 @@
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault3"
-              admin="approver"
+              value="Approver"
               v-model="access"
             />
             <label class="form-check-label" for="flexRadioDefault3">
@@ -91,7 +91,7 @@
               type="checkbox"
               name="flexCheckboxDefault"
               id="flexCheckboxDefault1"
-              value="singapore"
+              value="Singapore"
               v-model="locations"
             />
             <label class="form-check-label" for="flexCheckboxDefault1">
@@ -104,7 +104,7 @@
               type="checkbox"
               name="flexCheckboxDefault"
               id="flexCheckboxDefault2"
-              value="malaysia"
+              value="Malaysia"
               v-model="locations"
             />
             <label class="form-check-label" for="flexCheckboxDefault2">

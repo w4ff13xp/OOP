@@ -98,7 +98,18 @@
                                 <button
                                     type="button"
                                     class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                    @click="deleteVendors(vendor.id)"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"
+                                    @click="$event=>
+                                        passVendortoChange(
+                                            vendor.username,
+                                            vendor.email,
+                                            vendor.accessRights,
+                                            vendor.id,
+                                            vendor.locations,
+                                            vendor.password,
+                                            vendor.forms
+                                        )"
                                 >
                                 Delete
                                 </button>
@@ -260,7 +271,7 @@
                                 <p style="padding-right: 8px;">Vendor Name: {{ vendorTochange }}</p>
                                 <p style="padding-right: 17px;">Access Right: {{ accessTochange }}</p>
                                 <p style="padding-right: 45px;">Location: {{ loc }}</p>
-                                <p style="padding-right: 45px;">Forms: {{ forms }}</p>
+                                <p style="padding-right: 45px;">Forms: {{ this.formDisplay }}</p>
 
                                 <input type="hidden" id="vendor_id" :value="vendorid"/>
                                 <input type="hidden" id="loc" :value="loc"/>
@@ -308,6 +319,53 @@
             </div>
         </div>
         <!-- End Assign Modal -->
+        <!--delete company modal-->
+        <div
+            class="modal fade"
+            tabindex="-1"
+            id="deleteModal"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Deletion</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Are you sure you want to delete <b>{{ vendorTochange }}</b
+                    >?
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom"
+                    data-bs-dismiss="modal"
+                  >
+                    No, cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom btn-danger text-white"
+                    data-bs-dismiss="modal"
+                    @click="deleteVendors(vendorid, vendorid)"
+                  >
+                    Yes, Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end delete company modal-->
     </div>
   </div>
 </template>
@@ -345,6 +403,7 @@ name:'Admin',
       forms: [],
       duedate:'',
       dateIn:'',
+      formDisplay: [],
 
     }
   },
@@ -413,6 +472,26 @@ name:'Admin',
         this.pwd = p;
         this.loc = loc;
         this.forms = f;
+        this.formDisplay = [];
+
+        if (f.length != 0){
+            for (var forms in f){
+                console.log(f[forms])
+                if (f[forms][0] == 'H'){
+                    this.formDisplay.push("Health Evaluation Form ")
+                }
+                else if (f[forms][0] == 'V'){
+                    this.formDisplay.push("Vendor Assessment Form ")
+                }
+                else if (f[forms][0] == 'P'){
+                    this.formDisplay.push("Pre Evaluation Form ")
+                }
+            }
+        }
+        else {
+            this.formDisplay = "No Forms Assigned"
+        }
+        
 
     },
 
@@ -451,13 +530,49 @@ name:'Admin',
         };
     },
 
-    deleteVendors(vendorID) {
+    deleteVendors(vendorID, formCode) {
     //   alert("Delete successful");
       console.log(vendorID);
       const axios = require('axios');
       axios.delete('http://localhost:8080/users/' + vendorID)
       .then((r)=>{
         console.log(r);
+
+        // DELETE HEALTH FORM 
+        axios.delete('http://localhost:8080/healthEvaluation/' + formCode)
+        .then((r)=>{
+            console.log(r);
+            location.reload();
+            this.delete_success = true;
+        })
+        .catch((e)=>{
+            console.log(e);
+            // this.delete_error = true;
+        })
+
+        // DELETE PRE FORM 
+        axios.delete('http://localhost:8080/preEvaluation/' + formCode)
+        .then((r)=>{
+            console.log(r);
+            location.reload();
+            this.delete_success = true;
+        })
+        .catch((e)=>{
+            console.log(e);
+            // this.delete_error = true;
+        })
+
+        // DELETE VENDOR ASSESSMENT FORM 
+        axios.delete('http://localhost:8080/vendorAssessment/' + formCode)
+        .then((r)=>{
+            console.log(r);
+            location.reload();
+            this.delete_success = true;
+        })
+        .catch((e)=>{
+            console.log(e);
+            // this.delete_error = true;
+        })
         location.reload();
         this.delete_success = true;
       })
