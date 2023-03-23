@@ -198,9 +198,9 @@
                         <!-- <label for="updated_vendor_access">Access Right</label> -->
                         <p style="padding-right: 17px;">Access Right: </p>
                         <select id="updated_vendor_access" v-model="accessTochange" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
-                        <option value="admin">Admin</option>
-                        <option value="approver">Approver</option>
-                        <option value="vendor">Vendor</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Approver">Approver</option>
+                        <option value="Vendor">Vendor</option>
                         </select>                     
                         </div>
 
@@ -608,7 +608,7 @@ name:'Admin',
         axios.put('http://localhost:8080/users', vendor_obj)
         .then((response) => {
         console.log(response.data);
-        location.reload();
+        // location.reload();
         this.edit_success = true;
         
         })

@@ -98,10 +98,30 @@
 
   <script>
   export default {
-  
-  }
-  </script>
-  
-  <style>
-  
-  </style>
+    name:'AdminApprove',
+
+data() {
+return {
+
+
+}
+},
+methods: {
+
+    checkFormCode(){
+        console.log("FORM CODE")
+        console.log("HE" + localStorage.getItem('formid'))
+    },
+
+
+},
+created() {
+    this.checkFormCode();
+    },
+};
+
+</script>
+
+<style>
+
+</style>

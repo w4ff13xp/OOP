@@ -57,6 +57,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Vendor'"
                                         v-on:click="editV(h.formCode, h.formName)"    
 
                                     >
@@ -65,6 +66,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'admin'"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"
                                         @click="$event=>
@@ -79,8 +81,24 @@
                                     <button
                                         type="button"
                                         class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Admin'"
                                     >
                                     Evaluate
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Approver'"
+                                        @click="approve(h.formCode, h.formName)"
+                                    >
+                                    Approve
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Approver'"
+                                    >
+                                    Reject
                                     </button>
                                 </div>
                             </td>
@@ -178,6 +196,8 @@ export default{
       user_obj: {},
       delete_success: false,
       delete_error: false,
+      user_access: '',
+      user_id: '',
 
     
       forms_chunked: [],
@@ -192,6 +212,17 @@ export default{
   },
   methods: {
     setPagination() {
+        let temp = [];
+        if (this.user_access == "Vendor"){
+            for (var f in this.allForms){
+                if (this.allForms[f]["formCode"] == this.user_id){
+                    temp.push(this.allForms[f]);
+                }
+            }
+            this.allForms = temp
+        }
+        // else if (this.user_access == "Approver")
+
         this.num_page = (this.allForms).length / this.results_per_page;
         console.log("PAGINATION: " + this.num_page)
         for (let i=0; i < this.num_page; i++){
@@ -211,8 +242,8 @@ export default{
             // console.log("MOOOOO");
             // console.log(this.forms_chunked);
         }
-        // console.log("MOOO2");
-        // console.log(this.forms_chunked);
+        console.log("MOOO2");
+        console.log(this.forms_chunked);
     },
 
     curr_page_checker(page_num) {
@@ -259,6 +290,25 @@ export default{
         this.allForms = this.allForms.concat(this.healthForms)
     },
 
+    approve(formid, formname){
+        localStorage.setItem('edit', 'yes')
+        localStorage.setItem('formid', formid)
+        
+
+        if(formname == "Vendor Assessment Form"){
+            var redirect = "newvendorform"
+        }else if(formname == "Performance Evaluation Form"){
+            var redirect = "performanceevaluation"
+            console.log(redirect)
+        }else if(formname == "Health Evaluation Form"){
+            var redirect = "adminapprove"
+            console.log(redirect)
+        }
+        window.location.href = `http://localhost:3000/${redirect}`
+        // console.log(this.$refs.formid);
+
+    },  
+
     editV(formid, formname){
         localStorage.setItem('edit', 'yes')
         localStorage.setItem('formid', formid)
@@ -279,6 +329,9 @@ export default{
     async getAllForms(){
         console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
         console.log(JSON.parse(localStorage.getItem('specificuser')))
+        this.user_id = JSON.parse(localStorage.getItem('specificuser'))['id']
+        this.user_access = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
+        console.log(this.user_access)
 
         // GETTING HEALTH FORMS
         try {
@@ -336,7 +389,7 @@ export default{
         };
         // CALLING PAGINATION
         console.log("CALLING PAGINATION")
-        // console.log(this.allForms.length)
+        // console.log(this.allForms)
         this.setPagination();
         
     }, 
