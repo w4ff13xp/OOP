@@ -613,7 +613,7 @@ name:'Admin',
         axios.put('http://localhost:8080/users', vendor_obj)
         .then((response) => {
         console.log(response.data);
-        // location.reload();
+        location.reload();
         this.edit_success = true;
         
         })
