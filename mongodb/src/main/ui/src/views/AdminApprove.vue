@@ -110,7 +110,7 @@ methods: {
 
     checkFormCode(){
         console.log("FORM CODE")
-        console.log("HE" + localStorage.getItem('formid'))
+        console.log(localStorage.getItem('formid'))
     },
 
 

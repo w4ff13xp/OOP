@@ -539,11 +539,12 @@ name:'Admin',
         console.log(r);
 
         // DELETE HEALTH FORM 
-        axios.delete('http://localhost:8080/healthEvaluation/' + formCode)
+        let temp = "HE" + formCode
+        axios.delete('http://localhost:8080/healthEvaluation/' + temp)
         .then((r)=>{
             console.log(r);
-            location.reload();
-            this.delete_success = true;
+            // location.reload();
+            // this.delete_success = true;
         })
         .catch((e)=>{
             console.log(e);
@@ -551,11 +552,13 @@ name:'Admin',
         })
 
         // DELETE PRE FORM 
-        axios.delete('http://localhost:8080/preEvaluation/' + formCode)
+        let temp2 = "PE" + formCode
+
+        axios.delete('http://localhost:8080/preEvaluation/' + temp2)
         .then((r)=>{
             console.log(r);
-            location.reload();
-            this.delete_success = true;
+            // location.reload();
+            // this.delete_success = true;
         })
         .catch((e)=>{
             console.log(e);
@@ -563,11 +566,13 @@ name:'Admin',
         })
 
         // DELETE VENDOR ASSESSMENT FORM 
-        axios.delete('http://localhost:8080/vendorAssessment/' + formCode)
+        let temp3 = "VA" + formCode
+
+        axios.delete('http://localhost:8080/vendorAssessment/' + temp3)
         .then((r)=>{
             console.log(r);
-            location.reload();
-            this.delete_success = true;
+            // location.reload();
+            // this.delete_success = true;
         })
         .catch((e)=>{
             console.log(e);
@@ -620,23 +625,27 @@ name:'Admin',
 
         assignForms() {
         const axios = require('axios');
-        
         let form = document.getElementById('forms').value;
         let vendor_name = document.getElementById('updated_vendor_name').value;
         let id = document.getElementById('vendor_id').value;
         let dd = new Date(document.getElementById('due_date').value)
 
-        var temp_obj = {
-            date: dd,
-            formName:form,
-            formCompleted: false,
-            formApproved: false,
-            companyName: vendor_name,
-            formCode:id,
-        };
 
         // HEALTH EVAL FORM
         if (form == 'Health Evaluation Form'){
+
+
+
+            var temp_obj = {
+                date: dd,
+                formName:form,
+                formCompleted: false,
+                formApproved: false,
+                formEvaluated: false,
+                companyName: vendor_name,
+                formCode:"HE" + id,
+            };
+
             axios.post('http://localhost:8080/healthEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);            
@@ -647,7 +656,7 @@ name:'Admin',
             })
 
             let updated_form = this.forms
-            let formCode = 'HE' + temp_obj['formCode']
+            let formCode = temp_obj['formCode']
 
             
             if (this.forms != null && updated_form.includes(formCode)){
@@ -697,6 +706,17 @@ name:'Admin',
 
         // PRE EVAL FORM
         if (form == 'Pre Evaluation Form'){
+
+            var temp_obj = {
+                date: dd,
+                formName:form,
+                formCompleted: false,
+                formApproved: false,
+                formEvaluated: false,
+                companyName: vendor_name,
+                formCode:"PE" + id,
+            };
+
             axios.post('http://localhost:8080/preEvaluation', temp_obj)
             .then((response) => {
             console.log(response.data);
@@ -707,7 +727,7 @@ name:'Admin',
             })
 
             let updated_form = this.forms
-            let formCode = 'PE' + temp_obj['formCode']
+            let formCode = temp_obj['formCode']
 
             if (this.forms != null && updated_form.includes(formCode)){
                 console.log("FORM ALR EXISTS")
@@ -753,6 +773,18 @@ name:'Admin',
 
         // VENDOR ASSESSMENT FORM
         if (form == 'Vendor Assessment Form'){
+
+
+            var temp_obj = {
+                date: dd,
+                formName:form,
+                formCompleted: false,
+                formApproved: false,
+                formEvaluated: false,
+                companyName: vendor_name,
+                formCode:"VA" + id,
+            };
+
             axios.post('http://localhost:8080/vendorAssessment', temp_obj)
             .then((response) => {
             console.log(response.data);
@@ -763,7 +795,7 @@ name:'Admin',
             })
 
             let updated_form = this.forms
-            let formCode = 'VA' + temp_obj['formCode']
+            let formCode = temp_obj['formCode']
 
             if (this.forms != null && updated_form.includes(formCode)){
                 console.log("FORM ALR EXISTS")

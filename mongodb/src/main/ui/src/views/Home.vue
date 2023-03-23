@@ -66,7 +66,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-if="this.user_access == 'admin'"
+                                        v-if="this.user_access == 'Admin'"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"
                                         @click="$event=>
@@ -395,22 +395,25 @@ export default{
     }, 
 
     deleteForm(formName, formCode) {
+        var newStr = formCode.slice(2)
+
     //  DELETE HEALTH FORM FROM FORMDB
       if (formName == 'Health Evaluation Form'){
         const axios = require('axios');
         axios.delete('http://localhost:8080/healthEvaluation/' + formCode)
         .then((r)=>{
             console.log(r);
+            
 
             // DELETE FORM CODE FROM USERDB
-            axios.get('http://localhost:8080/users/' + formCode)
+            axios.get('http://localhost:8080/users/' + newStr)
             .then((r)=>{
                 console.log(r.data.forms);
                 console.log("USER OBJECT")
                 this.user_obj = r.data
                 console.log(this.user_obj)
                 let curr_forms = r.data.forms;
-                let form_to_remove = "HE" + formCode;
+                let form_to_remove = formCode;
                 let index = curr_forms.indexOf(form_to_remove);
                 curr_forms.splice(index, 1);
                 console.log("UPDATED FORMS", curr_forms);
@@ -446,14 +449,14 @@ export default{
             console.log(r);
 
             // DELETE FORM CODE FROM USERDB
-            axios.get('http://localhost:8080/users/' + formCode)
+            axios.get('http://localhost:8080/users/' + newStr)
             .then((r)=>{
                 console.log(r.data.forms);
                 console.log("USER OBJECT")
                 this.user_obj = r.data
                 console.log(this.user_obj)
                 let curr_forms = r.data.forms;
-                let form_to_remove = "PE" + formCode;
+                let form_to_remove = formCode;
                 let index = curr_forms.indexOf(form_to_remove);
                 curr_forms.splice(index, 1);
                 console.log("UPDATED FORMS", curr_forms);
@@ -489,14 +492,14 @@ export default{
             console.log(r);
 
             // DELETE FORM CODE FROM USERDB
-            axios.get('http://localhost:8080/users/' + formCode)
+            axios.get('http://localhost:8080/users/' + newStr)
             .then((r)=>{
                 console.log(r.data.forms);
                 console.log("USER OBJECT")
                 this.user_obj = r.data
                 console.log(this.user_obj)
                 let curr_forms = r.data.forms;
-                let form_to_remove = "VA" + formCode;
+                let form_to_remove = formCode;
                 let index = curr_forms.indexOf(form_to_remove);
                 curr_forms.splice(index, 1);
                 console.log("UPDATED FORMS", curr_forms);

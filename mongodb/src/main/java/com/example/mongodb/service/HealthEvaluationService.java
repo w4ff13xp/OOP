@@ -35,6 +35,7 @@ public class HealthEvaluationService {
         existingForm.setFormCompleted(HERequest.isFormCompleted());
         existingForm.setFormApproved(HERequest.isFormApproved());
         existingForm.setCompanyName(HERequest.getCompanyName());
+        existingForm.setFormEvaluated(HERequest.isFormEvaluated());
         // existingForm.setRevisionNum(HERequest.getRevisionNum());
         existingForm.setAttendance(HERequest.getAttendance());
         existingForm.setToolBox(HERequest.getToolBox());
