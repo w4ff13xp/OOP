@@ -87,19 +87,13 @@
                                     </button>
                                     <button
                                         type="button"
-                                        class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
+                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Approver'"
                                         @click="approve(h.formCode, h.formName)"
                                     >
-                                    Approve
+                                    Approve/Reject
                                     </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-if="this.user_access == 'Approver'"
-                                    >
-                                    Reject
-                                    </button>
+
                                 </div>
                             </td>
                         </tr>
@@ -212,10 +206,11 @@ export default{
   },
   methods: {
     setPagination() {
+
         let temp = [];
         if (this.user_access == "Vendor"){
             for (var f in this.allForms){
-                if (this.allForms[f]["formCode"] == this.user_id){
+                if (this.allForms[f]["formCode"].includes(this.user_id) ){
                     temp.push(this.allForms[f]);
                 }
             }
@@ -315,11 +310,11 @@ export default{
 
         if(formname == "Vendor Assessment Form"){
             var redirect = "newvendorform"
-        }else if(formname == "Performance Evaluation Form"){
-            var redirect = "performanceevaluation"
+        }else if(formname == "Pre Evaluation Form"){
+            var redirect = "Safety&HealthPreEvaluation"
             console.log(redirect)
         }else if(formname == "Health Evaluation Form"){
-            var redirect = "Safety&HealthPreEvaluation"
+            var redirect = "performanceevaluation"
             console.log(redirect)
         }
         window.location.href = `http://localhost:3000/${redirect}`
