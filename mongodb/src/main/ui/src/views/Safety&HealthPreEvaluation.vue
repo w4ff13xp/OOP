@@ -476,7 +476,7 @@ export default {
       this.$refs.signaturePad.clearSignature();
     },
     save() {
-      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      const { isEmpty, data, options, callback } = this.$refs.signaturePad.saveSignature();
       console.log("check if its empty:"+isEmpty);
       console.log("The Image File"+data);
       this.draw(data);
@@ -549,7 +549,7 @@ export default {
     draw(data){
       this.$refs.signaturePad.clearSignature();
       console.log("Trying to draw the signature");
-      this.$refs.signaturePad.fromData(data);
+      this.$refs.signaturePad.fromDataURL(data); // this draws back the signature that we saved
     //this.$refs.signaturePad.fromData(data);
     }
   }
