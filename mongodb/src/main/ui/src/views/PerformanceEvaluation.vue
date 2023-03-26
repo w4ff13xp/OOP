@@ -2011,6 +2011,10 @@ export default {
         parseInt(this.compliance) +
         parseInt(this.promotionalActivities) +
         parseInt(this.submission);
+      if(Number.isNaN(this.score1)){
+        return 0
+      }
+      console.log( this.score1)
       return this.score1;
     },
     computeScoreTwo() {
@@ -2023,7 +2027,9 @@ export default {
         parseInt(this.wshsupervisor) +
         parseInt(this.otherTraining)
       console.log(this.wshsupervisor)
-
+      if(Number.isNaN(this.score2)){
+        return 0
+      }
       return this.score2;
     },
     computeScoreThree() {
@@ -2033,6 +2039,9 @@ export default {
         parseInt(this.frequencyRate) +
         parseInt(this.safetyOffence) +
         parseInt(this.safetyRectification);
+      if(Number.isNaN(this.score3)){
+        return 0
+      }
       return this.score3;
     },
     computeScoreFour() {
@@ -2042,6 +2051,9 @@ export default {
         parseInt(this.liftingGear) +
         parseInt(this.electricalEquipment) +
         parseInt(this.otherMachineries);
+        if(Number.isNaN(this.score4)){
+        return 0
+      }
       return this.score4;
     },
     computeScoreFive() {
@@ -2051,6 +2063,9 @@ export default {
         parseInt(this.siteCleanliness) +
         parseInt(this.storeCleanliness) +
         parseInt(this.quarterCleanliness);
+        if(Number.isNaN(this.score5)){
+        return 0
+      }
       return this.score5;
     },
     computeOverallScore() {
@@ -2059,6 +2074,9 @@ export default {
           (25 * 5)) *
         100);
         console.log(this.overallScore)
+        if(Number.isNaN(this.overallScore)){
+        return 0
+      }
       return this.overallScore;
     },
     computePerformanceStandard() {
@@ -2073,7 +2091,9 @@ export default {
       } else {
         this.performanceStandard = "Good";
       }
-      console.log(typeof this.overallScore)
+      if(Number.isNaN(this.performanceStandard)){
+        return 0
+      }
       return this.performanceStandard;
     },
   },

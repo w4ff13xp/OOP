@@ -22,6 +22,8 @@
               <div class="form-check form-check-inline col-md-6"> 
                 <label class="form-check-label"  for="inlineCompanyName">Company Registration No.*</label>
                 <input style="width:90%" type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
+                <span class="text-danger" v-if="v$.registrationNo.$error">{{ v$.registrationNo.$errors[0].$message }}</span>
+
               </div>   
             </div>
           </div>
@@ -39,6 +41,8 @@
                         <label class="form-check-label"  for="inlineRadio1">No</label>
                         <input type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.getRegistered">        
                     </div>
+                <span class="text-danger" v-if="v$.getRegistered.$error">{{ v$.getRegistered.$errors[0].$message }}</span>
+
               </div>   
         
             </div>
@@ -48,14 +52,18 @@
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Office Address</label>
                 <input style="width:90%" type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
+                <span class="text-danger" v-if="v$.officeAddress.$error">{{ v$.officeAddress.$errors[0].$message }}</span>
               </div>  
               <div class="form-check form-check-inline col-md-3" >
                 <label class="form-check-label" for="inputPhone">Tel</label>
                 <input style="width:75%" type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
+                <span class="text-danger" v-if="v$.vendorTel.$error">{{ v$.vendorTel.$errors[0].$message }}</span>
+
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Fax</label>
                 <input style="width:75%" type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
+                <span class="text-danger" v-if="v$.vendorFax.$error">{{ v$.vendorFax.$errors[0].$message }}</span>
               </div>
               
             </div>
@@ -65,6 +73,8 @@
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Types of business License/ Registration</label>
                 <input style="width:90%" type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
+                <span class="text-danger" v-if="v$.businessType.$error">{{ v$.businessType.$errors[0].$message }}</span>
+
               </div>
               <div class="form-check form-check-inline col-md-6">
                 <div >Nature of Business {{ businessNature }}</div>
@@ -75,6 +85,8 @@
                     <option value="Distributor">Distributor</option>
                     <option value="Others">Others</option>
                 </select>
+                <span class="text-danger" v-if="v$.businessNature.$error">{{ v$.businessNature.$errors[0].$message }}</span>
+
               </div>   
             </div>
           </div>
@@ -83,14 +95,20 @@
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Contact Person</label>
                 <input style="width:90%" type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
+                <span class="text-danger" v-if="v$.contactName.$error">{{ v$.contactName.$errors[0].$message }}</span>
+
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Tel</label>
                 <input style="width:75%" type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
+                <span class="text-danger" v-if="v$.contactTel.$error">{{ v$.contactTel.$errors[0].$message }}</span>
+
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label"  for="inlineCompanyName">Designation</label>
                 <input style="width:75%" type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
+                <span class="text-danger" v-if="v$.contactDesignation.$error">{{ v$.contactDesignation.$errors[0].$message }}</span>
+
               </div>   
             </div>
           </div>
@@ -99,6 +117,8 @@
               <div class="form-check form-check-inline col-md-12">
                 <label class="form-check-label"  for="product">Product/ Services</label>
                 <input type="text" class="form-control" name="seventh" placeholder="Submit company's profile, brochure on product/service, if available" v-model="state.products">        
+                <span class="text-danger" v-if="v$.products.$error">{{ v$.products.$errors[0].$message }}</span>
+
               </div>
  
             </div>
@@ -117,10 +137,15 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.iso9001Certification">
                         <label class="form-check-label" for="flexCheckDefault">ISO 9001 Certification{{ iso9001Certification }}</label>
+                        
+                        <span class="text-danger" v-if="v$.iso9001Certification.$error">{{ v$.iso9001Certification.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
                         <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Certification Body" v-model="state.certificationBody">
+                <span class="text-danger" v-if="v$.certificationBody.$error">{{ v$.certificationBody.$errors[0].$message }}</span>
+
                     </div>
                 </div>
             </div>
@@ -129,10 +154,14 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.accrediationOfLaboratory">
                         <label class="form-check-label" for="flexCheckDefault">Accredition of Laboratory</label>
+                <span class="text-danger" v-if="v$.accrediationOfLaboratory.$error">{{ v$.accrediationOfLaboratoryc.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
                         <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Accredition Body" v-model="state.accrediationBody">
+                <span class="text-danger" v-if="v$.accrediationBody.$error">{{ v$.accrediationBody.$errors[0].$message }}</span>
+                        
                     </div>
                 </div>
             </div>
@@ -141,10 +170,14 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.productCertification">
                         <label class="form-check-label" for="flexCheckDefault">Product Certification</label>
+                        <span class="text-danger" v-if="v$.productCertification.$error">{{ v$.productCertification.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
                         <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Product Markings (e.g. PSB, UL, TUV)" v-model="state.productMarkings">
+                        <span class="text-danger" v-if="v$.productMarkings.$error">{{ v$.productMarkings.$errors[0].$message }}</span>
+
                     </div>
                 </div>
             </div>
@@ -153,10 +186,13 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.siteEvaluationResults">
                         <label class="form-check-label" for="flexCheckDefault">Site Evaluation Results</label>
+                        <span class="text-danger" v-if="v$.siteEvaluationResults.$error">{{ v$.siteEvaluationResults.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
                         <input style="width:90%" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="Satisfactory/ Unsatisfactory">
+                        
                     </div>
                 </div>
             </div>
@@ -165,6 +201,8 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.resultsOfProductEvaluation">
                         <label class="form-check-label" for="flexCheckDefault">Results of Sample/Product Evaluation</label>
+                        <span class="text-danger" v-if="v$.resultsOfProductEvaluation.$error">{{ v$.resultsOfProductEvaluation.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
@@ -177,6 +215,8 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.resultsOfFirstDeal">
                         <label class="form-check-label" for="flexCheckDefault">Results of First Deal</label>
+                        <span class="text-danger" v-if="v$.resultsOfFirstDeal.$error">{{ v$.resultsOfProdresultsOfFirstDealuctEvaluation.$errors[0].$message }}</span>
+                        
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
@@ -189,6 +229,8 @@
                     <div class="form-check form-check-inline col-md-6">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.trackRecordReview">
                         <label class="form-check-label" for="flexCheckDefault">Track Record Review/ Customer Reference</label>
+                        <span class="text-danger" v-if="v$.trackRecordReview.$error">{{ v$.trackRecordReview.$errors[0].$message }}</span>
+
                     </div>
                 
                     <div class="form-check form-check-inline col-md-6">
@@ -201,6 +243,8 @@
                     <div class="form-check form-check-inline col-md-12">
                         <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" v-model="state.evaluationOthers">
                         <label class="form-check-label" for="flexCheckDefault">Others(e.g. commercial, sole supplier, customer specified, franchise etc.)</label>
+                        <span class="text-danger" v-if="v$.trackRecordReview.$error">{{ v$.evaluationOthers.$errors[0].$message }}</span>
+
                     </div>
                 </div>
             </div>
@@ -232,10 +276,14 @@
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Evaluated by</label>
                         <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
+                <span class="text-danger" v-if="v$.evaluatedBy.$error">{{ v$.evaluatedBy.$errors[0].$message }}</span>
+
                     </div>
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Approved by</label>
                         <input type="text" class="form-control form-check-inline" name="companyaddress" placeholder="evaluator name" v-model="state.approvedByDirector">
+                <span class="text-danger" v-if="v$.approvedByDirector.$error">{{ v$.approvedByDirector.$errors[0].$message }}</span>
+
                     </div>
                 </div>
             </div>
@@ -244,6 +292,8 @@
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Effective Date</label>
                         <input type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
+                <span class="text-danger" v-if="v$.effectiveDate.$error">{{ v$.effectiveDate.$errors[0].$message }}</span>
+                        
                     </div>
                 </div>
             </div>
@@ -288,7 +338,7 @@
         businessNature: "",
         products: "",
   
-        iso9001Certification: false,
+        iso9001Certification: "",
         accrediationOfLaboratory: false,
         productCertification: false,
         resultsOfProductEvaluation: false,
@@ -315,18 +365,18 @@
         formApproved: false,
 
         companyName: {required},
-        registrationNo: "",
-        officeAddress: "",
-        getRegistered: "",
-        vendorTel: "",
-        vendorFax: "",
+        registrationNo:  {required},
+        officeAddress:  {required},
+        getRegistered:  {required},
+        vendorTel:  {required},
+        vendorFax: {required},
   
-        businessType: "",
-        contactName: "",
-        contactTel: "",
-        contactDesignation: "",
+        businessType: {required},
+        contactName: {required},
+        contactTel: {required},
+        contactDesignation: {required},
         businessNature: "",
-        products: "",
+        products: {required},
   
         iso9001Certification: false,
         accrediationOfLaboratory: false,
@@ -342,9 +392,9 @@
         productMarkings: "",
         resultOfEvaluation: {required},
   
-        evaluatedBy: "",
-        approvedByDirector: "",
-        effectiveDate: "",
+        evaluatedBy: {required},
+        approvedByDirector: {required},
+        effectiveDate: {required},
         }
       })
       const v$ = useValidate(rules,state)
@@ -374,9 +424,10 @@
         }
         var dt = new Date();
         let newForm = {
+          
           // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
           formDate: toIsoString(dt),
-          formName: "Vendor Assessment",
+          formName: "Vendor Assessment Form",
           formCompleted: false,
           formApproved: this.state.formApproved,
 
@@ -415,7 +466,7 @@
         };
         const axios = require("axios");
         this.v$.$validate()
-        // localStorage.setItem('edit','no') //////////////
+        localStorage.setItem('edit','no') //////////////
         var editing = localStorage.getItem('edit');
         if(editing == "yes"){
           var formid = localStorage.getItem('formid')
@@ -431,12 +482,14 @@
               })
         }else{
           if(!this.v$.$error){
-              newForm.formCode = (Math.floor((Math.random() * 100) + 1)).toString(),
+            var formid = localStorage.getItem('formid')
 
+              newForm.formCode = formid
+              
               alert('successful validation')
               newForm.formCompleted = true;
               axios
-              .post("http://localhost:8080/vendorAssessment", newForm)
+              .put("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
                 // localStorage.setItem('edit',false);
@@ -450,7 +503,7 @@
           }else{
               alert('form failed')
           }
-          localStorage.clear();
+          localStorage.removeItem('edit')
         }
       },
       async getEditInputs(){

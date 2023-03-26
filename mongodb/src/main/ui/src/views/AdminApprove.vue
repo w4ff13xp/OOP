@@ -107,16 +107,121 @@ return {
 }
 },
 methods: {
+  data() {
+    return {
+      // formCode: "formcode1",
+      // formDate: "2023-03-07",
+      // formName: "health evaluation",
+      // formCompleted: false,
+      // formApproved: false,
+      // companyName: "Nike",
 
+      attendance: 0,
+      toolBox: 0,
+      compliance: 0,
+      promotionalActivities: 0,
+      submission: 0,
+      score1: 0,
+
+      trainingCourse: 0,
+      tradeCourse: 0,
+      safetyTalk: 0,
+      wshsupervisor: 0,
+      otherTraining: 0,
+      score2: 0,
+
+      effort: 0,
+      permitToWork: 0,
+      frequencyRate: 0,
+      safetyOffence: 0,
+      safetyRectification: 0,
+      score3: 0,
+
+      cuttingTool: 0,
+      ladder: 0,
+      liftingGear: 0,
+      electricalEquipment: 0,
+      otherMachineries: 0,
+      score4: 0,
+
+      commitmentHS: 0,
+      ppecompliance: 0,
+      siteCleanliness: 0,
+      storeCleanliness: 0,
+      quarterCleanliness: 0,
+      score5: 0,
+
+      overallScore: 0,
+      performanceStandard: "",
+      comments: "",
+
+      safetyCoordinator: "",
+      safetyCoordinatorSignature: "",
+      safetyCoordinatorEvaluationDate: "",
+
+      director: "",
+      directorSignature: "",
+      directorApprovalDate: "",
+    };
+  },
     checkFormCode(){
         console.log("FORM CODE")
         console.log(localStorage.getItem('formid'))
-    },
 
+    },
+    async getInputs(){
+        try {
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            await axios.get(`http://localhost:8080/vendorAssessment/${formid}`)
+            .then((response) => {
+                console.log(response.data);
+                var data = response.data
+                this.companyName = data.companyName
+                this.registrationNo =  data.registrationNo
+                this.officeAddress =  data.officeAddress
+                this.getRegistered =  data.getRegistered
+                this.vendorTel =  data.vendorTel
+                this.vendorFax =  data.vendorFax
+          
+                this.businessType =  data.businessType
+                this.contactName =  data.contactName
+                this.contactTel =  data.contactTel
+                this.contactDesignation =  data.contactDesignation
+                this.businessNature =  data.businessNature
+                this.products =  data.products
+          
+                this.iso9001Certification= data.iso9001Certification
+                this.accrediationOfLaboratory= data.accrediationOfLaboratory
+                this.productCertification= data.productCertification
+                this.resultsOfProductEvaluation= data.resultsOfProductEvaluation
+                this.siteEvaluationResults= data.siteEvaluationResults
+                this.resultsOfFirstDeal= data.resultsOfFirstDeal
+                this.trackRecordReview= data.trackRecordReview
+
+                this.evaluationOthers= data.evaluationOthers
+                this.certificationBody= data.certificationBody
+                this.accrediationBody= data.accrediationBody
+                this.productMarkings= data.productMarkings
+                this.resultOfEvaluation= data.resultOfEvaluation
+          
+                this.evaluatedBy= data.evaluatedBy
+                this.approvedByDirector= data.approvedByDirector
+                this.effectiveDate= data.effectiveDate
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+        };
+      }
 
 },
 created() {
     this.checkFormCode();
+    this.getInputs();
     },
 };
 
