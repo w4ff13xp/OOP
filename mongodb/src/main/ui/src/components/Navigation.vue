@@ -22,6 +22,7 @@
                     </li>
                     
                 </ul>
+                <a class="nav-link"><v-btn @click="auth0Login" v-if="!this.$store.state.userIsAuthorized" >Login</v-btn></a>
                 <a class="nav-link"><v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn></a>
 
                 </div>
@@ -40,14 +41,23 @@ export default {
         }
     },
     methods:{
+
     logout(){
       this.$store.dispatch('auth0Logout')
       console.log("loggingout")
-    }
+      window.location.href = "http://localhost:3000"
     },
-    beforeCreate(){
 
-    }
+    auth0Login(){
+            this.$store.dispatch('auth0Login');
+            console.log('we are in auth0Login');
+        },
+
+
+    },
+
+
+
 }
 </script>
 
