@@ -32,11 +32,9 @@ public class HealthEvaluationService {
         existingForm.setVendorID(HERequest.getVendorID());
         existingForm.setDate(HERequest.getDate());
         existingForm.setFormName(HERequest.getFormName());
-        existingForm.setFormCompleted(HERequest.isFormCompleted());
-        existingForm.setFormApproved(HERequest.isFormApproved());
         existingForm.setCompanyName(HERequest.getCompanyName());
-        existingForm.setFormEvaluated(HERequest.isFormEvaluated());
-        // existingForm.setRevisionNum(HERequest.getRevisionNum());
+        existingForm.setStatus(HERequest.getStatus());
+
         existingForm.setAttendance(HERequest.getAttendance());
         existingForm.setToolBox(HERequest.getToolBox());
         existingForm.setCompliance(HERequest.getCompliance());
