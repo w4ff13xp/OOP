@@ -1,14 +1,16 @@
 <template>
     <div class="container">
         <h1 class="text-center my-5">Approve Form</h1>
-        <table class="table table-hover table-bordered table-striped text-center">
+        <div>
+        <!-- <table class="table table-hover table-bordered table-striped text-center" style="width: 1000px;">
             <tr><th>Field</th><th>Value</th></tr>
             <tr><td>Attendance in Safety Meeting</td><td>{{ attendance }}</td></tr>
             <tr><td>Tool Box Meeting</td><td>5</td></tr>
             <tr><td>Compliance To Rules & Regulation</td><td>5</td></tr>
             <tr><td>Safety Promotional Activities</td><td>5</td></tr>
             <tr><td>Document Submission</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (I): 5</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (I): 5</td></tr> -->
+
             
             <!-- <tr><td>Statutory Safety Training Course</td><td>{{trainingCourse}}</td></tr>
             <tr><td>Safety Trade Course</td><td>{{tradeCourse}}</td></tr>
@@ -39,7 +41,138 @@
             <tr><td colspan=2 class="fw-bold">Score (V): {{score5}}</td></tr>
             
             <tr><td colspan=2><h3>OVERALL SCORE: {{overallScore}}</h3><h3>Performance Evaluation: {{performanceStandard}}</h3></td></tr> -->
+            <!-- </table> -->
+            <table class="table table-hover table-bordered table-striped text-center">
+            <thead>
+                <tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody>
+            <tr>
+                <td>Attendance in Safety Meeting</td>
+                <td>{{ attendance }}</td>
+            </tr>
+            <tr>
+                <td>Tool Box Meeting</td>
+                <td>{{ toolBox }}</td>
+            </tr>
+            <tr>
+                <td>Compliance To Rules & Regulation</td>
+                <td>{{ compliance }}</td>
+            </tr>
+            <tr>
+                <td>Safety Promotional Activities</td>
+                <td>{{ promotionalActivities }}</td>
+            </tr>
+            <tr>
+                <td>Document Submission</td>
+                <td>{{ submission }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="fw-bold">Score (I): {{ score1 }}</td>
+            </tr>
+
+            <tr>
+                <td>Statutory Safety Training Course</td>
+                <td>{{ trainingCourse }}</td>
+            </tr>
+            <tr>
+                <td>Safety Trade Course</td>
+                <td>{{ tradeCourse }}</td>
+            </tr>
+            <tr>
+                <td>Mass Safety Talk</td>
+                <td>{{ safetyTalk }}</td>
+            </tr>
+            <tr>
+                <td>WSH Safety Coordinator/ Supervisor</td>
+                <td>{{ wshsupervisor }}</td>
+            </tr>
+            <tr>
+                <td>Other Safety Training</td>
+                <td>{{ otherTraining }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="fw-bold">Score (II): {{ score2 }}</td>
+            </tr>
+            <tr>
+                <td>Effort in Accident Prevention</td>
+                <td>{{ effort }}</td>
+            </tr>
+            <tr>
+                <td>Safe Work Practice/ Permit To Work</td>
+                <td>{{ permitToWork }}</td>
+            </tr>
+            <tr>
+                <td>Incident Severity &amp; Frequency Rate</td>
+                <td>{{ frequencyRate }}</td>
+            </tr>
+            <tr>
+                <td>Safety Offence</td>
+                <td>{{ safetyOffence }}</td>
+            </tr>
+            <tr>
+                <td>Safety Inspection And Rectification</td>
+                <td>{{ safetyRectification }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="fw-bold">Score (III): {{ score3 }}</td>
+            </tr>
+            <tr>
+                <td>Explosive Powered Tool/ Cutting Tool</td>
+                <td>{{ cuttingTool }}</td>
+            </tr>
+            <tr>
+                <td>Ladder</td>
+                <td>{{ ladder }}</td>
+            </tr>
+            <tr>
+                <td>Lifting Gear/ Appliance/ Machine</td>
+                <td>{{ liftingGear }}</td>
+            </tr>
+            <tr>
+                <td>Electrical Equipment/ Compressor</td>
+                <td>{{ electricalEquipment }}</td>
+            </tr>
+            <tr>
+                <td>Other Machineries</td>
+                <td>{{ otherMachineries }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="fw-bold">Score (IV): {{ score4 }} </td>
+            </tr>
+            <tr>
+            <td>Subcon Snr Mgt Commitment to HS</td>
+            <td>{{ commitmentHS }}</td>
+            </tr>
+            <tr>
+            <td>Compliance with PPE</td>
+            <td>{{ ppecompliance }}</td>
+            </tr>
+            <tr>
+            <td>Housekeeping &amp; Cleanliness at Site</td>
+            <td>{{ siteCleanliness }}</td>
+            </tr>
+            <tr>
+            <td>Housekeeping &amp; Cleanliness at Store</td>
+            <td>{{ storeCleanliness }}</td>
+            </tr>
+            <tr>
+            <td>Housekeeping &amp; Cleanliness at Quarter</td>
+            <td>{{ quarterCleanliness }}</td>
+            </tr>
+            <tr>
+            <td colspan="2" class="fw-bold">Score (V): {{ score5 }}</td>
+            </tr>
+            <tr>
+            <td colspan="2">
+                <h3>OVERALL SCORE: {{ overallScore }}</h3>
+                <h3>Performance Evaluation: {{ performanceStandard }}</h3>
+            </td>
+            </tr>
+        </tbody>
         </table>
+
+            </div>
+        
 
         <div class="my-5 d-flex justify-content-between">
             <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
