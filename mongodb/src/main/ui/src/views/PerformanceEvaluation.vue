@@ -87,22 +87,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second"
-                id="inlineRadio1"
+                id="inlineRadio11"
                 value="1"
                 v-model="toolBox"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio11">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second"
-                id="inlineRadio2"
+                id="inlineRadio21"
                 value="2"
                 v-model="toolBox"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio21"
                 >Below Average</label
               >
             </div>
@@ -111,22 +111,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second"
-                id="inlineRadio3"
+                id="inlineRadio31"
                 value="3"
                 v-model="toolBox"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio31">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second"
-                id="inlineRadio4"
+                id="inlineRadio41"
                 value="4"
                 v-model="toolBox"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio41"
                 >Above Average</label
               >
             </div>
@@ -135,11 +135,11 @@
                 class="form-check-input"
                 type="radio"
                 name="second"
-                id="inlineRadio5"
+                id="inlineRadio51"
                 value="5"
                 v-model="toolBox"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio51">Good</label>
             </div>
           </div>
         </div>
@@ -154,22 +154,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third"
-                id="inlineRadio1"
+                id="inlineRadio12"
                 value="1"
                 v-model="compliance"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio12">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third"
-                id="inlineRadio2"
+                id="inlineRadio22"
                 value="2"
                 v-model="compliance"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio22"
                 >Below Average</label
               >
             </div>
@@ -178,22 +178,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third"
-                id="inlineRadio3"
+                id="inlineRadio32"
                 value="3"
                 v-model="compliance"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio32">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third"
-                id="inlineRadio4"
+                id="inlineRadio42"
                 value="4"
                 v-model="compliance"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio42"
                 >Above Average</label
               >
             </div>
@@ -202,11 +202,11 @@
                 class="form-check-input"
                 type="radio"
                 name="third"
-                id="inlineRadio5"
+                id="inlineRadio52"
                 value="5"
                 v-model="compliance"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio52">Good</label>
             </div>
           </div>
         </div>
@@ -221,22 +221,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth"
-                id="inlineRadio1"
+                id="inlineRadio13"
                 value="1"
                 v-model="promotionalActivities"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio13">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth"
-                id="inlineRadio2"
+                id="inlineRadio23"
                 value="2"
                 v-model="promotionalActivities"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio23"
                 >Below Average</label
               >
             </div>
@@ -245,22 +245,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth"
-                id="inlineRadio3"
+                id="inlineRadio33"
                 value="3"
                 v-model="promotionalActivities"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio33">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth"
-                id="inlineRadio4"
+                id="inlineRadio43"
                 value="4"
                 v-model="promotionalActivities"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio43"
                 >Above Average</label
               >
             </div>
@@ -269,11 +269,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth"
-                id="inlineRadio5"
+                id="inlineRadio53"
                 value="5"
                 v-model="promotionalActivities"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio53">Good</label>
             </div>
           </div>
         </div>
@@ -288,22 +288,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth"
-                id="inlineRadio1"
+                id="inlineRadio14"
                 value="1"
                 v-model="submission"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio14">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth"
-                id="inlineRadio2"
+                id="inlineRadio24"
                 value="2"
                 v-model="submission"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio24"
                 >Below Average</label
               >
             </div>
@@ -312,22 +312,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth"
-                id="inlineRadio3"
+                id="inlineRadio34"
                 value="3"
                 v-model="submission"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio34">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth"
-                id="inlineRadio4"
+                id="inlineRadio44"
                 value="4"
                 v-model="submission"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio44"
                 >Above Average</label
               >
             </div>
@@ -336,11 +336,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth"
-                id="inlineRadio5"
+                id="inlineRadio54"
                 value="5"
                 v-model="submission"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio54">Good</label>
             </div>
           </div>
         </div>
@@ -364,22 +364,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first1"
-                id="inlineRadio1"
+                id="inlineRadio15"
                 value="1"
                 v-model="trainingCourse"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio15">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first1"
-                id="inlineRadio2"
+                id="inlineRadio25"
                 value="2"
                 v-model="trainingCourse"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio25"
                 >Below Average</label
               >
             </div>
@@ -388,22 +388,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first1"
-                id="inlineRadio3"
+                id="inlineRadio35"
                 value="3"
                 v-model="trainingCourse"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio35">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first1"
-                id="inlineRadio4"
+                id="inlineRadio45"
                 value="4"
                 v-model="trainingCourse"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio45"
                 >Above Average</label
               >
             </div>
@@ -412,11 +412,11 @@
                 class="form-check-input"
                 type="radio"
                 name="first1"
-                id="inlineRadio5"
+                id="inlineRadio55"
                 value="5"
                 v-model="trainingCourse"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio55">Good</label>
             </div>
           </div>
         </div>
@@ -431,22 +431,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second1"
-                id="inlineRadio1"
+                id="inlineRadio16"
                 value="1"
                 v-model="tradeCourse"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio16">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second1"
-                id="inlineRadio2"
+                id="inlineRadio26"
                 value="2"
                 v-model="tradeCourse"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio26"
                 >Below Average</label
               >
             </div>
@@ -455,22 +455,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second1"
-                id="inlineRadio3"
+                id="inlineRadio36"
                 value="3"
                 v-model="tradeCourse"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio36">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second1"
-                id="inlineRadio4"
+                id="inlineRadio46"
                 value="4"
                 v-model="tradeCourse"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio46"
                 >Above Average</label
               >
             </div>
@@ -479,11 +479,11 @@
                 class="form-check-input"
                 type="radio"
                 name="second1"
-                id="inlineRadio5"
+                id="inlineRadio56"
                 value="5"
                 v-model="tradeCourse"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio56">Good</label>
             </div>
           </div>
         </div>
@@ -498,22 +498,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third1"
-                id="inlineRadio1"
+                id="inlineRadio17"
                 value="1"
                 v-model="safetyTalk"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio17">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third1"
-                id="inlineRadio2"
+                id="inlineRadio27"
                 value="2"
                 v-model="safetyTalk"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio27"
                 >Below Average</label
               >
             </div>
@@ -522,22 +522,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third1"
-                id="inlineRadio3"
+                id="inlineRadio37"
                 value="3"
                 v-model="safetyTalk"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio37">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third1"
-                id="inlineRadio4"
+                id="inlineRadio47"
                 value="4"
                 v-model="safetyTalk"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio47"
                 >Above Average</label
               >
             </div>
@@ -546,11 +546,11 @@
                 class="form-check-input"
                 type="radio"
                 name="third1"
-                id="inlineRadio5"
+                id="inlineRadio57"
                 value="5"
                 v-model="safetyTalk"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio57">Good</label>
             </div>
           </div>
         </div>
@@ -565,22 +565,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth1"
-                id="inlineRadio1"
+                id="inlineRadio18"
                 value="1"
                 v-model="wshsupervisor"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio18">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth1"
-                id="inlineRadio2"
+                id="inlineRadio28"
                 value="2"
                 v-model="wshsupervisor"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio28"
                 >Below Average</label
               >
             </div>
@@ -589,22 +589,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth1"
-                id="inlineRadio3"
+                id="inlineRadio38"
                 value="3"
                 v-model="wshsupervisor"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio38">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth1"
-                id="inlineRadio4"
+                id="inlineRadio48"
                 value="4"
                 v-model="wshsupervisor"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio48"
                 >Above Average</label
               >
             </div>
@@ -613,11 +613,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth1"
-                id="inlineRadio5"
+                id="inlineRadio58"
                 value="5"
                 v-model="wshsupervisor"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio58">Good</label>
             </div>
           </div>
         </div>
@@ -632,22 +632,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth1"
-                id="inlineRadio1"
+                id="inlineRadio19"
                 value="1"
                 v-model="otherTraining"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio19">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth1"
-                id="inlineRadio2"
+                id="inlineRadio29"
                 value="2"
                 v-model="otherTraining"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio29"
                 >Below Average</label
               >
             </div>
@@ -656,22 +656,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth1"
-                id="inlineRadio3"
+                id="inlineRadio39"
                 value="3"
                 v-model="otherTraining"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio39">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth1"
-                id="inlineRadio4"
+                id="inlineRadio49"
                 value="4"
                 v-model="otherTraining"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio49"
                 >Above Average</label
               >
             </div>
@@ -680,11 +680,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth1"
-                id="inlineRadio5"
+                id="inlineRadio59"
                 value="5"
                 v-model="otherTraining"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio59">Good</label>
             </div>
           </div>
         </div>
@@ -706,22 +706,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first2"
-                id="inlineRadio1"
+                id="inlineRadio10"
                 value="1"
                 v-model="effort"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio10">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first2"
-                id="inlineRadio2"
+                id="inlineRadio20"
                 value="2"
                 v-model="effort"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio20"
                 >Below Average</label
               >
             </div>
@@ -730,22 +730,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first2"
-                id="inlineRadio3"
+                id="inlineRadio30"
                 value="3"
                 v-model="effort"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio30">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first2"
-                id="inlineRadio4"
+                id="inlineRadio40"
                 value="4"
                 v-model="effort"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio40"
                 >Above Average</label
               >
             </div>
@@ -754,11 +754,11 @@
                 class="form-check-input"
                 type="radio"
                 name="first2"
-                id="inlineRadio5"
+                id="inlineRadio50"
                 value="5"
                 v-model="effort"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio50">Good</label>
             </div>
           </div>
         </div>
@@ -773,22 +773,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second2"
-                id="inlineRadio1"
+                id="inlineRadio111"
                 value="1"
                 v-model="permitToWork"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio111">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second2"
-                id="inlineRadio2"
+                id="inlineRadio211"
                 value="2"
                 v-model="permitToWork"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio211"
                 >Below Average</label
               >
             </div>
@@ -797,22 +797,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second2"
-                id="inlineRadio3"
+                id="inlineRadio311"
                 value="3"
                 v-model="permitToWork"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio311">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second2"
-                id="inlineRadio4"
+                id="inlineRadio411"
                 value="4"
                 v-model="permitToWork"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio411"
                 >Above Average</label
               >
             </div>
@@ -821,11 +821,11 @@
                 class="form-check-input"
                 type="radio"
                 name="second2"
-                id="inlineRadio5"
+                id="inlineRadio511"
                 value="5"
                 v-model="permitToWork"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio511">Good</label>
             </div>
           </div>
         </div>
@@ -840,22 +840,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third2"
-                id="inlineRadio1"
+                id="inlineRadio112"
                 value="1"
                 v-model="frequencyRate"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio112">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third2"
-                id="inlineRadio2"
+                id="inlineRadio212"
                 value="2"
                 v-model="frequencyRate"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio212"
                 >Below Average</label
               >
             </div>
@@ -864,22 +864,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third2"
-                id="inlineRadio3"
+                id="inlineRadio312"
                 value="3"
                 v-model="frequencyRate"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio312">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third2"
-                id="inlineRadio4"
+                id="inlineRadio412"
                 value="4"
                 v-model="frequencyRate"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio412"
                 >Above Average</label
               >
             </div>
@@ -888,11 +888,11 @@
                 class="form-check-input"
                 type="radio"
                 name="third2"
-                id="inlineRadio5"
+                id="inlineRadio512"
                 value="5"
                 v-model="frequencyRate"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio512">Good</label>
             </div>
           </div>
         </div>
@@ -907,22 +907,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth2"
-                id="inlineRadio1"
+                id="inlineRadio113"
                 value="1"
                 v-model="safetyOffence"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio113">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth2"
-                id="inlineRadio2"
+                id="inlineRadio213"
                 value="2"
                 v-model="safetyOffence"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio213"
                 >Below Average</label
               >
             </div>
@@ -931,22 +931,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth2"
-                id="inlineRadio3"
+                id="inlineRadio313"
                 value="3"
                 v-model="safetyOffence"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio313">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth2"
-                id="inlineRadio4"
+                id="inlineRadio413"
                 value="4"
                 v-model="safetyOffence"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio413"
                 >Above Average</label
               >
             </div>
@@ -955,11 +955,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth2"
-                id="inlineRadio5"
+                id="inlineRadio513"
                 value="5"
                 v-model="safetyOffence"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio513">Good</label>
             </div>
           </div>
         </div>
@@ -974,22 +974,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth2"
-                id="inlineRadio1"
+                id="inlineRadio114"
                 value="1"
                 v-model="safetyRectification"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio114">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth2"
-                id="inlineRadio2"
+                id="inlineRadio214"
                 value="2"
                 v-model="safetyRectification"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio214"
                 >Below Average</label
               >
             </div>
@@ -998,22 +998,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth2"
-                id="inlineRadio3"
+                id="inlineRadio314"
                 value="3"
                 v-model="safetyRectification"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio314">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth2"
-                id="inlineRadio4"
+                id="inlineRadio414"
                 value="4"
                 v-model="safetyRectification"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio414"
                 >Above Average</label
               >
             </div>
@@ -1022,11 +1022,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth2"
-                id="inlineRadio5"
+                id="inlineRadio514"
                 value="5"
                 v-model="safetyRectification"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio514">Good</label>
             </div>
           </div>
         </div>
@@ -1048,22 +1048,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first3"
-                id="inlineRadio1"
+                id="inlineRadio115"
                 value="1"
                 v-model="cuttingTool"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio115">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first3"
-                id="inlineRadio2"
+                id="inlineRadio215"
                 value="2"
                 v-model="cuttingTool"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio215"
                 >Below Average</label
               >
             </div>
@@ -1072,22 +1072,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first3"
-                id="inlineRadio3"
+                id="inlineRadio315"
                 value="3"
                 v-model="cuttingTool"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio315">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first3"
-                id="inlineRadio4"
+                id="inlineRadio415"
                 value="4"
                 v-model="cuttingTool"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio415"
                 >Above Average</label
               >
             </div>
@@ -1096,11 +1096,11 @@
                 class="form-check-input"
                 type="radio"
                 name="first3"
-                id="inlineRadio5"
+                id="inlineRadio515"
                 value="5"
                 v-model="cuttingTool"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio515">Good</label>
             </div>
           </div>
         </div>
@@ -1115,22 +1115,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second3"
-                id="inlineRadio1"
+                id="inlineRadio116"
                 value="1"
                 v-model="ladder"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio116">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second3"
-                id="inlineRadio2"
+                id="inlineRadio216"
                 value="2"
                 v-model="ladder"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio216"
                 >Below Average</label
               >
             </div>
@@ -1139,22 +1139,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second3"
-                id="inlineRadio3"
+                id="inlineRadio316"
                 value="3"
                 v-model="ladder"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio316">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second3"
-                id="inlineRadio4"
+                id="inlineRadio416"
                 value="4"
                 v-model="ladder"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio416"
                 >Above Average</label
               >
             </div>
@@ -1163,11 +1163,11 @@
                 class="form-check-input"
                 type="radio"
                 name="second3"
-                id="inlineRadio5"
+                id="inlineRadio516"
                 value="5"
                 v-model="ladder"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio516">Good</label>
             </div>
           </div>
         </div>
@@ -1182,22 +1182,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third3"
-                id="inlineRadio1"
+                id="inlineRadio117"
                 value="1"
                 v-model="liftingGear"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio117">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third3"
-                id="inlineRadio2"
+                id="inlineRadio217"
                 value="2"
                 v-model="liftingGear"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio217"
                 >Below Average</label
               >
             </div>
@@ -1206,22 +1206,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third3"
-                id="inlineRadio3"
+                id="inlineRadio317"
                 value="3"
                 v-model="liftingGear"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio317">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third3"
-                id="inlineRadio4"
+                id="inlineRadio417"
                 value="4"
                 v-model="liftingGear"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio417"
                 >Above Average</label
               >
             </div>
@@ -1230,11 +1230,11 @@
                 class="form-check-input"
                 type="radio"
                 name="third3"
-                id="inlineRadio5"
+                id="inlineRadio517"
                 value="5"
                 v-model="liftingGear"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio517">Good</label>
             </div>
           </div>
         </div>
@@ -1249,22 +1249,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth3"
-                id="inlineRadio1"
+                id="inlineRadio118"
                 value="1"
                 v-model="electricalEquipment"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio118">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth3"
-                id="inlineRadio2"
+                id="inlineRadio218"
                 value="2"
                 v-model="electricalEquipment"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio218"
                 >Below Average</label
               >
             </div>
@@ -1273,22 +1273,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth3"
-                id="inlineRadio3"
+                id="inlineRadio318"
                 value="3"
                 v-model="electricalEquipment"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio318">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth3"
-                id="inlineRadio4"
+                id="inlineRadio418"
                 value="4"
                 v-model="electricalEquipment"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio418"
                 >Above Average</label
               >
             </div>
@@ -1297,11 +1297,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth3"
-                id="inlineRadio5"
+                id="inlineRadio518"
                 value="5"
                 v-model="electricalEquipment"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio518">Good</label>
             </div>
           </div>
         </div>
@@ -1316,22 +1316,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth3"
-                id="inlineRadio1"
+                id="inlineRadio119"
                 value="1"
                 v-model="otherMachineries"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio119">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth3"
-                id="inlineRadio2"
+                id="inlineRadio219"
                 value="2"
                 v-model="otherMachineries"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio219"
                 >Below Average</label
               >
             </div>
@@ -1340,22 +1340,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth3"
-                id="inlineRadio3"
+                id="inlineRadio319"
                 value="3"
                 v-model="otherMachineries"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio319">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth3"
-                id="inlineRadio4"
+                id="inlineRadio419"
                 value="4"
                 v-model="otherMachineries"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio419"
                 >Above Average</label
               >
             </div>
@@ -1364,11 +1364,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth3"
-                id="inlineRadio5"
+                id="inlineRadio519"
                 value="5"
                 v-model="otherMachineries"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio519">Good</label>
             </div>
           </div>
         </div>
@@ -1390,22 +1390,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first4"
-                id="inlineRadio1"
+                id="inlineRadio120"
                 value="1"
                 v-model="commitmentHS"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio120">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first4"
-                id="inlineRadio2"
+                id="inlineRadio220"
                 value="2"
                 v-model="commitmentHS"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio220"
                 >Below Average</label
               >
             </div>
@@ -1414,22 +1414,22 @@
                 class="form-check-input"
                 type="radio"
                 name="first4"
-                id="inlineRadio3"
+                id="inlineRadio320"
                 value="3"
                 v-model="commitmentHS"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio320">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="first4"
-                id="inlineRadio4"
+                id="inlineRadio420"
                 value="4"
                 v-model="commitmentHS"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio420"
                 >Above Average</label
               >
             </div>
@@ -1438,11 +1438,11 @@
                 class="form-check-input"
                 type="radio"
                 name="first4"
-                id="inlineRadio5"
+                id="inlineRadio520"
                 value="5"
                 v-model="commitmentHS"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio520">Good</label>
             </div>
           </div>
         </div>
@@ -1457,22 +1457,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second4"
-                id="inlineRadio1"
+                id="inlineRadio121"
                 value="1"
                 v-model="ppecompliance"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio121">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second4"
-                id="inlineRadio2"
+                id="inlineRadio221"
                 value="2"
                 v-model="ppecompliance"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio221"
                 >Below Average</label
               >
             </div>
@@ -1481,22 +1481,22 @@
                 class="form-check-input"
                 type="radio"
                 name="second4"
-                id="inlineRadio3"
+                id="inlineRadio321"
                 value="3"
                 v-model="ppecompliance"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio321">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="second4"
-                id="inlineRadio4"
+                id="inlineRadio421"
                 value="4"
                 v-model="ppecompliance"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio421"
                 >Above Average</label
               >
             </div>
@@ -1505,11 +1505,11 @@
                 class="form-check-input"
                 type="radio"
                 name="second4"
-                id="inlineRadio5"
+                id="inlineRadio521"
                 value="5"
                 v-model="ppecompliance"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio521">Good</label>
             </div>
           </div>
         </div>
@@ -1524,22 +1524,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third4"
-                id="inlineRadio1"
+                id="inlineRadio122"
                 value="1"
                 v-model="siteCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio122">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third4"
-                id="inlineRadio2"
+                id="inlineRadio222"
                 value="2"
                 v-model="siteCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio222"
                 >Below Average</label
               >
             </div>
@@ -1548,22 +1548,22 @@
                 class="form-check-input"
                 type="radio"
                 name="third4"
-                id="inlineRadio3"
+                id="inlineRadio322"
                 value="3"
                 v-model="siteCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio322">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="third4"
-                id="inlineRadio4"
+                id="inlineRadio422"
                 value="4"
                 v-model="siteCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio422"
                 >Above Average</label
               >
             </div>
@@ -1572,11 +1572,11 @@
                 class="form-check-input"
                 type="radio"
                 name="third4"
-                id="inlineRadio5"
+                id="inlineRadio522"
                 value="5"
                 v-model="siteCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio522">Good</label>
             </div>
           </div>
         </div>
@@ -1591,22 +1591,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth4"
-                id="inlineRadio1"
+                id="inlineRadio123"
                 value="1"
                 v-model="storeCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio123">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth4"
-                id="inlineRadio2"
+                id="inlineRadio223"
                 value="2"
                 v-model="storeCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio223"
                 >Below Average</label
               >
             </div>
@@ -1615,22 +1615,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth4"
-                id="inlineRadio3"
+                id="inlineRadio323"
                 value="3"
                 v-model="storeCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio323">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fourth4"
-                id="inlineRadio4"
+                id="inlineRadio423"
                 value="4"
                 v-model="storeCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio423"
                 >Above Average</label
               >
             </div>
@@ -1639,11 +1639,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fourth4"
-                id="inlineRadio5"
+                id="inlineRadio523"
                 value="5"
                 v-model="storeCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio523">Good</label>
             </div>
           </div>
         </div>
@@ -1658,22 +1658,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth4"
-                id="inlineRadio1"
+                id="inlineRadio124"
                 value="1"
                 v-model="quarterCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio1">Poor</label>
+              <label class="form-check-label" for="inlineRadio124">Poor</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth4"
-                id="inlineRadio2"
+                id="inlineRadio224"
                 value="2"
                 v-model="quarterCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio2"
+              <label class="form-check-label" for="inlineRadio224"
                 >Below Average</label
               >
             </div>
@@ -1682,22 +1682,22 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth4"
-                id="inlineRadio3"
+                id="inlineRadio324"
                 value="3"
                 v-model="quarterCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio3">Average</label>
+              <label class="form-check-label" for="inlineRadio324">Average</label>
             </div>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
                 name="fifth4"
-                id="inlineRadio4"
+                id="inlineRadio424"
                 value="4"
                 v-model="quarterCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio4"
+              <label class="form-check-label" for="inlineRadio424"
                 >Above Average</label
               >
             </div>
@@ -1706,11 +1706,11 @@
                 class="form-check-input"
                 type="radio"
                 name="fifth4"
-                id="inlineRadio5"
+                id="inlineRadio524"
                 value="5"
                 v-model="quarterCleanliness"
               />
-              <label class="form-check-label" for="inlineRadio5">Good</label>
+              <label class="form-check-label" for="inlineRadio524">Good</label>
             </div>
           </div>
         </div>
