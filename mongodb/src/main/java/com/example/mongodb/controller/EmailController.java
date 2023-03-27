@@ -10,6 +10,7 @@ import com.example.mongodb.model.Email;
 import com.example.mongodb.service.EmailService;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class EmailController {
     
     @Autowired private EmailService emailService;
