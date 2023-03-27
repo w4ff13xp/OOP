@@ -225,7 +225,7 @@ export default{
         }
         if (this.user_access == "Approver"){
             for (var f in this.allForms){
-                if (this.allForms[f]["status"] == "pendingApproval" ){
+                if (this.allForms[f]["status"] == "pendingApproval" || this.allForms[f]["status"] == "approved" || this.allForms[f]["status"] == "approverRejected"){
                     temp.push(this.allForms[f]);
                 }
             }
