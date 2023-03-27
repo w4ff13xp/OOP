@@ -20,6 +20,7 @@ public class HealthEvaluation {
     private String formName;
     private String companyName;
     private String status;
+    private String rejectionReason;
 
     private Integer attendance;
     private Integer toolBox;

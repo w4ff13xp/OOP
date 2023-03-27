@@ -20,6 +20,7 @@ public class VendorAssessment {
     private String formName;
     private String companyName;
     private String status;
+    private String rejectionReason;
     
     private Long registrationNo;
     private String officeAddress;

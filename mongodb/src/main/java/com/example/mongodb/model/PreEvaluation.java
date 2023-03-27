@@ -20,6 +20,7 @@ public class PreEvaluation {
     private String formName;
     private String companyName;
     private String status;
+    private String rejectionReason;
 
     private String subContractorName;
     private String scopeOfWork;
