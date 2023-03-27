@@ -98,7 +98,7 @@
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
                                         v-if="h.formCompleted == false"
-                                        @click="email()"
+                                        @click="email(formCode)"
                                     >
                                     Send Alert
                                     </button>
@@ -300,10 +300,29 @@ export default{
         this.allForms = this.allForms.concat(this.healthForms)
     },
 
-    email(){
-        
-        window.location.href = `http://localhost:3000/sendMail`
-        // axios post to this link
+    async email(formCode){
+        var email = formCode.slice(2)
+        try {
+            const axios = require('axios');
+
+            let newEmail = {
+                recipient : email,
+                msgBody : "Hi, \n\n Please submit this form before the deadline. \n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+                subject: "Reminder to submit form"
+            };
+
+            await axios.get('http://localhost:8080/sendMail', newEmail)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+
+        }
+
     },
 
     approve(formid, formname){
@@ -411,6 +430,7 @@ export default{
     }, 
 
     deleteForm(formName, formCode) {
+
         var newStr = formCode.slice(2)
 
     //  DELETE HEALTH FORM FROM FORMDB
