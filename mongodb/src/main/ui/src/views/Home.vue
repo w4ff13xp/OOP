@@ -434,7 +434,7 @@ export default{
         var newStr = formCode.slice(2)
 
     //  DELETE HEALTH FORM FROM FORMDB
-      if (formName == 'Health Evaluation Form'){
+      if (formName == 'Performance Evaluation Form'){
         const axios = require('axios');
         axios.delete('http://localhost:8080/healthEvaluation/' + formCode)
         .then((r)=>{

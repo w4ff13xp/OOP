@@ -284,7 +284,7 @@
                             <div class="input-group mb-3">
                                 <p style="padding-right: 10px;">Form Options: </p>
                                 <select id="forms" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
-                                <option value="Health Evaluation Form">Health Evaluation Form</option>
+                                <option value="Performance Evaluation Form">Performance Evaluation Form</option>
                                 <option value="Pre Evaluation Form">Pre Evaluation Form</option>
                                 <option value="Vendor Assessment Form">Vendor Assessment Form</option>
                                 </select>
@@ -478,7 +478,7 @@ name:'Admin',
             for (var forms in f){
                 console.log(f[forms])
                 if (f[forms][0] == 'H'){
-                    this.formDisplay.push("Health Evaluation Form ")
+                    this.formDisplay.push("Performance Evaluation Form ")
                 }
                 else if (f[forms][0] == 'V'){
                     this.formDisplay.push("Vendor Assessment Form ")
@@ -632,7 +632,7 @@ name:'Admin',
 
 
         // HEALTH EVAL FORM
-        if (form == 'Health Evaluation Form'){
+        if (form == 'Performance Evaluation Form'){
 
 
 
