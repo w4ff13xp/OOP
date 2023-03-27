@@ -70,6 +70,8 @@ public class HealthEvaluationService {
         existingForm.setSiteCleanliness(HERequest.getSiteCleanliness());
         existingForm.setStoreCleanliness(HERequest.getStoreCleanliness());
         existingForm.setQuarterCleanliness(HERequest.getQuarterCleanliness());
+        existingForm.setScore5(HERequest.getScore5());
+
         existingForm.setOverallScore(HERequest.getOverallScore());
         existingForm.setPerformanceStandard(HERequest.getPerformanceStandard());
         existingForm.setComments(HERequest.getComments());

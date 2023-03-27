@@ -1837,7 +1837,7 @@ export default {
       console.log(this.wshsupervisor)
       let newForm = {
         date: toIsoString(dt),
-        formName: "Performance Evaluation",
+        formName: "Performance Evaluation Form",
         formCompleted: false,
         formApproved: false,
         companyName: "Nike", //need change
@@ -1909,7 +1909,8 @@ export default {
               })
         }else{
           newForm.formCode = (Math.floor((Math.random() * 100) + 1)).toString()
-          
+          var formid = localStorage.getItem('formid')
+          newForm.formCode = formid
           for (var item of checker) {
             if (item == 0) {
               alert("Please complete the form before submission.");
