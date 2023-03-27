@@ -1,7 +1,5 @@
 package com.example.mongodb.controller;
 
-package com.junhui.SpringEmail;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
