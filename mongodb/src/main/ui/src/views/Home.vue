@@ -47,7 +47,7 @@
                                     {{ h.date }}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ h.formApproved}}
+                                    {{ h.status}}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
                                     {{ h.companyName }}
@@ -97,7 +97,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
-                                        v-if="h.formCompleted == false"
+                                        v-if="h.status == 'incomplete' "
                                         @click="email(formCode)"
                                     >
                                     Send Alert
@@ -225,13 +225,13 @@ export default{
         }
         if (this.user_access == "Approver"){
             for (var f in this.allForms){
-                if (this.allForms[f]["formEvaluated"] == true ){
+                if (this.allForms[f]["status"] == "pendingApproval" ){
                     temp.push(this.allForms[f]);
                 }
             }
             this.allForms = temp
         }
-        // else if (this.user_access == "Approver")
+
 
         this.num_page = (this.allForms).length / this.results_per_page;
         console.log("PAGINATION: " + this.num_page)

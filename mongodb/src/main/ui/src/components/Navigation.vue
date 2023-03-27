@@ -67,7 +67,9 @@ export default {
 
 
     },
-
+    created() {
+      this.checkStatus();
+  },
 
 
 }
