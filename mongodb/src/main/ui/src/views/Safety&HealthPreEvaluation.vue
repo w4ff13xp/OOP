@@ -1,32 +1,42 @@
 <template>
   <div class="container-fluid">
     <!-- <Navigation></Navigation> -->
-        <h2 id="title" class="text-center pt-3">SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION</h2>
+        <h2 id="title" class="text-center pt-3">\
+          SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION
+        </h2>
 
         <div class="row bg-light m-5 rounded p-3">
           
                 <div class="mb-3">
                     <label for="InputSubcontractorName" class="form-label">Name Of Subcontractor</label>
                     <input v-model="state.subcontractorName" type="text" class="form-control" id="InputSubcontractorName">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
+                    <input v-else disabled style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputScopeOfWork" class="form-label">Scope of Work</label>
                     <input v-model="state.scopeOfWork" type="text" class="form-control" id="InputScopeOfWork">
-                    
+                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="second" placeholder="Scope of Work" v-model="state.scopeOfWork" >        
+                    <input v-else disabled style="width:90%" type="text" class="form-control" name="second" placeholder="Scope of Work" v-model="state.scopeOfWork" >        
+          
                 </div>
 
                 <div class="mb-3">
                     <label for="InputEvaluatedBy" class="form-label">Evaluated By</label>
                     <input v-model="state.evaluatedBy" type="text" class="form-control" id="InputEvaluatedBy">
-                    
+                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
+                    <input v-else disabled style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
+          
                 </div>
 
                 <!-- Will fix this date field to be a datepicker -->
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
                     <input v-model="state.todayDate" type="date" class="form-control" id="InputDate">
-                    
+                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
+                    <input v-else disabled style="width:90%" type="text" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
+          
                 </div>
 
         </div>
@@ -41,10 +51,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.shpolicy" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.shpolicy" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.shpolicy" >        
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.shpolicy" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.shpolicy" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.shpolicy" >
                           </div>
                     </div>
                 </div>
@@ -55,10 +69,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safetyOrganisation" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyOrganisation" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyOrganisation" >     
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyOrganisation" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyOrganisation" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyOrganisation" >  
                           </div>
                     </div>
                 </div>
@@ -69,10 +87,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safetyCommit" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCommit" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCommit" >  
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyCommit" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCommit" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCommit" >  
                           </div>
                     </div>
                 </div>
@@ -92,10 +114,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.toolbox"  type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.useraccess" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.useraccess" > 
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.toolbox" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.useraccess" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.useraccess" > 
                           </div>
                     </div>
                 </div>
@@ -114,10 +140,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.safetyMgtCourses" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyMgtCourses" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyMgtCourses" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyMgtCourses" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyMgtCourses" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyMgtCourses" >
                           </div>
                     </div>
                 </div>
@@ -128,10 +158,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safetyWorkersCourses" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyWorkersCourses" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyWorkersCourses" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyWorkersCourses" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyWorkersCourses" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyWorkersCourses" >
                           </div>
                     </div>
                 </div>
@@ -142,10 +176,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safetyCertificates" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCertificates" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCertificates" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyCertificates" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCertificates" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.safetyCertificates" >
                           </div>
                     </div>
                 </div>
@@ -164,10 +202,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.safetyHealthRules" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyHealthRules" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyHealthRules" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyHealthRules" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyHealthRules" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetyHealthRules" >
                           </div>
                     </div>
                 </div>
@@ -178,10 +220,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safeWorkRisk" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safeWorkRisk" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safeWorkRisk" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safeWorkRisk" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safeWorkRisk" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safeWorkRisk" >
                           </div>
                     </div>
                 </div>
@@ -202,10 +248,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.writtenProgram" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.writtenProgram" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.writtenProgram" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.writtenProgram" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.writtenProgram" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.writtenProgram" >
                           </div>
                     </div>
                 </div>
