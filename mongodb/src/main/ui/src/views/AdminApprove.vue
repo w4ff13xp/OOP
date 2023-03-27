@@ -3,7 +3,7 @@
         <h1 class="text-center my-5">Approve Form</h1>
         <table class="table table-hover table-bordered table-striped text-center">
             <tr><th>Field</th><th>Value</th></tr>
-            <tr><td>Attendance in Safety Meeting</td><td></td></tr>
+            <tr><td>Attendance in Safety Meeting</td><td>{{ attendance }}</td></tr>
             <tr><td>Tool Box Meeting</td><td>5</td></tr>
             <tr><td>Compliance To Rules & Regulation</td><td>5</td></tr>
             <tr><td>Safety Promotional Activities</td><td>5</td></tr>
