@@ -72,7 +72,8 @@
                                         @click="$event=>
                                             pass(
                                                 h.formCode,
-                                                h.formName
+                                                h.formName,
+                                                
                                             )"
                                     >
                                     Delete
@@ -93,7 +94,14 @@
                                     >
                                     Approve/Reject
                                     </button>
-
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
+                                        v-if="h.formCompleted == false"
+                                        @click="email()"
+                                    >
+                                    Send Alert
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -192,8 +200,6 @@ export default{
       delete_error: false,
       user_access: '',
       user_id: '',
-
-    
       forms_chunked: [],
     //   CHANGE THIS IF U WANT TO DISPLAY MORE RESULTS PER PAGE
       results_per_page: 10,
@@ -211,6 +217,15 @@ export default{
         if (this.user_access == "Vendor"){
             for (var f in this.allForms){
                 if (this.allForms[f]["formCode"].includes(this.user_id) ){
+                    temp.push(this.allForms[f]);
+                }
+            }
+        
+            this.allForms = temp
+        }
+        if (this.user_access == "Approver"){
+            for (var f in this.allForms){
+                if (this.allForms[f]["formEvaluated"] == true ){
                     temp.push(this.allForms[f]);
                 }
             }
@@ -283,6 +298,12 @@ export default{
 
     addHealthForms(){
         this.allForms = this.allForms.concat(this.healthForms)
+    },
+
+    email(){
+        
+        window.location.href = `http://localhost:3000/sendMail`
+        // axios post to this link
     },
 
     approve(formid, formname){
@@ -527,6 +548,7 @@ export default{
     pass(formCode, formName){
         this.formCode = formCode;
         this.formName = formName;
+
     },
     
   },

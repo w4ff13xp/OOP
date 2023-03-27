@@ -10,14 +10,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"><v-btn to="/home"  class="mr-2">Home</v-btn></a>
+                    <a class="nav-link active" aria-current="page"><v-btn to="/home"  class="mr-2" v-if="this.$store.state.userIsAuthorized">Home</v-btn></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"><v-btn to="/profile" class="mr-2">Profile</v-btn></a>
+                        <a class="nav-link"><v-btn to="/profile" class="mr-2" v-if="this.$store.state.userIsAuthorized">Profile</v-btn></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><v-btn to="/admin" class="mr-2">Admin</v-btn></a>
+                        <a class="nav-link"><v-btn to="/admin" class="mr-2" v-if="this.user_access == 'Admin'">Admin</v-btn></a>
 
                     </li>
                     
@@ -36,16 +36,28 @@ export default {
     data() {
     return{
         url: require('@/../public/frontend/assets/quantum2.png'),
-
-        clientId: process.env.VUE_APP_AUTH0_CONFIG_DOMAIN
+        clientId: process.env.VUE_APP_AUTH0_CONFIG_DOMAIN,
+        user_access: "",
         }
     },
     methods:{
 
+    async checkStatus(){
+        console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
+        console.log(JSON.parse(localStorage.getItem('specificuser')))
+
+        this.user_access = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
+        console.log(this.user_access)
+    },
+
+    beforeCreate(){
+
+    },
+
     logout(){
       this.$store.dispatch('auth0Logout')
       console.log("loggingout")
-      window.location.href = "http://localhost:3000"
+    //   window.location.href = "http://localhost:3000"
     },
 
     auth0Login(){

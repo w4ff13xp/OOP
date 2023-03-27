@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
+import Logout from '../views/Logout.vue'
 import Store from '../store'
 import Auth0Callback from '../views/Auth0Callback.vue'
 import Home from '../views/Home.vue'
@@ -84,11 +85,11 @@ const routes = [
     name: 'profile',
     component: Profile
   },
-//   {
-//     path: '/login',
-//     name: 'login',
-//     component: Login
-//   },
+  {
+    path: '/login',
+    name: 'logout',
+    component: Logout
+  },
   {
     path: '/auth0callback',
     name: 'auth0callback',
@@ -131,7 +132,7 @@ router.beforeEach((to,from) => {
     else{
       // user is not authenticated
       router.push('login');
-      // router.replace('/login')
+    //   router.replace('/logout')
     }
   }
   else{
