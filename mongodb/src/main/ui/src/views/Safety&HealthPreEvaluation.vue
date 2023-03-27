@@ -268,10 +268,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.safetyEquipment" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyEquipment" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyEquipment" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetyEquipment" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyEquipment" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.safetyEquipment" >
                           </div>
                     </div>
                 </div>
@@ -291,10 +295,14 @@
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input" v-model="state.safetySupervisor" type="radio" name="first" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetySupervisor" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetySupervisor" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.safetySupervisor" type="radio" name="first" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetySupervisor" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="first" v-model="state.safetySupervisor" >
                           </div>
                     </div>
                 </div>
@@ -306,10 +314,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.firstAider" type="radio" name="second" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.firstAider" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.firstAider" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.firstAider" type="radio" name="second" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="second" v-model="state.firstAider" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="second" v-model="state.firstAider" >
                           </div>
                     </div>
                 </div>
@@ -323,10 +335,14 @@
                         <div class="form-check form-check-inline ms-3">
                             <input class="form-check-input" v-model="state.qualified" type="radio" name="third" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.qualified" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.qualified" >
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" v-model="state.qualified" type="radio" name="third" id="inlineRadio2" value="2">
                             <label class="form-check-label" for="inlineRadio2">No</label>
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" class="form-control" name="third" v-model="state.qualified" >        
+                            <input v-else disabled style="width:90%" type="radio" class="form-control" name="third" v-model="state.qualified" >
                           </div>
                     </div>
                 </div>
@@ -346,17 +362,23 @@
                 <div class="mb-3">
                     <label for="InputTempDisabilityCases" class="form-label">Number of Temporary Disability Cases </label>
                     <input type="number" v-model="state.tempDisabilityCases" min="0" class="form-control" id="InputTempDisabilityCases">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="first" placeholder="0" v-model="state.tempDisabilityCases">
+                    <input v-else disabled style="width:75%" type="number" class="form-control" name="first" placeholder="0" v-model="state.tempDisabilityCases">
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputPermDisabilityCases" class="form-label">Number of Permanent Disability Cases</label>
                     <input type="number" v-model="state.permDisabilityCases" min="0" class="form-control" id="InputPermDisabilityCases">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="second" placeholder="0" v-model="state.permDisabilityCases">
+                    <input v-else disabled style="width:75%" type="number" class="form-control" name="second" placeholder="0" v-model="state.permDisabilityCases">
                     
                 </div>
 
                 <div class="mb-3">
                     <label for="InputFatalCases" class="form-label">Number of Fatal Cases</label>
                     <input type="number" v-model="state.fatalCases" min="0" class="form-control" id="InputFatalCases">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="third" placeholder="0" v-model="state.fatalCases">
+                    <input v-else disabled style="width:75%" type="number" class="form-control" name="third" placeholder="0" v-model="state.fatalCases">
                     
                 </div>
                 
@@ -377,11 +399,15 @@
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
                     <input type="date" v-model="state.signedDate" class="form-control" id="InputDate">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="date" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
+                    <input v-else disabled style="width:75%" type="date" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
                     
                 </div>
                 <div class="mb-3">
                     <label for="InputAcknowledgeBy" class="form-label">Acknowledged By</label>
                     <input type="text" v-model="state.acknowledgedBy" class="form-control" id="InputAcknowledgedBy">
+                    <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="text" class="form-control" name="first" placeholder="Acknowledged Name" v-model="state.acknowledgedBy">
+                    <input v-else disabled style="width:75%" type="text" class="form-control" name="first" placeholder="Acknowledged Name" v-model="state.acknowledgedBy">
                     
                 </div>
 
