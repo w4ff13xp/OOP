@@ -639,7 +639,7 @@ name:'Admin',
             var temp_obj = {
                 date: dd,
                 formName:form,
-                status: "Incomplete",
+                status: "incomplete",
                 companyName: vendor_name,
                 formCode:"HE" + id,
             };
@@ -774,7 +774,7 @@ name:'Admin',
             var temp_obj = {
                 date: dd,
                 formName:form,
-                status: "Incomplete",
+                status: "incomplete",
                 companyName: vendor_name,
                 formCode:"VA" + id,
             };
