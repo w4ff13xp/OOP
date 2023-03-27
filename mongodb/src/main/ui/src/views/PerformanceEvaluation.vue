@@ -1,7 +1,8 @@
 <template>
   <div class="container-fluid">
     <!-- <Navigation></Navigation> -->
-    <form v-on:submit.prevent="addToAPI" id="form">
+    <!-- <form v-on:submit.prevent="addToAPI($event)" id="form"> -->
+      <form id="form">
 
     <h2 id="title" class="text-center pt-3">
       SUBCONTRACTOR’S SAFETY & HEALTH PERFORMANCE EVALUATION
@@ -1741,8 +1742,8 @@
 
 
     <div class="text-center m-3">
-      <button type="submit" class="btn btn-warning mx-3" >Save</button>
-      <button type="submit" class="btn btn-success text-white" >Submit</button>
+      <button type="button" @click="addToAPI($event)" value="save" class="btn btn-warning mx-3" >Save</button>
+      <button type="button" @click="addToAPI($event)" value="submit" class="btn btn-success text-white" >Submit</button>
     </div>
     <!-- <Footer></Footer> -->
   </form>
@@ -1811,13 +1812,13 @@ export default {
     };
   },
   methods: {
-    editingornot(){
-      if(localStorage.getItem('edit') == 'yes'){
-        return true
-      }
-      return false
-    },
-    addToAPI() {
+    // editingornot(){
+    //   if(localStorage.getItem('edit') == 'yes'){
+    //     return true
+    //   }
+    //   return false
+    // },
+    addToAPI(e) {
       function toIsoString(date) {
           var tzo = -date.getTimezoneOffset(),
               dif = tzo >= 0 ? '+' : '-',
@@ -1834,7 +1835,6 @@ export default {
               ':' + pad(Math.abs(tzo) % 60);
         }
       var dt = new Date();
-      console.log(this.wshsupervisor)
       let newForm = {
         date: toIsoString(dt),
         formName: "Performance Evaluation Form",
@@ -1888,14 +1888,14 @@ export default {
         directorSignature: this.directorSignature,
         directorApprovalDate: this.directorApprovalDate,
       };
-
+      var buttonValue = e.target.value;
+      console.log(buttonValue)
       var checker = [this.attendance, this.toolBox, this.compliance, this.promotionalActivities, this.submission, this.trainingCourse, this.tradeCourse, this.safetyTalk, this.wshsupervisor, this.otherTraining, this.effort, this.permitToWork, this.frequencyRate, this.safetyOffence, this.safetyRectification, this.cuttingTool, this.ladder, this.liftingGear, this.electricalEquipment, this.otherMachineries, this.commitmentHS, this.ppecompliance, this.siteCleanliness, this.storeCleanliness, this.quarterCleanliness]
-      var editing = localStorage.getItem('edit');
+      // var editing = localStorage.getItem('edit');
       const axios = require('axios');
-      if(editing == "yes"){
+      if(buttonValue == "save"){
         console.log(newForm)
         var formid = localStorage.getItem('formid')
-        
         newForm.formCode = formid
         console.log(newForm)
           axios
@@ -1907,7 +1907,6 @@ export default {
                 window.location.href = "http://localhost:3000/home"
               })
         }else{
-          newForm.formCode = (Math.floor((Math.random() * 100) + 1)).toString()
           var formid = localStorage.getItem('formid')
           newForm.formCode = formid
           for (var item of checker) {
@@ -1920,7 +1919,7 @@ export default {
           alert('successful validation')
           newForm.status = "pendingEvaluation";
           axios
-          .post("http://localhost:8080/healthEvaluation", newForm)
+          .put("http://localhost:8080/healthEvaluation", newForm)
           .then((response) => {
             console.log(response);
             // localStorage.setItem('edit',false);
