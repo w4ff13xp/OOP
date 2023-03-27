@@ -1838,9 +1838,8 @@ export default {
       let newForm = {
         date: toIsoString(dt),
         formName: "Performance Evaluation Form",
-        formCompleted: false,
-        formApproved: false,
-        companyName: "Nike", //need change
+        status: "incomplete",
+        companyName: JSON.parse(localStorage.getItem('specificuser'))['username'], 
 
         attendance: this.attendance,
         toolBox: this.toolBox,
@@ -1919,7 +1918,7 @@ export default {
           }
           console.log(newForm)
           alert('successful validation')
-          newForm.formCompleted = true;
+          newForm.status = "pendingEvaluation";
           axios
           .post("http://localhost:8080/healthEvaluation", newForm)
           .then((response) => {

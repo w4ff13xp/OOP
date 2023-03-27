@@ -71,7 +71,7 @@
                   </p>
                   <div class="form-floating">
                     <p>Please state the reason(s) for rejection.</p>
-                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="rejectionReason"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

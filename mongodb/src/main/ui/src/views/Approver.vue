@@ -99,7 +99,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Desgination</label>
+            <label for="exampleInputEmail1">Designation</label>
             <input
               type="text"
               class="form-control"

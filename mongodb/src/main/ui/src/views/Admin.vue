@@ -639,9 +639,7 @@ name:'Admin',
             var temp_obj = {
                 date: dd,
                 formName:form,
-                formCompleted: false,
-                formApproved: false,
-                formEvaluated: false,
+                status: "Incomplete",
                 companyName: vendor_name,
                 formCode:"HE" + id,
             };
@@ -710,9 +708,7 @@ name:'Admin',
             var temp_obj = {
                 date: dd,
                 formName:form,
-                formCompleted: false,
-                formApproved: false,
-                formEvaluated: false,
+                status: "incomplete",
                 companyName: vendor_name,
                 formCode:"PE" + id,
             };
@@ -778,9 +774,7 @@ name:'Admin',
             var temp_obj = {
                 date: dd,
                 formName:form,
-                formCompleted: false,
-                formApproved: false,
-                formEvaluated: false,
+                status: "Incomplete",
                 companyName: vendor_name,
                 formCode:"VA" + id,
             };
