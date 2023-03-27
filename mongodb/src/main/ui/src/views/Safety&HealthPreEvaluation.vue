@@ -437,9 +437,14 @@
         </div>
 
         
+        <div class="text-center m-3">
+        <button type="button" value="save" class="btn btn-warning mx-3" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Save</button>
+        <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
 
+        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
 
-        <div class="text-center m-3"><button type="submit" @click="submit" class="btn btn-success">Submit</button></div>
+        <button type="button" value="submit" class="btn btn-success text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
+      </div>
         <!-- <Footer></Footer> -->
     </div>
 
