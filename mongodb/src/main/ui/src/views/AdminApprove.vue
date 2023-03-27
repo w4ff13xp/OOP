@@ -3,42 +3,42 @@
         <h1 class="text-center my-5">Approve Form</h1>
         <table class="table table-hover table-bordered table-striped text-center">
             <tr><th>Field</th><th>Value</th></tr>
-            <tr><td>Attendance in Safety Meeting</td><td>5</td></tr>
+            <tr><td>Attendance in Safety Meeting</td><td></td></tr>
             <tr><td>Tool Box Meeting</td><td>5</td></tr>
             <tr><td>Compliance To Rules & Regulation</td><td>5</td></tr>
             <tr><td>Safety Promotional Activities</td><td>5</td></tr>
             <tr><td>Document Submission</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (I): 25</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (I): 5</td></tr>
             
-            <tr><td>Statutory Safety Training Course</td><td>5</td></tr>
-            <tr><td>Safety Trade Course</td><td>5</td></tr>
-            <tr><td>Mass Safety Talk</td><td>5</td></tr>
-            <tr><td>WSH Safety Coordinator/ Supervisor</td><td>5</td></tr>
-            <tr><td>Other Safety Training</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (II): 25</td></tr>
+            <!-- <tr><td>Statutory Safety Training Course</td><td>{{trainingCourse}}</td></tr>
+            <tr><td>Safety Trade Course</td><td>{{tradeCourse}}</td></tr>
+            <tr><td>Mass Safety Talk</td><td>{{safetyTalk}}</td></tr>
+            <tr><td>WSH Safety Coordinator/ Supervisor</td><td>{{wshsupervisor}}</td></tr>
+            <tr><td>Other Safety Training</td><td>{{otherTraining}}</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (II): {{score2}}</td></tr>
 
-            <tr><td>Effort in Accident Prevention</td><td>5</td></tr>
-            <tr><td>Safe Work Practice/ Permit To Work</td><td>5</td></tr>
-            <tr><td>Incident Severity & Frequency Rate</td><td>5</td></tr>
-            <tr><td>Safety Offence</td><td>5</td></tr>
-            <tr><td>Safety Inspection And Rectification</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (III): 25</td></tr>
+            <tr><td>Effort in Accident Prevention</td><td>{{effort}}</td></tr>
+            <tr><td>Safe Work Practice/ Permit To Work</td><td>{{permitToWork}}</td></tr>
+            <tr><td>Incident Severity & Frequency Rate</td><td>{{frequencyRate}}</td></tr>
+            <tr><td>Safety Offence</td><td>{{safetyOffence}}</td></tr>
+            <tr><td>Safety Inspection And Rectification</td><td>{{safetyRectification}}</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (III): {{score3}}</td></tr>
 
-            <tr><td>Explosive Powered Tool/ Cutting Tool</td><td>5</td></tr>
-            <tr><td>Ladder</td><td>5</td></tr>
-            <tr><td>Lifting Gear/ Appliance/ Machine</td><td>5</td></tr>
-            <tr><td>Electrical Equipment/ Compressor</td><td>5</td></tr>
-            <tr><td>Other Machineries</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (IV): 25</td></tr>
+            <tr><td>Explosive Powered Tool/ Cutting Tool</td><td>{{cuttingTool}}</td></tr>
+            <tr><td>Ladder</td><td>{{ladder}}</td></tr>
+            <tr><td>Lifting Gear/ Appliance/ Machine</td><td>{{liftingGear}}</td></tr>
+            <tr><td>Electrical Equipment/ Compressor</td><td>{{electricalEquipment}}</td></tr>
+            <tr><td>Other Machineries</td><td>{{otherMachineries}}</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (IV): {{score4}}</td></tr>
 
-            <tr><td>Subcon Snr Mgt Commitment to HS</td><td>5</td></tr>
-            <tr><td>Compliance with PPE</td><td>5</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Site</td><td>5</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Store</td><td>5</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Quarter</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (V): 25</td></tr>
+            <tr><td>Subcon Snr Mgt Commitment to HS</td><td>{{commitmentHS}}</td></tr>
+            <tr><td>Compliance with PPE</td><td>{{ppecompliance}}</td></tr>
+            <tr><td>Housekeeping & Cleanliness at Site</td><td>{{siteCleanliness}}</td></tr>
+            <tr><td>Housekeeping & Cleanliness at Store</td><td>{{storeCleanliness}}</td></tr>
+            <tr><td>Housekeeping & Cleanliness at Quarter</td><td>{{quarterCleanliness}}</td></tr>
+            <tr><td colspan=2 class="fw-bold">Score (V): {{score5}}</td></tr>
             
-            <tr><td colspan=2><h3>OVERALL SCORE: 100%</h3><h3>Performance Evaluation: Good</h3></td></tr>
+            <tr><td colspan=2><h3>OVERALL SCORE: {{overallScore}}</h3><h3>Performance Evaluation: {{performanceStandard}}</h3></td></tr> -->
         </table>
 
         <div class="my-5 d-flex justify-content-between">
@@ -102,21 +102,7 @@
 
 data() {
 return {
-
-
-}
-},
-methods: {
-  data() {
-    return {
-      // formCode: "formcode1",
-      // formDate: "2023-03-07",
-      // formName: "health evaluation",
-      // formCompleted: false,
-      // formApproved: false,
-      // companyName: "Nike",
-
-      attendance: 0,
+  attendance: 0,
       toolBox: 0,
       compliance: 0,
       promotionalActivities: 0,
@@ -162,8 +148,11 @@ methods: {
       director: "",
       directorSignature: "",
       directorApprovalDate: "",
-    };
-  },
+
+}
+},
+methods: {
+  
     checkFormCode(){
         console.log("FORM CODE")
         console.log(localStorage.getItem('formid'))
@@ -174,41 +163,56 @@ methods: {
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
-            await axios.get(`http://localhost:8080/vendorAssessment/${formid}`)
+            await axios.get(`http://localhost:8080/healthEvaluation/${formid}`)
             .then((response) => {
                 console.log(response.data);
                 var data = response.data
-                this.companyName = data.companyName
-                this.registrationNo =  data.registrationNo
-                this.officeAddress =  data.officeAddress
-                this.getRegistered =  data.getRegistered
-                this.vendorTel =  data.vendorTel
-                this.vendorFax =  data.vendorFax
-          
-                this.businessType =  data.businessType
-                this.contactName =  data.contactName
-                this.contactTel =  data.contactTel
-                this.contactDesignation =  data.contactDesignation
-                this.businessNature =  data.businessNature
-                this.products =  data.products
-          
-                this.iso9001Certification= data.iso9001Certification
-                this.accrediationOfLaboratory= data.accrediationOfLaboratory
-                this.productCertification= data.productCertification
-                this.resultsOfProductEvaluation= data.resultsOfProductEvaluation
-                this.siteEvaluationResults= data.siteEvaluationResults
-                this.resultsOfFirstDeal= data.resultsOfFirstDeal
-                this.trackRecordReview= data.trackRecordReview
+                this.attendance = data.attendance
+                this.toolBox = data.toolBox
+                this.compliance = data.compliance
+                this.promotionalActivities = data.promotionalActivities
+                this.submission = data.submission
+                this.score1 = data.score1
 
-                this.evaluationOthers= data.evaluationOthers
-                this.certificationBody= data.certificationBody
-                this.accrediationBody= data.accrediationBody
-                this.productMarkings= data.productMarkings
-                this.resultOfEvaluation= data.resultOfEvaluation
-          
-                this.evaluatedBy= data.evaluatedBy
-                this.approvedByDirector= data.approvedByDirector
-                this.effectiveDate= data.effectiveDate
+                this.trainingCourse= data.trainingCourse
+                this.tradeCourse= data.tradeCourse
+                this.safetyTalk= data.safetyTalk
+                this.wshsupervisor= data.wshsupervisor
+                this.otherTraining= data.otherTraining
+                this.score2= data.score2
+              console.log(this.wshsupervisor)
+                this.effort= data.effort
+                this.permitToWork= data.permitToWork
+                this.frequencyRate= data.frequencyRate
+                this.safetyOffence= data.safetyOffence
+                this.safetyRectification= data.safetyRectification
+                this.score3= data.score3
+
+                this.cuttingTool= data.cuttingTool
+                this.ladder= data.ladder
+                this.liftingGear= data.liftingGear
+                this.electricalEquipment= data.electricalEquipment
+                this.otherMachineries= data.otherMachineries
+                this.score4= data.score4
+
+                this.commitmentHS= data.commitmentHS
+                this.ppecompliance= data.ppecompliance
+                this.siteCleanliness= data.siteCleanliness
+                this.storeCleanliness= data.storeCleanliness
+                this.quarterCleanliness= data.quarterCleanliness
+                this.score5= data.score5
+
+                this.overallScore=  data.overallScore
+                this.performanceStandard= data.performanceStandard
+                this.comments= data.comments
+
+                this.safetyCoordinator= data.safetyCoordinator
+                this.safetyCoordinatorSignature= data.safetyCoordinatorSignature
+                this.safetyCoordinatorEvaluationDate= data.safetyCoordinatorEvaluationDate
+
+                this.director= data.director
+                this.directorSignature= data.directorSignature
+                this.directorApprovalDate= data.directorApprovalDate
             })
             .catch ((error) => {
                 console.log(error);

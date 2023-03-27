@@ -16,12 +16,16 @@
             <div class="d-flex w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Company Name*</label>
-                <input style="width:90%" type="text" class="form-control" name="first" placeholder="Company's Name" v-model="state.companyName" >        
+                <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="first" placeholder="Company's Name" v-model="state.companyName" >        
+                <input v-else disabled style="width:90%" type="text" class="form-control" name="first" placeholder="Company's Name" v-model="state.companyName" >        
+
                 <span class="text-danger" v-if="v$.companyName.$error">{{ v$.companyName.$errors[0].$message }}</span>
               </div>
               <div class="form-check form-check-inline col-md-6"> 
                 <label class="form-check-label"  for="inlineCompanyName">Company Registration No.*</label>
-                <input style="width:90%" type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
+                <input v-if="this.useraccess == 'Vendor'"  style="width:90%" type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
+                <input v-else disabled style="width:90%" type="number" class="form-control" name="second" placeholder="Company's Registration No." v-model="state.registrationNo" >        
+
                 <span class="text-danger" v-if="v$.registrationNo.$error">{{ v$.registrationNo.$errors[0].$message }}</span>
 
               </div>   
@@ -51,18 +55,23 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Office Address</label>
-                <input style="width:90%" type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
+                <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
+                <input v-else disabled style="width:90%" type="text" class="form-control" name="fourth" placeholder="1234 Main St" v-model="state.officeAddress">        
+
                 <span class="text-danger" v-if="v$.officeAddress.$error">{{ v$.officeAddress.$errors[0].$message }}</span>
               </div>  
               <div class="form-check form-check-inline col-md-3" >
                 <label class="form-check-label" for="inputPhone">Tel</label>
-                <input style="width:75%" type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
+                <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
+                <input v-else disabled style="width:75%" type="number" class="form-control" name="fifth" placeholder="9123 4567" v-model="state.vendorTel">
+                
                 <span class="text-danger" v-if="v$.vendorTel.$error">{{ v$.vendorTel.$errors[0].$message }}</span>
 
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Fax</label>
-                <input style="width:75%" type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
+                <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
+                <input v-else disabled style="width:75%" type="number" class="form-control" name="sixth" placeholder="6123 4567" v-model="state.vendorFax">
                 <span class="text-danger" v-if="v$.vendorFax.$error">{{ v$.vendorFax.$errors[0].$message }}</span>
               </div>
               
@@ -72,7 +81,8 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Types of business License/ Registration</label>
-                <input style="width:90%" type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
+                <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
+                <input v-else disabled style="width:90%" type="text" class="form-control" name="seventh" placeholder="Company's Name" v-model="state.businessType">        
                 <span class="text-danger" v-if="v$.businessType.$error">{{ v$.businessType.$errors[0].$message }}</span>
 
               </div>
@@ -94,19 +104,23 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-6">
                 <label class="form-check-label"  for="inlineCompanyName">Contact Person</label>
-                <input style="width:90%" type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
+                <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
+                <input v-else disabled style="width:90%" type="text" class="form-control" name="ninth" placeholder="Company's Name" v-model="state.contactName">        
                 <span class="text-danger" v-if="v$.contactName.$error">{{ v$.contactName.$errors[0].$message }}</span>
 
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label" for="inputPhone">Tel</label>
-                <input style="width:75%" type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
+                <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
+                <input v-else disabled style="width:75%" type="number" class="form-control" name="tenth" placeholder="6123 4567" v-model="state.contactTel">
+                
                 <span class="text-danger" v-if="v$.contactTel.$error">{{ v$.contactTel.$errors[0].$message }}</span>
 
               </div>
               <div class="form-check form-check-inline col-md-3">
                 <label class="form-check-label"  for="inlineCompanyName">Designation</label>
-                <input style="width:75%" type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
+                <input v-if="this.useraccess == 'Vendor'" style="width:75%" type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
+                <input v-else disabled style="width:75%" type="text" class="form-control" name="eleventh" placeholder="e.g. Manger " v-model="state.contactDesignation">        
                 <span class="text-danger" v-if="v$.contactDesignation.$error">{{ v$.contactDesignation.$errors[0].$message }}</span>
 
               </div>   
@@ -116,7 +130,9 @@
             <div class="d-flex justify-content-between w-100">
               <div class="form-check form-check-inline col-md-12">
                 <label class="form-check-label"  for="product">Product/ Services</label>
-                <input type="text" class="form-control" name="seventh" placeholder="Submit company's profile, brochure on product/service, if available" v-model="state.products">        
+                <input v-if="this.useraccess == 'Vendor'" type="text" class="form-control" name="seventh" placeholder="Submit company's profile, brochure on product/service, if available" v-model="state.products">        
+                <input v-else disabled type="text" class="form-control" name="seventh" placeholder="Submit company's profile, brochure on product/service, if available" v-model="state.products">        
+                
                 <span class="text-danger" v-if="v$.products.$error">{{ v$.products.$errors[0].$message }}</span>
 
               </div>
@@ -257,41 +273,47 @@
         <h4 class="text-center mb-5">PART III: RESULT OF EVALUATION</h4>
         <!-- <form> -->
             <div class="m-3 d-flex">
-                <div class="d-flex justify-content-between w-100">
+                <!-- <div class="d-flex justify-content-between w-100"> -->
                     <div class="form-check form-check-inline ">
-                            <div>
+                            <!-- <div>
                                 <label class="form-check-label"  for="gstRegistered">Approved</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label "  for="inlineRadio1">Yes</label>
-                                <input type="radio" class="form-check-input" name="third" id="inlineRadio1" value="true" v-model="state.resultOfEvaluation">        
+                                <input v-if="this.useraccess == 'Approver'" type="radio" class="form-check-input" name="third" id="inlineRadio1" value="true" v-model="state.resultOfEvaluation">        
+                                <input v-else disabled type="radio" class="form-check-input" name="third" id="inlineRadio1" value="true" v-model="state.resultOfEvaluation">        
+
                             </div>
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label"  for="inlineRadio1">No</label>
-                                <input type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
-                            </div>
+                                <input v-if="this.useraccess == 'Approver'" type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
+                                <input v-else disabled type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
+                            </div> -->
                 <span class="text-danger" v-if="v$.resultOfEvaluation.$error">{{ v$.resultOfEvaluation.$errors[0].$message }}</span>
 
                     </div>  
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Evaluated by</label>
-                        <input type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
+                        <input v-if="this.useraccess == 'Approver'" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
+                        <input v-else disabled type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
                 <span class="text-danger" v-if="v$.evaluatedBy.$error">{{ v$.evaluatedBy.$errors[0].$message }}</span>
 
                     </div>
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Approved by</label>
-                        <input type="text" class="form-control form-check-inline" name="companyaddress" placeholder="evaluator name" v-model="state.approvedByDirector">
+                        <input v-if="this.useraccess == 'Approver'" type="text" class="form-control form-check-inline" name="companyaddress" placeholder="evaluator name" v-model="state.approvedByDirector">
+                        <input v-else disabled type="text" class="form-control form-check-inline" name="companyaddress" placeholder="evaluator name" v-model="state.approvedByDirector">
                 <span class="text-danger" v-if="v$.approvedByDirector.$error">{{ v$.approvedByDirector.$errors[0].$message }}</span>
 
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
             <div class="m-3 d-flex">
                 <div class="d-flex justify-content-between w-100">
                     <div class="form-check form-check-inline ">
                         <label class="form-check-label"  for="inlineCompanyName">Effective Date</label>
-                        <input type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
+                        <input v-if="this.useraccess == 'Approver'" type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
+                        <input v-else disabled type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
                 <span class="text-danger" v-if="v$.effectiveDate.$error">{{ v$.effectiveDate.$errors[0].$message }}</span>
                         
                     </div>
@@ -303,8 +325,12 @@
       </div>
   
       <div class="text-center m-3">
-        <button type="submit" class="btn btn-warning mx-3" >Save</button>
-        <button type="submit" class="btn btn-success text-white" >Submit</button>
+        <button type="submit" class="btn btn-warning mx-3" v-if="this.useraccess == 'Vendor'">Save</button>
+        <button type="submit" class="btn btn-danger mx-3 text-white" v-if="this.useraccess == 'Approver'">Reject</button>
+
+        <button type="submit" class="btn btn-success mx-3 text-white" @click="approve()" v-if="this.useraccess == 'Approver'">Approve</button>
+
+        <button type="submit" class="btn btn-success text-white" v-if="this.useraccess == 'Vendor'">Submit</button>
       </div>
     </form>
       <!-- <Footer></Footer> -->
@@ -322,12 +348,13 @@
         // formDate: "2023-03-07",
         // formName: "vendor assessment",
         // formCompleted: false,
+        useraccess: "",
         formApproved: false,
   
         companyName: "",
         registrationNo: "",
         officeAddress: "",
-        getRegistered: "",
+        getRegistered: false,
         vendorTel: "",
         vendorFax: "",
   
@@ -367,7 +394,7 @@
         companyName: {required},
         registrationNo:  {required},
         officeAddress:  {required},
-        getRegistered:  {required},
+        getRegistered:  false,
         vendorTel:  {required},
         vendorFax: {required},
   
@@ -392,9 +419,9 @@
         productMarkings: "",
         resultOfEvaluation: {required},
   
-        evaluatedBy: {required},
-        approvedByDirector: {required},
-        effectiveDate: {required},
+        evaluatedBy: "",
+        approvedByDirector: "",
+        effectiveDate: "",
         }
       })
       const v$ = useValidate(rules,state)
@@ -405,6 +432,16 @@
     },
     
     methods: {
+      approve(){
+        this.formApproved = true
+        console.log('approveeee')
+      },
+      checkuseraccess(){
+        console.log("useraccess")
+        var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
+        this.useraccess = useraccess
+        console.log(this.useraccess)
+    },
       addToAPI() {
         
         function toIsoString(date) {
@@ -434,7 +471,7 @@
           companyName: this.state.companyName,
           registrationNo: this.state.registrationNo, 
           officeAddress: this.state.officeAddress, 
-          getRegistered: this.state.gstRegistered, 
+          getRegistered: this.state.getRegistered, 
           vendorTel: this.state.vendorTel, 
           vendorFax: this.state.vendorFax, 
           businessType: this.state.businessType, 
@@ -470,8 +507,8 @@
         var editing = localStorage.getItem('edit');
         if(editing == "yes"){
           var formid = localStorage.getItem('formid')
-
           newForm.formCode = formid
+          
           axios
               .put("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
@@ -485,6 +522,7 @@
             var formid = localStorage.getItem('formid')
 
               newForm.formCode = formid
+              console.log(this.formApproved)
               
               alert('successful validation')
               newForm.formCompleted = true;
@@ -495,7 +533,7 @@
                 // localStorage.setItem('edit',false);
                 // localStorage.setItem('form','');
                     alert("form submitted")
-                window.location.href = "http://localhost:3000/home"
+                // window.location.href = "http://localhost:3000/home"
               })
               .catch((error) => {
                 console.log(error);
@@ -521,7 +559,6 @@
                 this.state.getRegistered =  data.getRegistered
                 this.state.vendorTel =  data.vendorTel
                 this.state.vendorFax =  data.vendorFax
-          
                 this.state.businessType =  data.businessType
                 this.state.contactName =  data.contactName
                 this.state.contactTel =  data.contactTel
@@ -555,76 +592,9 @@
         };
       }
     },
-    computed: {
-      computeScoreOne() {
-        this.score1 =
-          parseInt(this.attendance) +
-          parseInt(this.toolBox) +
-          parseInt(this.compliance) +
-          parseInt(this.promotionalActivities) +
-          parseInt(this.submission);
-        return this.score1;
-      },
-      computeScoreTwo() {
-        this.score2 =
-          parseInt(this.trainingCourse) +
-          parseInt(this.tradeCourse) +
-          parseInt(this.safetyTalk) +
-          parseInt(this.WSHSupervisor) +
-          parseInt(this.otherTraining);
-        return this.score2;
-      },
-      computeScoreThree() {
-        this.score3 =
-          parseInt(this.effort) +
-          parseInt(this.permitToWork) +
-          parseInt(this.frequencyRate) +
-          parseInt(this.safetyOffence) +
-          parseInt(this.safetyRectification);
-        return this.score3;
-      },
-      computeScoreFour() {
-        this.score4 =
-          parseInt(this.cuttingTool) +
-          parseInt(this.ladder) +
-          parseInt(this.liftingGear) +
-          parseInt(this.electricalEquipment) +
-          parseInt(this.otherMachineries);
-        return this.score4;
-      },
-      computeScoreFive() {
-        this.score5 =
-          parseInt(this.commitmentHS) +
-          parseInt(this.PPECompliance) +
-          parseInt(this.siteCleanliness) +
-          parseInt(this.storeCleanliness) +
-          parseInt(this.quarterCleanliness);
-        return this.score5;
-      },
-      computeOverallScore() {
-        this.overallScore =
-          (((this.score1 + this.score2 + this.score3 + this.score4 + this.score5) /
-            (25 * 5)) *
-          100).toFixed(2);
-        return this.overallScore;
-      },
-      computePerformanceStandard() {
-        if (this.overallScore <= 39) {
-          this.performanceStandard = "Poor";
-        } else if (this.overallScore <= 49) {
-          this.performanceStandard = "Below Average";
-        } else if (this.overallScore <= 64) {
-          this.performanceStandard = "Average";
-        } else if (this.overallScore <= 84) {
-          this.performanceStandard = "Above Average";
-        } else {
-          this.performanceStandard = "Good";
-        }
-        return this.performanceStandard;
-      },
-    },
     created() {
       this.getEditInputs();
+      this.checkuseraccess();
   },
   };
   </script>
