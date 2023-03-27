@@ -1,7 +1,8 @@
 <template>
     <div class="container-fluid">
       <!-- <form action="http://localhost:8080/home" method="post"> -->
-      <form v-on:submit.prevent="addToAPI" id="form">
+      <!-- <form v-on:submit.prevent="addToAPI" id="form"> -->
+        <form id="form">
 
         
       <!-- <Navigation></Navigation> -->
@@ -325,12 +326,12 @@
       </div>
   
       <div class="text-center m-3">
-        <button type="submit" class="btn btn-warning mx-3" v-if="this.useraccess == 'Vendor'">Save</button>
-        <button type="submit" class="btn btn-danger mx-3 text-white" v-if="this.useraccess == 'Approver'">Reject</button>
+        <button type="button" value="save" class="btn btn-warning mx-3" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Save</button>
+        <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
 
-        <button type="submit" class="btn btn-success mx-3 text-white" @click="approve()" v-if="this.useraccess == 'Approver'">Approve</button>
+        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
 
-        <button type="submit" class="btn btn-success text-white" v-if="this.useraccess == 'Vendor'">Submit</button>
+        <button type="button" value="submit" class="btn btn-success text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
       </div>
     </form>
       <!-- <Footer></Footer> -->
@@ -348,8 +349,9 @@
         // formDate: "2023-03-07",
         // formName: "vendor assessment",
         // formCompleted: false,
+        // status: "",
         useraccess: "",
-        formApproved: false,
+        // formApproved: false,
   
         companyName: "",
         registrationNo: "",
@@ -389,8 +391,8 @@
         // formDate: "2023-03-07",
         // formName: "vendor assessment",
         // formCompleted: false,
-        formApproved: false,
-
+        // formApproved: false,
+        // status: "",
         companyName: {required},
         registrationNo:  {required},
         officeAddress:  {required},
@@ -432,17 +434,17 @@
     },
     
     methods: {
-      approve(){
-        this.formApproved = true
-        console.log('approveeee')
-      },
+      // approve(){
+      //   this.status = "approve"
+      //   console.log('approveeee')
+      // },
       checkuseraccess(){
         console.log("useraccess")
         var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
         this.useraccess = useraccess
         console.log(this.useraccess)
     },
-      addToAPI() {
+      addToAPI(e) {
         
         function toIsoString(date) {
           var tzo = -date.getTimezoneOffset(),
@@ -465,8 +467,8 @@
           // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
           formDate: toIsoString(dt),
           formName: "Vendor Assessment Form",
-          formCompleted: false,
-          formApproved: this.state.formApproved,
+          // formCompleted: false,
+          // formApproved: this.state.formApproved,
 
           companyName: this.state.companyName,
           registrationNo: this.state.registrationNo, 
@@ -501,37 +503,39 @@
           effectiveDate: this.state.effectiveDate,
      
         };
+        var buttonValue = e.target.value;
+
         const axios = require("axios");
         this.v$.$validate()
-        localStorage.setItem('edit','no') //////////////
-        var editing = localStorage.getItem('edit');
-        if(editing == "yes"){
-          var formid = localStorage.getItem('formid')
-          newForm.formCode = formid
-          
+        var formid = localStorage.getItem('formid')
+        newForm.formCode = formid
+        if(buttonValue != "submit"){
+          if(buttonValue == "save"){
+            newForm.status = "incomplete";
+          }
+          else if(buttonValue == "approve"){
+            newForm.status = "approved";
+          }
+          else if(buttonValue == "reject"){
+            newForm.status = "approverRejected";
+          }
           axios
               .put("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
-                // localStorage.setItem('edit',false);
-                    alert("form saved")
+                    alert(`form ${buttonValue}`)
                 window.location.href = "http://localhost:3000/home"
               })
-        }else{
+            }
+        else{
           if(!this.v$.$error){
-            var formid = localStorage.getItem('formid')
-
-              newForm.formCode = formid
+              newForm.status = "pendingEvaluation";
               console.log(this.formApproved)
-              
               alert('successful validation')
-              newForm.formCompleted = true;
               axios
               .put("http://localhost:8080/vendorAssessment", newForm)
               .then((response) => {
                 console.log(response);
-                // localStorage.setItem('edit',false);
-                // localStorage.setItem('form','');
                     alert("form submitted")
                 // window.location.href = "http://localhost:3000/home"
               })
@@ -541,7 +545,6 @@
           }else{
               alert('form failed')
           }
-          localStorage.removeItem('edit')
         }
       },
       async getEditInputs(){
