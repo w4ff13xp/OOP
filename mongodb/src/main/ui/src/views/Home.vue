@@ -314,10 +314,10 @@ export default{
         if(formname == "Vendor Assessment Form"){
             var redirect = "newvendorform"
         }else if(formname == "Performance Evaluation Form"){
-            var redirect = "performanceevaluation"
-            console.log(redirect)
-        }else if(formname == "Health Evaluation Form"){
             var redirect = "adminapprove"
+            console.log(redirect)
+        }else if(formname == "Pre Evaluation Form"){
+            var redirect = "Safety&HealthPreEvaluation"
             console.log(redirect)
         }
         window.location.href = `http://localhost:3000/${redirect}`
@@ -334,7 +334,7 @@ export default{
         }else if(formname == "Pre Evaluation Form"){
             var redirect = "Safety&HealthPreEvaluation"
             console.log(redirect)
-        }else if(formname == "Health Evaluation Form"){
+        }else if(formname == "Performance Evaluation Form"){
             var redirect = "performanceevaluation"
             console.log(redirect)
         }
