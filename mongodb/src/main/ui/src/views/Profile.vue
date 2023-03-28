@@ -1,5 +1,13 @@
 <template>
     <div class="container-fluid">
+        <!-- ALERTS -->
+        <div v-if="edit_success" class="alert alert-primary" role="alert">
+        EDIT SUCCESSFUL: Account was successfully updated!
+        </div>
+        <div v-if="edit_error" class="alert alert-danger" role="alert">
+            EDIT ERROR: Account was not successfully updated!
+        </div>
+
       <div
         class="mt-4 page-header min-height-300 border-radius-xl"
 
@@ -37,8 +45,8 @@
           <div class="col-auto">
             Locations:
             <ul>
-              <li v-for="loc in locations">
-              {{ loc }}</li>
+              <li v-for="l in loc">
+              {{ l }}</li>
             </ul>
           </div>
         </div>
@@ -95,12 +103,14 @@
 
                         <div class="input-group mb-3">
                             <p style="padding-right: 45px;">Location: </p>
-                            <select id="updated_loc" v-model="locations" style="border: 1px black solid; border-radius: 5px; padding: 5px;" multiple>
+                            <select id="updated_loc" v-model="loc" style="border: 1px black solid; border-radius: 5px; padding: 5px;" multiple>
                             <option value="Singapore">Singapore</option>
                             <option value="Malaysia">Malaysia</option>
                             <option value="USA">USA</option>
                             </select>
                         </div>
+                        <input type="hidden" id="loc" :value="loc"/>
+
 
                     </div>
                     <div class="modal-footer">
@@ -139,19 +149,23 @@
         email: "",
         username: "",
         accessRights: "",
-        locations: []
+        loc: [],
+        edit_success: false,
+        edit_error: false,
       }
     },
     methods: {
       updateVendors() {
         const axios = require('axios');
+        let loc = document.getElementById('loc').value;
+
         var vendor_obj = {
                 id: JSON.parse(localStorage.getItem('specificuser'))['id'],
                 email: JSON.parse(localStorage.getItem('specificuser'))['email'],
                 username: document.getElementById('updated_username').value,
                 password: JSON.parse(localStorage.getItem('specificuser'))['password'],
                 accessRights: document.getElementById('updated_access_rights').value,
-                locations: document.getElementById('updated_loc').value,
+                locations: JSON.parse(JSON.stringify(this.loc)),
                 forms: JSON.parse(localStorage.getItem('specificuser'))['forms'],
             };
 
@@ -160,22 +174,35 @@
             axios.put('http://localhost:8080/users', vendor_obj)
             .then((response) => {
             console.log(response.data);
-            location.reload();      
+            localStorage.setItem(('specificuser'),JSON.stringify(vendor_obj));
+            location.reload(); 
+            this.edit_success = true;
             })
             .catch ((error) => {
             console.log(error);
+            this.edit_error = true;
             })
+          },
+
+          async getUserInfo(){
+            console.log("GETTING USER INFO")
+            console.log(JSON.parse(localStorage.getItem('specificuser')))
+            this.accessRights = JSON.parse(localStorage.getItem('specificuser'))['accessRights'];
+            this.username = JSON.parse(localStorage.getItem('specificuser'))['username'];
+            this.email = JSON.parse(localStorage.getItem('specificuser'))['email'];
+            this.loc = (JSON.parse(localStorage.getItem('specificuser')))['locations'];
+            console.log('LOC')
+            console.log(this.loc)
           }
+          
     },
 
-    mounted() {
-      console.log(JSON.parse(localStorage.getItem('specificuser')))
-      this.accessRights = JSON.parse(localStorage.getItem('specificuser'))['accessRights'];
-      this.username = JSON.parse(localStorage.getItem('specificuser'))['username'];
-      this.email = JSON.parse(localStorage.getItem('specificuser'))['email'];
-      this.locations = JSON.parse(localStorage.getItem('specificuser'))['locations'];
+    created() {
+      this.getUserInfo();
+  },
 
-    }
+   
+
   }
   </script>
   

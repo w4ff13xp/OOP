@@ -596,7 +596,7 @@ name:'Admin',
         let e = this.vendorEmail;
         let p = document.getElementById('pwd').value;
         let loc = document.getElementById('loc').value;
-        console.log("LOC", loc)
+        // console.log("LOC", loc)
 
         var vendor_obj = {
             id: vid,
