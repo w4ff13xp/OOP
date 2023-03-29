@@ -364,7 +364,7 @@ methods: {
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
-            toUpdate = {
+            var toUpdate = {
                 formCode: formid,
                 rejectionReason: this.rejectionReason,
                 status: "pendingApproval"
