@@ -2,46 +2,6 @@
     <div class="container">
         <h1 class="text-center my-5">Approve Form</h1>
         <div>
-        <!-- <table class="table table-hover table-bordered table-striped text-center" style="width: 1000px;">
-            <tr><th>Field</th><th>Value</th></tr>
-            <tr><td>Attendance in Safety Meeting</td><td>{{ attendance }}</td></tr>
-            <tr><td>Tool Box Meeting</td><td>5</td></tr>
-            <tr><td>Compliance To Rules & Regulation</td><td>5</td></tr>
-            <tr><td>Safety Promotional Activities</td><td>5</td></tr>
-            <tr><td>Document Submission</td><td>5</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (I): 5</td></tr> -->
-
-            
-            <!-- <tr><td>Statutory Safety Training Course</td><td>{{trainingCourse}}</td></tr>
-            <tr><td>Safety Trade Course</td><td>{{tradeCourse}}</td></tr>
-            <tr><td>Mass Safety Talk</td><td>{{safetyTalk}}</td></tr>
-            <tr><td>WSH Safety Coordinator/ Supervisor</td><td>{{wshsupervisor}}</td></tr>
-            <tr><td>Other Safety Training</td><td>{{otherTraining}}</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (II): {{score2}}</td></tr>
-
-            <tr><td>Effort in Accident Prevention</td><td>{{effort}}</td></tr>
-            <tr><td>Safe Work Practice/ Permit To Work</td><td>{{permitToWork}}</td></tr>
-            <tr><td>Incident Severity & Frequency Rate</td><td>{{frequencyRate}}</td></tr>
-            <tr><td>Safety Offence</td><td>{{safetyOffence}}</td></tr>
-            <tr><td>Safety Inspection And Rectification</td><td>{{safetyRectification}}</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (III): {{score3}}</td></tr>
-
-            <tr><td>Explosive Powered Tool/ Cutting Tool</td><td>{{cuttingTool}}</td></tr>
-            <tr><td>Ladder</td><td>{{ladder}}</td></tr>
-            <tr><td>Lifting Gear/ Appliance/ Machine</td><td>{{liftingGear}}</td></tr>
-            <tr><td>Electrical Equipment/ Compressor</td><td>{{electricalEquipment}}</td></tr>
-            <tr><td>Other Machineries</td><td>{{otherMachineries}}</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (IV): {{score4}}</td></tr>
-
-            <tr><td>Subcon Snr Mgt Commitment to HS</td><td>{{commitmentHS}}</td></tr>
-            <tr><td>Compliance with PPE</td><td>{{ppecompliance}}</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Site</td><td>{{siteCleanliness}}</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Store</td><td>{{storeCleanliness}}</td></tr>
-            <tr><td>Housekeeping & Cleanliness at Quarter</td><td>{{quarterCleanliness}}</td></tr>
-            <tr><td colspan=2 class="fw-bold">Score (V): {{score5}}</td></tr>
-            
-            <tr><td colspan=2><h3>OVERALL SCORE: {{overallScore}}</h3><h3>Performance Evaluation: {{performanceStandard}}</h3></td></tr> -->
-            <!-- </table> -->
             <table class="table table-hover table-bordered table-striped text-center">
             <thead>
                 <tr><th>Field</th><th>Value</th></tr></thead>
@@ -168,11 +128,26 @@
                 <h3>Performance Evaluation: {{ performanceStandard }}</h3>
             </td>
             </tr>
+            
+            <tr><td colspan="2">Additional Comments: {{ comments }}</td></tr>
         </tbody>
         </table>
 
-            </div>
-        
+        </div>
+        <!-- ALERTS -->
+        <div v-if="approve_success" class="alert alert-primary" role="alert">
+            APPROVE SUCCESSFUL: Form was successfully approved!
+        </div>
+        <div v-if="approve_error" class="alert alert-danger" role="alert">
+            APPROVE ERROR: Form was not successfully approved!
+        </div>
+        <div v-if="reject_success" class="alert alert-primary" role="alert">
+            REJECT SUCCESSFUL: Form was successfully rejected!
+        </div>
+        <div v-if="reject_error" class="alert alert-danger" role="alert">
+            APPROVE ERROR: Form was not successfully rejected!
+        </div>
+        <!-- END ALERTS -->
 
         <div class="my-5 d-flex justify-content-between">
             <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
@@ -236,55 +211,59 @@
 
 data() {
 return {
-  attendance: 0,
-      toolBox: 0,
-      compliance: 0,
-      promotionalActivities: 0,
-      submission: 0,
-      score1: 0,
+    approve_success: false,
+    approve_error: false,
+    reject_success: false,
+    reject_error: false,
+    attendance: 0,
+    toolBox: 0,
+    compliance: 0,
+    promotionalActivities: 0,
+    submission: 0,
+    score1: 0,
 
-      trainingCourse: 0,
-      tradeCourse: 0,
-      safetyTalk: 0,
-      wshsupervisor: 0,
-      otherTraining: 0,
-      score2: 0,
+    trainingCourse: 0,
+    tradeCourse: 0,
+    safetyTalk: 0,
+    wshsupervisor: 0,
+    otherTraining: 0,
+    score2: 0,
 
-      effort: 0,
-      permitToWork: 0,
-      frequencyRate: 0,
-      safetyOffence: 0,
-      safetyRectification: 0,
-      score3: 0,
+    effort: 0,
+    permitToWork: 0,
+    frequencyRate: 0,
+    safetyOffence: 0,
+    safetyRectification: 0,
+    score3: 0,
 
-      cuttingTool: 0,
-      ladder: 0,
-      liftingGear: 0,
-      electricalEquipment: 0,
-      otherMachineries: 0,
-      score4: 0,
+    cuttingTool: 0,
+    ladder: 0,
+    liftingGear: 0,
+    electricalEquipment: 0,
+    otherMachineries: 0,
+    score4: 0,
 
-      commitmentHS: 0,
-      ppecompliance: 0,
-      siteCleanliness: 0,
-      storeCleanliness: 0,
-      quarterCleanliness: 0,
-      score5: 0,
+    commitmentHS: 0,
+    ppecompliance: 0,
+    siteCleanliness: 0,
+    storeCleanliness: 0,
+    quarterCleanliness: 0,
+    score5: 0,
 
-      overallScore: 0,
-      performanceStandard: "",
-      comments: "",
+    overallScore: 0,
+    performanceStandard: "",
+    comments: "",
 
-      safetyCoordinator: "",
-      safetyCoordinatorSignature: "",
-      safetyCoordinatorEvaluationDate: "",
+    safetyCoordinator: "",
+    safetyCoordinatorSignature: "",
+    safetyCoordinatorEvaluationDate: "",
 
-      director: "",
-      directorSignature: "",
-      directorApprovalDate: "",
+    director: "",
+    directorSignature: "",
+    directorApprovalDate: "",
 
-      rejectionReason: "",
-      status: "",
+    rejectionReason: "",
+    status: "",
 
 }
 },
@@ -374,11 +353,14 @@ methods: {
             }
             axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-                alert("Update success")
+                // alert("Update success")
                 console.log(response.data)
+                this.approve_success = true;
+                window.location.href = "http://localhost:3000/home"
             })
             .catch ((error) => {
-                alert("Error")
+                // alert("Error")
+                this.approve_error = true;
                 console.log(error)
             })
         }
@@ -393,11 +375,14 @@ methods: {
             }
             axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-                alert("Update success")
+                // alert("Update success")
                 console.log(response.data)
+                this.approve_success = true;
+                window.location.href = "http://localhost:3000/home"
             })
             .catch ((error) => {
-                alert("Error")
+                // alert("Error")
+                this.approve_error = true;
                 console.log(error)
             })
         }
@@ -416,11 +401,14 @@ methods: {
             }
             axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-                alert("Reject success")
+                // alert("Reject success")
                 console.log(response.data)
+                this.reject_success = true;
+                window.location.href = "http://localhost:3000/home"
             })
             .catch ((error) => {
-                alert("Error")
+                // alert("Error")
+                this.reject_error = true;
                 console.log(error)
             })
         }
@@ -437,12 +425,15 @@ methods: {
             }
             axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-                alert("Reject success")
+                // alert("Reject success")
                 console.log(response.data)
+                this.reject_success = true;
+                window.location.href = "http://localhost:3000/home"
             })
             .catch ((error) => {
-                alert("Error")
+                // alert("Error")
                 console.log(error)
+                this.reject_error = true;
             })
         }
       }

@@ -67,23 +67,7 @@
                                     </button>
                                     <button
                                         type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-if="this.user_access == 'Admin'"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal"
-                                        @click="$event=>
-                                            pass(
-                                                h.formCode,
-                                                h.formName,
-                                                
-                                            )"
-                                    >
-                                    Delete
-                                    </button>
-                                    <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
-                                    <button
-                                        type="button"
-                                        class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
+                                        class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Admin' && h.status =='pendingEvaluation'"
                                         @click="approve(h.formCode, h.formName)"
                                     >
@@ -104,6 +88,21 @@
                                         @click="email(h.formCode, h.companyName, h.formName, h.date)"
                                     >
                                     Send Alert
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Admin'"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        @click="$event=>
+                                            pass(
+                                                h.formCode,
+                                                h.formName,
+                                                
+                                            )"
+                                    >
+                                    Delete
                                     </button>
                                 </div>
                             </td>
