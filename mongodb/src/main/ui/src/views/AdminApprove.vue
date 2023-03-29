@@ -365,12 +365,12 @@ methods: {
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
-            toUpdate = {
+            var toUpdate = {
                 formCode: formid,
                 rejectionReason: this.rejectionReason,
                 status: "pendingApproval"
             }
-            axios.put(`http://localhost:8080/healthEvaluation`, toUpdate)
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 alert("Update success")
                 console.log(response.data)
@@ -389,7 +389,7 @@ methods: {
                 rejectionReason: this.rejectionReason,
                 status: "adminRejected"
             }
-            axios.put(`http://localhost:8080/healthEvaluation`, toUpdate)
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 alert("Reject success")
                 console.log(response.data)
