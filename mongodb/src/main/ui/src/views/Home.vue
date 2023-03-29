@@ -10,55 +10,70 @@
         <div class="mb-4">
           <div class="h4 pb-2 my-4 border-bottom text-center">Forms</div>
             <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" id="homeTable">
                     <thead>
                         <tr>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Vendor
+                            <th class="col-2 text-uppercase text-xs text-blue font-weight-bolder opacity-7 " @click="sortTable(0)">
+                                Vendor 
                             </th>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
+                            <!-- <th class="col-5 text-uppercase text-xs text-blue font-weight-bolder opacity-7" @click="sortTable(1)">
                                 Form ID
-                            </th>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            </th> -->
+                            <th class="col-2 text-uppercase text-xs text-blue font-weight-bolder opacity-7 " @click="sortTable(2)">
                                 Form Name
                             </th>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Date
+                            <th class="col-2 text-uppercase text-xs font-weight-bolder opacity-7 ps-2" @click="sortTable(3)">
+                                Deadline
                             </th>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                            <th class="col-2 text-uppercase text-xs text-green font-weight-bolder opacity-7" @click="sortTable(4)">
                                 Status
                             </th>
 
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Change
+                            <th class="col-2 text-uppercase text-xs text-green font-weight-bolder opacity-7" >
+                                Actions
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="h in forms_chunked[current_page]" >
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                            <td class="text-sm text-wrap fs-6 col-2 px-2">
                                     {{ h.companyName }}
                             </td>
-                            <td class="px-4 col-5">
+                            <!-- <td class="px-4 col-5">
                                 <div class="text-sm text-wrap">
                                     {{ h.formCode }}
                                 </div>
-                            </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                            </td> -->
+                            <td class="text-sm text-wrap fs-6 col-2 px-2">
                                     {{ h.formName }}
                             </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ h.date }}
+                            <td class="text-sm text-wrap fs-6 col-2 px-2">
+                                    {{getFormattedDate(h.date)  }}
                             </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ h.status}}
+                            <td class="text-sm text-wrap fs-6 col-2">
+                                <span v-html="getStatus(h.status)"></span>
                             </td>
 
-                            <td class="text-start px-3 col">
-                                <div class="mx-auto mt-2">
+                            <td class="text-sm text-wrap fs-6 col-2" >
+                                <div class="mx-auto mt-2">  
                                     <button
                                         type="button"
-                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
+                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Admin'"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        @click="$event=>
+                                            pass(
+                                                h.formCode,
+                                                h.formName,
+                                                
+                                            )"
+                                    >
+                                    Delete
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-sm font-xxs  text-white"
                                         v-if="this.user_access == 'Vendor'"
                                         v-on:click="editV(h.formCode, h.formName)"    
 
@@ -89,21 +104,7 @@
                                     >
                                     Send Alert
                                     </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-if="this.user_access == 'Admin'"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal"
-                                        @click="$event=>
-                                            pass(
-                                                h.formCode,
-                                                h.formName,
-                                                
-                                            )"
-                                    >
-                                    Delete
-                                    </button>
+
                                 </div>
                             </td>
                         </tr>
@@ -183,7 +184,7 @@
 </template>
 
 <script>
-
+import moment from 'moment';
 
 export default{
     name:'Home',
@@ -213,6 +214,85 @@ export default{
     }
   },
   methods: {
+    getStatus(status){
+        if (status == "incomplete"){
+            return "Incomplete!"
+        }
+        if (status == "pendingEvaluation"){
+            return '<span style="color:orange">Pending Admin Evaluation!</span>'
+        }
+        if (status == "adminRejected"){
+            return '<span style="color:red">Admin Rejected!</span>'
+        }
+        if (status == "pendingApproval"){
+            return '<span style="color:orange">Pending Approval!</span>'
+        }
+        if (status == "approvalRejected"){
+            return '<span style="color:red">Approval Rejected!</span>'
+        }
+        if (status == "approved"){
+            return '<span style="color:green">Approved!</span>'
+        }
+    },
+
+    getFormattedDate(date) {
+            return moment(date).format("DD-MM-YYYY")
+        },
+
+     sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("homeTable");
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "asc";
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+            one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /* Check if the two rows should switch place,
+            based on the direction, asc or desc: */
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+            }
+            }
+            if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount ++;
+            } else {
+            /* If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again. */
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+            }
+        }
+        },
     setPagination() {
 
         let temp = [];

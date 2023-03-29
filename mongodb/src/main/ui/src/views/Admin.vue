@@ -503,8 +503,8 @@ name:'Admin',
         currentDate.setDate(currentDate.getDate() + 14);
 
         // The new date is now 7 days ahead of the current date
-        console.log(currentDate);
-        const formattedDate = currentDate.toLocaleDateString('en-GB');
+        console.log("CURRDATE",currentDate);
+        const formattedDate = currentDate.toLocaleDateString('en-US');
         this.dateIn = currentDate;
         this.duedate = formattedDate;
     },
@@ -629,12 +629,10 @@ name:'Admin',
         let vendor_name = document.getElementById('updated_vendor_name').value;
         let id = document.getElementById('vendor_id').value;
         let dd = new Date(document.getElementById('due_date').value)
-
+        console.log("DUEDATE",dd)
 
         // HEALTH EVAL FORM
         if (form == 'Performance Evaluation Form'){
-
-
 
             var temp_obj = {
                 date: dd,
