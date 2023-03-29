@@ -81,7 +81,7 @@
     </div>
 
     <div class="row bg-light m-5 rounded p-3">
-      <h2 class="text-center p-3">Forms To Be Approved </h2>
+      <h2 class="text-center p-3">Pending Approval </h2>
       <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -159,7 +159,7 @@
 
 
     <div class="row bg-light m-5 rounded p-3">
-      <h2 class="text-center p-3">Forms Approved </h2>
+      <h2 class="text-center p-3">Approved Forms </h2>
       <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
