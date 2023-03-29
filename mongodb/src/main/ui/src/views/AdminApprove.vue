@@ -176,7 +176,7 @@
 
         <div class="my-5 d-flex justify-content-between">
             <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
-            <button type="button" class="btn btn-primary text-white">Approve</button>
+            <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus">Approve</button>
         </div>
 
         <div
@@ -204,7 +204,7 @@
                   </p>
                   <div class="form-floating">
                     <p>Please state the reason(s) for rejection.</p>
-                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="rejectionReason"></textarea>
+                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="rejectionReason" v-model="rejectionReason"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -282,6 +282,9 @@ return {
       directorSignature: "",
       directorApprovalDate: "",
 
+      rejectionReason: "",
+      status: "",
+
 }
 },
 methods: {
@@ -346,6 +349,9 @@ methods: {
                 this.director= data.director
                 this.directorSignature= data.directorSignature
                 this.directorApprovalDate= data.directorApprovalDate
+
+                this.status = data.status
+                this.rejectionReason = data.rejectionReason
             })
             .catch ((error) => {
                 console.log(error);
@@ -353,6 +359,25 @@ methods: {
         } catch (error) {
             console.log(error);
         };
+      },
+      changeApproveStatus() {
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "pendingApproval"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation`, toUpdate)
+            .then((response) => {
+                alert("Update success")
+                console.log(response.data)
+            })
+            .catch ((error) => {
+                alert("Error")
+                console.log(error)
+            })
       }
 
 },
