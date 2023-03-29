@@ -74,12 +74,15 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs  text-white"
-                                        v-if="this.user_access == 'Vendor'"
+                                        v-if="this.user_access == 'Vendor' && (h.status != 'approved' && h.status != 'pendingApproval') "
                                         v-on:click="editV(h.formCode, h.formName)"    
 
                                     >
                                     Edit
                                     </button>
+                                    <p v-if="this.user_access == 'Vendor' && (h.status == 'approved' || h.status == 'pendingApproval')">
+                                        No available actions!
+                                    </p>
                                     <button
                                         type="button"
                                         class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
@@ -227,7 +230,7 @@ export default{
         if (status == "pendingApproval"){
             return '<span style="color:orange">Pending Approval!</span>'
         }
-        if (status == "approvalRejected"){
+        if (status == "approverRejected"){
             return '<span style="color:red">Approval Rejected!</span>'
         }
         if (status == "approved"){
