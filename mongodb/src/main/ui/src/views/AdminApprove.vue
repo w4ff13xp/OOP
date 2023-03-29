@@ -219,6 +219,7 @@
                     type="button"
                     class="btn bg-gradient-custom btn-danger text-white"
                     data-bs-dismiss="modal"
+                    @click="reject"
                   > <!--put @click here-->
                     Reject
                   </button>
@@ -372,6 +373,25 @@ methods: {
             axios.put(`http://localhost:8080/healthEvaluation`, toUpdate)
             .then((response) => {
                 alert("Update success")
+                console.log(response.data)
+            })
+            .catch ((error) => {
+                alert("Error")
+                console.log(error)
+            })
+      },
+      reject() {
+        const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "adminRejected"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation`, toUpdate)
+            .then((response) => {
+                alert("Reject success")
                 console.log(response.data)
             })
             .catch ((error) => {
