@@ -31,7 +31,7 @@
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
                     <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
-                    <input v-else disabled style="width:90%" type="text" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
+                    <input v-else disabled style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
           
                 </div>
 
@@ -424,6 +424,7 @@
 import useValidate from '@vuelidate/core'
 import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
+import moment from "moment";
 export default {
   setup(){
     const state =reactive({
@@ -548,14 +549,17 @@ export default {
           const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
           console.log("check if its empty:"+isEmpty);
           console.log("The Image File"+data);
+          var email = JSON.parse(localStorage.getItem('specificuser'))['email']
+          var fcode = "PE"+ email;
 
             //prepare the json to be sent in
-            let preEval = {formCode:"PEmarcleo97@hotmail.com",
+            let preEval = {formCode: fcode,
             subContractorName:this.state.subcontractorName,
             scopeOfWork: this.state.scopeOfWork, 
             evaluator:this.state.evaluatedBy,
             date: this.state.todayDate,
-            formName: "SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION",
+            formName: "Pre Evaluation Form",
+            status: "pendingEvaluation",
             safetyHealthPolicy:Boolean(this.state.shpolicy),
             properDelegation:Boolean(this.state.safetyOrganisation),
             safetyCommitment:Boolean(this.state.safetyCommit),
@@ -573,7 +577,7 @@ export default {
             temporaryDisabilityCases:this.state.tempDisabilityCases,
             permanentDisabilityCases:this.state.permDisabilityCases,
             fatalCases:this.state.fatalCases,
-            acknowledgementDate:this.state.signedDate,
+            effectiveDate:this.state.signedDate,
             signature: data,
             acknowledgedBy:this.state.acknowledgedBy}
             console.log(preEval)
@@ -627,7 +631,7 @@ export default {
             temporaryDisabilityCases:this.state.tempDisabilityCases,
             permanentDisabilityCases:this.state.permDisabilityCases,
             fatalCases:this.state.fatalCases,
-            acknowledgementDate:this.state.signedDate,
+            effectiveDate:this.state.signedDate,
             signature: data,
             acknowledgedBy:this.state.acknowledgedBy}
 
@@ -683,7 +687,7 @@ export default {
                 this.state.subcontractorName = data.subContractorName
                 this.state.scopeOfWork = data.scopeOfWork
                 this.state.evaluatedBy = data.evaluator
-                this.state.todayDate = data.date
+                this.state.todayDate = moment(data.date).utc().format('YYYY-MM-DD')
                 if(data.safetyHealthPolicy){
                   this.state.shpolicy = "1"
                 }
@@ -785,7 +789,7 @@ export default {
                 this.state.tempDisabilityCases = data.temporaryDisabilityCases
                 this.state.permDisabilityCases = data.permanentDisabilityCases
                 this.state.fatalCases = data.fatalCases
-                this.state.signedDate = data.acknowledgementDate
+                this.state.signedDate = moment(data.effectiveDate).utc().format('YYYY-MM-DD')
                 var signdata = data.signature
                 this.state.acknowledgedBy= data.acknowledgedBy
                 //input the signature back into the signature pad
