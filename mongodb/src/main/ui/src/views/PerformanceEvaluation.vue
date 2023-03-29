@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid">
+
     <!-- <Navigation></Navigation> -->
     <!-- <form v-on:submit.prevent="addToAPI($event)" id="form"> -->
       <form id="form">
@@ -1747,6 +1748,13 @@
     </div>
     <!-- <Footer></Footer> -->
   </form>
+          <!-- ALERTS -->
+          <div v-if="submit_success" class="alert alert-primary" role="alert">
+            SUBMIT SUCCESSFUL: Form was successfully submitted!
+        </div>
+        <div v-if="submit_error" class="alert alert-danger" role="alert">
+            SUBMIT ERROR: Form was not successfully submitted!
+        </div>
 
   </div>
 </template>
@@ -1809,6 +1817,9 @@ export default {
       director: "",
       directorSignature: "",
       directorApprovalDate: "",
+
+      submit_success: false,
+      submit_error: false,
     };
   },
   methods: {
@@ -1916,7 +1927,7 @@ export default {
             }
           }
           console.log(newForm)
-          alert('successful validation')
+        //   alert('successful validation')
           newForm.status = "pendingEvaluation";
           axios
           .put("http://localhost:8080/healthEvaluation", newForm)
@@ -1924,15 +1935,18 @@ export default {
             console.log(response);
             // localStorage.setItem('edit',false);
             // localStorage.setItem('form','');
-                alert("form submitted")
+                // alert("form submitted")
+             this.submit_success = true;
+
             window.location.href = "http://localhost:3000/home"
           })
           .catch((error) => {
-            alert('form failed')
+            // alert('form failed')
+            this.submit_error = true;
             console.log(error);
           });
           
-          localStorage.clear();
+        //   localStorage.clear();
         }
       
     },

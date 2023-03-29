@@ -438,7 +438,7 @@
       //   this.status = "approve"
       //   console.log('approveeee')
       // },
-      checkuseraccess(){
+      async checkuseraccess(){
         console.log("useraccess")
         var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
         this.useraccess = useraccess

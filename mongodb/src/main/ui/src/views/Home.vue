@@ -13,6 +13,9 @@
                 <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
+                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
+                                Vendor
+                            </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7">
                                 Form ID
                             </th>
@@ -23,11 +26,9 @@
                                 Date
                             </th>
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Approval Status
+                                Status
                             </th>
-                            <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
-                                Vendor
-                            </th>
+
                             <th class="col-5 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                                 Change
                             </th>
@@ -35,6 +36,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="h in forms_chunked[current_page]" >
+                            <td class="text-sm text-wrap fs-6 col-5 px-2">
+                                    {{ h.companyName }}
+                            </td>
                             <td class="px-4 col-5">
                                 <div class="text-sm text-wrap">
                                     {{ h.formCode }}
@@ -49,9 +53,7 @@
                             <td class="text-sm text-wrap fs-6 col-5 px-2">
                                     {{ h.status}}
                             </td>
-                            <td class="text-sm text-wrap fs-6 col-5 px-2">
-                                    {{ h.companyName }}
-                            </td>
+
                             <td class="text-start px-3 col">
                                 <div class="mx-auto mt-2">
                                     <button
@@ -82,7 +84,8 @@
                                     <button
                                         type="button"
                                         class="btn btn-success btn-sm font-xxs px-3 ms-2 text-white"
-                                        v-if="this.user_access == 'Admin'"
+                                        v-if="this.user_access == 'Admin' && h.status =='pendingEvaluation'"
+                                        @click="approve(h.formCode, h.formName)"
                                     >
                                     Evaluate
                                     </button>
@@ -97,7 +100,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
-                                        v-if="h.status == 'incomplete' "
+                                        v-if="h.status == 'incomplete' && this.user_access == 'Admin'"
                                         @click="email(h.formCode, h.companyName, h.formName, h.date)"
                                     >
                                     Send Alert

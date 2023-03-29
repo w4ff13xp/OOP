@@ -52,7 +52,7 @@
         </div>
         <div class="row mt-4">
           <div class="col-auto">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</button>
+            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</button>
           </div>
         </div>
       </div>
