@@ -361,7 +361,9 @@ methods: {
             console.log(error);
         };
       },
+      
       changeApproveStatus() {
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
@@ -379,12 +381,35 @@ methods: {
                 alert("Error")
                 console.log(error)
             })
-      },
-      reject() {
-        const axios = require('axios');
+        }
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
+            const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
-            toUpdate = {
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "approved"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            .then((response) => {
+                alert("Update success")
+                console.log(response.data)
+            })
+            .catch ((error) => {
+                alert("Error")
+                console.log(error)
+            })
+        }
+            
+      },
+      reject() {
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
+
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
                 formCode: formid,
                 rejectionReason: this.rejectionReason,
                 status: "adminRejected"
@@ -398,6 +423,28 @@ methods: {
                 alert("Error")
                 console.log(error)
             })
+        }
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
+ 
+
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "approverRejected"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            .then((response) => {
+                alert("Reject success")
+                console.log(response.data)
+            })
+            .catch ((error) => {
+                alert("Error")
+                console.log(error)
+            })
+        }
       }
       
 

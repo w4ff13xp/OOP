@@ -8,7 +8,9 @@
     <h2 id="title" class="text-center pt-3">
       SUBCONTRACTOR’S SAFETY & HEALTH PERFORMANCE EVALUATION
     </h2>
-
+    <div v-if="rejectionReason != null" class="alert alert-danger" role="alert">
+            Your form was rejected: {{rejectionReason}}
+        </div>
     <div class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART I: PARTICIPATION IN SAFETY</h4>
       <!-- <form> -->
@@ -1770,7 +1772,8 @@ export default {
       // formCompleted: false,
       // formApproved: false,
       // companyName: "Nike",
-
+    
+      rejectionReason: '',
       attendance: 0,
       toolBox: 0,
       compliance: 0,
@@ -1960,12 +1963,14 @@ export default {
                 console.log(response.data);
                 var data = response.data
                 console.log( data.score2)
+                this.rejectionReason = data.rejectionReason
                 this.attendance = data.attendance
                 this.toolBox = data.toolBox
                 this.compliance = data.compliance
                 this.promotionalActivities = data.promotionalActivities
                 this.submission = data.submission
                 this.score1 = data.score1
+
 
                 this.trainingCourse= data.trainingCourse
                 this.tradeCourse= data.tradeCourse

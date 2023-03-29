@@ -53,5 +53,6 @@ public class PreEvaluation {
     private String signature;
 
     private Date effectiveDate;
+    private String acknowledgedBy;
 
 }
