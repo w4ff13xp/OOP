@@ -49,6 +49,11 @@ public class HealthEvaluationController {
         return service.updateHealthEvaluation(healthEvaluation);
     }
 
+    @PutMapping("/updateStatus")
+    public HealthEvaluation modifyHealthStatus(@RequestBody HealthEvaluation healthEvaluation) {
+        return service.updateHealthStatus(healthEvaluation);
+    }
+
     @DeleteMapping("/{formCode}")
     public String deleteHealthEvaluation(@PathVariable String formCode) {
         return service.deleteHealthEvaluation(formCode);
