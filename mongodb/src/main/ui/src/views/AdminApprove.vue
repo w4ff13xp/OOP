@@ -353,7 +353,8 @@ methods: {
         } catch (error) {
             console.log(error);
         };
-      }
+      },
+      
 
 },
 created() {

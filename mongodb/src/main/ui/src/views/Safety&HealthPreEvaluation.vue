@@ -9,7 +9,7 @@
           
                 <div class="mb-3">
                     <label for="InputSubcontractorName" class="form-label">Name Of Subcontractor</label>
-                    <input v-model="state.subcontractorName" type="text" class="form-control" id="InputSubcontractorName">
+                    <!-- <input v-model="state.subcontractorName" type="text" class="form-control" id="InputSubcontractorName"> -->
                     <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
                     <input v-else disabled style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
                     
@@ -553,6 +553,13 @@ export default {
     },*/
     
   methods: {
+    checkuseraccess(){
+        console.log("useraccess")
+        var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
+        this.useraccess = useraccess
+        console.log(this.useraccess)
+    },
+    
     clear() {
       this.$refs.signaturePad.clearSignature();
     },
