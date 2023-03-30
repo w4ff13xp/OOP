@@ -476,6 +476,7 @@ import useValidate from '@vuelidate/core'
 import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
 import moment from "moment";
+import { tsImportEqualsDeclaration } from '@babel/types';
 export default {
   setup(){
     const state =reactive({
@@ -779,42 +780,44 @@ export default {
                 .catch((error) => {
                   console.log(error);
                 });
-              
-
               }
-           
-        
         }
         else{
           alert("Please fill up the form with valid details");
-        }
-          
-        }
-      
-       
+        }  
+      }
     },
     changeApproveStatus() {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "pendingApproval"
+            console.log(this.state.evaluatedBy);
+            console.log(this.state.todayDate);
+            if(this.state.evaluatedBy == null || this.state.todayDate == null){
+                  alert("Please fill up the evaulated by and date")
+                }
+            else {
+              const axios = require('axios');
+              var formid = localStorage.getItem('formid')
+              console.log(formid)
+              var toUpdate = {
+                  formCode: formid,
+                  rejectionReason: this.rejectionReason,
+                  evaluator: this.state.evaluatedBy,
+                  evaluatedDate: this.state.todayDate,
+                  status: "pendingApproval"
+              }
+              axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+              .then((response) => {
+                  // alert("Update success")
+                  console.log(response.data)
+                  this.approve_success = true;
+                  window.location.href = "http://localhost:3000/home"
+              })
+              .catch ((error) => {
+                  // alert("Error")
+                  this.approve_error = true;
+                  console.log(error)
+              })
             }
-            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Update success")
-                console.log(response.data)
-                this.approve_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                this.approve_error = true;
-                console.log(error)
-            })
         }
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
             const axios = require('axios');
@@ -837,12 +840,10 @@ export default {
                 this.approve_error = true;
                 console.log(error)
             })
-        }
-            
+        }    
       },
       reject() {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
@@ -865,8 +866,6 @@ export default {
             })
         }
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
-
-
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
