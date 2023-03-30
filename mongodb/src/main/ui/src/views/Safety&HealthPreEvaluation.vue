@@ -409,14 +409,12 @@
 
         
         <div class="text-center m-3">
-            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
-            <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus">Approve</button>
-
-
-        <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
-        <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
+          <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal" v-if="this.useraccess!= 'Vendor'">Reject</button>
+          <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus" v-if="this.useraccess!= 'Vendor'">Approve</button>
+          <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
+          <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
         
-      </div>
+        </div>
 
        <div
             class="modal fade"
