@@ -840,7 +840,7 @@ export default {
         }
             
       },
-       reject() {
+      reject() {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
 
             const axios = require('axios');
@@ -851,7 +851,7 @@ export default {
                 rejectionReason: this.rejectionReason,
                 status: "adminRejected"
             }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 // alert("Reject success")
                 console.log(response.data)
@@ -865,7 +865,7 @@ export default {
             })
         }
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
- 
+
 
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
@@ -875,7 +875,7 @@ export default {
                 rejectionReason: this.rejectionReason,
                 status: "approverRejected"
             }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 // alert("Reject success")
                 console.log(response.data)
@@ -888,7 +888,7 @@ export default {
                 this.reject_error = true;
             })
         }
-      },
+    },
     adminAPI(e){
        if(this.state.evaluator =="" || this.state.todayDate == null){
                 alert("Please fill up the evaulated by and date")

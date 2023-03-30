@@ -30,7 +30,7 @@ public class VendorAssessmentService {
         VendorAssessment existingForm = repository.findById(VARequest.getFormCode()).get();
         existingForm.setFormCode(VARequest.getFormCode());
         existingForm.setVendorID(VARequest.getVendorID());
-        existingForm.setDate(VARequest.getDate());
+        existingForm.setDeadline(VARequest.getDeadline());
         existingForm.setFormName(VARequest.getFormName());
         existingForm.setCompanyName(VARequest.getCompanyName());
         existingForm.setStatus(VARequest.getStatus());
@@ -61,7 +61,7 @@ public class VendorAssessmentService {
         existingForm.setResultOfEvaluation(VARequest.getResultOfEvaluation());
         existingForm.setEvaluatedBy(VARequest.getEvaluatedBy());
         existingForm.setApprovedByDirector(VARequest.getApprovedByDirector());
-        existingForm.setEffectiveDate(VARequest.getEffectiveDate());
+        existingForm.setSubmissionDate(VARequest.getSubmissionDate());
 
         return repository.save(existingForm);
     }
