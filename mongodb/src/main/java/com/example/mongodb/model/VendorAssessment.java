@@ -16,7 +16,7 @@ public class VendorAssessment {
     @Id
     private String formCode;
     private String vendorID;
-    private Date date;
+    private Date deadline;
     private String formName;
     private String companyName;
     private String status;
@@ -47,6 +47,6 @@ public class VendorAssessment {
     private Boolean resultOfEvaluation;
     private String evaluatedBy;
     private String approvedByDirector;
-    private Date effectiveDate;
+    private Date submissionDate;
 
 }

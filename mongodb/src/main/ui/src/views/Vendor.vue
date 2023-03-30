@@ -370,7 +370,7 @@ export default {
             subContractorName: this.state.subcontractorName,
             scopeOfWork: this.state.scopeOfWork,
             evaluator: this.state.evaluatedBy,
-            date: this.state.todayDate,
+            deadline: this.state.todayDate,
             safetyHealthPolicy: Boolean(this.state.shpolicy),
             properDelegation: Boolean(this.state.safetyOrganisation),
             safetyCommitment: Boolean(this.state.safetyCommit),

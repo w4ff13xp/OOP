@@ -21,22 +21,26 @@ const routes = [
   {
     path: '/adminapprove',
     name: 'AdminApprove',
-    component: AdminApprove
+    component: AdminApprove,
+    meta: {requiresAuth:true}
   },
   {
     path: '/vendor',
     name: 'Vendor',
-    component: Vendor
+    component: Vendor,
+    meta: {requiresAuth:true}
   },
   {
     path: '/newvendorform',
     name: 'newvendorform',
-    component: NewVendorForm
+    component: NewVendorForm,
+    meta: {requiresAuth:true}
   },
   {
     path: '/specificvendor',
     name: 'specificvendor',
-    component: SpecificVendor
+    component: SpecificVendor,
+    meta: {requiresAuth:true}
   },
   {
     path: '/',
@@ -46,12 +50,14 @@ const routes = [
   {
     path: '/approver',
     name: 'approver',
-    component: Approver
+    component: Approver,
+    meta: {requiresAuth:true}
   },
   {
     path: '/createnewacc',
     name: 'createnewacc',
-    component: CreateNewAcc
+    component: CreateNewAcc,
+    meta: {requiresAuth:true}
   },
   {
     path: '/admin',
@@ -62,17 +68,20 @@ const routes = [
   {
     path: '/performanceevaluation',
     name: 'performanceevaluation',
-    component: PerformanceEvaluation
+    component: PerformanceEvaluation,
+    meta: {requiresAuth:true}
   },
   {
     path: '/Safety&HealthPreEvaluation',
     name: 'healthsafetypreevaluation',
-    component: HealthSafetyPreEvaluation
+    component: HealthSafetyPreEvaluation,
+    meta: {requiresAuth:true}
   },
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {requiresAuth:true}
   },
 
   {
@@ -83,7 +92,8 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: Profile
+    component: Profile,
+    meta: {requiresAuth:true}
   },
   {
     path: '/login',

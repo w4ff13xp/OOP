@@ -48,6 +48,11 @@ public class PreEvaluationController {
         return service.updatePreEvaluation(preEvaluation);
     }
 
+    @PutMapping("/updateStatus")
+    public PreEvaluation modifyHealthStatus(@RequestBody PreEvaluation PreEvaluation) {
+        return service.updatePreStatus(PreEvaluation);
+    }
+
     @DeleteMapping("/{formCode}")
     public String deletePreEvaluation(@PathVariable String formCode) {
         return service.deletePreEvaluation(formCode);
