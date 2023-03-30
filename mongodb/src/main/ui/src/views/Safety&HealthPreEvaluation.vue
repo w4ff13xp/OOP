@@ -962,7 +962,6 @@ export default {
             
 
     },
-    
     draw(data){ // this draws back the signature that we saved in the database
       this.$refs.signaturePad.clearSignature();
       console.log("Trying to draw the signature");
