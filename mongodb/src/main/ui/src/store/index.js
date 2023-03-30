@@ -57,11 +57,15 @@ export default createStore({
           console.log(decoded.email)
           const axios = require('axios');
           axios.get(`http://localhost:8080/users/${decoded.email}`)
-          .then((response) => localStorage.setItem('specificuser', JSON.stringify(response.data)))
+          .then((response) => {
+            localStorage.setItem('specificuser', JSON.stringify(response.data))
+            router.push('/home');
+
+          })
           .catch ((error) => {
               console.log(error);
           })
-          router.replace('/admin');
+          
         } 
 
         else if (err) {
