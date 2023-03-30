@@ -47,6 +47,10 @@ public class VendorAssessment {
     private Boolean resultOfEvaluation;
     private String evaluatedBy;
     private String approvedByDirector;
+
+    private String signature;
+    private String signaturetwo;
+
     private Date submissionDate;
 
 }

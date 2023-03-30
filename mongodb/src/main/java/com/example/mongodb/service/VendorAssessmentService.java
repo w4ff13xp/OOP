@@ -61,6 +61,10 @@ public class VendorAssessmentService {
         existingForm.setResultOfEvaluation(VARequest.getResultOfEvaluation());
         existingForm.setEvaluatedBy(VARequest.getEvaluatedBy());
         existingForm.setApprovedByDirector(VARequest.getApprovedByDirector());
+
+        existingForm.setSignature(VARequest.getSignature());
+        existingForm.setSignature(VARequest.getSignaturetwo());
+
         existingForm.setSubmissionDate(VARequest.getSubmissionDate());
 
         return repository.save(existingForm);
