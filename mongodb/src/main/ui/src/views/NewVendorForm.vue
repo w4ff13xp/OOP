@@ -336,7 +336,7 @@
                 <span class="text-danger" v-if="v$.approvedByDirector.$error">{{ v$.approvedByDirector.$errors[0].$message }}</span>
 
 
-                        <!-- Approver signature pad -->
+                        <!----------- Approver signature pad ------------>
                         <div class="mb-3">
                                   <div class="container">
                                     <label for="Signature" class="form-label">Signature</label>
