@@ -409,18 +409,63 @@
 
         
         <div class="text-center m-3">
-        <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="adminAPI($event)" v-if="this.useraccess == 'Admin'">Reject</button>
+            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
+            <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus">Approve</button>
 
-        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="adminAPI($event)" v-if="this.useraccess == 'Admin'">Approve</button>
-
-         <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="approverAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
-
-        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="approverAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
 
         <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
         <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
         
       </div>
+
+       <div
+            class="modal fade"
+            tabindex="-1"
+            id="deleteModal"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Deletion</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Are you sure you want to reject the form?
+                  </p>
+                  <div class="form-floating">
+                    <p>Please state the reason(s) for rejection.</p>
+                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="rejectionReason" v-model="rejectionReason"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom border rounded"
+                    data-bs-dismiss="modal"
+                  >
+                    No, cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-gradient-custom btn-danger text-white"
+                    data-bs-dismiss="modal"
+                    @click="reject"
+                  > <!--put @click here-->
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         <!-- <Footer></Footer> -->
     </div>
 
@@ -748,64 +793,173 @@ export default {
       
        
     },
-    addToAPI(e){
-      let preEval = {formCode: "PEmarcleo97@hotmail.com",
-            subContractorName:this.state.subcontractorName,
-            scopeOfWork: this.state.scopeOfWork, 
-            evaluator:this.state.evaluatedBy,
-            evaluatedDate: this.state.todayDate,
-            formName: "SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION",
-            safetyHealthPolicy:Boolean(this.state.shpolicy),
-            properDelegation:Boolean(this.state.safetyOrganisation),
-            safetyCommitment:Boolean(this.state.safetyCommit),
-            toolBoxMeeting:Boolean(this.state.toolbox),
-            supervisorTraining:Boolean(this.state.safetyMgtCourses),
-            workerTraining:Boolean(this.state.safetyWorkersCourses),
-            certificatesSubmitted:Boolean(this.state.safetyCertificates),
-            workerRules:Boolean(this.state.safetyHealthRules),
-            riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
-            inspectionGuidelines:Boolean(this.state.writtenProgram),
-            ppe:Boolean(this.state.safetyEquipment),
-            safetySupervisor:Boolean(this.state.safetySupervisor),
-            firstAider:Boolean(this.state.firstAider),
-            relevantLicensedPersonnel:Boolean(this.state.qualified),
-            temporaryDisabilityCases:this.state.tempDisabilityCases,
-            permanentDisabilityCases:this.state.permDisabilityCases,
-            fatalCases:this.state.fatalCases,
-            effectiveDate:this.state.signedDate,
-            signature: data,
-            acknowledgedBy:this.state.acknowledgedBy}
-
-            var buttonValue = e.target.value;
-            const axios = require("axios");
-            var formid = localStorage.getItem('formid');
-            preEval.formCode = formid
-
-            if(buttonValue == "approve"){
-              preEval.status = "pendingApproval";
+    changeApproveStatus() {
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "pendingApproval"
             }
-            else{
-              preEval.status = "approverRejected";
-            }
-            axios
-            .put("http://localhost:8080/preEvaluation", preEval)
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-              console.log(response);
-              if (response.status == 201 && response.data != "") {
-                alert("Pre Evaluation successfully updated.");
-              }
-              if (response.data == "") {
-                alert(
-                  "Something went wrong"
-                );
-              } else {
-                alert("Success")
-              }
+                // alert("Update success")
+                console.log(response.data)
+                this.approve_success = true;
+                window.location.href = "http://localhost:3000/home"
             })
-            .catch((error) => {
-              console.log(error);
-            });
+            .catch ((error) => {
+                // alert("Error")
+                this.approve_error = true;
+                console.log(error)
+            })
+        }
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "approved"
+            }
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+            .then((response) => {
+                // alert("Update success")
+                console.log(response.data)
+                this.approve_success = true;
+                window.location.href = "http://localhost:3000/home"
+            })
+            .catch ((error) => {
+                // alert("Error")
+                this.approve_error = true;
+                console.log(error)
+            })
+        }
+            
+      },
+       reject() {
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
 
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "adminRejected"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            .then((response) => {
+                // alert("Reject success")
+                console.log(response.data)
+                this.reject_success = true;
+                window.location.href = "http://localhost:3000/home"
+            })
+            .catch ((error) => {
+                // alert("Error")
+                this.reject_error = true;
+                console.log(error)
+            })
+        }
+        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
+ 
+
+            const axios = require('axios');
+            var formid = localStorage.getItem('formid')
+            console.log(formid)
+            var toUpdate = {
+                formCode: formid,
+                rejectionReason: this.rejectionReason,
+                status: "approverRejected"
+            }
+            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            .then((response) => {
+                // alert("Reject success")
+                console.log(response.data)
+                this.reject_success = true;
+                window.location.href = "http://localhost:3000/home"
+            })
+            .catch ((error) => {
+                // alert("Error")
+                console.log(error)
+                this.reject_error = true;
+            })
+        }
+      },
+    adminAPI(e){
+       if(this.state.evaluator =="" || this.state.todayDate == null){
+                alert("Please fill up the evaulated by and date")
+              }
+              else{
+                let preEval = {
+                  formCode: "PEmarcleo97@hotmail.com",
+                  subContractorName:this.state.subcontractorName,
+                  scopeOfWork: this.state.scopeOfWork, 
+                  evaluator:this.state.evaluatedBy,
+                  evaluatedDate: this.state.todayDate,
+                  formName: "SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION",
+                  safetyHealthPolicy:Boolean(this.state.shpolicy),
+                  properDelegation:Boolean(this.state.safetyOrganisation),
+                  safetyCommitment:Boolean(this.state.safetyCommit),
+                  toolBoxMeeting:Boolean(this.state.toolbox),
+                  supervisorTraining:Boolean(this.state.safetyMgtCourses),
+                  workerTraining:Boolean(this.state.safetyWorkersCourses),
+                  certificatesSubmitted:Boolean(this.state.safetyCertificates),
+                  workerRules:Boolean(this.state.safetyHealthRules),
+                  riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
+                  inspectionGuidelines:Boolean(this.state.writtenProgram),
+                  ppe:Boolean(this.state.safetyEquipment),
+                  safetySupervisor:Boolean(this.state.safetySupervisor),
+                  firstAider:Boolean(this.state.firstAider),
+                  relevantLicensedPersonnel:Boolean(this.state.qualified),
+                  temporaryDisabilityCases:this.state.tempDisabilityCases,
+                  permanentDisabilityCases:this.state.permDisabilityCases,
+                  fatalCases:this.state.fatalCases,
+                  effectiveDate:this.state.signedDate,
+                  signature: data,
+                  acknowledgedBy:this.state.acknowledgedBy}
+
+
+                  var buttonValue = e.target.value;
+                  const axios = require("axios");
+                  var formid = localStorage.getItem('formid');
+                  preEval.formCode = formid
+
+                  if(buttonValue == "approve"){
+                    preEval.status = "pendingApproval";
+                  }
+                  else{
+                    preEval.status = "adminRejected";
+                  }
+                  axios
+                  .put("http://localhost:8080/preEvaluation", preEval)
+                  .then((response) => {
+                    console.log(response);
+                    if (response.status == 201 && response.data != "") {
+                      alert("Pre Evaluation successfully updated.");
+                    }
+                    if (response.data == "") {
+                      alert(
+                        "Something went wrong"
+                      );
+                    } else {
+                      alert("Success")
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+
+                  
+                  
+                  
+                  }
+      
+
+            
 
     },
     
