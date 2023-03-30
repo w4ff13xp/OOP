@@ -791,7 +791,7 @@ export default {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
             console.log(this.state.evaluatedBy);
             console.log(this.state.todayDate);
-            if(this.state.evaluatedBy == null || this.state.todayDate == null){
+            if(this.state.evaluatedBy == null || this.state.todayDate == "Invalid date"){
                   alert("Please fill up the evaulated by and date")
                 }
             else {
