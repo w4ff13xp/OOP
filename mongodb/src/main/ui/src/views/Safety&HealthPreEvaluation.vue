@@ -851,7 +851,7 @@ export default {
                 rejectionReason: this.rejectionReason,
                 status: "adminRejected"
             }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 // alert("Reject success")
                 console.log(response.data)
@@ -875,7 +875,7 @@ export default {
                 rejectionReason: this.rejectionReason,
                 status: "approverRejected"
             }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
                 // alert("Reject success")
                 console.log(response.data)
