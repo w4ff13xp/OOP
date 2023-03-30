@@ -16,7 +16,8 @@ public class PreEvaluation {
     @Id
     private String formCode;
     private String vendorID;
-    private Date date;
+    private Date deadline;
+    private Date evaluatedDate;
     private String formName;
     private String companyName;
     private String status;
@@ -52,7 +53,7 @@ public class PreEvaluation {
 
     private String signature;
 
-    private Date effectiveDate;
+    private Date submissionDate;
     private String acknowledgedBy;
 
 }

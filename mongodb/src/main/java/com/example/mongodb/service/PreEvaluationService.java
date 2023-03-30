@@ -30,7 +30,8 @@ public class PreEvaluationService {
         PreEvaluation existingForm = repository.findById(PERequest.getFormCode()).get();
         existingForm.setFormCode(PERequest.getFormCode());
         existingForm.setVendorID(PERequest.getVendorID());
-        existingForm.setDate(PERequest.getDate());
+        existingForm.setDeadline(PERequest.getDeadline());
+        existingForm.setEvaluatedDate(PERequest.getEvaluatedDate());
         existingForm.setFormName(PERequest.getFormName());
         existingForm.setCompanyName(PERequest.getCompanyName());
         existingForm.setStatus(PERequest.getStatus());
@@ -66,7 +67,7 @@ public class PreEvaluationService {
 
         existingForm.setSignature(PERequest.getSignature());
 
-        existingForm.setEffectiveDate(PERequest.getEffectiveDate());
+        existingForm.setSubmissionDate(PERequest.getSubmissionDate());
 
         return repository.save(existingForm);
     }
