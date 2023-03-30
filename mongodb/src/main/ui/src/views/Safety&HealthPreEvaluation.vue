@@ -840,55 +840,55 @@ export default {
         }
             
       },
-       reject() {
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
+      reject() {
+      if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
 
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "adminRejected"
-            }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Reject success")
-                console.log(response.data)
-                this.reject_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                this.reject_error = true;
-                console.log(error)
-            })
-        }
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
- 
+          const axios = require('axios');
+          var formid = localStorage.getItem('formid')
+          console.log(formid)
+          var toUpdate = {
+              formCode: formid,
+              rejectionReason: this.rejectionReason,
+              status: "adminRejected"
+          }
+          axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+          .then((response) => {
+              // alert("Reject success")
+              console.log(response.data)
+              this.reject_success = true;
+              window.location.href = "http://localhost:3000/home"
+          })
+          .catch ((error) => {
+              // alert("Error")
+              this.reject_error = true;
+              console.log(error)
+          })
+      }
+      if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
 
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "approverRejected"
-            }
-            axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Reject success")
-                console.log(response.data)
-                this.reject_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                console.log(error)
-                this.reject_error = true;
-            })
-        }
-      },
+
+          const axios = require('axios');
+          var formid = localStorage.getItem('formid')
+          console.log(formid)
+          var toUpdate = {
+              formCode: formid,
+              rejectionReason: this.rejectionReason,
+              status: "approverRejected"
+          }
+          axios.put(`http://localhost:8080/healthEvaluation/updateStatus`, toUpdate)
+          .then((response) => {
+              // alert("Reject success")
+              console.log(response.data)
+              this.reject_success = true;
+              window.location.href = "http://localhost:3000/home"
+          })
+          .catch ((error) => {
+              // alert("Error")
+              console.log(error)
+              this.reject_error = true;
+          })
+      }
+    },
     adminAPI(e){
        if(this.state.evaluator =="" || this.state.todayDate == null){
                 alert("Please fill up the evaulated by and date")
