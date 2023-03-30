@@ -22,7 +22,7 @@
 
                 <div class="mb-3">
                     <label for="InputEvaluatedBy" class="form-label">Evaluated By</label>
-                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
+                    <input v-if="this.useraccess != 'Vendor'" style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
                     <input v-else disabled style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
           
                 </div>
@@ -30,7 +30,7 @@
                 <!-- Will fix this date field to be a datepicker -->
                  <div class="mb-3">
                     <label for="InputDate" class="form-label">Date</label>
-                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
+                    <input v-if="this.useraccess != 'Vendor'" style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
                     <input v-else disabled style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
           
                 </div>
@@ -46,14 +46,14 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1"  class="form-check-input" name="first" v-model="state.shpolicy" value="1">        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.shpolicy" value="1" >        
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1"  class="form-check-input" name="first" v-model="state.shpolicy" value="true">        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.shpolicy" value="true" >        
                           </div>
                           <div class="form-check form-check-inline">
                             
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="2" >        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="false" >        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="false" >
                           </div>
                     </div>
                 </div>
@@ -64,13 +64,13 @@
                         <div class="form-check form-check-inline ms-3">
                            
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="1" >        
-                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="1"  >     
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="true" >        
+                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="true"  >     
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="2">        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="2" >  
+                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false">        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false" >  
                           </div>
                     </div>
                 </div>
@@ -80,13 +80,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCommit" value="1" >        
-                            <input v-else disabled type="radio" class="form-check-input" name="third" v-model="state.safetyCommit" value="1" >  
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCommit" value="true" >        
+                            <input v-else disabled type="radio" class="form-check-input" name="third" v-model="state.safetyCommit" value="true" >  
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCommit" value="2" >        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCommit" value="2"  >  
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCommit" value="false" >        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCommit" value="false"  >  
                           </div>
                     </div>
                 </div>
@@ -105,13 +105,13 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.toolbox" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.toolbox" value="1" > 
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.toolbox" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.toolbox" value="true" > 
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.toolbox" value="2" >        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.toolbox" value="2"  > 
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.toolbox" value="false" >        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.toolbox" value="false"  > 
                           </div>
                     </div>
                 </div>
@@ -129,13 +129,13 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="1" >        
-                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="true" >        
+                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="2">        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="2">
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="false">        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="false">
                           </div>
                     </div>
                 </div>
@@ -145,13 +145,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="2" >        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="false" >        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="false" >
                           </div>
                     </div>
                 </div>
@@ -161,13 +161,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCertificates" value="1" >        
-                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCertificates" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCertificates" value="true" >        
+                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.safetyCertificates" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCertificates" value="2">        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCertificates" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCertificates" value="false">        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.safetyCertificates" value="false" >
                           </div>
                     </div>
                 </div>
@@ -185,13 +185,13 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="2" >        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="false" >        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="false" >
                           </div>
                     </div>
                 </div>
@@ -201,13 +201,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="2" >        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="false" >        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="false" >
                           </div>
                     </div>
                 </div>
@@ -227,13 +227,13 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.writtenProgram" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.writtenProgram" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.writtenProgram" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.writtenProgram" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.writtenProgram" value="2">        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.writtenProgram" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.writtenProgram" value="false">        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.writtenProgram" value="false" >
                           </div>
                     </div>
                 </div>
@@ -245,13 +245,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyEquipment" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyEquipment" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyEquipment" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.safetyEquipment" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyEquipment" value="2">        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyEquipment" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyEquipment" value="false">        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.safetyEquipment" value="false" >
                           </div>
                     </div>
                 </div>
@@ -270,13 +270,13 @@
                     <div class="d-flex ms-3 justify-content-between w-30">
                         <div class="form-check form-check-inline ">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetySupervisor" value="1" >        
-                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetySupervisor" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetySupervisor" value="true" >        
+                            <input v-else disabled  type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.safetySupervisor" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetySupervisor" value="2" >        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetySupervisor" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetySupervisor" value="false" >        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.safetySupervisor" value="false" >
                           </div>
                     </div>
                 </div>
@@ -287,13 +287,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.firstAider" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.firstAider" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.firstAider" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="second" v-model="state.firstAider" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.firstAider" value="2">        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.firstAider" value="2" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.firstAider" value="false">        
+                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="second" v-model="state.firstAider" value="false" >
                           </div>
                     </div>
                 </div>
@@ -306,13 +306,13 @@
                     <div class="d-flex justify-content-between w-30">
                         <div class="form-check form-check-inline ms-3">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.qualified" value="1" >        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.qualified" value="1" >
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.qualified" value="true" >        
+                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="third" v-model="state.qualified" value="true" >
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.qualified" value="2" >        
-                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.qualified"  value="2">
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.qualified" value="false" >        
+                            <input v-else disabled type="radio" id="inlineRadio2" class="form-check-input" name="third" v-model="state.qualified"  value="false">
                           </div>
                     </div>
                 </div>
@@ -409,11 +409,17 @@
 
         
         <div class="text-center m-3">
-        <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
+        <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="adminAPI($event)" v-if="this.useraccess == 'Admin'">Reject</button>
 
-        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
+        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="adminAPI($event)" v-if="this.useraccess == 'Admin'">Approve</button>
 
-        <button type="button" value="submit" class="btn btn-success text-white" @click="submit" v-if="this.useraccess == 'Vendor'">Submit</button>
+         <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="approverAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
+
+        <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="approverAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
+
+        <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
+        <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
+        
       </div>
         <!-- <Footer></Footer> -->
     </div>
@@ -451,7 +457,7 @@ export default {
         tempDisabilityCases: "",
         permDisabilityCases: "",
         fatalCases: "",
-        signedDate: "",
+        signedDate: null,
         acknowledgedBy: "",
 
     })
@@ -459,8 +465,8 @@ export default {
       return{
         subcontractorName : {required},
         scopeOfWork : {required},
-        evaluatedBy : {required},
-        todayDate : {required},
+        // evaluatedBy : {required},
+        // todayDate : {required},
         shpolicy : {required},
         safetyOrganisation : {required},
         safetyCommit : {required},
@@ -537,74 +543,209 @@ export default {
     clear() {
       this.$refs.signaturePad.clearSignature();
     },
-    submit(){
-      this.v$.$validate()
+    submit(e){
+      var buttonValue = e.target.value;
 
-      if(!this.v$.$error){
-        if(this.state.tempDisabilityCases <0 || this.state.permanentDisabilityCases <0 || this.state.fatalCases<0){
-          alert("Please fill the Accident Analysis with non negative values")
-        }
-        else{
-          const axios = require("axios");
-          const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-          console.log("check if its empty:"+isEmpty);
-          console.log("The Image File"+data);
-          var email = JSON.parse(localStorage.getItem('specificuser'))['email']
-          var fcode = "PE"+ email;
+      if(buttonValue == "save"){
+            const axios = require("axios");
+            const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+            console.log("check if its empty:"+isEmpty);
+            var email = JSON.parse(localStorage.getItem('specificuser'))['email']
+            var fcode = "PE"+ email;
 
             //prepare the json to be sent in
-            let preEval = {formCode: fcode,
+            let preEval = {
+              formCode: fcode,
             subContractorName:this.state.subcontractorName,
             scopeOfWork: this.state.scopeOfWork, 
-            evaluator:this.state.evaluatedBy,
-            date: this.state.todayDate,
+            //evaluator:this.state.evaluatedBy,
+            //evaluatedDate: this.state.todayDate,
             formName: "Pre Evaluation Form",
-            status: "pendingEvaluation",
-            safetyHealthPolicy:Boolean(this.state.shpolicy),
-            properDelegation:Boolean(this.state.safetyOrganisation),
-            safetyCommitment:Boolean(this.state.safetyCommit),
-            toolBoxMeeting:Boolean(this.state.toolbox),
-            supervisorTraining:Boolean(this.state.safetyMgtCourses),
-            workerTraining:Boolean(this.state.safetyWorkersCourses),
-            certificatesSubmitted:Boolean(this.state.safetyCertificates),
-            workerRules:Boolean(this.state.safetyHealthRules),
-            riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
-            inspectionGuidelines:Boolean(this.state.writtenProgram),
-            ppe:Boolean(this.state.safetyEquipment),
-            safetySupervisor:Boolean(this.state.safetySupervisor),
-            firstAider:Boolean(this.state.firstAider),
-            relevantLicensedPersonnel:Boolean(this.state.qualified),
+            status: "incomplete",
             temporaryDisabilityCases:this.state.tempDisabilityCases,
             permanentDisabilityCases:this.state.permDisabilityCases,
             fatalCases:this.state.fatalCases,
-            effectiveDate:this.state.signedDate,
+            submissionDate:this.state.signedDate,
             signature: data,
             acknowledgedBy:this.state.acknowledgedBy}
+
+            if(this.state.shpolicy ==="true"){
+              preEval.safetyHealthPolicy = true;
+            }
+            else{
+              preEval.safetyHealthPolicy = false;
+            }
+            if(this.state.safetyOrganisation ==="true"){
+              preEval.properDelegation = true
+            }
+            else{
+              preEval.properDelegation = false;
+            }
+            if(this.state.safetyCommit === "true"){
+              preEval.safetyCommitment = true
+            }
+            else{
+              preEval.safetyCommitment = false;
+            }
+            if(this.state.toolbox === "true"){
+              preEval.toolBoxMeeting = true
+            }
+            else{
+              preEval.toolBoxMeeting = false
+            }
+            if(this.state.safetyMgtCourses === "true"){
+              preEval.supervisorTraining = true
+            }
+            else{
+              preEval.supervisorTraining = false
+            }
+            if(this.state.safetyWorkersCourses === "true"){
+              preEval.workerTraining = true
+            }
+            else{
+              preEval.workerTraining = false
+            }
+            if(this.state.safetyCertificates === "true"){
+              preEval.certificatesSubmitted = true
+            }
+            else{
+              preEval.certificatesSubmitted = false
+            }
+            if(this.state.safetyHealthRules === "true"){
+              preEval.workerRules = true
+            }
+            else{
+              preEval.workerRules = false
+            }
+            if(this.state.safeWorkRisk === "true"){
+              preEval.riskAssessmentsSubmitted = true
+            }
+            else{
+              preEval.riskAssessmentsSubmitted = false
+            }
+            if(this.state.writtenProgram === "true"){
+              preEval.inspectionGuidelines = true
+            }
+            else{
+              preEval.inspectionGuidelines = false
+            }
+            if(this.state.safetyEquipment === "true"){
+              preEval.ppe = true
+            }
+            else{
+              preEval.ppe = false
+            }
+            if(this.state.safetySupervisor === "true"){
+              preEval.safetySupervisor = true
+            }
+            else{
+              preEval.safetySupervisor = false
+            }
+            if(this.state.firstAider === "true"){
+              preEval.firstAider = true
+            }
+            else{
+              preEval.firstAider = false
+            }
+            if(this.state.qualified === "true"){
+              preEval.relevantLicensedPersonnel = true
+            }
+            else{
+              preEval.relevantLicensedPersonnel = false
+            }
+  
             console.log(preEval)
+            var formid = localStorage.getItem('formid')
+            preEval.formCode = formid
+            console.log(preEval+"before sending")
             axios
-            .post("http://localhost:8080/preEvaluation", preEval)
-            .then((response) => {
-              console.log(response);
-              if (response.status == 201 && response.data != "") {
-                alert("Pre Evaluation successfully created.");
+              .put("http://localhost:8080/preEvaluation", preEval)
+              .then((response) => {
+                console.log(response);
+                // localStorage.setItem('edit',false);
+                    alert("form saved")
+                window.location.href = "http://localhost:3000/home"
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+            }
+            else{
+            this.v$.$validate()
+
+            if(!this.v$.$error){
+          
+              if(this.state.tempDisabilityCases <0 || this.state.permanentDisabilityCases <0 || this.state.fatalCases<0){
+                alert("Please fill the Accident Analysis with non negative values")
               }
-              if (response.data == "") {
-                alert(
-                  "VALIDATION FAILED. Something went wrong"
-                );
-              } else {
-                alert("Success")
+              else{
+                const axios = require("axios");
+                const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+                console.log("check if its empty:"+isEmpty);
+                console.log("The Image File"+data);
+                var email = JSON.parse(localStorage.getItem('specificuser'))['email']
+                var fcode = "PE"+ email;
+
+                //prepare the json to be sent in
+                let preEval = {formCode: fcode,
+                subContractorName:this.state.subcontractorName,
+                scopeOfWork: this.state.scopeOfWork, 
+                //evaluator:this.state.evaluatedBy,
+                //evaluatedDate: this.state.todayDate,
+                formName: "Pre Evaluation Form",
+                status: "pendingEvaluation",
+                safetyHealthPolicy:Boolean(this.state.shpolicy),
+                properDelegation:Boolean(this.state.safetyOrganisation),
+                safetyCommitment:Boolean(this.state.safetyCommit),
+                toolBoxMeeting:Boolean(this.state.toolbox),
+                supervisorTraining:Boolean(this.state.safetyMgtCourses),
+                workerTraining:Boolean(this.state.safetyWorkersCourses),
+                certificatesSubmitted:Boolean(this.state.safetyCertificates),
+                workerRules:Boolean(this.state.safetyHealthRules),
+                riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
+                inspectionGuidelines:Boolean(this.state.writtenProgram),
+                ppe:Boolean(this.state.safetyEquipment),
+                safetySupervisor:Boolean(this.state.safetySupervisor),
+                firstAider:Boolean(this.state.firstAider),
+                relevantLicensedPersonnel:Boolean(this.state.qualified),
+                temporaryDisabilityCases:this.state.tempDisabilityCases,
+                permanentDisabilityCases:this.state.permDisabilityCases,
+                fatalCases:this.state.fatalCases,
+                submissionDate:this.state.signedDate,
+                signature: data,
+                acknowledgedBy:this.state.acknowledgedBy}
+                console.log(preEval)
+                  axios
+                  .post("http://localhost:8080/preEvaluation", preEval)
+                  .then((response) => {
+                    console.log(response);
+                    if (response.status == 201 && response.data != "") {
+                      alert("Pre Evaluation successfully created.");
+                      window.location.href = "http://localhost:3000/home"
+                    }
+                    if (response.data == "") {
+                      alert(
+                        "VALIDATION FAILED. Something went wrong"
+                      );
+                    } else {
+                      alert("Success")
+                    }
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+              
+
               }
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+           
         
-      }
-      else{
-        alert("Please fill up the form with valid details");
-      }
+        }
+        else{
+          alert("Please fill up the form with valid details");
+        }
+          
+        }
+      
        
     },
     addToAPI(e){
@@ -612,7 +753,7 @@ export default {
             subContractorName:this.state.subcontractorName,
             scopeOfWork: this.state.scopeOfWork, 
             evaluator:this.state.evaluatedBy,
-            date: this.state.todayDate,
+            evaluatedDate: this.state.todayDate,
             formName: "SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION",
             safetyHealthPolicy:Boolean(this.state.shpolicy),
             properDelegation:Boolean(this.state.safetyOrganisation),
@@ -641,7 +782,7 @@ export default {
             preEval.formCode = formid
 
             if(buttonValue == "approve"){
-              preEval.status = "approved";
+              preEval.status = "pendingApproval";
             }
             else{
               preEval.status = "approverRejected";
@@ -683,113 +824,114 @@ export default {
             await axios.get(`http://localhost:8080/preEvaluation/${formid}`)
             .then((response) => {
                 console.log(response.data);
+                console.log(response.status);
                 var data = response.data
                 this.state.subcontractorName = data.subContractorName
                 this.state.scopeOfWork = data.scopeOfWork
                 this.state.evaluatedBy = data.evaluator
-                this.state.todayDate = moment(data.date).utc().format('YYYY-MM-DD')
+                this.state.todayDate = moment(data.evaluatedDate).utc().format('YYYY-MM-DD')
                 if(data.safetyHealthPolicy){
-                  this.state.shpolicy = "1"
+                  this.state.shpolicy = "true"
                 }
                 else{
-                  this.state.shpolicy = "0"
+                  this.state.shpolicy = "false"
                 }
 
                 if(data.properDelegation){
-                  this.state.safetyOrganisation = "1"
+                  this.state.safetyOrganisation = "true"
                 }
                 else{
-                  this.state.safetyOrganisation = "0"
+                  this.state.safetyOrganisation = "false"
                 }
 
                 if(data.safetyCommitment){
-                  this.state.safetyCommit = "1"
+                  this.state.safetyCommit = "true"
                 }
                 else{
-                  this.state.safetyCommit = "0"
+                  this.state.safetyCommit = "false"
                 }
 
                 if(data.toolBoxMeeting){
-                  this.state.toolbox ="1"
+                  this.state.toolbox ="true"
                 }
                 else{
-                  this.state.toolbox = "0"
+                  this.state.toolbox = "false"
                 }
 
                 if(data.supervisorTraining){
-                  this.state.safetyMgtCourses = "1"
+                  this.state.safetyMgtCourses = "true"
                 }
                 else{
-                  this.state.safetyMgtCourses = "0"
+                  this.state.safetyMgtCourses = "false"
                 }
 
                 if(data.workerTraining){
-                  this.state.safetyWorkersCourses = "1"
+                  this.state.safetyWorkersCourses = "true"
                 }
                 else{
-                  this.state.safetyWorkersCourses = "0"
+                  this.state.safetyWorkersCourses = "false"
                 }
 
                 if(data.certificatesSubmitted){
-                  this.state.safetyCertificates = "1"
+                  this.state.safetyCertificates = "true"
                 }
                 else{
-                  this.state.safetyCertificates = "0"
+                  this.state.safetyCertificates = "false"
                 }
 
                 if(data.workerRules){
-                  this.state.safetyHealthRules ="1"
+                  this.state.safetyHealthRules ="true"
                 }
                 else{
-                  this.state.safetyHealthRules ="0"
+                  this.state.safetyHealthRules ="false"
                 }
 
                 if(data.riskAssessmentsSubmitted) {
-                  this.state.safeWorkRisk = "1"
+                  this.state.safeWorkRisk = "true"
                 }
                 else{
-                  this.state.safeWorkRisk = "0"
+                  this.state.safeWorkRisk = "false"
                 }
 
                 if(data.inspectionGuidelines){
-                  this.state.writtenProgram = "1"
+                  this.state.writtenProgram = "true"
                 }
                 else{
-                  this.state.writtenProgram = "0"
+                  this.state.writtenProgram = "false"
                 }
 
                 if(data.ppe){
-                  this.state.safetyEquipment = "1"
+                  this.state.safetyEquipment = "true"
                 }
                 else{
-                  this.state.safetyEquipment = "0"
+                  this.state.safetyEquipment = "false"
                 }
 
                 if(data.safetySupervisor){
-                  this.state.safetySupervisor = "1"
+                  this.state.safetySupervisor = "true"
                 }
                 else{
-                  this.state.safetySupervisor = "0"
+                  this.state.safetySupervisor = "false"
                 }
 
                 if(data.firstAider){
-                  this.state.firstAider = "1"
+                  this.state.firstAider = "true"
                 }
                 else{
-                  this.state.firstAider ="0"
+                  this.state.firstAider ="false"
                 }
 
                 if(data.relevantLicensedPersonnel){
-                  this.state.qualified = "1"
+                  this.state.qualified = "true"
                 }
                 else{
-                  this.state.qualified = "0"
+                  this.state.qualified = "false"
                 }
 
                 this.state.tempDisabilityCases = data.temporaryDisabilityCases
                 this.state.permDisabilityCases = data.permanentDisabilityCases
                 this.state.fatalCases = data.fatalCases
-                this.state.signedDate = moment(data.effectiveDate).utc().format('YYYY-MM-DD')
+                this.state.signedDate = moment(data.submissionDate).utc().format('YYYY-MM-DD')
                 var signdata = data.signature
                 this.state.acknowledgedBy= data.acknowledgedBy
                 //input the signature back into the signature pad
@@ -799,7 +941,7 @@ export default {
                 console.log(error);
             })
         } catch (error) {
-            console.log(error);
+            console.log(error + "Hello");
         };
         
       }
@@ -807,6 +949,9 @@ export default {
   
   created() {
       this.checkuseraccess();
+      this.getEditInputs();
+      
+      
   },
 }
 </script>
