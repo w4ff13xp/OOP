@@ -1850,7 +1850,7 @@ export default {
         }
       var dt = new Date();
       let newForm = {
-        date: toIsoString(dt),
+        deadline: toIsoString(dt),
         formName: "Performance Evaluation Form",
         status: "incomplete",
         companyName: JSON.parse(localStorage.getItem('specificuser'))['username'], 

@@ -48,7 +48,7 @@
                                     {{ h.formName }}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-2 px-2">
-                                    {{getFormattedDate(h.date)  }}
+                                    {{getFormattedDate(h.deadline)  }}
                             </td>
                             <td class="text-sm text-wrap fs-6 col-2">
                                 <span v-html="getStatus(h.status)"></span>
