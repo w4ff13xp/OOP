@@ -17,7 +17,7 @@
                         <a class="nav-link"><v-btn to="/profile" class="mr-2" v-if="this.$store.state.userIsAuthorized">Profile</v-btn></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><v-btn to="/admin" class="mr-2" v-if="this.user_access == 'Admin'">Admin</v-btn></a>
+                        <a class="nav-link"><v-btn to="/admin" class="mr-2" v-if="this.$store.state.userIsAuthorized && this.user_access == 'Admin'">Admin</v-btn></a>
 
                     </li>
                     

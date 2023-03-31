@@ -139,40 +139,7 @@
               
               <span class="text-danger" v-if="v$.products.$error">{{ v$.products.$errors[0].$message }}</span>
 
-              <!-- Vendor signature camo FAKE -->
-            <div class="container">
-              <label for="Signature" class="form-label"></label>
-                  <div class="container ">
-                      <VueSignaturePad v-if="this.useraccess == 'Vendor' "
-                      id="signature"
-                      width="0%"
-                      height="0px"
-                      ref="signaturePad" 
-                      :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"
-                    />
-                    <VueSignaturePad v-if="this.useraccess == 'Vendor' "
-                      id="signature"
-                      width="0%"
-                      height="0px"
-                      ref="AdminsignaturePad"
-                      :options="{onBegin: () => {$refs.AdminsignaturePad.resizeCanvas()}}"
-                    />
-                    <VueSignaturePad v-else
-                      id="signature"
-                      width="100%"
-                      height="200px"
-                      ref="AdminsignaturePad"
-                      :options="{onBegin: () => {$refs.signaturePad.lockSignaturePad()}}"
-                    />
-                  </div>
-                
-              </div>
-
-
-
             </div>
-
-            
 
           </div>
         </div>
@@ -327,35 +294,33 @@
               <input v-else disabled type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
               <span class="text-danger" v-if="v$.evaluatedBy.$error">{{ v$.evaluatedBy.$errors[0].$message }}</span>
             </div>
-
-              
-            </div>
-
-            <!-- Admin signature -->
-            <div class="container">
+          </div>
+          <div class="mb-3">
+                   <div class="container">
                     <label for="Signature" class="form-label">Signature</label>
                         <div class="container border border-primary">
                            <VueSignaturePad v-if="this.useraccess == 'Admin'"
                             id="signature"
                             width="100%"
                             height="200px"
-                            ref="AdminsignaturePad"
-                            :options="{onBegin: () => {$refs.AdminsignaturePad.resizeCanvas()}}"
+                            ref="signaturePad"
+                            :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"
                           />
                           <VueSignaturePad v-else
                             id="signature"
                             width="100%"
                             height="200px"
-                            ref="AdminsignaturePad"
-                            :options="{onBegin: () => {$refs.AdminsignaturePad.lockSignaturePad()}}"
+                            ref="signaturePad"
+                            :options="{onBegin: () => {$refs.signaturePad.lockSignaturePad()}}"
                           />
                         </div>
                         <div class="buttons">
-                            <button v-if="this.useraccess == 'Admin'" class="btn btn-danger" @click="Adminclear">Clear</button>
-                            <button v-else disabled class="btn btn-danger" @click="Adminclear">Clear</button>
+                            <button v-if="this.useraccess == 'Admin'" class="btn btn-danger" @click="clear">Clear</button>
+                            <button v-else disabled class="btn btn-danger" @click="clear">Clear</button>
                         </div>
                     </div>
-          
+                    
+                </div>
       <!-- </form> -->
 
       <!-- <h5 class="text-center my-3">SCORE (II): {{ computeScoreTwo }}</h5> -->
@@ -406,38 +371,33 @@
                       
                   </div>
               </div>
-
-
-              <!-- approver signature -->
+              </div>
+              <div class="mb-3">
                    <div class="container">
                     <label for="Signature" class="form-label">Signature</label>
                         <div class="container border border-primary">
-                           <VueSignaturePad v-if="this.useraccess == 'Approver' "
+                           <VueSignaturePad v-if="this.useraccess == 'Approver'"
                             id="signature"
                             width="100%"
                             height="200px"
-                            ref="signaturePad"
-                            :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"
+                            ref="signaturePadApprove"
+                            :options="{onBegin: () => {$refs.signaturePadApprove.resizeCanvas()}}"
                           />
                           <VueSignaturePad v-else
                             id="signature"
                             width="100%"
                             height="200px"
-                            ref="signaturePad"
-                            :options="{onBegin: () => {$refs.signaturePad.lockSignaturePad()}}"
+                            ref="signaturePadApprove"
+                            :options="{onBegin: () => {$refs.signaturePadApprove.lockSignaturePad()}}"
                           />
                         </div>
                         <div class="buttons">
-                            <button v-if="this.useraccess == 'Approver'" class="btn btn-danger" @click="clear">Clear</button>
-                            <button v-else disabled class="btn btn-danger" @click="clear">Clear</button>
+                            <button v-if="this.useraccess == 'Approver'" class="btn btn-danger" @click="clearapprove">Clear</button>
+                            <button v-else disabled class="btn btn-danger" @click="clearapprove">Clear</button>
                         </div>
                     </div>
                     
-             
-
-
-
-              </div>
+                </div>
           <!-- </div> -->
           <!-- <div class="m-3 d-flex">
               <div class="d-flex justify-content-between w-100">
@@ -515,6 +475,7 @@ export default {
       evaluatedBy: "",
       approvedByDirector: "",
       effectiveDate: "",
+      signature: "",
     })
 
     const rules = computed(() => {
@@ -555,6 +516,7 @@ export default {
       evaluatedBy: "",
       approvedByDirector: "",
       effectiveDate: "",
+      signature: ""
       }
     })
     const v$ = useValidate(rules,state)
@@ -563,14 +525,13 @@ export default {
       v$
     }
   },
-
-  name: 'MySignaturePad',
+  
   methods: {
     // approve(){
     //   this.status = "approve"
     //   console.log('approveeee')
     // },
-  checkuseraccess(){
+    checkuseraccess(){
       console.log("useraccess")
       var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
       this.useraccess = useraccess
@@ -579,26 +540,10 @@ export default {
   clear() {
       this.$refs.signaturePad.clearSignature();
     },
-  Adminclear() {
-    this.$refs.AdminsignaturePad.clearSignature();
-  },
+    clearapprove() {
+      this.$refs.signaturePadApprove.clearSignature();
+    },
     addToAPI(e) {
-      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      const { Admindata } = this.$refs.AdminsignaturePad.saveSignature();
-
-      // if(this.useraccess == 'Vendor'){
-      //   const { Admindata } = this.$refs.signaturePad.saveSignature();
-      //   const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      // }
-
-      // if (this.useraccess == 'Approver'){
-      //   const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      //   console.log("check if its empty:"+isEmpty);
-      
-      // if (this.useraccess == 'Admin'){
-      //   const { isEmpty, Admindata } = this.$refs.AdminsignaturePad.saveSignature();
-      //   console.log("check if its empty:"+isEmpty);
-      // }
       
       function toIsoString(date) {
         var tzo = -date.getTimezoneOffset(),
@@ -615,13 +560,11 @@ export default {
             dif + pad(Math.floor(Math.abs(tzo) / 60)) +
             ':' + pad(Math.abs(tzo) % 60);
       }
-      var dt = new Date();
       
+      var dt = new Date();
       let newForm = {
         
         // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
-        deadline: toIsoString(dt),
-        formDate: toIsoString(dt),
         deadline: toIsoString(dt),
         formName: "Vendor Assessment Form",
         // formCompleted: false,
@@ -657,17 +600,24 @@ export default {
 
         evaluatedBy: this.state.evaluatedBy,
         approvedByDirector: this.state.approvedByDirector,
-        signature: Admindata,
-        //signature: Admindata,
-        signaturetwo: data,
         effectiveDate: this.state.effectiveDate,
-   
       };
       var buttonValue = e.target.value;
 
+      if(this.useraccess =="Admin"){
+        const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+        console.log(data)
+        newForm.signature = data
+      }
+      if(this.useraccess =="Approver"){
+        const { isEmpty, data } = this.$refs.signaturePadApprove.saveSignature();
+        console.log(data)
+        newForm.signaturetwo = data
+        newForm.signature = this.state.signature
+      }
+
+      console.log(newForm)
       const axios = require("axios");
-      // const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      // console.log("check if its empty:"+isEmpty);
       this.v$.$validate()
       var formid = localStorage.getItem('formid')
       newForm.formCode = formid
@@ -721,10 +671,10 @@ export default {
       this.$refs.signaturePad.fromDataURL(data); // this draws back the signature that we saved
     //this.$refs.signaturePad.fromData(data);
     },
-    Admindraw(Admindata){ // this draws back the signature that we saved in the database
-      this.$refs.AdminsignaturePad.clearSignature();
+    drawapprove(data){ // this draws back the signature that we saved in the database
+      this.$refs.signaturePadApprove.clearSignature();
       console.log("Trying to draw the signature");
-      this.$refs.AdminsignaturePad.fromDataURL(Admindata); // this draws back the signature that we saved
+      this.$refs.signaturePadApprove.fromDataURL(data); // this draws back the signature that we saved
     //this.$refs.signaturePad.fromData(data);
     },
     async getEditInputs(){
@@ -766,17 +716,11 @@ export default {
               this.state.evaluatedBy= data.evaluatedBy
               this.state.approvedByDirector= data.approvedByDirector
               this.state.effectiveDate= data.effectiveDate
+              this.state.signature = data.signature
               var signdata = data.signature
-              var adminsign = data.signaturetwo
               this.draw(signdata);
-              this.Admindraw(adminsign);
-              //input the signature back into the signature pad
-              // if (this.useraccess == 'Approver'){
-              //   this.draw(signdata);
-              // } else if (this.useraccess == 'Admin'){
-              //   this.Admindraw(adminsign);
-              // }
-              
+              var signdataapprove = data.signaturetwo
+              this.drawapprove(signdataapprove);
           })
           .catch ((error) => {
               console.log(error);

@@ -63,7 +63,7 @@ public class VendorAssessmentService {
         existingForm.setApprovedByDirector(VARequest.getApprovedByDirector());
 
         existingForm.setSignature(VARequest.getSignature());
-        existingForm.setSignature(VARequest.getSignaturetwo());
+        existingForm.setSignaturetwo(VARequest.getSignaturetwo());
 
         existingForm.setSubmissionDate(VARequest.getSubmissionDate());
 
