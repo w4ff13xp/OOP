@@ -623,6 +623,7 @@ export default {
         
         // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
         formDate: toIsoString(dt),
+        deadline: toIsoString(dt),
         formName: "Vendor Assessment Form",
         // formCompleted: false,
         // formApproved: this.state.formApproved,
