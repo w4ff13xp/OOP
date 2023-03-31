@@ -620,6 +620,7 @@ export default {
       let newForm = {
         
         // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),
+        deadline: toIsoString(dt),
         formDate: toIsoString(dt),
         deadline: toIsoString(dt),
         formName: "Vendor Assessment Form",

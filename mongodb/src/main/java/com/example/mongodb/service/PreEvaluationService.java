@@ -46,6 +46,7 @@ public class PreEvaluationService {
         existingForm.setCompanyName(PERequest.getCompanyName());
         existingForm.setStatus(PERequest.getStatus());
         existingForm.setRejectionReason(PERequest.getRejectionReason());
+        
         existingForm.setAcknowledgedBy(PERequest.getAcknowledgedBy());
         existingForm.setSubContractorName(PERequest.getSubContractorName());
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
