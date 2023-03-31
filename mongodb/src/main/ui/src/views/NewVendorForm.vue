@@ -570,7 +570,7 @@ export default {
     //   this.status = "approve"
     //   console.log('approveeee')
     // },
-    checkuseraccess(){
+  checkuseraccess(){
       console.log("useraccess")
       var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
       this.useraccess = useraccess
@@ -599,8 +599,6 @@ export default {
       //   const { isEmpty, Admindata } = this.$refs.AdminsignaturePad.saveSignature();
       //   console.log("check if its empty:"+isEmpty);
       // }
-      
-      
       
       function toIsoString(date) {
         var tzo = -date.getTimezoneOffset(),
