@@ -913,7 +913,9 @@ export default {
                 var data = response.data
                 this.state.subcontractorName = data.subContractorName
                 this.state.scopeOfWork = data.scopeOfWork
-                this.state.evaluatedBy = data.evaluator
+                this.state.evaluatedBy = data.evaluator,
+                this.state.todayDate =moment(data.evaluatedDate).utc().format('YYYY-MM-DD') ,
+
                 console.log("retrieved signeddate", data.submissionDate)
 
                 if(data.submissionDate == null){

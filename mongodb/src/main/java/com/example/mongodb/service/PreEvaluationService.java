@@ -30,6 +30,9 @@ public class PreEvaluationService {
         PreEvaluation existingForm = repository.findById(PRERequest.getFormCode()).get();
         existingForm.setStatus(PRERequest.getStatus());
         existingForm.setRejectionReason(PRERequest.getRejectionReason());
+        existingForm.setEvaluator(PRERequest.getEvaluator());
+        existingForm.setEvaluatedDate(PRERequest.getEvaluatedDate());
+
         return repository.save(existingForm);
     }
 
