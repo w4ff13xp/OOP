@@ -367,7 +367,6 @@
                     <label for="InputDate" class="form-label">Date</label>
                     <input v-if="this.useraccess == 'Vendor'" type="date" id="InputDate" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
                     <input v-else disabled  type="date" id="InputDate" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
-                    
                 </div>
                 <div class="mb-3">
                     <label for="InputAcknowledgeBy" class="form-label">Acknowledged By</label>
@@ -409,14 +408,12 @@
 
         
         <div class="text-center m-3">
-            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
-            <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus">Approve</button>
-
-
-        <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
-        <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
+          <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal" v-if="this.useraccess!= 'Vendor'">Reject</button>
+          <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus" v-if="this.useraccess!= 'Vendor'">Approve</button>
+          <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
+          <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
         
-      </div>
+        </div>
 
        <div
             class="modal fade"
@@ -476,6 +473,7 @@ import useValidate from '@vuelidate/core'
 import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
 import moment from "moment";
+import { tsImportEqualsDeclaration } from '@babel/types';
 export default {
   setup(){
     const state =reactive({
@@ -502,7 +500,7 @@ export default {
         tempDisabilityCases: "",
         permDisabilityCases: "",
         fatalCases: "",
-        signedDate: null,
+        signedDate: "",
         acknowledgedBy: "",
 
     })
@@ -603,6 +601,7 @@ export default {
               formCode: fcode,
             subContractorName:this.state.subcontractorName,
             scopeOfWork: this.state.scopeOfWork, 
+            companyName: JSON.parse(localStorage.getItem('specificuser'))['username'],
             //evaluator:this.state.evaluatedBy,
             //evaluatedDate: this.state.todayDate,
             formName: "Pre Evaluation Form",
@@ -610,10 +609,15 @@ export default {
             temporaryDisabilityCases:this.state.tempDisabilityCases,
             permanentDisabilityCases:this.state.permDisabilityCases,
             fatalCases:this.state.fatalCases,
-            submissionDate:this.state.signedDate,
             signature: data,
             acknowledgedBy:this.state.acknowledgedBy}
 
+            if(this.state.signedDate == "Invalid date"){
+              preEval.submissionDate = null
+            }
+            else{
+              preEval.submissionDate = this.state.signedDate
+            }
             if(this.state.shpolicy ==="true"){
               preEval.safetyHealthPolicy = true;
             }
@@ -735,6 +739,7 @@ export default {
                 let preEval = {formCode: fcode,
                 subContractorName:this.state.subcontractorName,
                 scopeOfWork: this.state.scopeOfWork, 
+                companyName: JSON.parse(localStorage.getItem('specificuser'))['username'],
                 //evaluator:this.state.evaluatedBy,
                 //evaluatedDate: this.state.todayDate,
                 formName: "Pre Evaluation Form",
@@ -759,6 +764,8 @@ export default {
                 submissionDate:this.state.signedDate,
                 signature: data,
                 acknowledgedBy:this.state.acknowledgedBy}
+
+                if(data)
                 console.log(preEval)
                   axios
                   .post("http://localhost:8080/preEvaluation", preEval)
@@ -779,42 +786,44 @@ export default {
                 .catch((error) => {
                   console.log(error);
                 });
-              
-
               }
-           
-        
         }
         else{
           alert("Please fill up the form with valid details");
-        }
-          
-        }
-      
-       
+        }  
+      }
     },
     changeApproveStatus() {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "pendingApproval"
+            console.log(this.state.evaluatedBy);
+            console.log(this.state.todayDate);
+            if(this.state.evaluatedBy == null || this.state.todayDate == "Invalid date"){
+                  alert("Please fill up the evaulated by and date")
+                }
+            else {
+              const axios = require('axios');
+              var formid = localStorage.getItem('formid')
+              console.log(formid)
+              var toUpdate = {
+                  formCode: formid,
+                  rejectionReason: this.rejectionReason,
+                  evaluator: this.state.evaluatedBy,
+                  evaluatedDate: this.state.todayDate,
+                  status: "pendingApproval"
+              }
+              axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+              .then((response) => {
+                  // alert("Update success")
+                  console.log(response.data)
+                  this.approve_success = true;
+                  window.location.href = "http://localhost:3000/home"
+              })
+              .catch ((error) => {
+                  // alert("Error")
+                  this.approve_error = true;
+                  console.log(error)
+              })
             }
-            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Update success")
-                console.log(response.data)
-                this.approve_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                this.approve_error = true;
-                console.log(error)
-            })
         }
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
             const axios = require('axios');
@@ -837,12 +846,10 @@ export default {
                 this.approve_error = true;
                 console.log(error)
             })
-        }
-            
+        }    
       },
       reject() {
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
@@ -865,8 +872,6 @@ export default {
             })
         }
         if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
-
-
             const axios = require('axios');
             var formid = localStorage.getItem('formid')
             console.log(formid)
@@ -889,79 +894,6 @@ export default {
             })
         }
     },
-    adminAPI(e){
-       if(this.state.evaluator =="" || this.state.todayDate == null){
-                alert("Please fill up the evaulated by and date")
-              }
-              else{
-                let preEval = {
-                  formCode: "PEmarcleo97@hotmail.com",
-                  subContractorName:this.state.subcontractorName,
-                  scopeOfWork: this.state.scopeOfWork, 
-                  evaluator:this.state.evaluatedBy,
-                  evaluatedDate: this.state.todayDate,
-                  formName: "SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION",
-                  safetyHealthPolicy:Boolean(this.state.shpolicy),
-                  properDelegation:Boolean(this.state.safetyOrganisation),
-                  safetyCommitment:Boolean(this.state.safetyCommit),
-                  toolBoxMeeting:Boolean(this.state.toolbox),
-                  supervisorTraining:Boolean(this.state.safetyMgtCourses),
-                  workerTraining:Boolean(this.state.safetyWorkersCourses),
-                  certificatesSubmitted:Boolean(this.state.safetyCertificates),
-                  workerRules:Boolean(this.state.safetyHealthRules),
-                  riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
-                  inspectionGuidelines:Boolean(this.state.writtenProgram),
-                  ppe:Boolean(this.state.safetyEquipment),
-                  safetySupervisor:Boolean(this.state.safetySupervisor),
-                  firstAider:Boolean(this.state.firstAider),
-                  relevantLicensedPersonnel:Boolean(this.state.qualified),
-                  temporaryDisabilityCases:this.state.tempDisabilityCases,
-                  permanentDisabilityCases:this.state.permDisabilityCases,
-                  fatalCases:this.state.fatalCases,
-                  effectiveDate:this.state.signedDate,
-                  signature: data,
-                  acknowledgedBy:this.state.acknowledgedBy}
-
-
-                  var buttonValue = e.target.value;
-                  const axios = require("axios");
-                  var formid = localStorage.getItem('formid');
-                  preEval.formCode = formid
-
-                  if(buttonValue == "approve"){
-                    preEval.status = "pendingApproval";
-                  }
-                  else{
-                    preEval.status = "adminRejected";
-                  }
-                  axios
-                  .put("http://localhost:8080/preEvaluation", preEval)
-                  .then((response) => {
-                    console.log(response);
-                    if (response.status == 201 && response.data != "") {
-                      alert("Pre Evaluation successfully updated.");
-                    }
-                    if (response.data == "") {
-                      alert(
-                        "Something went wrong"
-                      );
-                    } else {
-                      alert("Success")
-                    }
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-
-                  
-                  
-                  
-                  }
-      
-
-            
-
-    },
     draw(data){ // this draws back the signature that we saved in the database
       this.$refs.signaturePad.clearSignature();
       console.log("Trying to draw the signature");
@@ -982,7 +914,14 @@ export default {
                 this.state.subcontractorName = data.subContractorName
                 this.state.scopeOfWork = data.scopeOfWork
                 this.state.evaluatedBy = data.evaluator
-                this.state.todayDate = moment(data.evaluatedDate).utc().format('YYYY-MM-DD')
+                console.log("retrieved signeddate", data.submissionDate)
+
+                if(data.submissionDate == null){
+                  this.state.signedDate = data.submissionDate
+                }
+                else{
+                  this.state.signedDate = moment(data.submissionDate).utc().format('YYYY-MM-DD')
+                }
                 if(data.safetyHealthPolicy){
                   this.state.shpolicy = "true"
                 }
