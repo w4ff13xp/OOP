@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-        <h1 class="text-center my-5">Approve Form</h1>
+
+    <div class="container" ref="printme">
+        <h1 class="text-center my-5">SUBCONTRACTOR’S SAFETY & HEALTH PERFORMANCE EVALUATION</h1>
         <div>
             <table class="table table-hover table-bordered table-striped text-center">
             <thead>
@@ -152,6 +153,9 @@
         <div class="my-5 d-flex justify-content-between">
             <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal">Reject</button>
             <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus">Approve</button>
+            <button type="button" class="btn btn-info text-white" @click="print" id="printButton" v-if="this.user_access =='Admin'">Print</button>
+            
+
         </div>
 
         <div
@@ -203,14 +207,22 @@
             </div>
           </div>
     </div>
+
   </template>
 
+
   <script>
+    import html2pdf from 'html2pdf.js';
+
+
   export default {
     name:'AdminApprove',
+    
 
 data() {
 return {
+    user_access: "",
+
     approve_success: false,
     approve_error: false,
     reject_success: false,
@@ -267,11 +279,27 @@ return {
 
 }
 },
+components: {
+        
+    },
 methods: {
-  
+    
+    print(){
+        console.log("PRINTING")
+        html2pdf(this.$refs.printme, {
+            margin: 1,
+            filename: 'SUBCONTRACTOR’S_SAFETY_&_HEALTH_PERFORMANCE_EVALUATION.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        })
+        
+    },
+
     checkFormCode(){
         console.log("FORM CODE")
         console.log(localStorage.getItem('formid'))
+        this.user_access = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
 
     },
     async getInputs(){

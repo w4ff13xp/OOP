@@ -93,6 +93,14 @@
                                     </button>
                                     <button
                                         type="button"
+                                        class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
+                                        v-if="this.user_access == 'Admin' && h.status =='approved'"
+                                        @click="approve(h.formCode, h.formName)"
+                                    >
+                                    Print
+                                    </button>
+                                    <button
+                                        type="button"
                                         class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Approver'"
                                         @click="approve(h.formCode, h.formName)"
