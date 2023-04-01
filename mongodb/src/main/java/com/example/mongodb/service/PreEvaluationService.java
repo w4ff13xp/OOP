@@ -47,7 +47,6 @@ public class PreEvaluationService {
         existingForm.setStatus(PERequest.getStatus());
         existingForm.setRejectionReason(PERequest.getRejectionReason());
         
-        existingForm.setAcknowledgedBy(PERequest.getAcknowledgedBy());
         existingForm.setSubContractorName(PERequest.getSubContractorName());
         existingForm.setScopeOfWork(PERequest.getScopeOfWork());
         existingForm.setEvaluator(PERequest.getEvaluator());
@@ -77,8 +76,8 @@ public class PreEvaluationService {
         existingForm.setFatalCases(PERequest.getFatalCases());
 
         existingForm.setSignature(PERequest.getSignature());
-
         existingForm.setSubmissionDate(PERequest.getSubmissionDate());
+        existingForm.setAcknowledgedBy(PERequest.getAcknowledgedBy());
 
         return repository.save(existingForm);
     }
