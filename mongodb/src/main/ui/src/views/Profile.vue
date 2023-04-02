@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <!-- ALERTS -->
         <div v-if="edit_success" class="alert alert-primary" role="alert">
         EDIT SUCCESSFUL: Account was successfully updated!
@@ -14,49 +14,51 @@
       >
         <span class="mask bg-gradient-success opacity-6"></span>
       </div>
-      <div class="border rounded m-5 p-5">
+      <div class="row"><div class="col"></div><div class="col">
+      <div class="border rounded m-5 p-5 center" style="width: 800px">
         <div class="row gx-4">
 
-          <div class="col-auto my-auto">
+          <div class="text-center">
             <div class="h-100">
-              <h5 class="mb-1 text-center">My Profile</h5>
+              <h3 class="mb-1 ">My Profile</h3>
             </div>
           </div>
           <div
             class="mx-auto mt-3 col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0"
           ></div>
         </div>
+        
         <div class="row mt-4">
-          <div class="col-auto">
-            Username: {{ username }}
+          <div class=" text-center">
+            Company Name: {{ username }}
           </div>
         </div>
         <div class="row mt-4">
-          <div class="col-auto">
+          <div class=" text-center">
             Email: {{ email }}
           </div>
         </div>
         <div class="row mt-4">
-          <div class="col-auto">
+          <div class=" text-center">
             Access Rights: {{ accessRights }}
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col-auto">
+        <div class="row mt-4  text-center">
+          <div >
             Locations:
-            <ul>
+            <ul style="list-style-type: none;padding:0">
               <li v-for="l in loc">
               {{ l }}</li>
             </ul>
           </div>
         </div>
         <div class="row mt-4">
-          <div class="col-auto">
+          <div class="text-center">
             <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</button>
           </div>
         </div>
-      </div>
-
+      </div></div><div class="col"></div>
+    </div>
       <div
             class="modal fade"
             id="editModal"

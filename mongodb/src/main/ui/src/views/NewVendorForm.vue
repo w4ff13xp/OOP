@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" ref="printme">
     <!-- <form action="http://localhost:8080/home" method="post"> -->
     <!-- <form v-on:submit.prevent="addToAPI" id="form"> -->
       <form id="form">
@@ -326,36 +326,11 @@
       <!-- <h5 class="text-center my-3">SCORE (II): {{ computeScoreTwo }}</h5> -->
     </div>
 
-    <div v-if="this.useraccess=='Approver'" class="row bg-light m-5 rounded p-3 border">
+    <div v-if="this.useraccess=='Approver' || this.useraccess=='Admin'" class="row bg-light m-5 rounded p-3 border">
       <h4 class="text-center mb-5">PART III: RESULT OF EVALUATION</h4>
       <!-- <form> -->
           <div class="m-3 d-flex ">
-              <!-- <div class="d-flex justify-content-between w-100"> -->
-                  <!-- <div class="form-check form-check-inline "> -->
-                          <!-- <div>
-                              <label class="form-check-label"  for="gstRegistered">Approved</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <label class="form-check-label "  for="inlineRadio1">Yes</label>
-                              <input v-if="this.useraccess == 'Approver'" type="radio" class="form-check-input" name="third" id="inlineRadio1" value="true" v-model="state.resultOfEvaluation">        
-                              <input v-else disabled type="radio" class="form-check-input" name="third" id="inlineRadio1" value="true" v-model="state.resultOfEvaluation">        
-
-                          </div>
-                          <div class="form-check form-check-inline">
-                              <label class="form-check-label"  for="inlineRadio1">No</label>
-                              <input v-if="this.useraccess == 'Approver'" type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
-                              <input v-else disabled type="radio" class="form-check-input" name="third" id="inlineRadio1" value="false" v-model="state.resultOfEvaluation">        
-                          </div> -->
-              <!-- <span class="text-danger" v-if="v$.resultOfEvaluation.$error">{{ v$.resultOfEvaluation.$errors[0].$message }}</span> -->
-
-                  <!-- </div>   -->
-                  <!-- <div class="form-check form-check-inline ">
-                      <label class="form-check-label"  for="inlineCompanyName">Evaluated by</label>
-                      <input v-if="this.useraccess == 'Approver'" type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
-                      <input v-else disabled type="text" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.evaluatedBy">
-              <span class="text-danger" v-if="v$.evaluatedBy.$error">{{ v$.evaluatedBy.$errors[0].$message }}</span>
-
-                  </div> -->
+             
                   <div class="form-check form-check-inline ">
                       <label class="form-check-label"  for="inlineCompanyName">Approved by</label>
                       <input v-if="this.useraccess == 'Approver'" type="text" class="form-control form-check-inline" name="companyaddress" placeholder="Approver name" v-model="state.approvedByDirector">
@@ -420,6 +395,7 @@
       <button type="button" value="submit" class="btn btn-success text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Submit</button>        
       <button type="button" value="evaluation rejected" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin'">Reject Evaluation</button>
       <button type="button" value="evaluation approved" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin'">Approve Evaluation</button>
+      <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
       <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
       <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
 
@@ -430,6 +406,8 @@
 </template>
 
 <script>
+import html2pdf from 'html2pdf.js';
+
 import useValidate from '@vuelidate/core'
 import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
@@ -443,7 +421,7 @@ export default {
       // status: "",
       useraccess: "",
       // formApproved: false,
-
+      status:"",
       companyName: "",
       registrationNo: "",
       officeAddress: "",
@@ -476,6 +454,8 @@ export default {
       approvedByDirector: "",
       effectiveDate: "",
       signature: "",
+      signaturetwo: "",
+
     })
 
     const rules = computed(() => {
@@ -516,7 +496,9 @@ export default {
       evaluatedBy: "",
       approvedByDirector: "",
       effectiveDate: "",
-      signature: ""
+      signature: "",
+      signaturetwo: ""
+
       }
     })
     const v$ = useValidate(rules,state)
@@ -531,6 +513,22 @@ export default {
     //   this.status = "approve"
     //   console.log('approveeee')
     // },
+    
+    print(){
+        // console.log(this.state.signaturetwo)
+        setTimeout(function(){
+          window.location.href = "http://localhost:3000/home";
+        }, 2000);
+        console.log("PRINTING")
+        html2pdf(this.$refs.printme, {
+            margin: 1,
+            filename: 'New Vendor Assessment Form.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        })
+        setTimeout();
+    },
     checkuseraccess(){
       console.log("useraccess")
       var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
@@ -609,7 +607,7 @@ export default {
         console.log(data)
         newForm.signature = data
       }
-      if(this.useraccess =="Approver"){
+      if(this.useraccess =="Approver" ){
         const { isEmpty, data } = this.$refs.signaturePadApprove.saveSignature();
         console.log(data)
         newForm.signaturetwo = data
@@ -672,6 +670,7 @@ export default {
     //this.$refs.signaturePad.fromData(data);
     },
     drawapprove(data){ // this draws back the signature that we saved in the database
+      console.log(data)
       this.$refs.signaturePadApprove.clearSignature();
       console.log("Trying to draw the signature");
       this.$refs.signaturePadApprove.fromDataURL(data); // this draws back the signature that we saved
@@ -686,6 +685,7 @@ export default {
           .then((response) => {
               console.log(response.data);
               var data = response.data
+              this.status= data.status
               this.state.companyName = data.companyName
               this.state.registrationNo =  data.registrationNo
               this.state.officeAddress =  data.officeAddress
@@ -717,6 +717,8 @@ export default {
               this.state.approvedByDirector= data.approvedByDirector
               this.state.effectiveDate= data.effectiveDate
               this.state.signature = data.signature
+              this.state.signaturetwo = data.signaturetwo
+
               var signdata = data.signature
               this.draw(signdata);
               var signdataapprove = data.signaturetwo
