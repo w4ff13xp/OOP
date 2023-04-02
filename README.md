@@ -20,58 +20,80 @@ Password: Oopg1t9!
 
 Forms: 
 Pre Evaluation Form
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/preeval1.png"><br>
+<img width="500" alt="" src="img/preeval2.png"><br>
+<img width="500" alt="" src="img/preeval3.png"><br>
+<img width="500" alt="" src="img/preeval4.png"><br>
+<code>http://localhost:3000/Safety&HealthPreEvaluation</code>
 
 Performance Evaluation Form
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/perfeval1.png"><br>
+<img width="500" alt="" src="img/perfeval2.png"><br>
+<img width="500" alt="" src="img/perfeval3.png"><br>
+<code>http://localhost:3000/performanceevaluation</code>
 
 Vendor Assessment Form
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/newvendor1.png"><br>
+<img width="500" alt="" src="img/newvendor2.png"><br>
+<img width="500" alt="" src="img/newvendor3.png"><br>
+<code>http://localhost:3000/newvendorform</code>
+
+Performance Evaluation Report
+<img width="500" alt="" src="img/perfevalreport1.png"><br>
+<img width="500" alt="" src="img/perfevalreport1.png"><br>
+<code>http://localhost:3000/adminapprove</code>
 
 ## Login Page
 <img width="500" alt="" src="img/login.png"><br>
+<code>http://localhost:3000/login</code>
 
 <img width="500" alt="" src="img/sso.png"><br>
 Single Sign On page using Auth0 authentication service
 
 ## Profile Page
 <img width="500" alt="" src="img/profile.png"><br>
+<code>http://localhost:3000/profile</code>
 
 ## Vendor
 ### Home page
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/vendorhomepage.png"><br>
+<code>http://localhost:3000/home</code>
 
-* Vendor sees all forms they are assigned to by the vendor
-* Vendor sees the status of the forms
+Vendor sees all forms they are assigned to by the vendor
+Vendor sees the status of the forms
 
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+#### Fill Up Form
+<img width="500" alt="" src="img/savesubmit.png"><br>
+<ins>Save Form<ins> <br>
 
-#### Save Form
 * Vendor fills up the form halfway
 * Vendor can save the form if it is incompleted (no validation of form when saving)
-#### Submit Form
+
+<ins>Submit Form<ins> <br>
+
 * Vendor fills up the form completely
 * Vendor clicks submit and form validation occurs. If any required fields are empty, form submission is unsuccessful and highlights to the vendor the fields that are empty. Otherwise, the form submission is successful and status changes from Incompleted to Pending Evaluation
 
 ## Admin
 ### Home page
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/adminhomepage.png"><br>
+<code>http://localhost:3000/home</code>
 
-* Admin sees all forms
+Admin sees all forms <br>
+
 Statuses: 
-Upon assign -> Incomplete!
-Upon submit -> Pending Admin Evaluation!
-Upon admin reject -> Admin Rejected!
-Upon admin approve -> Pending Approval!
-Upon approver reject -> Approver Rejected!
-Upon approver approve -> Approved!
+1. Upon assign -> Incomplete!
+2. Upon submit -> Pending Admin Evaluation!
+3. Upon admin reject -> Admin Rejected!
+4. Upon admin approve -> Pending Approval!
+5. Upon approver reject -> Approver Rejected!
+6. Upon approver approve -> Approved!
 
 #### Evaluate Form
 
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
-
 * Blue pen button refers to an action required from the admin to evaluate the form
 * Upon clicking the evaluate button Admin sees the form with inputs filled and submitted by the vendor
+<img width="500" alt="" src="img/approverejeval.png"><br>
 
 <ins>Approve Evaluation<ins> <br>
 
@@ -85,12 +107,10 @@ Upon approver approve -> Approved!
 * Form status changes from 'Pending Admin Evaluation' to 'Admin Rejected'
 #### Print Approved Form
 
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
-
 * Green print button appears when the form status is approved 
 * Upon clicking the print button, admin enters into the form and clicks the blue print button at the bottom of the form
 * PDF file of the form is downloaded 
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/printpdf.png"><br>
 
 #### Send Email Alert to Vendor
 * Yellow alert button appears when the form status is still incomplete 3 days before the deadline
@@ -101,9 +121,10 @@ Upon approver approve -> Approved!
 * Red delete button where admin can delete a workflow for the vendor
 
 ### Admin page
-<!-- <img width="500" alt="" src="img/profile.png"><br> -->
+<img width="500" alt="" src="img/adminpage.png"><br>
+<code>http://localhost:3000/admin</code>
 
-* Admin sees all accounts in the system
+Admin sees all accounts in the system
 
 #### Assign New Workflow 
 <img width="500" alt="" src="img/assignform.png"><br>
@@ -113,6 +134,7 @@ Upon approver approve -> Approved!
 * Admin cannot assign a workflow that is already assigned to the vendor
 #### Create New Account
 <img width="500" alt="" src="img/createnewacc.png"><br>
+<code>http://localhost:3000/createnewacc</code>
 
 * Upon clicking the green create new account button, admin enters the create new account page to fill in the fields for a new vendor
 * Admin fills up the company name, email, password (hashed), access rights, location of operations 
@@ -130,11 +152,21 @@ Upon approver approve -> Approved!
 ## Approver
 ### Home page
 <img width="500" alt="" src="img/approverhomepage.png"><br>
+<code>http://localhost:3000/home</code>
 
-* Approver sees all forms that are approved and requires approve action
+Approver sees all forms that are approved and requires approve action
 #### Approve Form
+<img width="500" alt="" src="img/approverej.png"><br>
+
 * Blue pen button refers to an action required from the Approver to approve the form
 * Upon clicking the approve button Approver sees the form with inputs filled and submitted by the vendor and admin
+<ins>Approve Form<ins> <br>
+
 * Approver fills up some evaluation fields and signs the form
 * Approver clicks Approve button
 * Form status changes from 'Pending Approval' to 'Approved'
+
+<ins>Reject Form<ins> <br>
+
+* Approver clicks Reject button
+* Form status changes from 'Pending Approval' to 'Rejected'
