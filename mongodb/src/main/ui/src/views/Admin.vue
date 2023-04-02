@@ -654,6 +654,7 @@ name:'Admin',
 
             let updated_form = this.forms
             let formCode = temp_obj['formCode']
+            let formName = temp_obj['formName']
 
             
             if (this.forms != null && updated_form.includes(formCode)){
@@ -693,6 +694,7 @@ name:'Admin',
             console.log(response.data);
             location.reload();
             this.assign_success = true;
+            email(this.formCode, this.vendor_name, this.formName)
             
             })
             .catch ((error) => {
@@ -723,6 +725,7 @@ name:'Admin',
 
             let updated_form = this.forms
             let formCode = temp_obj['formCode']
+            let formName = temp_obj['formName']
 
             if (this.forms != null && updated_form.includes(formCode)){
                 console.log("FORM ALR EXISTS")
@@ -758,6 +761,7 @@ name:'Admin',
             console.log(response.data);
             location.reload();
             this.assign_success = true;
+            email(this.formCode, this.vendor_name, this.formName)
             
             })
             .catch ((error) => {
@@ -789,6 +793,7 @@ name:'Admin',
 
             let updated_form = this.forms
             let formCode = temp_obj['formCode']
+            let formName = temp_obj['formName']
 
             if (this.forms != null && updated_form.includes(formCode)){
                 console.log("FORM ALR EXISTS")
@@ -824,6 +829,7 @@ name:'Admin',
             console.log(response.data);
             location.reload();
             this.assign_success = true;
+            email(this.formCode, this.vendor_name, this.formName)
             
             })
             .catch ((error) => {
@@ -833,8 +839,8 @@ name:'Admin',
         }
         
         },
-        async email(formCode, companyName, formName, longDate){
-        console.log(formCode, companyName, formName, longDate)
+        async email(formCode, companyName, formName){
+        console.log(formCode, companyName, formName)
         var email = formCode.slice(2)
         console.log(email)
         var shortDate = longDate.toString().slice(0, 10)
@@ -844,8 +850,8 @@ name:'Admin',
 
             let newEmail = {
                 recipient : email,
-                msgBody : "Dear " + companyName + "," + "\n\nI hope this email finds you well. I am writing to remind you about the upcoming deadline for submitting the " + formName + ". The deadline for submission is " + shortDate + ", which is fast approaching.\n\nIf you have already submitted the required forms, please disregard this reminder. However, if you have not yet submitted the forms, please do so as soon as possible to avoid missing the deadline.\n\nIf you have any questions or concerns, please don't hesitate to reach out to us. We are here to assist you in any way we can.\n\nThank you for your attention to this matter.\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
-                subject: "Reminder: Submission of Required Forms before Deadline"
+                msgBody : "Dear " + companyName + "," + "\n\nI hope this email finds you well. I am writing to notify you that the " + formName + " has been assigned to you. Please do so as soon as possible to avoid missing the deadline.\n\nIf you have any questions or concerns, please don't hesitate to reach out to us. We are here to assist you in any way we can.\n\nThank you for your attention to this matter.\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+                subject: "Notification: Assignment of Required Forms"
             };
 
             await axios.post('http://localhost:8080/sendMail', newEmail)
