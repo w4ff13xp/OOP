@@ -634,7 +634,7 @@ name:'Admin',
                 let newEmail = {
                     recipient : email,
                     msgBody : "Dear " + companyName + "," + "\n\nI am writing to inform you that a " + formName + " has been assigned to you and it is required to be completed before the deadline. We appreciate your cooperation in this matter.\n\nPlease find the form on our website that needs to be filled out and returned to us by " + shortDate + ". We kindly request that you complete the form thoroughly and provide all necessary information requested.\n\nIf you have any questions or concerns regarding the form or the deadline, please do not hesitate to contact us. We are happy to help and provide any clarification that you may need.\n\nWe value your partnership and thank you for your prompt attention to this matter." + "\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
-                    subject: "Reminder: Submission of Required Forms before Deadline"
+                    subject: "Reminder: " + formName + " Assignment Notification for " + companyName + " - " + shortDate
                 };
 
                 await axios.post('http://localhost:8080/sendMail', newEmail)
