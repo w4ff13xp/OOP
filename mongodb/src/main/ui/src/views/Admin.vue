@@ -43,7 +43,7 @@
                 <thead>
                     <tr>
                         <th class="col-2 text-uppercase text-xs font-weight-bolder opacity-7">
-                            Vendor Name
+                            Company Name
                         </th>
                         <th class="col-3 text-uppercase text-xs font-weight-bolder opacity-7 ps-2">
                             Email
@@ -77,7 +77,7 @@
                         </td>
                         <td class="text-start px-3 col-4">
                             <div class="mx-auto mt-2">
-                                <button
+                                <button title="Edit"
                                     type="button"
                                     class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                     data-bs-toggle="modal"
@@ -92,10 +92,10 @@
                                             vendor.password,
                                             vendor.forms
                                         )"
-                                >
-                                Edit
+                                ><i class="bi bi-pencil-square"></i>
+                                
                                 </button>
-                                <button
+                                <button title="Delete"
                                     type="button"
                                     class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
                                     data-bs-toggle="modal"
@@ -110,11 +110,11 @@
                                             vendor.password,
                                             vendor.forms
                                         )"
-                                >
-                                Delete
+                                ><i class="bi bi-trash"></i>
+                                
                                 </button>
                                 <!-- <button class="btn btn-success" @click="updateVendors()">Update</button> -->
-                                <button
+                                <button title="Assign Form"
                                     type="button"
                                     class="btn btn-warning btn-sm font-xxs px-3 ms-2 text-white"
                                     data-bs-toggle="modal"
@@ -130,7 +130,7 @@
                                             vendor.forms
                                         )"
                                 >
-                                Assign Forms
+                                <i class="bi bi-hand-index"></i>
                                 </button>
                             </div>
                         </td>

@@ -56,7 +56,7 @@
 
                             <td class="text-sm text-wrap fs-6 col-2" >
                                 <div class="mx-auto mt-2">  
-                                    <button
+                                    <button title="Delete"
                                         type="button"
                                         class="btn btn-danger btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Admin'"
@@ -69,51 +69,52 @@
                                                 
                                             )"
                                     >
-                                    Delete
+                                    <i class="bi bi-trash"></i>
                                     </button>
-                                    <button
+                                    <button title="Edit"
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs  text-white"
                                         v-if="this.user_access == 'Vendor' && (h.status != 'approved' && h.status != 'pendingApproval') "
                                         v-on:click="editV(h.formCode, h.formName)"    
 
                                     >
-                                    Edit
+                                    <i class="bi bi-pencil-square"></i>
                                     </button>
                                     <p v-if="this.user_access == 'Vendor' && (h.status == 'approved' || h.status == 'pendingApproval')">
                                         No available actions!
                                     </p>
-                                    <button
+                                    <button title="Evaluate"
                                         type="button"
-                                        class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
+                                        class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Admin' && h.status =='pendingEvaluation'"
                                         @click="approve(h.formCode, h.formName)"
-                                    >
-                                    Evaluate
+                                    ><i class="bi bi-vector-pen"></i>
+                                    
                                     </button>
-                                    <button
+                                    <button title="Print"
                                         type="button"
                                         class="btn btn-primary btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Admin' && h.status =='approved'"
                                         @click="approve(h.formCode, h.formName)"
                                     >
-                                    Print
+                                    <i class="bi bi-printer"></i>
                                     </button>
-                                    <button
+                                    <button title="Approve/Reject"
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="this.user_access == 'Approver'"
                                         @click="approve(h.formCode, h.formName)"
                                     >
-                                    Approve/Reject
+                                    <i class="bi bi-vector-pen"></i>
+                                    
                                     </button>
-                                    <button
+                                    <button title="Send Alert"
                                         type="button"
-                                        class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
+                                        class="btn btn-warning btn-sm font-xxs px-3 ms-2 text-white"
                                         v-if="h.status == 'incomplete' && this.user_access == 'Admin'"
                                         @click="email(h.formCode, h.companyName, h.formName, h.deadline)"
                                     >
-                                    Send Alert
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
                                     </button>
 
                                 </div>
