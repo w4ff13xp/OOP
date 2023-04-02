@@ -412,6 +412,7 @@ export default{
             await axios.post('http://localhost:8080/sendMail', newEmail)
             .then((response) => {
                 console.log(response.data);
+                alert('reminder sent')
             })
             .catch ((error) => {
                 console.log(error);
