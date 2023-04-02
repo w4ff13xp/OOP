@@ -111,7 +111,7 @@
                                         type="button"
                                         class="btn btn-info btn-sm font-xxs px-1 ms-2 text-white"
                                         v-if="h.status == 'incomplete' && this.user_access == 'Admin'"
-                                        @click="email(h.formCode, h.companyName, h.formName, h.date)"
+                                        @click="email(h.formCode, h.companyName, h.formName, h.deadline)"
                                     >
                                     Send Alert
                                     </button>
@@ -394,6 +394,7 @@ export default{
     },
 
     async email(formCode, companyName, formName, longDate){
+        console.log(formCode, companyName, formName, longDate)
         var email = formCode.slice(2)
         console.log(email)
         var shortDate = longDate.toString().slice(0, 10)
