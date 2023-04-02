@@ -610,10 +610,10 @@ export default {
           recipient: email,
           msgBody:
             "Dear " +
-            this.companyName +
+            companyName +
             "," +
             "\n\nI am writing to inform you that unfortunately, we have had to reject the " +
-            this.formName +
+            formName +
             " that you submitted to us due to the following reason:\n\n" +
             rejectionReason +
             "\n\nWe kindly request that you review the reason for the rejection and make any necessary changes to the form. Once the changes have been made, please resubmit the form to us as soon as possible.\n\nIf you have any questions or concerns regarding the reason for the rejection, please do not hesitate to contact us. We are happy to help and provide any clarification that you may need.\n\nWe value your partnership and thank you for your prompt attention to this matter." +
