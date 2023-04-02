@@ -152,7 +152,7 @@
       REJECT SUCCESSFUL: Form was successfully rejected!
     </div>
     <div v-if="reject_error" class="alert alert-danger" role="alert">
-      APPROVE ERROR: Form was not successfully rejected!
+      REJECT ERROR: Form was not successfully rejected!
     </div>
     <!-- END ALERTS -->
 
@@ -162,6 +162,7 @@
         class="btn btn-danger text-white"
         data-bs-toggle="modal"
         data-bs-target="#deleteModal"
+        v-if="this.status != 'approved'"
       >
         Reject
       </button>
@@ -169,6 +170,7 @@
         type="button"
         class="btn btn-primary text-white"
         @click="changeApproveStatus"
+        v-if="this.status != 'approved'"
       >
         Approve
       </button>

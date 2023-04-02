@@ -373,28 +373,34 @@
                     </div>
                     
                 </div>
-          <!-- </div> -->
-          <!-- <div class="m-3 d-flex">
-              <div class="d-flex justify-content-between w-100">
-                  <div class="form-check form-check-inline ">
-                      <label class="form-check-label"  for="inlineCompanyName">Effective Date</label>
-                      <input v-if="this.useraccess == 'Approver'" type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
-                      <input v-else disabled type="date" class="form-control form-check-inline " name="companyaddress" placeholder="evaluator name" v-model="state.effectiveDate">
-              <span class="text-danger" v-if="v$.effectiveDate.$error">{{ v$.effectiveDate.$errors[0].$message }}</span>
-                      
-                  </div>
-              </div>
-          </div> -->
-      <!-- </form> -->
-
-      <!-- <h5 class="text-center my-3">SCORE (III): {{ computeScoreThree }}</h5> -->
     </div>
+    <!-- ALERTS -->
+    <div v-if="approve_success" class="alert alert-primary" role="alert">
+      APPROVE SUCCESSFUL: Form was successfully approved!
+    </div>
+    <div v-if="approve_error" class="alert alert-danger" role="alert">
+      APPROVE ERROR: Form was not successfully approved!
+    </div>
+    <div v-if="reject_success" class="alert alert-primary" role="alert">
+      REJECT SUCCESSFUL: Form was successfully rejected!
+    </div>
+    <div v-if="reject_error" class="alert alert-danger" role="alert">
+      APPROVE ERROR: Form was not successfully rejected!
+    </div>
+    <div v-if="submit_success" class="alert alert-primary" role="alert">
+      SUBMIT SUCCESSFUL: Form was successfully submitted!
+    </div>
+    <div v-if="submit_error" class="alert alert-danger" role="alert">
+      SUBMIT ERROR: Form was not successfully submitted!
+    </div>
+    <!-- END ALERTS -->
+
 
     <div class="text-center m-3">
       <button type="button" value="save" class="btn btn-warning mx-3" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Save</button>
       <button type="button" value="submit" class="btn btn-success text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Submit</button>        
-      <button type="button" value="evaluation rejected" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin'">Reject Evaluation</button>
-      <button type="button" value="evaluation approved" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin'">Approve Evaluation</button>
+      <button type="button" value="evaluation rejected" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin' && this.status != 'approved'">Reject Evaluation</button>
+      <button type="button" value="evaluation approved" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin' && this.status != 'approved'">Approve Evaluation</button>
       <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
       <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
       <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
@@ -413,6 +419,16 @@ import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
 export default {
   name: "NewVendorForm",
+  data() {
+    return {
+      approve_success: false,
+      approve_error: false,
+      reject_success: false,
+      reject_error: false,
+      submit_success: false,
+      submit_error: false,
+    }
+  },
   setup(){
     const state = reactive({
       // formDate: "2023-03-07",
@@ -420,6 +436,7 @@ export default {
       // formCompleted: false,
       // status: "",
       useraccess: "",
+
       // formApproved: false,
       status: "",
       companyName: "",
@@ -626,21 +643,27 @@ export default {
         }
         if(buttonValue == "evaluation rejected"){
           newForm.status = "adminRejected";
+          this.reject_success = true;
         }
         if(buttonValue == "evaluation approved"){
           newForm.status = "pendingApproval";
+          this.approve_success = true;
         }
         else if(buttonValue == "approve"){
           newForm.status = "approved";
+          this.approve_success = true;
+
         }
         else if(buttonValue == "reject"){
           newForm.status = "approverRejected";
+          this.reject_success = true;
+
         }
         axios
             .put("http://localhost:8080/vendorAssessment", newForm)
             .then((response) => {
               console.log(response);
-              alert(`form ${buttonValue}`)
+            //   alert(`form ${buttonValue}`)
               window.location.href = "http://localhost:3000/home"
             })
           }
@@ -648,19 +671,21 @@ export default {
         if(!this.v$.$error){
             newForm.status = "pendingEvaluation";
             console.log(this.formApproved)
-            alert('successful validation')
+            alert('Successful Validation')
             axios
             .put("http://localhost:8080/vendorAssessment", newForm)
             .then((response) => {
               console.log(response);
-                  alert("form submitted")
+                //   alert("form submitted")
+                this.submit_success = true;
               window.location.href = "http://localhost:3000/home"
             })
             .catch((error) => {
               console.log(error);
             });
         }else{
-            alert('form failed')
+            // alert('form failed')
+            this.submit_error = true;
         }
       }
     },

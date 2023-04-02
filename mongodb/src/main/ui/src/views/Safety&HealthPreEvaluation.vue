@@ -1074,6 +1074,26 @@
         </div>
       </div>
     </div>
+    <!-- ALERTS -->
+    <div v-if="approve_success" class="alert alert-primary" role="alert">
+      APPROVE SUCCESSFUL: Form was successfully approved!
+    </div>
+    <div v-if="approve_error" class="alert alert-danger" role="alert">
+      APPROVE ERROR: Form was not successfully approved!
+    </div>
+    <div v-if="reject_success" class="alert alert-primary" role="alert">
+      REJECT SUCCESSFUL: Form was successfully rejected!
+    </div>
+    <div v-if="reject_error" class="alert alert-danger" role="alert">
+      APPROVE ERROR: Form was not successfully rejected!
+    </div>
+    <div v-if="submit_success" class="alert alert-primary" role="alert">
+      SUBMIT SUCCESSFUL: Form was successfully submitted!
+    </div>
+    <div v-if="submit_error" class="alert alert-danger" role="alert">
+      SUBMIT ERROR: Form was not successfully submitted!
+    </div>
+    <!-- END ALERTS -->
 
     <div class="text-center m-3">
       <button
@@ -1081,7 +1101,7 @@
         class="btn btn-danger text-white"
         data-bs-toggle="modal"
         data-bs-target="#deleteModal"
-        v-if="this.useraccess != 'Vendor'"
+        v-if="this.useraccess != 'Vendor' && this.status != 'approved'"
       >
         Reject
       </button>
@@ -1089,7 +1109,7 @@
         type="button"
         class="btn btn-primary text-white"
         @click="changeApproveStatus"
-        v-if="this.useraccess != 'Vendor'"
+        v-if="this.useraccess != 'Vendor' && this.status != 'approved'"
       >
         Approve
       </button>
@@ -1187,6 +1207,16 @@ import { tsImportEqualsDeclaration } from "@babel/types";
 import html2pdf from "html2pdf.js";
 
 export default {
+    data(){
+        return {
+            approve_success: false,
+            approve_error: false,
+            reject_success: false,
+            reject_error: false,
+            submit_success: false,
+            submit_error: false,
+        }
+    },
   setup() {
     const state = reactive({
       // name:value pairs
@@ -1454,7 +1484,7 @@ export default {
           .then((response) => {
             console.log(response);
             // localStorage.setItem('edit',false);
-            alert("form saved");
+            alert("Form Saved!");
             window.location.href = "http://localhost:3000/home";
           })
           .catch((error) => {
@@ -1522,12 +1552,15 @@ export default {
                 console.log(response);
                 if (response.status == 201 && response.data != "") {
                   alert("Pre Evaluation successfully created.");
+                  this.submit_success = true;
                   window.location.href = "http://localhost:3000/home";
                 }
                 if (response.data == "") {
                   alert("VALIDATION FAILED. Something went wrong");
+                  this.submit_error = true;
                 } else {
                   alert("Success");
+                  this.submit_success = true;
                 }
               })
               .catch((error) => {
@@ -1633,7 +1666,7 @@ export default {
           .post("http://localhost:8080/sendMail", newEmail)
           .then((response) => {
             console.log(response.data);
-            alert("reminder sent");
+            alert("Reminder sent!");
           })
           .catch((error) => {
             console.log(error);
