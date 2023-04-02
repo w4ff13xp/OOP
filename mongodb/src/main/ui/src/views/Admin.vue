@@ -631,6 +631,7 @@ name:'Admin',
         let dd = new Date(document.getElementById('due_date').value)
         console.log("DUEDATE",dd)
 
+
         // HEALTH EVAL FORM
         if (form == 'Performance Evaluation Form'){
 
@@ -832,6 +833,34 @@ name:'Admin',
         }
         
         },
+        async email(formCode, companyName, formName, longDate){
+        console.log(formCode, companyName, formName, longDate)
+        var email = formCode.slice(2)
+        console.log(email)
+        var shortDate = longDate.toString().slice(0, 10)
+
+        try {
+            const axios = require('axios');
+
+            let newEmail = {
+                recipient : email,
+                msgBody : "Dear " + companyName + "," + "\n\nI hope this email finds you well. I am writing to remind you about the upcoming deadline for submitting the " + formName + ". The deadline for submission is " + shortDate + ", which is fast approaching.\n\nIf you have already submitted the required forms, please disregard this reminder. However, if you have not yet submitted the forms, please do so as soon as possible to avoid missing the deadline.\n\nIf you have any questions or concerns, please don't hesitate to reach out to us. We are here to assist you in any way we can.\n\nThank you for your attention to this matter.\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+                subject: "Reminder: Submission of Required Forms before Deadline"
+            };
+
+            await axios.post('http://localhost:8080/sendMail', newEmail)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch ((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
   },
   created() {
       this.getVendors();
