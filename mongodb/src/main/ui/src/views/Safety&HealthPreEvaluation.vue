@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" ref="printme">
     <!-- <Navigation></Navigation> -->
         <h2 id="title" class="text-center pt-3">
           SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION
@@ -412,7 +412,8 @@
           <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus" v-if="this.useraccess!= 'Vendor'">Approve</button>
           <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
           <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
-        
+          <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
+            
         </div>
 
        <div
@@ -459,6 +460,7 @@
                   > <!--put @click here-->
                     Reject
                   </button>
+
                 </div>
               </div>
             </div>
@@ -474,10 +476,13 @@ import {required, helpers} from '@vuelidate/validators'
 import {reactive, computed} from 'vue'
 import moment from "moment";
 import { tsImportEqualsDeclaration } from '@babel/types';
+import html2pdf from 'html2pdf.js';
+
 export default {
   setup(){
     const state =reactive({
 // name:value pairs
+        status: "",
         useraccess: "",
         subcontractorName : "",
         scopeOfWork: "",
@@ -574,14 +579,29 @@ export default {
     },*/
     
   methods: {
+    print(){
+        // console.log(this.state.signaturetwo)
+        setTimeout(function(){
+          window.location.href = "http://localhost:3000/home";
+        }, 2000);
+        console.log("PRINTING")
+        html2pdf(this.$refs.printme, {
+            margin: 1,
+            filename: 'Safety & Health Pre Evaluation Form.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+        })
+        setTimeout();
+    },
     checkuseraccess(){
         console.log("useraccess")
         var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
         this.useraccess = useraccess
-        console.log(this.useraccess)
-        if(useraccess != "Vendor"){
-          this.getEditInputs();
-        }
+        console.log("USERACCESS",this.useraccess)
+
+
+        console.log("STATUS", this.status)
     },
     clear() {
       this.$refs.signaturePad.clearSignature();
@@ -927,8 +947,9 @@ export default {
             await axios.get(`http://localhost:8080/preEvaluation/${formid}`)
             .then((response) => {
                 console.log(response.data);
-                console.log(response.status);
+                
                 var data = response.data
+                this.status= data.status
                 this.state.subcontractorName = data.subContractorName
                 this.state.scopeOfWork = data.scopeOfWork
                 this.state.evaluatedBy = data.evaluator,

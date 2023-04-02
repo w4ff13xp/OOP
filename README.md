@@ -114,9 +114,11 @@ Statuses:
 <img width="500" alt="" src="img/printpdf.png"><br>
 
 #### Send Email Alert to Vendor
-* Yellow alert button appears when the form status is still incomplete 3 days before the deadline
-* Upon clicking the alert button, an email from the admin will be sent to the vendor as a reminder to complete the form
-<!-- <img width="500" alt="" src="img/email.png"><br> -->
+* Yellow alert button appears when the form status is still incomplete
+* Upon clicking the alert button, an email from the admin will be sent to the vendor as a reminder to complete the form<br>
+<img width="500" alt="" src="img/email.png"><br>
+
+* Email received by vendor reminding to complete the form by the deadline 
 
 #### Delete Workflow
 * Red delete button where admin can delete a workflow for the vendor

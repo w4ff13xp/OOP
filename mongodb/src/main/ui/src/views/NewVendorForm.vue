@@ -398,7 +398,7 @@
       <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
       <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
       <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
-
+        
     </div>
   </form>
     <!-- <Footer></Footer> -->
@@ -421,7 +421,7 @@ export default {
       // status: "",
       useraccess: "",
       // formApproved: false,
-      status:"",
+      status: "",
       companyName: "",
       registrationNo: "",
       officeAddress: "",
@@ -464,7 +464,8 @@ export default {
       // formName: "vendor assessment",
       // formCompleted: false,
       // formApproved: false,
-      // status: "",
+    //   status: "",
+      
       companyName: {required},
       registrationNo:  {required},
       officeAddress:  {required},

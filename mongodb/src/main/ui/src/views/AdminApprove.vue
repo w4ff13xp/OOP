@@ -288,7 +288,7 @@ methods: {
         console.log("PRINTING")
         html2pdf(this.$refs.printme, {
             margin: 1,
-            filename: 'SUBCONTRACTOR’S_SAFETY_&_HEALTH_PERFORMANCE_EVALUATION.pdf',
+            filename: "Subcontractor's Safety & Health Performance Form.pdf",
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { dpi: 192, letterRendering: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
