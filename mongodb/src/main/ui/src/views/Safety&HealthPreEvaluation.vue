@@ -1,550 +1,1257 @@
 <template>
   <div class="container-fluid" ref="printme">
     <!-- <Navigation></Navigation> -->
-        <h2 id="title" class="text-center pt-3">
-          SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION
-        </h2>
+    <h2 id="title" class="text-center pt-3">
+      SUBCONTRACTOR’S SAFETY & HEALTH PRE-EVALUATION
+    </h2>
 
-        <div class="row bg-light m-5 rounded p-3">
-          
-                <div class="mb-3">
-                    <label for="InputSubcontractorName" class="form-label">Name Of Subcontractor</label>
-                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
-                    <input v-else disabled style="width:90%" type="text" class="form-control" name="first" placeholder="Subcontractor's Name" v-model="state.subcontractorName" >        
-                    
-                </div>
-                <div class="mb-3">
-                    <label for="InputScopeOfWork" class="form-label">Scope of Work</label>
-                    <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="text" class="form-control" name="second" placeholder="Scope of Work" v-model="state.scopeOfWork" >        
-                    <input v-else disabled style="width:90%" type="text" class="form-control" name="second" placeholder="Scope of Work" v-model="state.scopeOfWork" >        
-          
-                </div>
+    <div class="row bg-light m-5 rounded p-3">
+      <div class="mb-3">
+        <label for="InputSubcontractorName" class="form-label"
+          >Name Of Subcontractor</label
+        >
+        <input
+          v-if="this.useraccess == 'Vendor'"
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="first"
+          placeholder="Subcontractor's Name"
+          v-model="state.subcontractorName"
+        />
+        <input
+          v-else
+          disabled
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="first"
+          placeholder="Subcontractor's Name"
+          v-model="state.subcontractorName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="InputScopeOfWork" class="form-label">Scope of Work</label>
+        <input
+          v-if="this.useraccess == 'Vendor'"
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="second"
+          placeholder="Scope of Work"
+          v-model="state.scopeOfWork"
+        />
+        <input
+          v-else
+          disabled
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="second"
+          placeholder="Scope of Work"
+          v-model="state.scopeOfWork"
+        />
+      </div>
 
-                <div class="mb-3">
-                    <label for="InputEvaluatedBy" class="form-label">Evaluated By</label>
-                    <input v-if="this.useraccess != 'Vendor'" style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
-                    <input v-else disabled style="width:90%" type="text" class="form-control" name="third" placeholder="Evaluator's Name" v-model="state.evaluatedBy" >        
-          
-                </div>
+      <div class="mb-3">
+        <label for="InputEvaluatedBy" class="form-label">Evaluated By</label>
+        <input
+          v-if="this.useraccess != 'Vendor'"
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="third"
+          placeholder="Evaluator's Name"
+          v-model="state.evaluatedBy"
+        />
+        <input
+          v-else
+          disabled
+          style="width: 90%"
+          type="text"
+          class="form-control"
+          name="third"
+          placeholder="Evaluator's Name"
+          v-model="state.evaluatedBy"
+        />
+      </div>
 
-                <!-- Will fix this date field to be a datepicker -->
-                 <div class="mb-3">
-                    <label for="InputDate" class="form-label">Date</label>
-                    <input v-if="this.useraccess != 'Vendor'" style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
-                    <input v-else disabled style="width:90%" type="Date" class="form-control" name="fourth" placeholder="Date" v-model="state.todayDate" >        
-          
-                </div>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART I: Safety & Health Policy and Organisation </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Is there a written Safety & Health Policy?</label>
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio1">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio1"  class="form-check-input" name="first" v-model="state.shpolicy" value="true">        
-                            <input v-else disabled type="radio" id="inlineRadio1" class="form-check-input" name="first" v-model="state.shpolicy" value="true" >        
-                          </div>
-                          <div class="form-check form-check-inline">
-                            
-                            <label class="form-check-label" for="inlineRadio2">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="false" >        
-                            <input v-else disabled  type="radio" id="inlineRadio2" class="form-check-input" name="first" v-model="state.shpolicy" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">b)  Is there a Safety Organisation with proper delegation of responsibility and accountability for safety and health?</label>
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                           
-                            <label class="form-check-label" for="inlineRadio3">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio3" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="true" >        
-                            <input v-else disabled  type="radio" id="inlineRadio3" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="true"  >     
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio4">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio4" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false">        
-                            <input v-else disabled  type="radio" id="inlineRadio4" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false" >  
-                          </div>
-                    </div>
-                </div>
-
-                 <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">c)  Is there a written safety commitment and is it submitted?</label>
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio5">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio5" class="form-check-input" name="third" v-model="state.safetyCommit" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio5" class="form-check-input" name="third" v-model="state.safetyCommit" value="true" >  
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio6">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio6" class="form-check-input" name="third" v-model="state.safetyCommit" value="false" >        
-                            <input v-else disabled type="radio" id="inlineRadio6" class="form-check-input" name="third" v-model="state.safetyCommit" value="false"  >  
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-
-          <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART II: Tool Box Meeting </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are regular tool-box meetings conducted and reports submitted?</label>
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio7">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio7" class="form-check-input" name="first" v-model="state.toolbox" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio7" class="form-check-input" name="first" v-model="state.toolbox" value="true" > 
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio8">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio8" class="form-check-input" name="first" v-model="state.toolbox" value="false" >        
-                            <input v-else disabled  type="radio" id="inlineRadio8" class="form-check-input" name="first" v-model="state.toolbox" value="false"  > 
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-         <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART III: Safety Training </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are relevant safety training courses provided for management / Supervisors?</label>
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio9">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio9" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="true" >        
-                            <input v-else disabled  type="radio" id="inlineRadio9" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio10">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio10" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="false">        
-                            <input v-else disabled  type="radio" id="inlineRadio10" class="form-check-input" name="first" v-model="state.safetyMgtCourses" value="false">
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">b)  Are relevant safety training courses provided for workers?</label>
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio11">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio11" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio11" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio12">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio12" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="false" >        
-                            <input v-else disabled type="radio" id="inlineRadio12" class="form-check-input" name="second" v-model="state.safetyWorkersCourses" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                 <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">c)  Are relevant safety training certificates submitted?</label>
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio13">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio13" class="form-check-input" name="third" v-model="state.safetyCertificates" value="true" >        
-                            <input v-else disabled  type="radio" id="inlineRadio13" class="form-check-input" name="third" v-model="state.safetyCertificates" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio14">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio14" class="form-check-input" name="third" v-model="state.safetyCertificates" value="false">        
-                            <input v-else disabled  type="radio" id="inlineRadio14" class="form-check-input" name="third" v-model="state.safetyCertificates" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART IV: Safety & Health Rules & Safe Work Procedures/ Risk Assessment </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Are there written safety & health rules for the workers?</label>
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio15">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio15" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio15" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio16">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio16" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="false" >        
-                            <input v-else disabled type="radio" id="inlineRadio16" class="form-check-input" name="first" v-model="state.safetyHealthRules" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">b)  Are there written safe work procedures/ risk assessment formulated and submitted?</label>
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio17">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio17" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio17" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio18">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio18" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="false" >        
-                            <input v-else disabled type="radio" id="inlineRadio18" class="form-check-input" name="second" v-model="state.safeWorkRisk" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART V: Safety & Health Inspection & Equipment </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Is there a written programme outlining inspection guidelines,
-                    frequency and follow-up corrective actions?</label>
-
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio19">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio19" class="form-check-input" name="first" v-model="state.writtenProgram" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio19" class="form-check-input" name="first" v-model="state.writtenProgram" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio20">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio20" class="form-check-input" name="first" v-model="state.writtenProgram" value="false">        
-                            <input v-else disabled type="radio" id="inlineRadio20" class="form-check-input" name="first" v-model="state.writtenProgram" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">b)  Is there available Personal Protective Equipment and of proper
-                    working condition and comply to safety requirements?</label>
-
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio21">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio21" class="form-check-input" name="second" v-model="state.safetyEquipment" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio21" class="form-check-input" name="second" v-model="state.safetyEquipment" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio22">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio22" class="form-check-input" name="second" v-model="state.safetyEquipment" value="false">        
-                            <input v-else disabled type="radio" id="inlineRadio22" class="form-check-input" name="second" v-model="state.safetyEquipment" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART VI: Responsible Personnel </h4>
-            <form>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Is there a Safety Supervisor working at least 5 hrs / week?</label>
-
-                    <div class="d-flex ms-3 justify-content-between w-30">
-                        <div class="form-check form-check-inline ">
-                            <label class="form-check-label" for="inlineRadio23">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio23" class="form-check-input" name="first" v-model="state.safetySupervisor" value="true" >        
-                            <input v-else disabled  type="radio" id="inlineRadio23" class="form-check-input" name="first" v-model="state.safetySupervisor" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio24">No</label>
-                            <input v-if="this.useraccess == 'Vendor'"  type="radio" id="inlineRadio24" class="form-check-input" name="first" v-model="state.safetySupervisor" value="false" >        
-                            <input v-else disabled  type="radio" id="inlineRadio24" class="form-check-input" name="first" v-model="state.safetySupervisor" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">b)  Is there a qualified First Aider?</label>
-                    
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio25">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio25" class="form-check-input" name="second" v-model="state.firstAider" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio25" class="form-check-input" name="second" v-model="state.firstAider" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio26">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio26" class="form-check-input" name="second" v-model="state.firstAider" value="false">        
-                            <input v-else disabled  type="radio" id="inlineRadio26" class="form-check-input" name="second" v-model="state.firstAider" value="false" >
-                          </div>
-                    </div>
-                </div>
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">c)  Are there relevant Licensed Electrical Workers, qualified engineers,
-                     qualified supervisors, lifting supervisors, qualified JCB Tower /
-                    Mobile / Crawler Crane operators?</label>
-                    
-                    <div class="d-flex justify-content-between w-30">
-                        <div class="form-check form-check-inline ms-3">
-                            <label class="form-check-label" for="inlineRadio27">Yes</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio27" class="form-check-input" name="third" v-model="state.qualified" value="true" >        
-                            <input v-else disabled type="radio" id="inlineRadio27" class="form-check-input" name="third" v-model="state.qualified" value="true" >
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="inlineRadio28">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio28" class="form-check-input" name="third" v-model="state.qualified" value="false" >        
-                            <input v-else disabled type="radio" id="inlineRadio28" class="form-check-input" name="third" v-model="state.qualified"  value="false">
-                          </div>
-                    </div>
-                </div>
-
-              </form>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">PART VII: Accident Analysis </h4>
-            <form>
-
-            <div class="m-3">
-                    <label for="first" class="form-label fw-bold" style="width: 50%">a)  Accident Records for the last three years:</label>
-                
-
-                <div class="mb-3">
-                    <label for="InputTempDisabilityCases" class="form-label">Number of Temporary Disability Cases </label>
-                    <input v-if="this.useraccess == 'Vendor'" type="number" id="InputTempDisabilityCases" class="form-control" name="first" placeholder="0" v-model="state.tempDisabilityCases" min="0">
-                    <input v-else disabled  type="number" id="InputTempDisabilityCases" class="form-control" name="first" placeholder="0" v-model="state.tempDisabilityCases" min="0">
-                    
-                </div>
-                <div class="mb-3">
-                    <label for="InputPermDisabilityCases" class="form-label">Number of Permanent Disability Cases</label>
-                    <input v-if="this.useraccess == 'Vendor'" type="number" id="InputPermDisabilityCases" class="form-control" name="second" placeholder="0" v-model="state.permDisabilityCases" min="0">
-                    <input v-else disabled  type="number" id="InputPermDisabilityCases" class="form-control" name="second" placeholder="0" v-model="state.permDisabilityCases" min="0">
-                    
-                </div>
-
-                <div class="mb-3">
-                    <label for="InputFatalCases" class="form-label">Number of Fatal Cases</label>
-                    <input v-if="this.useraccess == 'Vendor'" type="number" id="InputFatalCases" class="form-control" name="third" placeholder="0"  v-model="state.fatalCases" min="0">
-                    <input v-else disabled type="number" id="InputFatalCases" class="form-control" name="third" placeholder="0"  v-model="state.fatalCases" min="0">
-                    
-                </div>
-                
-            </div>
-              </form>
-
-        </div>
-
-        <div class="row bg-light m-5 rounded p-3">
-            <h4 class="text-center">Acknowledgement </h4>
-           
-
-                <div class="m-3 d-flex">
-                    <label for="first" class="form-label fw-bold" style="width: 100%">I, representative of the above-named sub-contractor, have understand the various Safety Criteria listed above and hereby acknowledged that the information given above
-                         are valid and supporting items/documents are available upon request by the main contractor.</label>
-                </div>
-
-                 <div class="mb-3">
-                    <label for="InputDate" class="form-label">Date</label>
-                    <input v-if="this.useraccess == 'Vendor'" type="date" id="InputDate" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
-                    <input v-else disabled  type="date" id="InputDate" class="form-control" name="first" placeholder="00-00-00" v-model="state.signedDate">
-                </div>
-                <div class="mb-3">
-                    <label for="InputAcknowledgeBy" class="form-label">Acknowledged By</label>
-                    <input v-if="this.useraccess == 'Vendor'" type="text" id="InputAcknowledgedBy" class="form-control" name="first" placeholder="Acknowledged Name" v-model="state.acknowledgedBy">
-                    <input v-else disabled type="text" id="InputAcknowledgedBy" class="form-control" name="first" placeholder="Acknowledged Name" v-model="state.acknowledgedBy">
-                    
-                </div>
-
-                <div class="mb-3">
-                   <div class="container">
-                    <label for="Signature" class="form-label">Signature</label>
-                        <div class="container border border-primary">
-                           <VueSignaturePad v-if="this.useraccess == 'Vendor'"
-                            id="signature"
-                            width="100%"
-                            height="200px"
-                            ref="signaturePad"
-                            :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"
-                          />
-                          <VueSignaturePad v-else
-                            id="signature"
-                            width="100%"
-                            height="200px"
-                            ref="signaturePad"
-                            :options="{onBegin: () => {$refs.signaturePad.lockSignaturePad()}}"
-                          />
-                        </div>
-                        <div class="buttons">
-                            <button v-if="this.useraccess == 'Vendor'" class="btn btn-danger" @click="clear">Clear</button>
-                            <button v-else disabled class="btn btn-danger" @click="clear">Clear</button>
-                        </div>
-                    </div>
-                    
-                </div>
-
-             
-
-        </div>
-
-        
-        <div class="text-center m-3">
-          <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteModal" v-if="this.useraccess!= 'Vendor'">Reject</button>
-          <button type="button" class="btn btn-primary text-white" @click="changeApproveStatus" v-if="this.useraccess!= 'Vendor'">Approve</button>
-          <button type="button" value="save" class="btn btn-warning mx-3 text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Save</button>
-          <button type="button" value="submit" class="btn btn-success text-white" @click="submit($event)" v-if="this.useraccess == 'Vendor'">Submit</button>
-          <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
-            
-        </div>
-
-       <div
-            class="modal fade"
-            tabindex="-1"
-            id="deleteModal"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Confirm Deletion</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <p>
-                    Are you sure you want to reject the form?
-                  </p>
-                  <div class="form-floating">
-                    <p>Please state the reason(s) for rejection.</p>
-                    <textarea class="form-control border rounded" placeholder="Leave a comment here" id="rejectionReason" v-model="rejectionReason"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn bg-gradient-custom border rounded"
-                    data-bs-dismiss="modal"
-                  >
-                    No, cancel
-                  </button>
-                  <button
-                    type="button"
-                    class="btn bg-gradient-custom btn-danger text-white"
-                    data-bs-dismiss="modal"
-                    @click="reject"
-                  > <!--put @click here-->
-                    Reject
-                  </button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        <!-- <Footer></Footer> -->
+      <!-- Will fix this date field to be a datepicker -->
+      <div class="mb-3">
+        <label for="InputDate" class="form-label">Date</label>
+        <input
+          v-if="this.useraccess != 'Vendor'"
+          style="width: 90%"
+          type="Date"
+          class="form-control"
+          name="fourth"
+          placeholder="Date"
+          v-model="state.todayDate"
+        />
+        <input
+          v-else
+          disabled
+          style="width: 90%"
+          type="Date"
+          class="form-control"
+          name="fourth"
+          placeholder="Date"
+          v-model="state.todayDate"
+        />
+      </div>
     </div>
 
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">
+        PART I: Safety & Health Policy and Organisation
+      </h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Is there a written Safety & Health Policy?</label
+          >
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio1"
+                class="form-check-input"
+                name="first"
+                v-model="state.shpolicy"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio1"
+                class="form-check-input"
+                name="first"
+                v-model="state.shpolicy"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio2"
+                class="form-check-input"
+                name="first"
+                v-model="state.shpolicy"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio2"
+                class="form-check-input"
+                name="first"
+                v-model="state.shpolicy"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >b) Is there a Safety Organisation with proper delegation of
+            responsibility and accountability for safety and health?</label
+          >
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio3">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio3"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyOrganisation"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio3"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyOrganisation"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio4">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio4"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyOrganisation"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio4"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyOrganisation"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >c) Is there a written safety commitment and is it submitted?</label
+          >
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio5">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio5"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCommit"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio5"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCommit"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio6">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio6"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCommit"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio6"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCommit"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">PART II: Tool Box Meeting</h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Are regular tool-box meetings conducted and reports
+            submitted?</label
+          >
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio7">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio7"
+                class="form-check-input"
+                name="first"
+                v-model="state.toolbox"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio7"
+                class="form-check-input"
+                name="first"
+                v-model="state.toolbox"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio8">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio8"
+                class="form-check-input"
+                name="first"
+                v-model="state.toolbox"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio8"
+                class="form-check-input"
+                name="first"
+                v-model="state.toolbox"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">PART III: Safety Training</h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Are relevant safety training courses provided for management /
+            Supervisors?</label
+          >
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio9">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio9"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyMgtCourses"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio9"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyMgtCourses"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio10">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio10"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyMgtCourses"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio10"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyMgtCourses"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >b) Are relevant safety training courses provided for
+            workers?</label
+          >
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio11">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio11"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyWorkersCourses"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio11"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyWorkersCourses"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio12">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio12"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyWorkersCourses"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio12"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyWorkersCourses"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >c) Are relevant safety training certificates submitted?</label
+          >
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio13">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio13"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCertificates"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio13"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCertificates"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio14">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio14"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCertificates"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio14"
+                class="form-check-input"
+                name="third"
+                v-model="state.safetyCertificates"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">
+        PART IV: Safety & Health Rules & Safe Work Procedures/ Risk Assessment
+      </h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Are there written safety & health rules for the workers?</label
+          >
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio15">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio15"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyHealthRules"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio15"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyHealthRules"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio16">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio16"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyHealthRules"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio16"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetyHealthRules"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >b) Are there written safe work procedures/ risk assessment
+            formulated and submitted?</label
+          >
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio17">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio17"
+                class="form-check-input"
+                name="second"
+                v-model="state.safeWorkRisk"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio17"
+                class="form-check-input"
+                name="second"
+                v-model="state.safeWorkRisk"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio18">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio18"
+                class="form-check-input"
+                name="second"
+                v-model="state.safeWorkRisk"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio18"
+                class="form-check-input"
+                name="second"
+                v-model="state.safeWorkRisk"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">
+        PART V: Safety & Health Inspection & Equipment
+      </h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Is there a written programme outlining inspection guidelines,
+            frequency and follow-up corrective actions?</label
+          >
+
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio19">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio19"
+                class="form-check-input"
+                name="first"
+                v-model="state.writtenProgram"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio19"
+                class="form-check-input"
+                name="first"
+                v-model="state.writtenProgram"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio20">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio20"
+                class="form-check-input"
+                name="first"
+                v-model="state.writtenProgram"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio20"
+                class="form-check-input"
+                name="first"
+                v-model="state.writtenProgram"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >b) Is there available Personal Protective Equipment and of proper
+            working condition and comply to safety requirements?</label
+          >
+
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio21">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio21"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyEquipment"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio21"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyEquipment"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio22">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio22"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyEquipment"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio22"
+                class="form-check-input"
+                name="second"
+                v-model="state.safetyEquipment"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">PART VI: Responsible Personnel</h4>
+      <form>
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Is there a Safety Supervisor working at least 5 hrs /
+            week?</label
+          >
+
+          <div class="d-flex ms-3 justify-content-between w-30">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio23">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio23"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetySupervisor"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio23"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetySupervisor"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio24">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio24"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetySupervisor"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio24"
+                class="form-check-input"
+                name="first"
+                v-model="state.safetySupervisor"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >b) Is there a qualified First Aider?</label
+          >
+
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio25">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio25"
+                class="form-check-input"
+                name="second"
+                v-model="state.firstAider"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio25"
+                class="form-check-input"
+                name="second"
+                v-model="state.firstAider"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio26">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio26"
+                class="form-check-input"
+                name="second"
+                v-model="state.firstAider"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio26"
+                class="form-check-input"
+                name="second"
+                v-model="state.firstAider"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="m-3 d-flex">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >c) Are there relevant Licensed Electrical Workers, qualified
+            engineers, qualified supervisors, lifting supervisors, qualified JCB
+            Tower / Mobile / Crawler Crane operators?</label
+          >
+
+          <div class="d-flex justify-content-between w-30">
+            <div class="form-check form-check-inline ms-3">
+              <label class="form-check-label" for="inlineRadio27">Yes</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio27"
+                class="form-check-input"
+                name="third"
+                v-model="state.qualified"
+                value="true"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio27"
+                class="form-check-input"
+                name="third"
+                v-model="state.qualified"
+                value="true"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio28">No</label>
+              <input
+                v-if="this.useraccess == 'Vendor'"
+                type="radio"
+                id="inlineRadio28"
+                class="form-check-input"
+                name="third"
+                v-model="state.qualified"
+                value="false"
+              />
+              <input
+                v-else
+                disabled
+                type="radio"
+                id="inlineRadio28"
+                class="form-check-input"
+                name="third"
+                v-model="state.qualified"
+                value="false"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">PART VII: Accident Analysis</h4>
+      <form>
+        <div class="m-3">
+          <label for="first" class="form-label fw-bold" style="width: 50%"
+            >a) Accident Records for the last three years:</label
+          >
+
+          <div class="mb-3">
+            <label for="InputTempDisabilityCases" class="form-label"
+              >Number of Temporary Disability Cases
+            </label>
+            <input
+              v-if="this.useraccess == 'Vendor'"
+              type="number"
+              id="InputTempDisabilityCases"
+              class="form-control"
+              name="first"
+              placeholder="0"
+              v-model="state.tempDisabilityCases"
+              min="0"
+            />
+            <input
+              v-else
+              disabled
+              type="number"
+              id="InputTempDisabilityCases"
+              class="form-control"
+              name="first"
+              placeholder="0"
+              v-model="state.tempDisabilityCases"
+              min="0"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="InputPermDisabilityCases" class="form-label"
+              >Number of Permanent Disability Cases</label
+            >
+            <input
+              v-if="this.useraccess == 'Vendor'"
+              type="number"
+              id="InputPermDisabilityCases"
+              class="form-control"
+              name="second"
+              placeholder="0"
+              v-model="state.permDisabilityCases"
+              min="0"
+            />
+            <input
+              v-else
+              disabled
+              type="number"
+              id="InputPermDisabilityCases"
+              class="form-control"
+              name="second"
+              placeholder="0"
+              v-model="state.permDisabilityCases"
+              min="0"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="InputFatalCases" class="form-label"
+              >Number of Fatal Cases</label
+            >
+            <input
+              v-if="this.useraccess == 'Vendor'"
+              type="number"
+              id="InputFatalCases"
+              class="form-control"
+              name="third"
+              placeholder="0"
+              v-model="state.fatalCases"
+              min="0"
+            />
+            <input
+              v-else
+              disabled
+              type="number"
+              id="InputFatalCases"
+              class="form-control"
+              name="third"
+              placeholder="0"
+              v-model="state.fatalCases"
+              min="0"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bg-light m-5 rounded p-3">
+      <h4 class="text-center">Acknowledgement</h4>
+
+      <div class="m-3 d-flex">
+        <label for="first" class="form-label fw-bold" style="width: 100%"
+          >I, representative of the above-named sub-contractor, have understand
+          the various Safety Criteria listed above and hereby acknowledged that
+          the information given above are valid and supporting items/documents
+          are available upon request by the main contractor.</label
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="InputDate" class="form-label">Date</label>
+        <input
+          v-if="this.useraccess == 'Vendor'"
+          type="date"
+          id="InputDate"
+          class="form-control"
+          name="first"
+          placeholder="00-00-00"
+          v-model="state.signedDate"
+        />
+        <input
+          v-else
+          disabled
+          type="date"
+          id="InputDate"
+          class="form-control"
+          name="first"
+          placeholder="00-00-00"
+          v-model="state.signedDate"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="InputAcknowledgeBy" class="form-label"
+          >Acknowledged By</label
+        >
+        <input
+          v-if="this.useraccess == 'Vendor'"
+          type="text"
+          id="InputAcknowledgedBy"
+          class="form-control"
+          name="first"
+          placeholder="Acknowledged Name"
+          v-model="state.acknowledgedBy"
+        />
+        <input
+          v-else
+          disabled
+          type="text"
+          id="InputAcknowledgedBy"
+          class="form-control"
+          name="first"
+          placeholder="Acknowledged Name"
+          v-model="state.acknowledgedBy"
+        />
+      </div>
+
+      <div class="mb-3">
+        <div class="container">
+          <label for="Signature" class="form-label">Signature</label>
+          <div class="container border border-primary">
+            <VueSignaturePad
+              v-if="this.useraccess == 'Vendor'"
+              id="signature"
+              width="100%"
+              height="200px"
+              ref="signaturePad"
+              :options="{
+                onBegin: () => {
+                  $refs.signaturePad.resizeCanvas();
+                },
+              }"
+            />
+            <VueSignaturePad
+              v-else
+              id="signature"
+              width="100%"
+              height="200px"
+              ref="signaturePad"
+              :options="{
+                onBegin: () => {
+                  $refs.signaturePad.lockSignaturePad();
+                },
+              }"
+            />
+          </div>
+          <div class="buttons">
+            <button
+              v-if="this.useraccess == 'Vendor'"
+              class="btn btn-danger"
+              @click="clear"
+            >
+              Clear
+            </button>
+            <button v-else disabled class="btn btn-danger" @click="clear">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center m-3">
+      <button
+        type="button"
+        class="btn btn-danger text-white"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteModal"
+        v-if="this.useraccess != 'Vendor'"
+      >
+        Reject
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary text-white"
+        @click="changeApproveStatus"
+        v-if="this.useraccess != 'Vendor'"
+      >
+        Approve
+      </button>
+      <button
+        type="button"
+        value="save"
+        class="btn btn-warning mx-3 text-white"
+        @click="submit($event)"
+        v-if="this.useraccess == 'Vendor'"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        value="submit"
+        class="btn btn-success text-white"
+        @click="submit($event)"
+        v-if="this.useraccess == 'Vendor'"
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        class="btn btn-info mx-3 text-white"
+        @click="print"
+        id="printButton"
+        v-if="this.useraccess == 'Admin' && this.status == 'approved'"
+      >
+        Print
+      </button>
+    </div>
+
+    <div
+      class="modal fade"
+      tabindex="-1"
+      id="deleteModal"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirm Deletion</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to reject the form?</p>
+            <div class="form-floating">
+              <p>Please state the reason(s) for rejection.</p>
+              <textarea
+                class="form-control border rounded"
+                placeholder="Leave a comment here"
+                id="rejectionReason"
+                v-model="rejectionReason"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn bg-gradient-custom border rounded"
+              data-bs-dismiss="modal"
+            >
+              No, cancel
+            </button>
+            <button
+              type="button"
+              class="btn bg-gradient-custom btn-danger text-white"
+              data-bs-dismiss="modal"
+              @click="reject"
+            >
+              <!--put @click here-->
+              Reject
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <Footer></Footer> -->
+  </div>
 </template>
 
 <script>
-import useValidate from '@vuelidate/core'
-import {required, helpers} from '@vuelidate/validators'
-import {reactive, computed} from 'vue'
+import useValidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import { reactive, computed } from "vue";
 import moment from "moment";
-import { tsImportEqualsDeclaration } from '@babel/types';
-import html2pdf from 'html2pdf.js';
+import { tsImportEqualsDeclaration } from "@babel/types";
+import html2pdf from "html2pdf.js";
 
 export default {
-  setup(){
-    const state =reactive({
-// name:value pairs
-        status: "",
-        useraccess: "",
-        subcontractorName : "",
-        scopeOfWork: "",
-        evaluatedBy: "",
-        todayDate: "",
-        shpolicy: "",
-        safetyOrganisation: "",
-        safetyCommit: "",
-        toolbox: "",
-        safetyMgtCourses: "",
-        safetyWorkersCourses: "",
-        safetyCertificates: "",
-        safetyHealthRules: "",
-        safeWorkRisk: "",
-        writtenProgram : "",
-        safetyEquipment: "",
-        safetySupervisor: "",
-        firstAider: "",
-        qualified: "",
-        tempDisabilityCases: "",
-        permDisabilityCases: "",
-        fatalCases: "",
-        signedDate: "",
-        acknowledgedBy: "",
-
-    })
-    const rules = computed(()=>{
-      return{
-        subcontractorName : {required},
-        scopeOfWork : {required},
+  setup() {
+    const state = reactive({
+      // name:value pairs
+      status: "",
+      useraccess: "",
+      subcontractorName: "",
+      scopeOfWork: "",
+      evaluatedBy: "",
+      todayDate: "",
+      shpolicy: "",
+      safetyOrganisation: "",
+      safetyCommit: "",
+      toolbox: "",
+      safetyMgtCourses: "",
+      safetyWorkersCourses: "",
+      safetyCertificates: "",
+      safetyHealthRules: "",
+      safeWorkRisk: "",
+      writtenProgram: "",
+      safetyEquipment: "",
+      safetySupervisor: "",
+      firstAider: "",
+      qualified: "",
+      tempDisabilityCases: "",
+      permDisabilityCases: "",
+      fatalCases: "",
+      signedDate: "",
+      acknowledgedBy: "",
+    });
+    const rules = computed(() => {
+      return {
+        subcontractorName: { required },
+        scopeOfWork: { required },
         // evaluatedBy : {required},
         // todayDate : {required},
-        shpolicy : {required},
-        safetyOrganisation : {required},
-        safetyCommit : {required},
-        toolbox : {required},
-        safetyMgtCourses : {required},
-        safetyWorkersCourses : {required},
-        safetyCertificates : {required},
-        safetyHealthRules : {required},
-        safeWorkRisk : {required},
-        writtenProgram : {required},
-        safetyEquipment : {required},
-        safetySupervisor : {required},
-        firstAider: {required},
-        qualified : {required},
-        tempDisabilityCases : {required},
-        permDisabilityCases : {required},
-        fatalCases : {required},
-        signedDate : {required},
-        acknowledgedBy : {required},
-      }
-    })
+        shpolicy: { required },
+        safetyOrganisation: { required },
+        safetyCommit: { required },
+        toolbox: { required },
+        safetyMgtCourses: { required },
+        safetyWorkersCourses: { required },
+        safetyCertificates: { required },
+        safetyHealthRules: { required },
+        safeWorkRisk: { required },
+        writtenProgram: { required },
+        safetyEquipment: { required },
+        safetySupervisor: { required },
+        firstAider: { required },
+        qualified: { required },
+        tempDisabilityCases: { required },
+        permDisabilityCases: { required },
+        fatalCases: { required },
+        signedDate: { required },
+        acknowledgedBy: { required },
+      };
+    });
 
-    const v$ = useValidate(rules,state)
+    const v$ = useValidate(rules, state);
 
-    return{
+    return {
       state,
-      v$
-    }
+      v$,
+    };
   },
-  name: 'MySignaturePad',
+  name: "MySignaturePad",
 
   /*data(){
         return {
@@ -577,518 +1284,564 @@ export default {
         }
        
     },*/
-    
+
   methods: {
-    print(){
-        // console.log(this.state.signaturetwo)
-        setTimeout(function(){
-          window.location.href = "http://localhost:3000/home";
-        }, 2000);
-        console.log("PRINTING")
-        html2pdf(this.$refs.printme, {
-            margin: 1,
-            filename: 'Safety & Health Pre Evaluation Form.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { dpi: 192, letterRendering: true },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
-        })
-        setTimeout();
+    print() {
+      // console.log(this.state.signaturetwo)
+      setTimeout(function () {
+        window.location.href = "http://localhost:3000/home";
+      }, 2000);
+      console.log("PRINTING");
+      html2pdf(this.$refs.printme, {
+        margin: 1,
+        filename: "Safety & Health Pre Evaluation Form.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { dpi: 192, letterRendering: true },
+        jsPDF: { unit: "in", format: "a4", orientation: "landscape" },
+      });
+      setTimeout();
     },
-    checkuseraccess(){
-        console.log("useraccess")
-        var useraccess = JSON.parse(localStorage.getItem('specificuser'))['accessRights']
-        this.useraccess = useraccess
-        console.log("USERACCESS",this.useraccess)
+    checkuseraccess() {
+      console.log("useraccess");
+      var useraccess = JSON.parse(localStorage.getItem("specificuser"))[
+        "accessRights"
+      ];
+      this.useraccess = useraccess;
+      console.log("USERACCESS", this.useraccess);
 
-
-        console.log("STATUS", this.status)
+      console.log("STATUS", this.status);
     },
     clear() {
       this.$refs.signaturePad.clearSignature();
     },
-    submit(e){
+    submit(e) {
       var buttonValue = e.target.value;
       function toIsoString(date) {
         var tzo = -date.getTimezoneOffset(),
-            dif = tzo >= 0 ? '+' : '-',
-            pad = function(num) {
-                return (num < 10 ? '0' : '') + num;
-            };
-        return date.getFullYear() +
-            '-' + pad(date.getMonth() + 1) +
-            '-' + pad(date.getDate()) +
-            'T' + pad(date.getHours()) +
-            ':' + pad(date.getMinutes()) +
-            ':' + pad(date.getSeconds()) +
-            dif + pad(Math.floor(Math.abs(tzo) / 60)) +
-            ':' + pad(Math.abs(tzo) % 60);
+          dif = tzo >= 0 ? "+" : "-",
+          pad = function (num) {
+            return (num < 10 ? "0" : "") + num;
+          };
+        return (
+          date.getFullYear() +
+          "-" +
+          pad(date.getMonth() + 1) +
+          "-" +
+          pad(date.getDate()) +
+          "T" +
+          pad(date.getHours()) +
+          ":" +
+          pad(date.getMinutes()) +
+          ":" +
+          pad(date.getSeconds()) +
+          dif +
+          pad(Math.floor(Math.abs(tzo) / 60)) +
+          ":" +
+          pad(Math.abs(tzo) % 60)
+        );
       }
       var dt = new Date();
 
-      if(buttonValue == "save"){
+      if (buttonValue == "save") {
+        const axios = require("axios");
+        const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+        console.log("check if its empty:" + isEmpty);
+        var email = JSON.parse(localStorage.getItem("specificuser"))["email"];
+        var fcode = "PE" + email;
+
+        //prepare the json to be sent in
+        let preEval = {
+          formCode: fcode,
+          deadline: toIsoString(dt),
+          subContractorName: this.state.subcontractorName,
+          scopeOfWork: this.state.scopeOfWork,
+          companyName: JSON.parse(localStorage.getItem("specificuser"))[
+            "username"
+          ],
+          //evaluator:this.state.evaluatedBy,
+          //evaluatedDate: this.state.todayDate,
+          formName: "Pre Evaluation Form",
+          status: "incomplete",
+          temporaryDisabilityCases: this.state.tempDisabilityCases,
+          permanentDisabilityCases: this.state.permDisabilityCases,
+          fatalCases: this.state.fatalCases,
+          signature: data,
+          acknowledgedBy: this.state.acknowledgedBy,
+        };
+
+        if (this.state.signedDate == "Invalid date") {
+          preEval.submissionDate = null;
+        } else {
+          preEval.submissionDate = this.state.signedDate;
+        }
+        if (this.state.shpolicy === "true") {
+          preEval.safetyHealthPolicy = true;
+        } else {
+          preEval.safetyHealthPolicy = false;
+        }
+        if (this.state.safetyOrganisation === "true") {
+          preEval.properDelegation = true;
+        } else {
+          preEval.properDelegation = false;
+        }
+        if (this.state.safetyCommit === "true") {
+          preEval.safetyCommitment = true;
+        } else {
+          preEval.safetyCommitment = false;
+        }
+        if (this.state.toolbox === "true") {
+          preEval.toolBoxMeeting = true;
+        } else {
+          preEval.toolBoxMeeting = false;
+        }
+        if (this.state.safetyMgtCourses === "true") {
+          preEval.supervisorTraining = true;
+        } else {
+          preEval.supervisorTraining = false;
+        }
+        if (this.state.safetyWorkersCourses === "true") {
+          preEval.workerTraining = true;
+        } else {
+          preEval.workerTraining = false;
+        }
+        if (this.state.safetyCertificates === "true") {
+          preEval.certificatesSubmitted = true;
+        } else {
+          preEval.certificatesSubmitted = false;
+        }
+        if (this.state.safetyHealthRules === "true") {
+          preEval.workerRules = true;
+        } else {
+          preEval.workerRules = false;
+        }
+        if (this.state.safeWorkRisk === "true") {
+          preEval.riskAssessmentsSubmitted = true;
+        } else {
+          preEval.riskAssessmentsSubmitted = false;
+        }
+        if (this.state.writtenProgram === "true") {
+          preEval.inspectionGuidelines = true;
+        } else {
+          preEval.inspectionGuidelines = false;
+        }
+        if (this.state.safetyEquipment === "true") {
+          preEval.ppe = true;
+        } else {
+          preEval.ppe = false;
+        }
+        if (this.state.safetySupervisor === "true") {
+          preEval.safetySupervisor = true;
+        } else {
+          preEval.safetySupervisor = false;
+        }
+        if (this.state.firstAider === "true") {
+          preEval.firstAider = true;
+        } else {
+          preEval.firstAider = false;
+        }
+        if (this.state.qualified === "true") {
+          preEval.relevantLicensedPersonnel = true;
+        } else {
+          preEval.relevantLicensedPersonnel = false;
+        }
+
+        console.log(preEval);
+        var formid = localStorage.getItem("formid");
+        preEval.formCode = formid;
+        console.log(preEval + "before sending");
+        axios
+          .put("http://localhost:8080/preEvaluation", preEval)
+          .then((response) => {
+            console.log(response);
+            // localStorage.setItem('edit',false);
+            alert("form saved");
+            window.location.href = "http://localhost:3000/home";
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.v$.$validate();
+
+        if (!this.v$.$error) {
+          if (
+            this.state.tempDisabilityCases < 0 ||
+            this.state.permanentDisabilityCases < 0 ||
+            this.state.fatalCases < 0
+          ) {
+            alert("Please fill the Accident Analysis with non negative values");
+          } else {
             const axios = require("axios");
             const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-            console.log("check if its empty:"+isEmpty);
-            var email = JSON.parse(localStorage.getItem('specificuser'))['email']
-            var fcode = "PE"+ email;
+            console.log("check if its empty:" + isEmpty);
+            console.log("The Image File" + data);
+            var email = JSON.parse(localStorage.getItem("specificuser"))[
+              "email"
+            ];
+            var fcode = "PE" + email;
 
             //prepare the json to be sent in
             let preEval = {
               formCode: fcode,
               deadline: toIsoString(dt),
-            subContractorName:this.state.subcontractorName,
-            scopeOfWork: this.state.scopeOfWork, 
-            companyName: JSON.parse(localStorage.getItem('specificuser'))['username'],
-            //evaluator:this.state.evaluatedBy,
-            //evaluatedDate: this.state.todayDate,
-            formName: "Pre Evaluation Form",
-            status: "incomplete",
-            temporaryDisabilityCases:this.state.tempDisabilityCases,
-            permanentDisabilityCases:this.state.permDisabilityCases,
-            fatalCases:this.state.fatalCases,
-            signature: data,
-            acknowledgedBy:this.state.acknowledgedBy}
+              subContractorName: this.state.subcontractorName,
+              scopeOfWork: this.state.scopeOfWork,
+              companyName: JSON.parse(localStorage.getItem("specificuser"))[
+                "username"
+              ],
+              //evaluator:this.state.evaluatedBy,
+              //evaluatedDate: this.state.todayDate,
+              formName: "Pre Evaluation Form",
+              status: "pendingEvaluation",
+              safetyHealthPolicy: Boolean(this.state.shpolicy),
+              properDelegation: Boolean(this.state.safetyOrganisation),
+              safetyCommitment: Boolean(this.state.safetyCommit),
+              toolBoxMeeting: Boolean(this.state.toolbox),
+              supervisorTraining: Boolean(this.state.safetyMgtCourses),
+              workerTraining: Boolean(this.state.safetyWorkersCourses),
+              certificatesSubmitted: Boolean(this.state.safetyCertificates),
+              workerRules: Boolean(this.state.safetyHealthRules),
+              riskAssessmentsSubmitted: Boolean(this.state.safeWorkRisk),
+              inspectionGuidelines: Boolean(this.state.writtenProgram),
+              ppe: Boolean(this.state.safetyEquipment),
+              safetySupervisor: Boolean(this.state.safetySupervisor),
+              firstAider: Boolean(this.state.firstAider),
+              relevantLicensedPersonnel: Boolean(this.state.qualified),
+              temporaryDisabilityCases: this.state.tempDisabilityCases,
+              permanentDisabilityCases: this.state.permDisabilityCases,
+              fatalCases: this.state.fatalCases,
+              submissionDate: this.state.signedDate,
+              signature: data,
+              acknowledgedBy: this.state.acknowledgedBy,
+            };
 
-            if(this.state.signedDate == "Invalid date"){
-              preEval.submissionDate = null
-            }
-            else{
-              preEval.submissionDate = this.state.signedDate
-            }
-            if(this.state.shpolicy ==="true"){
-              preEval.safetyHealthPolicy = true;
-            }
-            else{
-              preEval.safetyHealthPolicy = false;
-            }
-            if(this.state.safetyOrganisation ==="true"){
-              preEval.properDelegation = true
-            }
-            else{
-              preEval.properDelegation = false;
-            }
-            if(this.state.safetyCommit === "true"){
-              preEval.safetyCommitment = true
-            }
-            else{
-              preEval.safetyCommitment = false;
-            }
-            if(this.state.toolbox === "true"){
-              preEval.toolBoxMeeting = true
-            }
-            else{
-              preEval.toolBoxMeeting = false
-            }
-            if(this.state.safetyMgtCourses === "true"){
-              preEval.supervisorTraining = true
-            }
-            else{
-              preEval.supervisorTraining = false
-            }
-            if(this.state.safetyWorkersCourses === "true"){
-              preEval.workerTraining = true
-            }
-            else{
-              preEval.workerTraining = false
-            }
-            if(this.state.safetyCertificates === "true"){
-              preEval.certificatesSubmitted = true
-            }
-            else{
-              preEval.certificatesSubmitted = false
-            }
-            if(this.state.safetyHealthRules === "true"){
-              preEval.workerRules = true
-            }
-            else{
-              preEval.workerRules = false
-            }
-            if(this.state.safeWorkRisk === "true"){
-              preEval.riskAssessmentsSubmitted = true
-            }
-            else{
-              preEval.riskAssessmentsSubmitted = false
-            }
-            if(this.state.writtenProgram === "true"){
-              preEval.inspectionGuidelines = true
-            }
-            else{
-              preEval.inspectionGuidelines = false
-            }
-            if(this.state.safetyEquipment === "true"){
-              preEval.ppe = true
-            }
-            else{
-              preEval.ppe = false
-            }
-            if(this.state.safetySupervisor === "true"){
-              preEval.safetySupervisor = true
-            }
-            else{
-              preEval.safetySupervisor = false
-            }
-            if(this.state.firstAider === "true"){
-              preEval.firstAider = true
-            }
-            else{
-              preEval.firstAider = false
-            }
-            if(this.state.qualified === "true"){
-              preEval.relevantLicensedPersonnel = true
-            }
-            else{
-              preEval.relevantLicensedPersonnel = false
-            }
-  
-            console.log(preEval)
-            var formid = localStorage.getItem('formid')
-            preEval.formCode = formid
-            console.log(preEval+"before sending")
+            if (data) console.log(preEval);
             axios
-              .put("http://localhost:8080/preEvaluation", preEval)
+              .post("http://localhost:8080/preEvaluation", preEval)
               .then((response) => {
                 console.log(response);
-                // localStorage.setItem('edit',false);
-                    alert("form saved")
-                window.location.href = "http://localhost:3000/home"
+                if (response.status == 201 && response.data != "") {
+                  alert("Pre Evaluation successfully created.");
+                  window.location.href = "http://localhost:3000/home";
+                }
+                if (response.data == "") {
+                  alert("VALIDATION FAILED. Something went wrong");
+                } else {
+                  alert("Success");
+                }
               })
               .catch((error) => {
                 console.log(error);
               });
-            }
-            else{
-            this.v$.$validate()
-
-            if(!this.v$.$error){
-          
-              if(this.state.tempDisabilityCases <0 || this.state.permanentDisabilityCases <0 || this.state.fatalCases<0){
-                alert("Please fill the Accident Analysis with non negative values")
-              }
-              else{
-                const axios = require("axios");
-                const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-                console.log("check if its empty:"+isEmpty);
-                console.log("The Image File"+data);
-                var email = JSON.parse(localStorage.getItem('specificuser'))['email']
-                var fcode = "PE"+ email;
-
-                //prepare the json to be sent in
-                let preEval = {formCode: fcode,
-                deadline: toIsoString(dt),
-                subContractorName:this.state.subcontractorName,
-                scopeOfWork: this.state.scopeOfWork, 
-                companyName: JSON.parse(localStorage.getItem('specificuser'))['username'],
-                //evaluator:this.state.evaluatedBy,
-                //evaluatedDate: this.state.todayDate,
-                formName: "Pre Evaluation Form",
-                status: "pendingEvaluation",
-                safetyHealthPolicy:Boolean(this.state.shpolicy),
-                properDelegation:Boolean(this.state.safetyOrganisation),
-                safetyCommitment:Boolean(this.state.safetyCommit),
-                toolBoxMeeting:Boolean(this.state.toolbox),
-                supervisorTraining:Boolean(this.state.safetyMgtCourses),
-                workerTraining:Boolean(this.state.safetyWorkersCourses),
-                certificatesSubmitted:Boolean(this.state.safetyCertificates),
-                workerRules:Boolean(this.state.safetyHealthRules),
-                riskAssessmentsSubmitted:Boolean(this.state.safeWorkRisk),
-                inspectionGuidelines:Boolean(this.state.writtenProgram),
-                ppe:Boolean(this.state.safetyEquipment),
-                safetySupervisor:Boolean(this.state.safetySupervisor),
-                firstAider:Boolean(this.state.firstAider),
-                relevantLicensedPersonnel:Boolean(this.state.qualified),
-                temporaryDisabilityCases:this.state.tempDisabilityCases,
-                permanentDisabilityCases:this.state.permDisabilityCases,
-                fatalCases:this.state.fatalCases,
-                submissionDate:this.state.signedDate,
-                signature: data,
-                acknowledgedBy:this.state.acknowledgedBy}
-
-                if(data)
-                console.log(preEval)
-                  axios
-                  .post("http://localhost:8080/preEvaluation", preEval)
-                  .then((response) => {
-                    console.log(response);
-                    if (response.status == 201 && response.data != "") {
-                      alert("Pre Evaluation successfully created.");
-                      window.location.href = "http://localhost:3000/home"
-                    }
-                    if (response.data == "") {
-                      alert(
-                        "VALIDATION FAILED. Something went wrong"
-                      );
-                    } else {
-                      alert("Success")
-                    }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-              }
-        }
-        else{
+          }
+        } else {
           alert("Please fill up the form with valid details");
-        }  
+        }
       }
     },
     changeApproveStatus() {
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-            console.log(this.state.evaluatedBy);
-            console.log(this.state.todayDate);
-            if(this.state.evaluatedBy == null || this.state.todayDate == "Invalid date"){
-                  alert("Please fill up the evaulated by and date")
-                }
-            else {
-              const axios = require('axios');
-              var formid = localStorage.getItem('formid')
-              console.log(formid)
-              var toUpdate = {
-                  formCode: formid,
-                  rejectionReason: this.rejectionReason,
-                  evaluator: this.state.evaluatedBy,
-                  evaluatedDate: this.state.todayDate,
-                  status: "pendingApproval"
-              }
-              axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
-              .then((response) => {
-                  // alert("Update success")
-                  console.log(response.data)
-                  this.approve_success = true;
-                  window.location.href = "http://localhost:3000/home"
-              })
-              .catch ((error) => {
-                  // alert("Error")
-                  this.approve_error = true;
-                  console.log(error)
-              })
-            }
-        }
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "approved"
-            }
-            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+      if (
+        JSON.parse(localStorage.getItem("specificuser"))["accessRights"] ==
+        "Admin"
+      ) {
+        console.log(this.state.evaluatedBy);
+        console.log(this.state.todayDate);
+        if (
+          this.state.evaluatedBy == null ||
+          this.state.todayDate == "Invalid date"
+        ) {
+          alert("Please fill up the evaulated by and date");
+        } else {
+          const axios = require("axios");
+          var formid = localStorage.getItem("formid");
+          console.log(formid);
+          var toUpdate = {
+            formCode: formid,
+            rejectionReason: this.rejectionReason,
+            evaluator: this.state.evaluatedBy,
+            evaluatedDate: this.state.todayDate,
+            status: "pendingApproval",
+          };
+          axios
+            .put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
             .then((response) => {
-                // alert("Update success")
-                console.log(response.data)
-                this.approve_success = true;
-                window.location.href = "http://localhost:3000/home"
+              // alert("Update success")
+              console.log(response.data);
+              this.approve_success = true;
+              window.location.href = "http://localhost:3000/home";
             })
-            .catch ((error) => {
-                // alert("Error")
-                this.approve_error = true;
-                console.log(error)
-            })
-        }    
-      },
-      reject() {
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Admin'){
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "adminRejected"
-            }
-            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Reject success")
-                console.log(response.data)
-                this.reject_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                this.reject_error = true;
-                console.log(error)
-            })
+            .catch((error) => {
+              // alert("Error")
+              this.approve_error = true;
+              console.log(error);
+            });
         }
-        if (JSON.parse(localStorage.getItem('specificuser'))['accessRights'] == 'Approver'){
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log(formid)
-            var toUpdate = {
-                formCode: formid,
-                rejectionReason: this.rejectionReason,
-                status: "approverRejected"
-            }
-            axios.put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
-            .then((response) => {
-                // alert("Reject success")
-                console.log(response.data)
-                this.reject_success = true;
-                window.location.href = "http://localhost:3000/home"
-            })
-            .catch ((error) => {
-                // alert("Error")
-                console.log(error)
-                this.reject_error = true;
-            })
-        }
+      }
+      if (
+        JSON.parse(localStorage.getItem("specificuser"))["accessRights"] ==
+        "Approver"
+      ) {
+        const axios = require("axios");
+        var formid = localStorage.getItem("formid");
+        console.log(formid);
+        var toUpdate = {
+          formCode: formid,
+          rejectionReason: this.rejectionReason,
+          status: "approved",
+        };
+        axios
+          .put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+          .then((response) => {
+            // alert("Update success")
+            console.log(response.data);
+            this.approve_success = true;
+            window.location.href = "http://localhost:3000/home";
+          })
+          .catch((error) => {
+            // alert("Error")
+            this.approve_error = true;
+            console.log(error);
+          });
+      }
     },
-    draw(data){ // this draws back the signature that we saved in the database
+    async email(formCode, companyName, formName, rejectionReason) {
+      var email = formCode.slice(2);
+      try {
+        const axios = require("axios");
+        let newEmail = {
+          recipient: email,
+          msgBody:
+            "Dear " +
+            this.companyName +
+            "," +
+            "\n\nI am writing to inform you that unfortunately, we have had to reject the " +
+            this.formName +
+            " that you submitted to us due to the following reason:\n\n" +
+            rejectionReason +
+            "\n\nWe kindly request that you review the reason for the rejection and make any necessary changes to the form. Once the changes have been made, please resubmit the form to us as soon as possible.\n\nIf you have any questions or concerns regarding the reason for the rejection, please do not hesitate to contact us. We are happy to help and provide any clarification that you may need.\n\nWe value your partnership and thank you for your prompt attention to this matter." +
+            "\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+          subject:
+            "Rejection Notification for " +
+            companyName +
+            "'s " +
+            formName +
+            " - " +
+            rejectionReason,
+        };
+
+        await axios
+          .post("http://localhost:8080/sendMail", newEmail)
+          .then((response) => {
+            console.log(response.data);
+            alert("reminder sent");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    reject() {
+      if (
+        JSON.parse(localStorage.getItem("specificuser"))["accessRights"] ==
+        "Admin"
+      ) {
+        const axios = require("axios");
+        var formid = localStorage.getItem("formid");
+        console.log(formid);
+        var toUpdate = {
+          formCode: formid,
+          rejectionReason: this.rejectionReason,
+          status: "adminRejected",
+        };
+        axios
+          .put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+          .then((response) => {
+            this.email(formid, this.companyName, this.formName, this.rejectionReason);
+            // alert("Reject success")
+            console.log(response.data);
+            this.reject_success = true;
+            window.location.href = "http://localhost:3000/home";
+          })
+          .catch((error) => {
+            // alert("Error")
+            this.reject_error = true;
+            console.log(error);
+          });
+      }
+      if (
+        JSON.parse(localStorage.getItem("specificuser"))["accessRights"] ==
+        "Approver"
+      ) {
+        const axios = require("axios");
+        var formid = localStorage.getItem("formid");
+        console.log(formid);
+        var toUpdate = {
+          formCode: formid,
+          rejectionReason: this.rejectionReason,
+          status: "approverRejected",
+        };
+        axios
+          .put(`http://localhost:8080/preEvaluation/updateStatus`, toUpdate)
+          .then((response) => {
+            this.email(formid, this.companyName, this.formName, this.rejectionReason);
+            // alert("Reject success")
+            console.log(response.data);
+            this.reject_success = true;
+            window.location.href = "http://localhost:3000/home";
+          })
+          .catch((error) => {
+            // alert("Error")
+            console.log(error);
+            this.reject_error = true;
+          });
+      }
+    },
+    draw(data) {
+      // this draws back the signature that we saved in the database
       this.$refs.signaturePad.clearSignature();
       console.log("Trying to draw the signature");
       this.$refs.signaturePad.fromDataURL(data); // this draws back the signature that we saved
-    //this.$refs.signaturePad.fromData(data);
+      //this.$refs.signaturePad.fromData(data);
     },
-    async getEditInputs(){
-        try {
-            const axios = require('axios');
-            var formid = localStorage.getItem('formid')
-            console.log("retrieving data")
-            console.log(formid)
-            await axios.get(`http://localhost:8080/preEvaluation/${formid}`)
-            .then((response) => {
-                console.log(response.data);
-                
-                var data = response.data
-                this.status= data.status
-                this.state.subcontractorName = data.subContractorName
-                this.state.scopeOfWork = data.scopeOfWork
-                this.state.evaluatedBy = data.evaluator,
-                this.state.todayDate =moment(data.evaluatedDate).utc().format('YYYY-MM-DD') ,
+    async getEditInputs() {
+      try {
+        const axios = require("axios");
+        var formid = localStorage.getItem("formid");
+        console.log("retrieving data");
+        console.log(formid);
+        await axios
+          .get(`http://localhost:8080/preEvaluation/${formid}`)
+          .then((response) => {
+            console.log(response.data);
 
-                console.log("retrieved signeddate", data.submissionDate)
+            var data = response.data;
+            this.status = data.status;
+            this.state.subcontractorName = data.subContractorName;
+            this.state.scopeOfWork = data.scopeOfWork;
+            (this.state.evaluatedBy = data.evaluator),
+              (this.state.todayDate = moment(data.evaluatedDate)
+                .utc()
+                .format("YYYY-MM-DD")),
+              console.log("retrieved signeddate", data.submissionDate);
 
-                if(data.submissionDate == null){
-                  this.state.signedDate = data.submissionDate
-                }
-                else{
-                  this.state.signedDate = moment(data.submissionDate).utc().format('YYYY-MM-DD')
-                }
-                if(data.safetyHealthPolicy){
-                  this.state.shpolicy = "true"
-                }
-                else{
-                  this.state.shpolicy = "false"
-                }
+            if (data.submissionDate == null) {
+              this.state.signedDate = data.submissionDate;
+            } else {
+              this.state.signedDate = moment(data.submissionDate)
+                .utc()
+                .format("YYYY-MM-DD");
+            }
+            if (data.safetyHealthPolicy) {
+              this.state.shpolicy = "true";
+            } else {
+              this.state.shpolicy = "false";
+            }
 
-                if(data.properDelegation){
-                  this.state.safetyOrganisation = "true"
-                }
-                else{
-                  this.state.safetyOrganisation = "false"
-                }
+            if (data.properDelegation) {
+              this.state.safetyOrganisation = "true";
+            } else {
+              this.state.safetyOrganisation = "false";
+            }
 
-                if(data.safetyCommitment){
-                  this.state.safetyCommit = "true"
-                }
-                else{
-                  this.state.safetyCommit = "false"
-                }
+            if (data.safetyCommitment) {
+              this.state.safetyCommit = "true";
+            } else {
+              this.state.safetyCommit = "false";
+            }
 
-                if(data.toolBoxMeeting){
-                  this.state.toolbox ="true"
-                }
-                else{
-                  this.state.toolbox = "false"
-                }
+            if (data.toolBoxMeeting) {
+              this.state.toolbox = "true";
+            } else {
+              this.state.toolbox = "false";
+            }
 
-                if(data.supervisorTraining){
-                  this.state.safetyMgtCourses = "true"
-                }
-                else{
-                  this.state.safetyMgtCourses = "false"
-                }
+            if (data.supervisorTraining) {
+              this.state.safetyMgtCourses = "true";
+            } else {
+              this.state.safetyMgtCourses = "false";
+            }
 
-                if(data.workerTraining){
-                  this.state.safetyWorkersCourses = "true"
-                }
-                else{
-                  this.state.safetyWorkersCourses = "false"
-                }
+            if (data.workerTraining) {
+              this.state.safetyWorkersCourses = "true";
+            } else {
+              this.state.safetyWorkersCourses = "false";
+            }
 
-                if(data.certificatesSubmitted){
-                  this.state.safetyCertificates = "true"
-                }
-                else{
-                  this.state.safetyCertificates = "false"
-                }
+            if (data.certificatesSubmitted) {
+              this.state.safetyCertificates = "true";
+            } else {
+              this.state.safetyCertificates = "false";
+            }
 
-                if(data.workerRules){
-                  this.state.safetyHealthRules ="true"
-                }
-                else{
-                  this.state.safetyHealthRules ="false"
-                }
+            if (data.workerRules) {
+              this.state.safetyHealthRules = "true";
+            } else {
+              this.state.safetyHealthRules = "false";
+            }
 
-                if(data.riskAssessmentsSubmitted) {
-                  this.state.safeWorkRisk = "true"
-                }
-                else{
-                  this.state.safeWorkRisk = "false"
-                }
+            if (data.riskAssessmentsSubmitted) {
+              this.state.safeWorkRisk = "true";
+            } else {
+              this.state.safeWorkRisk = "false";
+            }
 
-                if(data.inspectionGuidelines){
-                  this.state.writtenProgram = "true"
-                }
-                else{
-                  this.state.writtenProgram = "false"
-                }
+            if (data.inspectionGuidelines) {
+              this.state.writtenProgram = "true";
+            } else {
+              this.state.writtenProgram = "false";
+            }
 
-                if(data.ppe){
-                  this.state.safetyEquipment = "true"
-                }
-                else{
-                  this.state.safetyEquipment = "false"
-                }
+            if (data.ppe) {
+              this.state.safetyEquipment = "true";
+            } else {
+              this.state.safetyEquipment = "false";
+            }
 
-                if(data.safetySupervisor){
-                  this.state.safetySupervisor = "true"
-                }
-                else{
-                  this.state.safetySupervisor = "false"
-                }
+            if (data.safetySupervisor) {
+              this.state.safetySupervisor = "true";
+            } else {
+              this.state.safetySupervisor = "false";
+            }
 
-                if(data.firstAider){
-                  this.state.firstAider = "true"
-                }
-                else{
-                  this.state.firstAider ="false"
-                }
+            if (data.firstAider) {
+              this.state.firstAider = "true";
+            } else {
+              this.state.firstAider = "false";
+            }
 
-                if(data.relevantLicensedPersonnel){
-                  this.state.qualified = "true"
-                }
-                else{
-                  this.state.qualified = "false"
-                }
+            if (data.relevantLicensedPersonnel) {
+              this.state.qualified = "true";
+            } else {
+              this.state.qualified = "false";
+            }
 
-                this.state.tempDisabilityCases = data.temporaryDisabilityCases
-                this.state.permDisabilityCases = data.permanentDisabilityCases
-                this.state.fatalCases = data.fatalCases
-                this.state.signedDate = moment(data.submissionDate).utc().format('YYYY-MM-DD')
-                var signdata = data.signature
-                this.state.acknowledgedBy= data.acknowledgedBy
-                //input the signature back into the signature pad
-                this.draw(signdata);
-            })
-            .catch ((error) => {
-                console.log(error);
-            })
-        } catch (error) {
-            console.log(error + "Hello");
-        };
-        
+            this.state.tempDisabilityCases = data.temporaryDisabilityCases;
+            this.state.permDisabilityCases = data.permanentDisabilityCases;
+            this.state.fatalCases = data.fatalCases;
+            this.state.signedDate = moment(data.submissionDate)
+              .utc()
+              .format("YYYY-MM-DD");
+            var signdata = data.signature;
+            this.state.acknowledgedBy = data.acknowledgedBy;
+            //input the signature back into the signature pad
+            this.draw(signdata);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error + "Hello");
       }
+    },
   },
-  
+
   created() {
-      this.checkuseraccess();
-      this.getEditInputs();
-      
-      
+    this.checkuseraccess();
+    this.getEditInputs();
   },
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
