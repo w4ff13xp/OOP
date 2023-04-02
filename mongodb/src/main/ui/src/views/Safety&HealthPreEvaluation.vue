@@ -1220,6 +1220,8 @@ export default {
   setup() {
     const state = reactive({
       // name:value pairs
+      formName: "",
+      companyName: "",
       status: "",
       useraccess: "",
       subcontractorName: "",
@@ -1682,7 +1684,6 @@ export default {
       ) {
         const axios = require("axios");
         var formid = localStorage.getItem("formid");
-        console.log(formid);
         var toUpdate = {
           formCode: formid,
           rejectionReason: this.rejectionReason,
@@ -1750,6 +1751,8 @@ export default {
             console.log(response.data);
 
             var data = response.data;
+            this.companyName = data.companyName;
+            this.formName = data.formName;
             this.status = data.status;
             this.state.subcontractorName = data.subContractorName;
             this.state.scopeOfWork = data.scopeOfWork;

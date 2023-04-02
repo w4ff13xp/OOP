@@ -399,13 +399,81 @@
     <div class="text-center m-3">
       <button type="button" value="save" class="btn btn-warning mx-3" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Save</button>
       <button type="button" value="submit" class="btn btn-success text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Vendor'">Submit</button>        
-      <button type="button" value="evaluation rejected" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin' && this.status != 'approved'">Reject Evaluation</button>
+      <button type="button" value="evaluation rejected" class="btn btn-danger mx-3 text-white" data-bs-toggle="modal" data-bs-target="#deleteModal" v-if="this.useraccess == 'Admin' && this.status != 'approved'">Reject Evaluation</button>
       <button type="button" value="evaluation approved" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Admin' && this.status != 'approved'">Approve Evaluation</button>
       <button type="button" class="btn btn-info mx-3 text-white" @click="print" id="printButton" v-if="this.useraccess == 'Admin' && this.status== 'approved'">Print</button>
-      <button type="button" value="reject" class="btn btn-danger mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Reject</button>
+      <button type="button" value="reject" class="btn btn-danger mx-3 text-white" data-bs-toggle="modal" data-bs-target="#deleteModal" v-if="this.useraccess == 'Approver'">Reject</button>
       <button type="button" value="approve" class="btn btn-success mx-3 text-white" @click="addToAPI($event)" v-if="this.useraccess == 'Approver'">Approve</button>
         
     </div>
+
+    <!--modal-->
+    <div
+      class="modal fade"
+      tabindex="-1"
+      id="deleteModal"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirm Deletion</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to reject the form?</p>
+            <div class="form-floating">
+              <p>Please state the reason(s) for rejection.</p>
+              <textarea
+                class="form-control border rounded"
+                placeholder="Leave a comment here"
+                id="rejectionReason"
+                v-model="rejectionReason"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn bg-gradient-custom border rounded"
+              data-bs-dismiss="modal"
+            >
+              No, cancel
+            </button>
+            <button
+              type="button"
+              class="btn bg-gradient-custom btn-danger text-white"
+              data-bs-dismiss="modal"
+              value="evaluation rejected"
+              @click="addToAPI($event)" 
+              v-if="this.useraccess == 'Admin'"
+            >
+              <!--put @click here-->
+              Reject
+            </button>
+            <button
+              type="button"
+              class="btn bg-gradient-custom btn-danger text-white"
+              data-bs-dismiss="modal"
+              value="reject"
+              @click="addToAPI($event)" 
+              v-if="this.useraccess == 'Approver'"
+            >
+              <!--put @click here-->
+              Reject
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </form>
     <!-- <Footer></Footer> -->
   </div>
@@ -466,13 +534,14 @@ export default {
       accrediationBody: "",
       productMarkings: "",
       // resultOfEvaluation: null,
+      rejectionReason: "",
 
       evaluatedBy: "",
       approvedByDirector: "",
       effectiveDate: "",
       signature: "",
       signaturetwo: "",
-
+      formName: "Vendor Assessment Form",
     })
 
     const rules = computed(() => {
@@ -515,7 +584,8 @@ export default {
       approvedByDirector: "",
       effectiveDate: "",
       signature: "",
-      signaturetwo: ""
+      signaturetwo: "",
+      
 
       }
     })
@@ -531,7 +601,45 @@ export default {
     //   this.status = "approve"
     //   console.log('approveeee')
     // },
-    
+    async email(formCode, companyName, formName, rejectionReason) {
+      var email = formCode.slice(2);
+      try {
+        console.log("emailing");
+        const axios = require("axios");
+        let newEmail = {
+          recipient: email,
+          msgBody:
+            "Dear " +
+            this.companyName +
+            "," +
+            "\n\nI am writing to inform you that unfortunately, we have had to reject the " +
+            this.formName +
+            " that you submitted to us due to the following reason:\n\n" +
+            rejectionReason +
+            "\n\nWe kindly request that you review the reason for the rejection and make any necessary changes to the form. Once the changes have been made, please resubmit the form to us as soon as possible.\n\nIf you have any questions or concerns regarding the reason for the rejection, please do not hesitate to contact us. We are happy to help and provide any clarification that you may need.\n\nWe value your partnership and thank you for your prompt attention to this matter." +
+            "\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+          subject:
+            "Rejection Notification for " +
+            companyName +
+            "'s " +
+            formName +
+            " - " +
+            rejectionReason,
+        };
+
+        await axios
+          .post("http://localhost:8080/sendMail", newEmail)
+          .then((response) => {
+            console.log(response.data);
+            alert("reminder sent");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     print(){
         // console.log(this.state.signaturetwo)
         setTimeout(function(){
@@ -617,6 +725,7 @@ export default {
         evaluatedBy: this.state.evaluatedBy,
         approvedByDirector: this.state.approvedByDirector,
         effectiveDate: this.state.effectiveDate,
+        rejectionReason: this.rejectionReason
       };
       var buttonValue = e.target.value;
 
@@ -643,6 +752,8 @@ export default {
         }
         if(buttonValue == "evaluation rejected"){
           newForm.status = "adminRejected";
+          console.log(formid, this.state.companyName, "Vendor Assessment Form", this.rejectionReason);
+          this.email(formid, this.state.companyName, "Vendor Assessment Form", this.rejectionReason);
           this.reject_success = true;
         }
         if(buttonValue == "evaluation approved"){
@@ -656,6 +767,8 @@ export default {
         }
         else if(buttonValue == "reject"){
           newForm.status = "approverRejected";
+          console.log(formid, this.state.companyName, "Vendor Assessment Form", this.rejectionReason);
+          this.email(formid, this.state.companyName, "Vendor Assessment Form", this.rejectionReason);
           this.reject_success = true;
 
         }
@@ -756,7 +869,7 @@ export default {
       } catch (error) {
           console.log(error);
       };
-    }
+    },
   },
   created() {
     this.getEditInputs();
