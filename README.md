@@ -115,7 +115,7 @@ Statuses:
 
 #### Send Email Alert to Vendor
 * Yellow alert button appears when the form status is still incomplete
-* Upon clicking the alert button, an email from the admin will be sent to the vendor as a reminder to complete the form
+* Upon clicking the alert button, an email from the admin will be sent to the vendor as a reminder to complete the form<br>
 <img width="500" alt="" src="img/email.png"><br>
 
 * Email received by vendor reminding to complete the form by the deadline 
