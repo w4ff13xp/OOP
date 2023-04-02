@@ -408,6 +408,7 @@ name:'Admin',
     }
   },
   methods: {
+    
     setPagination() {
         this.num_page = (this.vendors).length / this.results_per_page;
         console.log("PAGINATION: " + this.num_page)
@@ -623,14 +624,39 @@ name:'Admin',
         })
         },
 
+        async email(companyName, formName, longDate, email){
+            console.log("testing email assing")
+            console.log(companyName, formName, longDate, email)
+            var shortDate = longDate.toString().slice(0, 10)
+            try {
+                const axios = require('axios');
+
+                let newEmail = {
+                    recipient : email,
+                    msgBody : "Dear " + companyName + "," + "\n\nI am writing to inform you that a " + formName + " has been assigned to you and it is required to be completed before the deadline. We appreciate your cooperation in this matter.\n\nPlease find the form on our website that needs to be filled out and returned to us by " + shortDate + ". We kindly request that you complete the form thoroughly and provide all necessary information requested.\n\nIf you have any questions or concerns regarding the form or the deadline, please do not hesitate to contact us. We are happy to help and provide any clarification that you may need.\n\nWe value your partnership and thank you for your prompt attention to this matter." + "\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
+                    subject: "Reminder: Submission of Required Forms before Deadline"
+                };
+
+                await axios.post('http://localhost:8080/sendMail', newEmail)
+                .then((response) => {
+                    console.log(response.data);
+                    alert('reminder sent')
+                })
+                .catch ((error) => {
+                    console.log(error);
+                })
+            } catch (error) {
+                console.log(error);
+
+            }
+
+    },
         assignForms() {
         const axios = require('axios');
         let form = document.getElementById('forms').value;
         let vendor_name = document.getElementById('updated_vendor_name').value;
         let id = document.getElementById('vendor_id').value;
         let dd = new Date(document.getElementById('due_date').value)
-        console.log("DUEDATE",dd)
-
 
         // HEALTH EVAL FORM
         if (form == 'Performance Evaluation Form'){
@@ -654,7 +680,7 @@ name:'Admin',
 
             let updated_form = this.forms
             let formCode = temp_obj['formCode']
-            let formName = temp_obj['formName']
+            // let formName = temp_obj['formName']
 
             
             if (this.forms != null && updated_form.includes(formCode)){
@@ -673,11 +699,11 @@ name:'Admin',
             }
 
             let new_vendor_access = document.getElementById('updated_vendor_access').value;
-            let vid = document.getElementById('vendor_id').value;
+            // let vid = document.getElementById('vendor_id').value;
 
             let e = this.vendorEmail;
             let p = document.getElementById('pwd').value;
-            let loc = document.getElementById('loc').value;
+            // let loc = document.getElementById('loc').value;
 
             var vendor_obj = {
                 id: id,
@@ -740,11 +766,11 @@ name:'Admin',
             }
 
             let new_vendor_access = document.getElementById('updated_vendor_access').value;
-            let vid = document.getElementById('vendor_id').value;
+            // let vid = document.getElementById('vendor_id').value;
 
             let e = this.vendorEmail;
             let p = document.getElementById('pwd').value;
-            let loc = document.getElementById('loc').value;
+            // let loc = document.getElementById('loc').value;
 
             var vendor_obj = {
                 id: id,
@@ -793,7 +819,7 @@ name:'Admin',
 
             let updated_form = this.forms
             let formCode = temp_obj['formCode']
-            let formName = temp_obj['formName']
+            // let formName = temp_obj['formName']
 
             if (this.forms != null && updated_form.includes(formCode)){
                 console.log("FORM ALR EXISTS")
@@ -808,11 +834,11 @@ name:'Admin',
             }
 
             let new_vendor_access = document.getElementById('updated_vendor_access').value;
-            let vid = document.getElementById('vendor_id').value;
+            // let vid = document.getElementById('vendor_id').value;
 
             let e = this.vendorEmail;
             let p = document.getElementById('pwd').value;
-            let loc = document.getElementById('loc').value;
+            // let loc = document.getElementById('loc').value;
 
             var vendor_obj = {
                 id: id,
@@ -837,36 +863,8 @@ name:'Admin',
             this.assign_error = true;
             })
         }
-        
-        },
-        async email(formCode, companyName, formName){
-        console.log(formCode, companyName, formName)
-        var email = formCode.slice(2)
-        console.log(email)
-        var shortDate = longDate.toString().slice(0, 10)
-
-        try {
-            const axios = require('axios');
-
-            let newEmail = {
-                recipient : email,
-                msgBody : "Dear " + companyName + "," + "\n\nI hope this email finds you well. I am writing to notify you that the " + formName + " has been assigned to you. Please do so as soon as possible to avoid missing the deadline.\n\nIf you have any questions or concerns, please don't hesitate to reach out to us. We are here to assist you in any way we can.\n\nThank you for your attention to this matter.\n\nBest Regards,\nQuantum Leap\nEmail: grp1oop@gmail.com\nQuantum Leap Incorporation Pte Ltd\n114 Lavender Street CT Hub 2, 09-50 Lobby, #3, 338729",
-                subject: "Notification: Assignment of Required Forms"
-            };
-
-            await axios.post('http://localhost:8080/sendMail', newEmail)
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch ((error) => {
-                console.log(error);
-            })
-        } catch (error) {
-            console.log(error);
-
-        }
-
-    }
+        this.email(vendor_name, form, dd, id);
+    },
   },
   created() {
       this.getVendors();
