@@ -102,9 +102,14 @@ Statuses:
 * Form status changes from 'Pending Admin Evaluation' to 'Pending Approval'
 
 <ins>Reject Evaluation<ins> <br>
+<img width="500" alt="" src="img/statereason.png"><br>
 
 * Admin fills up the rejection reason and clicks reject evaluation
-* Form status changes from 'Pending Admin Evaluation' to 'Admin Rejected'
+* Form status changes from 'Pending Admin Evaluation' to 'Admin Rejected' <br>
+
+<img width="500" alt="" src="img/highlightrejection.png"><br>
+
+* On the Vendor's end, they see the reason for the rejection when they open the form
 #### Print Approved Form
 
 * Green print button appears when the form status is approved 
