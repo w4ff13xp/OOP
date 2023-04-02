@@ -19,7 +19,7 @@ Email: glen@gmail.com
 Password: Oopg1t9!
 
 Forms: <br>
-Pre Evaluation Form
+Pre Evaluation Form<br>
 <img width="500" alt="" src="img/preeval1.png"><br>
 <img width="500" alt="" src="img/preeval2.png"><br>
 <img width="500" alt="" src="img/preeval3.png"><br>
@@ -122,7 +122,7 @@ Statuses:
 * Red delete button where admin can delete a workflow for the vendor
 
 ### Admin page
-Admin sees all accounts in the system
+Admin sees all accounts in the system <br>
 <img width="500" alt="" src="img/adminpage.png"><br>
 <code>http://localhost:3000/admin</code>
 
