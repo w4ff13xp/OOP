@@ -1,9 +1,16 @@
 # OOP G2T1
 ## To run
-1. cd mongodb/src/main/ui
-2. npm i
-3. npm run serve
-4. In new terminal, run java mongodbapplication.java
+1. Ensure that maven is installed in your laptop environment <br>
+For MAC users, [Go to this Web Site](https://javabydeveloper.com/how-to-install-maven-on-mac-osx/)  <br>
+For Windows users, [Go to this Web Site](https://maven.apache.org/download.cgi) 
+2. Ensure that there is node_modules folder in the directory mongodb/src/main/ui. If not, run "npm i" in this directory
+2. Run "run run.bat" in the terminal
+<br><br>
+Alternatively,
+
+1. Run "npm i" in mongodb/src/main/ui
+2. Run "npm run serve" in mongodb/src/main/ui  (this is to run the frontend)
+3. In a new command prompt, run "java mongodb/src/main/java/com/example/mongodb MongodbApplication.java"  (this is to run the backend)
 
 ## Accounts
 1. Vendor
@@ -147,6 +154,8 @@ Admin sees all accounts in the system <br>
 * Upon clicking the green create new account button, admin enters the create new account page to fill in the fields for a new vendor
 * Admin fills up the company name, email, password (hashed), access rights, location of operations 
 * Admin clicks submit and a new account is created  
+* An email is auto sent to the vendor when admin assigns a workflow to them <br>
+<img width="500" alt="" src="img/emailuponassign.png"><br>
 
 #### Edit Vendor Account Details
 <img width="500" alt="" src="img/editaccountdetails.png"><br>
