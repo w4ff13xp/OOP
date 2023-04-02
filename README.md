@@ -18,7 +18,7 @@ Password: aA111111
 Email: glen@gmail.com
 Password: Oopg1t9!
 
-Forms: 
+Forms: <br>
 Pre Evaluation Form
 <img width="500" alt="" src="img/preeval1.png"><br>
 <img width="500" alt="" src="img/preeval2.png"><br>
@@ -26,19 +26,19 @@ Pre Evaluation Form
 <img width="500" alt="" src="img/preeval4.png"><br>
 <code>http://localhost:3000/Safety&HealthPreEvaluation</code>
 
-Performance Evaluation Form
+Performance Evaluation Form <br>
 <img width="500" alt="" src="img/perfeval1.png"><br>
 <img width="500" alt="" src="img/perfeval2.png"><br>
 <img width="500" alt="" src="img/perfeval3.png"><br>
 <code>http://localhost:3000/performanceevaluation</code>
 
-Vendor Assessment Form
+Vendor Assessment Form <br>
 <img width="500" alt="" src="img/newvendor1.png"><br>
 <img width="500" alt="" src="img/newvendor2.png"><br>
 <img width="500" alt="" src="img/newvendor3.png"><br>
 <code>http://localhost:3000/newvendorform</code>
 
-Performance Evaluation Report
+Performance Evaluation Report <br>
 <img width="500" alt="" src="img/perfevalreport1.png"><br>
 <img width="500" alt="" src="img/perfevalreport1.png"><br>
 <code>http://localhost:3000/adminapprove</code>
@@ -76,10 +76,10 @@ Vendor sees the status of the forms
 
 ## Admin
 ### Home page
+Admin sees all forms <br>
+
 <img width="500" alt="" src="img/adminhomepage.png"><br>
 <code>http://localhost:3000/home</code>
-
-Admin sees all forms <br>
 
 Statuses: 
 1. Upon assign -> Incomplete!
@@ -110,6 +110,7 @@ Statuses:
 * Green print button appears when the form status is approved 
 * Upon clicking the print button, admin enters into the form and clicks the blue print button at the bottom of the form
 * PDF file of the form is downloaded 
+<br>
 <img width="500" alt="" src="img/printpdf.png"><br>
 
 #### Send Email Alert to Vendor
@@ -121,10 +122,10 @@ Statuses:
 * Red delete button where admin can delete a workflow for the vendor
 
 ### Admin page
+Admin sees all accounts in the system
 <img width="500" alt="" src="img/adminpage.png"><br>
 <code>http://localhost:3000/admin</code>
 
-Admin sees all accounts in the system
 
 #### Assign New Workflow 
 <img width="500" alt="" src="img/assignform.png"><br>
@@ -155,11 +156,12 @@ Admin sees all accounts in the system
 <code>http://localhost:3000/home</code>
 
 Approver sees all forms that are approved and requires approve action
-#### Approve Form
+#### Form Approval
 <img width="500" alt="" src="img/approverej.png"><br>
 
 * Blue pen button refers to an action required from the Approver to approve the form
 * Upon clicking the approve button Approver sees the form with inputs filled and submitted by the vendor and admin
+
 <ins>Approve Form<ins> <br>
 
 * Approver fills up some evaluation fields and signs the form
