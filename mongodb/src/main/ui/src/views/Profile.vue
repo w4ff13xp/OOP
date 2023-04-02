@@ -96,7 +96,7 @@
 
                         <!-- <label for="updated_vendor_access">Access Right</label> -->
                         <p style="padding-right: 17px;">Access Right: </p>
-                        <select id="updated_access_rights" v-model="accessRights" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
+                        <select disabled id="updated_access_rights" v-model="accessRights" style="border: 1px black solid; border-radius: 5px; padding: 5px;">
                         <option value="Admin">Admin</option>
                         <option value="Approver">Approver</option>
                         <option value="Vendor">Vendor</option>
