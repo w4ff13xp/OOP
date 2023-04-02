@@ -69,7 +69,7 @@
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label" for="inlineRadio4">No</label>
-                            <input v-if="this.useraccess == 'Vendor'" style="width:90%" type="radio" id="inlineRadio4" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false">        
+                            <input v-if="this.useraccess == 'Vendor'" type="radio" id="inlineRadio4" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false">        
                             <input v-else disabled  type="radio" id="inlineRadio4" class="form-check-input" name="second" v-model="state.safetyOrganisation" value="false" >  
                           </div>
                     </div>
