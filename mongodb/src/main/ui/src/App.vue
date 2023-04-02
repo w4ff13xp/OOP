@@ -19,7 +19,7 @@ import Footer from "@/components/Footer.vue";
 
 export default {
   name: 'App', 
-  components:{Navigation, },
+  components:{Navigation, Footer},
   data() {
     return{
       clientId: process.env.VUE_APP_AUTH0_CONFIG_DOMAIN
