@@ -677,7 +677,7 @@ export default {
             };
         return date.getFullYear() +
             '-' + pad(date.getMonth() + 1) +
-            '-' + pad(date.getDate()) +
+            '-' + pad(date.getDate() + 14) +
             'T' + pad(date.getHours()) +
             ':' + pad(date.getMinutes()) +
             ':' + pad(date.getSeconds()) +
@@ -686,6 +686,7 @@ export default {
       }
       
       var dt = new Date();
+      console.log(toIsoString(dt))
       let newForm = {
         
         // formCode: (Math.floor((Math.random() * 100) + 1)).toString(),

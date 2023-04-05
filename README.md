@@ -4,10 +4,10 @@
 For MAC users, [Go to this Web Site](https://javabydeveloper.com/how-to-install-maven-on-mac-osx/)  <br>
 For Windows users, [Go to this Web Site](https://maven.apache.org/download.cgi) 
 2. Ensure that there is node_modules folder in the directory mongodb/src/main/ui. If not, run "npm i" in this directory
-2. Run "run run.bat" in the terminal
-<br><br>
-Alternatively,
+3. Run "run run.bat" in the terminal
+<br>
 
+#### Alternatively,
 1. Run "npm i" in mongodb/src/main/ui
 2. Run "npm run serve" in mongodb/src/main/ui  (this is to run the frontend)
 3. In a new command prompt, run "java mongodb/src/main/java/com/example/mongodb MongodbApplication.java"  (this is to run the backend)
